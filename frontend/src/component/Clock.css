@@ -1,0 +1,11 @@
+#clock
+{
+    font-family: 'Kanit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(83, 83, 83);
+    display: flex;
+    justify-content: right;
+    align-items:center;
+    width: 135px;
+}

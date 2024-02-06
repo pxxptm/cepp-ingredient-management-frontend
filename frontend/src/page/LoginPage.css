@@ -1,0 +1,635 @@
+#Login-page-body
+{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    padding: 0;
+}
+
+#Login-page
+{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+    margin: 0;
+    background-image: url("../resource/login_wallpaper_blue_black.jpg");
+    background-size: 100% 100%;
+    background-position:initial;
+    padding: 90px;
+}    
+
+@media (min-width: 700px)
+{
+
+    #Login-box
+    {
+        width: 500px;
+        aspect-ratio: auto 1 / 1;
+        margin: auto;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 25px 25px 25px 25px rgba(0, 0, 0, 80%);
+        display: flex;
+    }
+
+    #Login-element
+    {
+        width: 100%;
+        margin: auto;
+    }
+
+    .login-head
+    {
+        font: 'inter' , sans-serif;
+        font-size: 85px;
+        font-weight: 790;
+        font-style: normal;
+    }
+
+    #Login-txt
+    {
+        display: flex;
+        justify-content: center;
+    }
+
+    #sw-txt
+    {
+        margin-top: 4px;
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #sw-name
+    {
+        font: "inter";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .form-floating
+    {
+        margin: 25px auto;
+        width: 75%;
+        padding: 0 auto;
+    }
+
+    .input-form
+    {
+        display: flex;
+        width: 100%;
+    }
+
+    .form-floating .material-icons
+    {
+        color: white;
+        font-size:18px !important; 
+        padding: 9.5px 13px;
+        min-width: 7%;
+        text-align: center;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        background-color: rgb(10, 129, 169);
+    }
+
+    .form-input-space
+    {
+        width: 100%;
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 10px 17px;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+    }
+
+    .text-danger
+    {
+        color: crimson;
+        font-size: 9.5px;
+        font-weight: 500;
+        text-align: right;
+        margin-top: 5px;
+    }
+
+    #span-zone
+    {
+        margin-top: 55px;
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    #notice-txt
+    {
+        width: 50%;
+        font-family: 'Kanit', sans-serif;
+        font-size: 9.5px;
+        text-align: left;
+        margin-left: 10%;
+        color: crimson;
+    }
+
+    #pressed-button
+    {
+        margin-right: 11%;
+        display: flex;
+        width: 50%;
+        justify-content: flex-end;
+    }
+
+    #login-submit
+    {
+        float: right;
+        background-color: rgb(10, 129, 169);
+        color: white;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        height: 35px;
+        padding: 0 33px;
+        border-radius: 10px;
+        border-width: 0;
+
+        &:hover
+        {
+            background-color: rgb(12, 103, 133);
+            cursor: pointer;
+        }
+    }
+}
+
+@media (min-width: 420px) and (max-width:699.5px)
+{
+    #Login-box
+    {
+        width: 400px;
+        aspect-ratio: auto 1 / 1;
+        margin: auto;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 25px 25px 25px 25px rgba(0, 0, 0, 80%);
+        display: flex;
+    }
+
+    #Login-element
+    {
+        width: 400px;
+        margin: auto;
+    }
+
+    .login-head
+    {
+        font: 'inter' , sans-serif;
+        font-size: 70px;
+        font-weight: 790;
+        font-style: normal;
+    }
+
+    #Login-txt
+    {
+        display: flex;
+        justify-content: center;
+    }
+
+    #sw-txt
+    {
+        margin-top: 2px;
+        margin-bottom: 35px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #sw-name
+    {
+        font: "inter";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .form-floating
+    {
+        margin: 15px auto;
+        width: 77%;
+        padding: 0 auto;
+    }
+
+    .input-form
+    {
+        display: flex;
+        width: 100%;
+    }
+
+    .form-floating .material-icons
+    {
+        color: white;
+        font-size:17px !important; 
+        padding: 9.5px 13px;
+        min-width: 7%;
+        text-align: center;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        background-color: rgb(10, 129, 169);
+    }
+
+    .form-input-space
+    {
+        width: 100%;
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 10px 17px;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px;
+            border-color: rgb(10, 129, 169);
+            border-width: 0.3px 0.3px 0.3px 0px;
+        }
+    }
+
+    .text-danger
+    {
+        color: crimson;
+        font-size: 9.5px;
+        font-weight: 500;
+        text-align: right;
+        margin-top: 5px;
+    }
+
+    #span-zone
+    {
+        margin-top: 25px;
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    #notice-txt
+    {
+        width: 70%;
+        font-family: 'Kanit', sans-serif;
+        font-size: 9px;
+        text-align: left;
+        margin-left: 10%;
+        color: crimson;
+    }
+
+    #pressed-button
+    {
+        margin-right: 11%;
+        display: flex;
+        width: 40%;
+        justify-content: flex-end;
+    }
+
+    #login-submit
+    {
+        float: right;
+        background-color: rgb(10, 129, 169);
+        color: white;
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        height: 30px;
+        padding: 0 33px;
+        border-radius: 10px;
+        border-width: 0;
+
+        &:hover
+        {
+            background-color: rgb(12, 103, 133);
+            cursor: pointer;
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width:419.5px)
+{
+
+    #Login-box
+    {
+        width: 300px;
+        aspect-ratio: auto 1 / 1;
+        margin: auto;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 25px 25px 25px 25px rgba(0, 0, 0, 80%);
+        display: flex;
+    }
+
+    #Login-element
+    {
+        width: 300px;
+        margin: auto;
+    }
+
+    .login-head
+    {
+        font: 'inter' , sans-serif;
+        font-size: 50px;
+        font-weight: 790;
+        font-style: normal;
+    }
+
+    #Login-txt
+    {
+        display: flex;
+        justify-content: center;
+    }
+
+    #sw-txt
+    {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #sw-name
+    {
+        font: "inter";
+        font-size: 8px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .form-floating
+    {
+        margin: 10px auto;
+        width: 80%;
+        padding: 0 auto;
+    }
+
+    .input-form
+    {
+        display: flex;
+        width: 100%;
+    }
+
+    .form-floating .material-icons
+    {
+        color: white;
+        font-size:12px !important; 
+        padding: 9.5px 13.5px;
+        min-width: 7%;
+        text-align: center;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        background-color: rgb(10, 129, 169);
+    }
+
+    .form-input-space
+    {
+        width: 100%;
+        font-size: 10px;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 0px 13px;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-color: rgb(10, 129, 169);
+            border-width: 0.3px 0.3px 0.3px 0px;
+        }
+    }
+
+    .text-danger
+    {
+        color: crimson;
+        font-size: 7.5px;
+        font-weight: 500;
+        text-align: right;
+        margin-top: 5px;
+    }
+
+    #span-zone
+    {
+        margin-top: 25px;
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    #notice-txt
+    {
+        width: 50%;
+        font-family: 'Kanit', sans-serif;
+        font-size: 6px;
+        text-align: left;
+        margin-left: 10%;
+        color: crimson;
+    }
+
+    #pressed-button
+    {
+        margin-right: 11%;
+        display: flex;
+        width: 40%;
+        justify-content: flex-end;
+    }
+
+    #login-submit
+    {
+        float: right;
+        background-color: rgb(10, 129, 169);
+        color: white;
+        font-family: 'Inter', sans-serif;
+        font-size: 7.5px;
+        font-weight: 500;
+        height: 20px;
+        padding: 0 20px;
+        border-radius: 10px;
+        border-width: 0;
+
+        &:hover
+        {
+            background-color: rgb(12, 103, 133);
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width:319.5px)
+{
+    #Login-page
+    {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        padding: 20px;
+        overflow: auto;
+        overflow-x: scroll;
+    }
+
+    #Login-box
+    {
+        width: 300px;
+        aspect-ratio: auto 1 / 1;
+        margin: auto;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 25px 25px 25px 25px rgba(0, 0, 0, 80%);
+        display: flex;
+    }
+
+    #Login-element
+    {
+        width: 300px;
+        margin: auto;
+    }
+
+    .login-head
+    {
+        font: 'inter' , sans-serif;
+        font-size: 50px;
+        font-weight: 790;
+        font-style: normal;
+    }
+
+    #Login-txt
+    {
+        display: flex;
+        justify-content: center;
+    }
+
+    #sw-txt
+    {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #sw-name
+    {
+        font: "inter";
+        font-size: 8px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .form-floating
+    {
+        margin: 10px auto;
+        width: 80%;
+        padding: 0 auto;
+    }
+
+    .input-form
+    {
+        display: flex;
+        width: 100%;
+    }
+
+    .form-floating .material-icons
+    {
+        color: white;
+        font-size:12px !important; 
+        padding: 9.5px 13.5px;
+        min-width: 7%;
+        text-align: center;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        background-color: rgb(10, 129, 169);
+    }
+
+    .form-input-space
+    {
+        width: 100%;
+        font-size: 10px;
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 0px 13px;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-color: rgb(10, 129, 169);
+            border-width: 0.3px 0.3px 0.3px 0px;
+        }
+    }
+
+    .text-danger
+    {
+        color: crimson;
+        font-size: 7.5px;
+        font-weight: 500;
+        text-align: right;
+        margin-top: 5px;
+    }
+
+    #span-zone
+    {
+        margin-top: 25px;
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    #notice-txt
+    {
+        width: 50%;
+        font-family: 'Kanit', sans-serif;
+        font-size: 6px;
+        text-align: left;
+        margin-left: 10%;
+        color: crimson;
+    }
+
+    #pressed-button
+    {
+        margin-right: 11%;
+        display: flex;
+        width: 40%;
+        justify-content: flex-end;
+    }
+
+    #login-submit
+    {
+        float: right;
+        background-color: rgb(10, 129, 169);
+        color: white;
+        font-family: 'Inter', sans-serif;
+        font-size: 7.5px;
+        font-weight: 500;
+        height: 20px;
+        padding: 0 20px;
+        border-radius: 10px;
+        border-width: 0;
+
+        &:hover
+        {
+            background-color: rgb(12, 103, 133);
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,114 @@
+#header-bar
+{
+    height: 55px;
+    margin: 0;
+    background-color: white;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 75%);
+    display: flex;
+}
+
+#name-clock-logout
+{
+    display: flex;
+}
+
+
+@media (min-width: 700px)
+{
+    #header-bar
+    {
+        padding-left: 30px;
+        padding-right: 30px;
+        justify-content: space-between;
+    }
+
+    #SW-name
+    {
+        font-family: 'Kanit', sans-serif;
+        font-size: 12px;
+        font-weight: 550;
+        color: rgb(139, 139, 139);
+        display: flex;
+        align-items: center;
+    }
+
+    #name-clock-logout
+    {
+        display: flex;
+    }
+
+    #column-name-and-clock
+    {
+        width: fit-content;
+        display: flex;
+        margin-right: 30px;
+    }
+
+    #logout-button
+    {
+        font-size: 21px;
+        font-weight: 600;
+        color: rgb(10, 129, 169);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #name-clock-logout .material-icons
+    {
+        cursor: pointer;
+    }
+
+    #temp-space
+    {
+        width: 10px;
+    }
+
+}
+
+@media (min-width: 420px) and (max-width:699.5px)
+{
+    #header-bar
+    {
+        padding-left: 30px;
+        padding-right: 30px;
+        justify-content: space-between;
+    }
+
+    #SW-name
+    {
+        display: None;
+    }
+
+    #name-clock-logout
+    {
+        display: flex;
+    }
+
+    #column-name-and-clock
+    {
+        width: fit-content;
+        display: flex;
+        margin-right: 30px;
+    }
+
+    #logout-button
+    {
+        font-size: 21px;
+        font-weight: 600;
+        color: rgb(10, 129, 169);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #name-clock-logout .material-icons
+    {
+        cursor: pointer;
+    }
+
+    #temp-space
+    {
+        width: 10px;
+    }
+}

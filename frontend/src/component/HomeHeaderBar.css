@@ -1,0 +1,609 @@
+#header-bar
+{
+    width: 100%;
+    min-width: 423px;
+    margin: 0;
+    background-color: white;
+    box-shadow: 0px 0px 0.8dvh 0px rgba(0, 0, 0, 40%);
+    display: flex;
+    padding: 1.45%;
+}
+
+
+@media (min-width: 1300px)
+{
+    #header-bar
+    {
+        display: flex;
+        padding-left: 5.25vw;
+        padding-right: 5.25vw;
+        justify-content: space-between;
+
+    }
+
+    #SW-name
+    {
+        display: flex;
+        align-items: center;
+    }
+
+    #SW-name a
+    {
+        font-size: 1vw;
+        font-weight: bold;
+        color: rgb(115, 115, 115);
+        text-decoration: none;
+    }
+
+    #item-zone
+    {
+        width: 36vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .home-nav-btn
+    {
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        &:hover
+        {
+            text-decoration: none;
+        }
+    }
+
+    .home-nav-btn-txt
+    {
+        height: max-content;
+        width: 5vw;
+        font-family: 'Kanit', sans-serif;
+        font-size: 1vw;
+        font-weight: 500;
+        color: rgb(41, 41, 41);
+        text-align: center;
+
+        &:hover
+        {
+            font-size: 1.0575vw;
+            text-decoration: none;
+            color: rgb(10, 129, 169);
+        }
+    }
+
+    #login-btn
+    {
+        width: 6.5vw;
+        height: 135%;
+        background-color: white;
+        font-family: 'Kanit', sans-serif;
+        font-size: 1vw;
+        font-weight: 500;
+        color: rgb(10, 129, 169);
+        border-radius: 0.5vw;
+        border-width: 0.5px;
+        border-color: rgb(10, 129, 169);
+
+        &:hover
+        {
+            color: white;
+            font-weight: 550;
+            background-color: rgb(41, 41, 41);
+            border-color: rgb(41,41,41);
+        }
+    }
+
+    #contact-us-btn
+    {
+        width: 6.5vw;
+        height: 135%;
+        background-color: rgb(10, 129, 169);
+        font-family: 'Kanit', sans-serif;
+        font-size: 1vw;
+        font-weight: 500;
+        color: white;
+        border-radius: 0.5vw;
+        border-width: 0px;
+
+        &:hover
+        {
+            font-weight: 550;
+            background-color: rgb(7, 88, 115);
+        }
+    }
+
+    .dropdown
+    {
+        display: none;
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 700px) and (max-width:1299.5px)
+{
+    #header-bar
+    {
+        display: flex;
+        padding: 2vw 5.25vw;
+        justify-content: space-between;
+        margin: auto 0;
+    }
+
+    #SW-name
+    {
+        display: flex;
+        align-items: center;
+        margin: auto 0;
+    }
+
+    #SW-name a
+    {
+        font-size: 1.25vw;
+        font-weight: bold;
+        color: rgb(115, 115, 115);
+        text-decoration: none;
+
+        @media (max-width: 800.5px) 
+        {
+            font-size: 1.5vw;
+        }
+    }
+
+    #item-zone
+    {
+        width: 25vw;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .home-nav-btn-txt , #login-btn
+    {
+        display: none;
+    }
+
+    #contact-us-btn
+    {
+        width: 8.75vw;
+        padding: 5% 10%;
+        height: 115%;
+        background-color: rgb(10, 129, 169);
+        font-family: 'Kanit', sans-serif;
+        font-size: 1.2vw;
+        font-weight: 500;
+        color: white;
+        border-radius: 8px;
+        border-width: 0px;
+
+        @media (max-width: 800.5px) 
+        {
+            width: 11vw;
+            padding: 6% 15%;
+            font-size: 1.5vw;
+        }
+
+        &:hover
+        {
+            font-weight: 550;
+            background-color: rgb(7, 88, 115);
+        }
+    }
+
+    .dropdown
+    {
+        position: relative;
+        display: block;
+    }
+
+    .dropbtn
+    {
+        display: flex;
+        background-color: white;
+        border-width: 0;
+        width: fit-content;
+        padding: 0;
+    }
+      
+    .dropdown-content 
+    {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 0;
+    }
+
+    .dropdown-content a 
+    {
+        font-size: 12px;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-family: 'Kanit', sans-serif;
+        display: block;
+    }
+    
+    .dropdown-content a:hover 
+    { 
+        font-size: 13px;
+        font-weight: 550;
+        background-color: #efefef; 
+        text-decoration: none;
+    }
+    
+    .dropdown:hover .dropdown-content { display: block; }
+    
+    .dropdown:hover .dropbtn { color: rgb(10, 129, 169); }
+
+    #dropdown-login
+    {
+        color: rgb(10, 129, 169);
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 420px) and (max-width:699.5px)
+{
+    #header-bar
+    {
+        display: flex;
+        padding: 2.25vw 5.5vw ;
+        justify-content: space-between;
+    }
+
+    #SW-name
+    {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        margin: auto 0;
+    }
+
+    #SW-name a
+    {
+        font-size: 1.8vw;
+        font-weight: bold;
+        color: rgb(115, 115, 115);
+        text-decoration: none;
+        margin-top: 0.5vw;
+    }
+
+    #item-zone
+    {
+        width: 35vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .home-nav-btn
+    {
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        &:hover
+        {
+            text-decoration: none;
+        }
+    }
+
+    .home-nav-btn-txt , #login-btn
+    {
+        display: none;
+    }
+
+    #contact-us-btn
+    {
+        width: 14.65vw;
+        padding: 8% 0;
+        background-color: rgb(10, 129, 169);
+        font-family: 'Kanit', sans-serif;
+        font-size: 1.8vw;
+        font-weight: 500;
+        color: white;
+        border-radius: 8px;
+        border-width: 0px;
+
+        &:hover
+        {
+            font-weight: 550;
+            background-color: rgb(7, 88, 115);
+        }
+    }
+
+    .dropdown
+    {
+        position: relative;
+        display: block;
+    }
+
+    .dropbtn
+    {
+        display: flex;
+        background-color: white;
+        border-width: 0;
+        width: fit-content;
+        padding: 0;
+    }
+      
+    .dropdown-content 
+    {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 0;
+    }
+
+    .dropdown-content a 
+    {
+        font-size: 12px;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-family: 'Kanit', sans-serif;
+        display: block;
+    }
+    
+    .dropdown-content a:hover 
+    { 
+        font-size: 13px;
+        font-weight: 550;
+        background-color: #efefef; 
+        text-decoration: none;
+    }
+    
+    .dropdown:hover .dropdown-content { display: block; }
+    
+    .dropdown:hover .dropbtn { color: rgb(10, 129, 169); }
+
+    #dropdown-login
+    {
+        color: rgb(10, 129, 169);
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (max-width:419.5px)
+{
+    #header-bar
+    {
+        display: flex;
+        padding: 4vw 4.25vw;
+        justify-content: space-between;
+        min-width: 423px;
+
+        @media (max-width: 340px) 
+        {
+            padding: 4vw 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 4vw 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 4vw 25vw;
+        }
+    }
+
+    #SW-name
+    {
+        color: rgb(115, 115, 115);
+        display: flex;
+        align-items: center;
+        margin: auto 0;
+
+    }
+
+    #SW-name a
+    {
+        font-size: 2.5vw;
+        font-weight: bold;
+        color: rgb(115, 115, 115);
+        text-decoration: none;
+
+        @media (max-width: 340px) 
+        {
+            font-size: 3vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            font-size: 4vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            font-size: 4.5vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            font-size: 4.65vw;
+        }
+    }
+
+    #item-zone
+    {
+        width: 40vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 340px) 
+        {
+            width: 45vw;
+        }
+
+        @media (max-width: 275.5px) 
+        {
+            width: 65vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            width: 70vw;
+        }
+
+        @media (max-width: 175.5px) 
+        {
+            width: 80vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            width: 120vw;
+        }
+
+        @media (max-width: 100.5px) 
+        {
+            width: 150vw;
+        }
+    }
+
+    .home-nav-btn
+    {
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        &:hover
+        {
+            text-decoration: none;
+        }
+    }
+
+    .home-nav-btn-txt , #login-btn
+    {
+        display: none;
+    }
+
+    #contact-us-btn
+    {
+        width: 17.75vw;
+        height: 102%;
+        background-color: rgb(10, 129, 169);
+        font-family: 'Kanit', sans-serif;
+        font-size: 2.5vw;
+        font-weight: 500;
+        color: white;
+        border-radius: 1.75vw;
+        border-width: 0px;
+        text-align: center;
+        justify-content: center;
+
+        @media (max-width: 340.5px) 
+        {
+            height: 100%;
+            font-size: 2.8vw;
+            width: 21vw;
+        }
+
+        @media (max-width: 275.5px) 
+        {
+            height: 100%;
+            width: 30vw;
+            font-size: 3.25vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            height: 100%;
+            width: 32vw;
+            font-size: 4vw;
+        }
+
+        @media (max-width: 175.5px) 
+        {
+            height: 95%;
+            width: 43vw;
+            font-size: 4.25vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            height: 95%;
+            width: 50vw;
+            font-size: 4.65vw;
+        }
+
+        @media (max-width: 100.5px) 
+        {
+            height: 75%;
+            width: 75vw;
+            min-width: 105%;
+            font-size: 4.65vw;
+        }
+
+        &:hover
+        {
+            font-weight: 550;
+            background-color: rgb(7, 88, 115);
+        }
+    }
+
+    .dropdown
+    {
+        position: relative;
+        display: block;
+    }
+
+    .dropbtn
+    {
+        display: flex;
+        background-color: white;
+        border-width: 0;
+        justify-content: center;
+        align-content: center;
+    }
+      
+    .dropdown-content 
+    {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 0;
+    }
+
+    .dropdown-content a 
+    {
+        font-size: 12px;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-family: 'Kanit', sans-serif;
+        display: block;
+    }
+    
+    .dropdown-content a:hover 
+    { 
+        font-size: 13px;
+        font-weight: 550;
+        background-color: #efefef; 
+        text-decoration: none;
+    }
+    
+    .dropdown:hover .dropdown-content { display: block; }
+    
+    .dropdown:hover .dropbtn { color: rgb(10, 129, 169); }
+
+    #dropdown-login
+    {
+        color: rgb(10, 129, 169);
+    }
+}

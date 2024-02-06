@@ -1,0 +1,79 @@
+#FAQ-page
+{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    padding: 0;
+    margin: 0px;
+    background-color: #F3F4F5;
+    overflow-x: hidden;
+}
+
+#Home-page-header
+{
+    width: 100%;
+    min-width: 423px;
+    height: fit-content;
+    position: sticky;
+    top: 0;
+}
+
+#FAQ-page-body
+{
+    width: 100%;
+    height: 100%;
+    background-color: #F3F4F5;
+
+}
+
+#Header-txt
+{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    background-color: #F3F4F5;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Kanit', sans-serif;
+
+    @media (min-width: 700px)
+    {
+        padding: 0 5.25vw;
+    }
+
+    @media (min-width: 420px)
+    {
+        padding: 0 5.5vw;
+    }
+
+    @media (max-width: 340px) 
+    {
+        padding: 0 5vw;
+    }
+
+    @media (max-width: 195.5px) 
+    {
+        padding: 0 12vw;
+    }
+
+    @media (max-width: 135.5px) 
+    {
+        padding: 0 25vw;
+    }
+}
+
+#FAQ-page-content
+{
+    width: 100%;
+    height: 500px;
+    background-color: white
+}
+
+@media (min-width: 700px)
+{
+    #Header-txt
+    {
+        font-weight: bold;
+        font-size: 3vw;
+    }
+}
