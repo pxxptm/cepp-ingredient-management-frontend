@@ -1,46 +1,32 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import './LoginPage.css';
 
 function LoginPage() {
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
-    const [username,setUsername] = useState("")
-    const [password,setPassword] = useState("")
-
-    function handleSubmit(event) 
-    {
+    async function handleSubmit(event) {
         event.preventDefault();
-        console.log(username , password);
 
-        fetch ("http://localhost:3000/login-user", 
-        {
-            method: "POST",
-            crossDomain: true,
-            headers: 
+        axios.post("http://localhost:3001/auth/login", { username, password },
             {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify (
-            {
-                username,
-                password,
-            } ),
-        } )
-
-        .then((res) => res.json())
-
-        .then((data) => 
-        {
-            console.log(data, "userRegister");
-            if (data.status === "ok") 
-            {
-                alert("login successful");
-                window.localStorage.setItem("token", data.data);
-                window.localStorage.setItem("loggedIn", true);
-                window.location.href = "./userDetails";
+                headers: { "Content-Type": "application/json" }
             }
-        });
+        ).then((res) => {
+            console.log(res)
+            if (res.status === 201) {
+                alert("Login successful")
+                window.localStorage.setItem("token", res.data.accessToken);
+                window.localStorage.setItem("loggedIn", true);
+                navigate("/", { replace: true })
+            }
+        }).catch((error) => {
+            console.log(error)
+        })
+
     }
 
     return (
@@ -55,12 +41,12 @@ function LoginPage() {
                 <div id="Login-box">
                     <div id="Login-element">
                         <div id="Login-txt">
-                            <span className="login-head" style={{color:"#000"}}>Log</span>
-                            <span className="login-head" style={{color:"#0A82A9"}}>in</span>
+                            <span className="login-head" style={{ color: "#000" }}>Log</span>
+                            <span className="login-head" style={{ color: "#0A82A9" }}>in</span>
                         </div>
 
                         <div id="sw-txt">
-                            <span id="sw-name" style={{color:"#847F7F"}}>Victual Ingredients Management</span>
+                            <span id="sw-name" style={{ color: "#847F7F" }}>Victual Ingredients Management</span>
                         </div>
 
                         <form onSubmit={handleSubmit}>
@@ -69,12 +55,12 @@ function LoginPage() {
                                     <i className="material-icons">person</i>
                                     <input
                                         className="form-input-space"
-                                        type="text" 
+                                        type="text"
                                         placeholder="username"
                                         name="username"
                                         aria-invalid="false"
                                         autoComplete="None"
-                                        onChange={ e=> {setUsername(e.target.value)} }
+                                        onChange={e => { setUsername(e.target.value) }}
                                     />
                                 </div>
                                 <div className="text-danger" htmlFor="">* username is required.</div>
@@ -83,13 +69,13 @@ function LoginPage() {
                                 <div className="input-form">
                                     <i className="material-icons">lock</i>
                                     <input
-                                        className="form-input-space" 
-                                        type="password" 
+                                        className="form-input-space"
+                                        type="password"
                                         placeholder="password"
                                         name="password"
                                         aria-invalid="false"
                                         autoComplete="None"
-                                        onChange={ e=> {setPassword(e.target.value)} }
+                                        onChange={e => { setPassword(e.target.value) }}
                                     />
                                 </div>
                                 <div className="text-danger">* password is required.</div>
