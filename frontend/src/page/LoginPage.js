@@ -36,7 +36,6 @@ function LoginPage() {
             <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'></link>
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></link>
-
             <div id="Login-page">
                 <div id="Login-box">
                     <div id="Login-element">
@@ -81,7 +80,7 @@ function LoginPage() {
                                 <div className="text-danger">* password is required.</div>
                             </div>
                             <div id="span-zone" className="d-flex">
-                                <div id="notice-txt">หากพบปัญหา  เช่น  ลืมรหัสผ่าน  ไม่สามารถล็อกอินได้   กรุณาติดต่อผู้จัดการร้านหรือผู้ดูแลระบบ</div>
+                                <div id="notice-txt">หากพบปัญหา  เช่น  ลืมรหัสผ่าน  ไม่สามารถล็อกอินได้<br/>กรุณาติดต่อผู้จัดการร้านหรือผู้ดูแลระบบ</div>
                                 <div id="pressed-button"><button id="login-submit" type="submit" className="btn-submit">Login</button></div>
                             </div>
                         </form>
