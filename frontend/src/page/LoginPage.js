@@ -55,7 +55,7 @@ function LoginPage() {
                                     <input
                                         className="form-input-space"
                                         type="text"
-                                        placeholder="username"
+                                        placeholder="username (ชื่อผู้ใช้)"
                                         name="username"
                                         aria-invalid="false"
                                         autoComplete="None"
@@ -70,7 +70,7 @@ function LoginPage() {
                                     <input
                                         className="form-input-space"
                                         type="password"
-                                        placeholder="password"
+                                        placeholder="password (รหัสผ่าน)"
                                         name="password"
                                         aria-invalid="false"
                                         autoComplete="None"

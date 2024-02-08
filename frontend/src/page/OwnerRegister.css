@@ -1,4 +1,4 @@
-#Login-page-body
+#Owner-reg-page-body
 {
     height: 100vh;
     width: 100vw;
@@ -7,7 +7,7 @@
     overflow-y: hidden;
 }
 
-#Login-page
+#Owner-reg-page
 {
     display: flex;
     height: 100vh;
@@ -20,20 +20,20 @@
     padding: 0%;
 }    
 
-.form-input-space
+.Owner-reg-form-input-space
 {
     font-family: 'Kanit', sans-serif;
 }
 
+
 @media (min-width: 899.5px)
 {
-    #Login-page
+    #Owner-reg-page
     {
         padding: 3%;
     }
 
-
-    #Login-box
+    #Owner-reg-box
     {
         width: 37%;
         aspect-ratio: auto 1 / 1;
@@ -44,57 +44,63 @@
         display: flex;
     }
 
-    #Login-element
+    #Owner-reg-element
     {
         width: 100%;
         margin: auto;
     }
 
-    .login-head
+    .Owner-reg-head
     {
         font: 'inter' , sans-serif;
-        font-size: 5.35vw;
+        font-size: 3.5vw;
         font-weight: bold;
         font-style: normal;
+        
     }
 
-    #Login-txt
+    #Owner-reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #sw-txt
+    #Owner-reg-sw-txt
     {
-        margin-top: 0.1%;
-        margin-bottom: 10%;
         display: flex;
         justify-content: center;
+        color: #847F7F;
+        padding: 1% 0;
+        margin: 1% 12.5% 5% 12.5%;
     }
     
-    #sw-name
+    #Owner-reg-sw-name
     {
-        font: 'inter' , sans-serif;
-        font-size: 0.955vw;
+        font-size: 0.775vw;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+
+        span
+        {
+            font-family: 'Kanit', sans-serif
+        }
     }
 
-    .form-floating
+    .Owner-reg-form-floating
     {
-        margin: 3% auto;
+        margin: 2.5% auto;
         width: 75%;
         padding: 0 auto;
     }
 
-    .input-form
+    .Owner-reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .form-floating .material-icons
+    .Owner-reg-form-floating .material-icons
     {
         color: white;
         font-size: 1.2vw !important; 
@@ -107,9 +113,14 @@
         background-color: rgb(10, 129, 169);
     }
 
-    .form-input-space
+    #owner-name-icon
     {
-        font-size: 0.85vw;
+        padding: 3% 6.5% 3% 4.5%;
+    }
+
+    .Owner-reg-form-input-space
+    {
+        font-size: 0.75vw;
         width: 100%;
         border-top-right-radius: 1.2vw;
         border-bottom-right-radius: 1.2vw;
@@ -118,7 +129,7 @@
         border-width: 0.5px 0.5px 0.5px 0px;
         border-color: rgba(0, 0, 0, 0.384);
         padding: 1% 3% 1% 5%;
-    
+
         &:focus
         {
             outline: none;
@@ -128,22 +139,20 @@
         }
     }
 
-    .text-danger
+    #Owner-reg-input-form-name
     {
-        color: crimson;
-        font-size: 0.65vw;
-        text-align: right;
-        margin-top: 2%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
-    #span-zone
+    #Owner-reg-span-zone
     {
-        margin-top: 7%;
+        margin-top: 8%;
         display: flex;
         margin-bottom: 4%;
     }
     
-    #notice-txt
+    #Owner-reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
@@ -151,10 +160,31 @@
         line-height: 180%;
         text-align: left;
         margin-left: 12%;
-        color: crimson;
+        color: rgb(62, 62, 62);
+        align-self: flex-end;
+        
+        span
+        {
+            color: crimson;
+        }
     }
 
-    #pressed-button
+    #owner-reg-to-contact
+    {
+        color: rgb(10, 129, 169);
+        font-weight: bold;
+        margin-left: 2%;
+        text-decoration: none;
+    }
+
+    #tel-at-owner-reg
+    {
+        margin-left: 2%;
+        color: rgb(10, 129, 169);
+        text-decoration: none;
+    }
+
+    #Owner-reg-pressed-button
     {
         margin-right: 11%;
         display: flex;
@@ -162,7 +192,7 @@
         justify-content: flex-end;
     }
 
-    #login-submit
+    #Owner-reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
@@ -186,78 +216,84 @@
 
 @media (min-width: 700px) and (max-width: 899.5px)
 {
-    #Login-page
+    #Owner-reg-page
     {
         padding: 3%;
     }
 
 
-    #Login-box
+    #Owner-reg-box
     {
-        width: 42%;
+        width: 44%;
         aspect-ratio: auto 1 / 1;
         margin: auto;
-        border-radius: 2.75vw;
+        border-radius: 3vw;
         background: rgba(255, 255, 255, 0.95);
         box-shadow: 55% 55% 55% 55% rgba(0, 0, 0, 80%);
         display: flex;
     }
 
-    #Login-element
+    #Owner-reg-element
     {
         width: 100%;
         margin: auto;
     }
 
-    .login-head
+    .Owner-reg-head
     {
         font: 'inter' , sans-serif;
-        font-size: 6vw;
+        font-size: 4.35vw;
         font-weight: bold;
         font-style: normal;
     }
 
-    #Login-txt
+    #Owner-reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #sw-txt
+    #Owner-reg-sw-txt
     {
-        margin-top: 0.1%;
-        margin-bottom: 10%;
+        margin-top: 1%;
+        margin-bottom: 8%;
         display: flex;
         justify-content: center;
     }
     
-    #sw-name
+    #Owner-reg-sw-name
     {
         font: "inter";
-        font-size: 1.15vw;
+        font-size: 0.95vw;
         font-style: normal;
+        color: #847F7F;
         font-weight: 500;
         line-height: normal;
+
+        span
+        {
+            font-family: 'Kanit', sans-serif
+        }
     }
 
-    .form-floating
+    .Owner-reg-form-floating
     {
-        margin: 6% auto;
-        width: 75%;
+        margin: 2.75% auto;
+        width: 80%;
         padding: 0 auto;
     }
 
-    .input-form
+    .Owner-reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .form-floating .material-icons
+    .Owner-reg-form-floating .material-icons
     {
         color: white;
         font-size:1.75vw !important; 
-        padding: 3% 4%;
+        padding: 2.25% 4%;
         min-width: 7%;
         justify-content: auto;
         text-align: center;
@@ -266,9 +302,14 @@
         background-color: rgb(10, 129, 169);
     }
 
-    .form-input-space
+    #owner-name-icon
     {
-        font-size: 1vw;
+        padding: 2.25% 6.5% 2.25% 4.5%;
+    }
+
+    .Owner-reg-form-input-space
+    {
+        font-size: 0.85vw;
         width: 100%;
         border-top-right-radius: 1.5vw;
         border-bottom-right-radius: 1.5vw;
@@ -287,32 +328,35 @@
         }
     }
 
-    .text-danger
+    #Owner-reg-input-form-name
     {
-        color: crimson;
-        font-size: 0.75vw;
-        text-align: right;
-        margin-top: 2%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
-    #span-zone
+    #Owner-reg-span-zone
     {
-        margin-top: 7%;
+        margin-top: 8%;
         display: flex;
         margin-bottom: 4%;
     }
     
-    #notice-txt
+    #Owner-reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
         font-size: 0.7vw;
         text-align: left;
         margin-left: 12%;
-        color: crimson;
+        color: black;
+
+        span
+        {
+            color: crimson;
+        }
     }
 
-    #pressed-button
+    #Owner-reg-pressed-button
     {
         margin-right: 11%;
         display: flex;
@@ -320,7 +364,7 @@
         justify-content: flex-end;
     }
 
-    #login-submit
+    #Owner-reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
@@ -341,15 +385,14 @@
     }
 }
 
-
 @media (min-width: 420px) and (max-width:699.5px)
 {
-    #Login-page
+    #Owner-reg-page
     {
         padding: 5%;
     }
 
-    #Login-box
+    #Owner-reg-box
     {
         width: 60%;
         aspect-ratio: auto 1 / 1;
@@ -360,60 +403,66 @@
         display: flex;
     }
 
-    #Login-element
+    #Owner-reg-element
     {
         width: 100%;
         margin: auto;
     }
 
-    .login-head
+    .Owner-reg-head
     {
         font: 'inter' , sans-serif;
-        font-size: 10vw;
+        font-size: 6vw;
         font-weight: bold;
         font-style: normal;
     }
 
-    #Login-txt
+    #Owner-reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #sw-txt
+    #Owner-reg-sw-txt
     {
         margin-top: 0%;
-        margin-bottom: 9%;
+        margin-bottom: 8%;
         display: flex;
         justify-content: center;
     }
     
-    #sw-name
+    #Owner-reg-sw-name
     {
         font: "inter";
-        font-size: 1.75vw;
+        font-size: 1.23vw;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        color: #847F7F;
+
+        span
+        {
+            font-family: 'Kanit', sans-serif;
+        }
     }
 
-    .form-floating
+    .Owner-reg-form-floating
     {
-        margin: 4.5% auto;
-        width: 77%;
+        margin: 2% auto;
+        width: 80%;
         padding: 0 auto;
     }
 
-    .input-form
+    .Owner-reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .form-floating .material-icons
+    .Owner-reg-form-floating .material-icons
     {
         color: white;
-        font-size: 1.75vw !important; 
+        font-size: 1.65vw !important; 
         padding: 3% 4%;
         min-width: 7%;
         text-align: center;
@@ -422,7 +471,12 @@
         background-color: rgb(10, 129, 169);
     }
 
-    .form-input-space
+    #owner-name-icon
+    {
+        padding: 3% 5.5% 0 4.5%;
+    }
+
+    .Owner-reg-form-input-space
     {
         width: 100%;
         border-top-right-radius: 2vw;
@@ -431,8 +485,8 @@
         outline: none;
         border-width: 0.5px 0.5px 0.5px 0px;
         border-color: rgba(0, 0, 0, 0.384);
-        padding: 2% 5%;
-        font-size: 1.75vw;
+        padding: 2.2% 5%;
+        font-size: 1.2vw;
 
         &:focus
         {
@@ -444,33 +498,35 @@
         }
     }
 
-    .text-danger
+    #Owner-reg-input-form-name
     {
-        color: crimson;
-        font-size: 1.2vw;
-        font-weight: 500;
-        text-align: right;
-        margin-top: 5px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
-    #span-zone
+    #Owner-reg-span-zone
     {
-        margin-top: 8%;
+        margin-top: 9%;
         display: flex;
         margin-bottom: 3%;
     }
     
-    #notice-txt
+    #Owner-reg-notice-txt
     {
         width: 70%;
         font-family: 'Kanit', sans-serif;
-        font-size: 1.1vw;
+        font-size: 1.015vw;
         text-align: left;
         margin-left: 11.25%;
-        color: crimson;
+        color: black;
+
+        span
+        {
+            color: crimson;
+        }
     }
 
-    #pressed-button
+    #Owner-reg-pressed-button
     {
         margin-right: 11%;
         display: flex;
@@ -478,13 +534,13 @@
         justify-content: flex-end;
     }
 
-    #login-submit
+    #Owner-reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
         color: white;
         font-family: 'Inter', sans-serif;
-        font-size: 1.5vw;
+        font-size: 1.25vw;
         font-weight: normal;
         height: fit-content;
         padding: 4% 20.5%;
@@ -499,238 +555,86 @@
     }
 }
 
-
-@media (min-width: 420px) and (max-width:699.5px)
+@media (min-width: 319.5px) and (max-width:419.5px)
 {
-    #Login-page
+    #Owner-reg-page
     {
-        padding: 5%;
-    }
-
-    #Login-box
-    {
-        width: 60%;
-        aspect-ratio: auto 1 / 1;
-        margin: auto;
-        border-radius: 4vw;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 70% 70% 70% 70% rgba(0, 0, 0, 80%);
-        display: flex;
-    }
-
-    #Login-element
-    {
-        width: 100%;
-        margin: auto;
-    }
-
-    .login-head
-    {
-        font: 'inter' , sans-serif;
-        font-size: 10vw;
-        font-weight: bold;
-        font-style: normal;
-    }
-
-    #Login-txt
-    {
-        display: flex;
-        justify-content: center;
-    }
-
-    #sw-txt
-    {
-        margin-top: 0%;
-        margin-bottom: 9%;
-        display: flex;
-        justify-content: center;
-    }
-    
-    #sw-name
-    {
-        font: "inter";
-        font-size: 1.75vw;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-    }
-
-    .form-floating
-    {
-        margin: 4.5% auto;
-        width: 77%;
-        padding: 0 auto;
-    }
-
-    .input-form
-    {
-        display: flex;
-        width: 100%;
-    }
-
-    .form-floating .material-icons
-    {
-        color: white;
-        font-size: 1.75vw !important; 
-        padding: 3% 4%;
-        min-width: 7%;
-        text-align: center;
-        border-top-left-radius: 40%;
-        border-bottom-left-radius: 40%;
-        background-color: rgb(10, 129, 169);
-    }
-
-    .form-input-space
-    {
-        width: 100%;
-        border-top-right-radius: 2vw;
-        border-bottom-right-radius: 2vw;
-        background-color: #E7E7E7;
-        outline: none;
-        border-width: 0.5px 0.5px 0.5px 0px;
-        border-color: rgba(0, 0, 0, 0.384);
-        padding: 2% 5%;
-        font-size: 1.75vw;
-
-        &:focus
-        {
-            outline: none;
-            background-color: #d5d5d5;
-            border-width: 0.3px;
-            border-color: rgb(10, 129, 169);
-            border-width: 0.3px 0.3px 0.3px 0px;
-        }
-    }
-
-    .text-danger
-    {
-        color: crimson;
-        font-size: 1.2vw;
-        font-weight: 500;
-        text-align: right;
-        margin-top: 5px;
-    }
-
-    #span-zone
-    {
-        margin-top: 8%;
-        display: flex;
-        margin-bottom: 3%;
-    }
-    
-    #notice-txt
-    {
-        width: 70%;
-        font-family: 'Kanit', sans-serif;
-        font-size: 1.1vw;
-        text-align: left;
-        margin-left: 11.25%;
-        color: crimson;
-    }
-
-    #pressed-button
-    {
-        margin-right: 11%;
-        display: flex;
-        width: 40%;
-        justify-content: flex-end;
-    }
-
-    #login-submit
-    {
-        float: right;
-        background-color: rgb(10, 129, 169);
-        color: white;
-        font-family: 'Inter', sans-serif;
-        font-size: 1.5vw;
-        font-weight: normal;
-        height: fit-content;
-        padding: 4% 20.5%;
-        border-radius: 1.25vw;
-        border-width: 0;
-
-        &:hover
-        {
-            background-color: rgb(12, 103, 133);
-            cursor: pointer;
-        }
-    }
-}
-
-@media (min-width: 320px) and (max-width:419.5px)
-{
-    #Login-page
-    {
-        padding: 4%;
+        padding: 10% 7%;
         overflow-x: auto;
     }
 
-    #Login-box
+    #Owner-reg-box
     {
-        width: 75%;
-        min-width: 300px;
+        width: 90%;
+        min-width: 200px;
         aspect-ratio: auto 1 / 1;
         margin: auto;
-        border-radius: 5vw;
+        border-radius: 7%;
         background: rgba(255, 255, 255, 0.95);
         box-shadow: 55% 55% 55% 55% rgba(0, 0, 0, 80%);
         display: flex;
     }
 
-    #Login-element
+    #Owner-reg-element
     {
-        width: 95%;
+        width: 90%;
         margin: auto;
     }
 
-    .login-head
+    .Owner-reg-head
     {
         font: 'inter' , sans-serif;
-        font-size: 12vw;
+        font-size: 195%;
         font-weight: bold;
         font-style: normal;
     }
 
-    #Login-txt
+    #Owner-reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #sw-txt
+    #Owner-reg-sw-txt
     {
-        margin-top: 0%;
+        margin-top: 0.75%;
         margin-bottom: 7%;
         display: flex;
         justify-content: center;
     }
     
-    #sw-name
+    #Owner-reg-sw-name
     {
         font: "inter";
-        font-size: 2.2vw;
+        font-size: 40%;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        color: #847F7F;
+
+        span
+        {
+            font-family: 'Kanit', sans-serif;
+        }
     }
 
-    .form-floating
+    .Owner-reg-form-floating
     {
-        margin: 2% auto;
-        width: 82.5%;
+        margin: 2.5% auto;
+        width: 90%;
         padding: 0 auto;
     }
 
-    .input-form
+    .Owner-reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .form-floating .material-icons
+    .Owner-reg-form-floating .material-icons
     {
         color: white;
-        font-size: 3vw !important; 
+        font-size: 50% !important; 
         padding: 3.5% 5%;
         min-width: 7%;
         text-align: center;
@@ -739,15 +643,20 @@
         background-color: rgb(10, 129, 169);
     }
 
-    .form-input-space
+    #owner-name-icon
+    {
+        padding: 3.5% 5.5% 3.5% 5.5%;
+    }
+
+    .Owner-reg-form-input-space
     {
         width: 100%;
-        font-size: 2.5vw;
+        font-size: 45%;
         border-top-right-radius: 3vw;
         border-bottom-right-radius: 3vw;
         background-color: #E7E7E7;
         outline: none;
-        border-width: 0.5px 0.5px 0.5px 0px;
+        border-width: 0.15px 0.15px 0.15px 0px;
         border-color: rgba(0, 0, 0, 0.384);
         padding: 0 5.5%;
 
@@ -760,53 +669,56 @@
         }
     }
 
-    .text-danger
+    #Owner-reg-input-form-name
     {
-        color: crimson;
-        font-size: 1.55vw;
-        font-weight: 500;
-        text-align: right;
-        margin-top: 2%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
-    #span-zone
+
+    #Owner-reg-span-zone
     {
         width: 100%;
-        margin-top: 6%;
+        margin-top: 10%;
         display: flex;
-        margin-bottom: 4%;
+        margin-bottom: 2%;
     }
     
-    #notice-txt
+    #Owner-reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
-        font-size: 1.3vw;
+        font-size: 33%;
         text-align: left;
-        margin-left: 10%;
-        color: crimson;
+        margin-left: 6%;
+        color: black;
+
+        span
+        {
+            color: crimson;
+        }
     }
 
-    #pressed-button
+    #Owner-reg-pressed-button
     {
-        margin-right: 11%;
+        margin-right: 6%;
         display: flex;
         width: 40%;
         justify-content: flex-end;
     }
 
-    #login-submit
+    #Owner-reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
         color: white;
         font-family: 'Inter', sans-serif;
-        font-size: 1.85vw;
+        font-size: 37.5%;
         font-weight: 500;
         height: fit-content;
-        padding: 4.5% 18%;
-        border-radius: 3vw;
+        padding: 4.5% 16%;
         border-width: 0;
+        border-radius: 1.5vw;
 
         &:hover
         {
@@ -816,18 +728,19 @@
     }
 }
 
-@media (max-width:319.5px)
+@media (max-width: 319.5px)
 {
-    #Login-page
+    #Owner-reg-page
     {
-        padding: 10% 15%;
+        min-width: 423px;
+        padding: 10% 20%;
         overflow-x: auto;
     }
 
-    #Login-box
+    #Owner-reg-box
     {
         width: 100vw;
-        min-width: 200px;
+        min-width: 275px;
         aspect-ratio: auto 1 / 1;
         margin: auto;
         border-radius: 7%;
@@ -836,13 +749,13 @@
         display: flex;
     }
 
-    #Login-element
+    #Owner-reg-element
     {
-        width: 95%;
+        width: 100%;
         margin: auto;
     }
 
-    .login-head
+    .Owner-reg-head
     {
         font: 'inter' , sans-serif;
         font-size: 225%;
@@ -850,59 +763,70 @@
         font-style: normal;
     }
 
-    #Login-txt
+    #Owner-reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #sw-txt
+    #Owner-reg-sw-txt
     {
         margin-top: 0%;
-        margin-bottom: 10%;
+        margin-bottom: 6%;
         display: flex;
         justify-content: center;
     }
     
-    #sw-name
+    #Owner-reg-sw-name
     {
         font: "inter";
         font-size: 40%;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        color: #847F7F;
+
+        span
+        {
+            font-family: 'Kanit', sans-serif;
+        }
     }
 
-    .form-floating
+    .Owner-reg-form-floating
     {
-        margin: 4% auto;
+        margin: 2% auto;
         width: 82.5%;
         padding: 0 auto;
     }
 
-    .input-form
+    .Owner-reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .form-floating .material-icons
+    .Owner-reg-form-floating .material-icons
     {
         color: white;
         font-size: 50% !important; 
         padding: 3.5% 5%;
         min-width: 7%;
         text-align: center;
-        border-top-left-radius: 3vw;
-        border-bottom-left-radius: 3vw;
+        border-top-left-radius: 3.5vw;
+        border-bottom-left-radius: 3.5vw;
         background-color: rgb(10, 129, 169);
     }
 
-    .form-input-space
+    #owner-name-icon
+    {
+        padding: 3.5% 6.25% 3.5% 5.5%;
+    }
+
+    .Owner-reg-form-input-space
     {
         width: 100%;
-        font-size: 45%;
-        border-top-right-radius: 3vw;
+        font-size: 37.5%;
+        border-top-right-radius: 3.5vw;
         border-bottom-right-radius: 3vw;
         background-color: #E7E7E7;
         outline: none;
@@ -918,17 +842,16 @@
             border-width: 0.3px 0.3px 0.3px 0px;
         }
     }
+    
 
-    .text-danger
+    #Owner-reg-input-form-name
     {
-        color: crimson;
-        font-size: 20%;
-        font-weight: 500;
-        text-align: right;
-        margin-top: 2%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
-    #span-zone
+
+    #Owner-reg-span-zone
     {
         width: 100%;
         margin-top: 6%;
@@ -936,35 +859,41 @@
         margin-bottom: 2%;
     }
     
-    #notice-txt
+    #Owner-reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
-        font-size: 20%;
+        font-size: 33%;
         text-align: left;
         margin-left: 10%;
-        color: crimson;
+        color: black;
+        align-self: flex-end;
+
+        span
+        {
+            color: crimson;
+        }
     }
 
-    #pressed-button
+    #Owner-reg-pressed-button
     {
-        margin-right: 11%;
+        margin-right: 9%;
         display: flex;
         width: 40%;
         justify-content: flex-end;
     }
 
-    #login-submit
+    #Owner-reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
         color: white;
         font-family: 'Inter', sans-serif;
-        font-size: 30%;
+        font-size: 40%;
         font-weight: 500;
         height: fit-content;
-        padding: 4.5% 18%;
-        border-radius: 1vw;
+        padding: 4.5% 15%;
+        border-radius: 3.5vw;
         border-width: 0;
 
         &:hover

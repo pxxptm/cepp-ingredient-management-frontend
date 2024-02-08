@@ -37,7 +37,7 @@
 
     #item-zone
     {
-        width: 36vw;
+        width: 43vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -73,9 +73,31 @@
         }
     }
 
+    #reg-owner-btn
+    {
+        width: 11vw;
+        height: 135%;
+        background-color: white;
+        font-family: 'Kanit', sans-serif;
+        font-size: 1vw;
+        font-weight: 500;
+        color: rgb(88, 88, 88);
+        border-radius: 0.5vw;
+        border-width: 0.5px;
+        border-color: rgb(88, 88, 88);
+
+        &:hover
+        {
+            color: white;
+            color: black;
+            border-color: black;
+        }
+    }
+
+
     #login-btn
     {
-        width: 6.5vw;
+        width: 6vw;
         height: 135%;
         background-color: white;
         font-family: 'Kanit', sans-serif;
@@ -97,7 +119,7 @@
 
     #contact-us-btn
     {
-        width: 6.5vw;
+        width: 6vw;
         height: 135%;
         background-color: rgb(10, 129, 169);
         font-family: 'Kanit', sans-serif;
@@ -127,16 +149,15 @@
     #header-bar
     {
         display: flex;
-        padding: 2vw 5.25vw;
+        padding: 0 5.25vw;
         justify-content: space-between;
-        margin: auto 0;
     }
 
     #SW-name
     {
         display: flex;
         align-items: center;
-        margin: auto 0;
+        margin: 2vw 0;
     }
 
     #SW-name a
@@ -155,13 +176,12 @@
     #item-zone
     {
         width: 25vw;
-        height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .home-nav-btn-txt , #login-btn
+    .home-nav-btn-txt , #login-btn , #reg-owner-btn
     {
         display: none;
     }
@@ -197,6 +217,7 @@
     {
         position: relative;
         display: block;
+        height: 100%;
     }
 
     .dropbtn
@@ -206,10 +227,13 @@
         border-width: 0;
         width: fit-content;
         padding: 0;
+        align-items: center;
+        height: 100%;
     }
       
     .dropdown-content 
     {
+        z-index: -1;
         display: none;
         position: absolute;
         background-color: #f1f1f1;
@@ -240,6 +264,11 @@
     
     .dropdown:hover .dropbtn { color: rgb(10, 129, 169); }
 
+    #dropdown-reg-owner
+    {
+        color: rgb(6, 66, 86);
+    }
+
     #dropdown-login
     {
         color: rgb(10, 129, 169);
@@ -253,8 +282,9 @@
     #header-bar
     {
         display: flex;
-        padding: 2.25vw 5.5vw ;
+        padding: 0 5.5vw;
         justify-content: space-between;
+
     }
 
     #SW-name
@@ -263,7 +293,7 @@
         display: flex;
         align-items: center;
         text-decoration: none;
-        margin: auto 0;
+        margin: 2.5vw 0;
     }
 
     #SW-name a
@@ -272,13 +302,13 @@
         font-weight: bold;
         color: rgb(115, 115, 115);
         text-decoration: none;
-        margin-top: 0.5vw;
     }
 
     #item-zone
     {
         width: 35vw;
         display: flex;
+        margin: 0;
         justify-content: space-between;
         align-items: center;
     }
@@ -295,7 +325,7 @@
         }
     }
 
-    .home-nav-btn-txt , #login-btn
+    .home-nav-btn-txt , #login-btn , #reg-owner-btn
     {
         display: none;
     }
@@ -309,7 +339,7 @@
         font-size: 1.8vw;
         font-weight: 500;
         color: white;
-        border-radius: 8px;
+        border-radius: 1.25vw;
         border-width: 0px;
 
         &:hover
@@ -323,19 +353,23 @@
     {
         position: relative;
         display: block;
+        height: 100%;
     }
 
     .dropbtn
     {
         display: flex;
+        height: 100%;
         background-color: white;
         border-width: 0;
         width: fit-content;
-        padding: 0;
+        align-items: center !important;
+        justify-content: center !important;
     }
       
     .dropdown-content 
     {
+        z-index: -1;
         display: none;
         position: absolute;
         background-color: #f1f1f1;
@@ -366,6 +400,11 @@
     
     .dropdown:hover .dropbtn { color: rgb(10, 129, 169); }
 
+    #dropdown-reg-owner
+    {
+        color: rgb(6, 66, 86);
+    }
+
     #dropdown-login
     {
         color: rgb(10, 129, 169);
@@ -379,23 +418,23 @@
     #header-bar
     {
         display: flex;
-        padding: 4vw 4.25vw;
+        padding: 0 4.25vw;
         justify-content: space-between;
         min-width: 423px;
 
         @media (max-width: 340px) 
         {
-            padding: 4vw 5vw;
+            padding: 0 5vw;
         }
 
         @media (max-width: 195.5px) 
         {
-            padding: 4vw 12vw;
+            padding: 0 12vw;
         }
 
         @media (max-width: 135.5px) 
         {
-            padding: 4vw 25vw;
+            padding: 0 25vw;
         }
     }
 
@@ -404,7 +443,7 @@
         color: rgb(115, 115, 115);
         display: flex;
         align-items: center;
-        margin: auto 0;
+        margin: 6vw 0;
 
     }
 
@@ -486,7 +525,7 @@
         }
     }
 
-    .home-nav-btn-txt , #login-btn
+    .home-nav-btn-txt , #login-btn , #reg-owner-btn
     {
         display: none;
     }
@@ -494,7 +533,7 @@
     #contact-us-btn
     {
         width: 17.75vw;
-        height: 102%;
+        height: 50%;
         background-color: rgb(10, 129, 169);
         font-family: 'Kanit', sans-serif;
         font-size: 2.5vw;
@@ -507,45 +546,54 @@
 
         @media (max-width: 340.5px) 
         {
-            height: 100%;
+            height: 55%;
             font-size: 2.8vw;
             width: 21vw;
         }
 
         @media (max-width: 275.5px) 
         {
-            height: 100%;
-            width: 30vw;
+            height: 60%;
+            width: 28vw;
             font-size: 3.25vw;
+            border-radius: 2.25vw;
         }
 
         @media (max-width: 195.5px) 
         {
-            height: 100%;
+            height: 60%;
             width: 32vw;
             font-size: 4vw;
         }
 
         @media (max-width: 175.5px) 
         {
-            height: 95%;
-            width: 43vw;
+            height: 75%;
+            width: 40vw;
             font-size: 4.25vw;
         }
 
         @media (max-width: 135.5px) 
         {
-            height: 95%;
-            width: 50vw;
+            height: 70%;
+            width: 47vw;
             font-size: 4.65vw;
         }
 
         @media (max-width: 100.5px) 
         {
-            height: 75%;
-            width: 75vw;
-            min-width: 105%;
+            height: 60%;
+            width: 45vw;
             font-size: 4.65vw;
+            border-radius: 4vw;
+        }
+
+        @media (max-width: 90.5px) 
+        {
+            height: 60%;
+            width: 70vw;
+            font-size: 7vw;
+            border-radius: 4vw;
         }
 
         &:hover
@@ -559,6 +607,7 @@
     {
         position: relative;
         display: block;
+        height: 100%;
     }
 
     .dropbtn
@@ -566,18 +615,20 @@
         display: flex;
         background-color: white;
         border-width: 0;
-        justify-content: center;
-        align-content: center;
+        justify-items: center !important;
+        align-items: center !important;
+        height: 100%;
     }
       
     .dropdown-content 
     {
+        z-index: -1;
         display: none;
         position: absolute;
         background-color: #f1f1f1;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        right: 0;
+        right: 0vw;
     }
 
     .dropdown-content a 
@@ -601,6 +652,11 @@
     .dropdown:hover .dropdown-content { display: block; }
     
     .dropdown:hover .dropbtn { color: rgb(10, 129, 169); }
+
+    #dropdown-reg-owner
+    {
+        color: rgb(6, 66, 86);
+    }
 
     #dropdown-login
     {

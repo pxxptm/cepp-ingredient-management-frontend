@@ -13,6 +13,7 @@ import LoginPage from './page/LoginPage';
 import ContactUsPage from './page/ContactUsPage';
 import UserRegisterPage from './page/UserRegisterPage';
 import FAQPage from './page/FAQPage'
+import OwenerRegisterPage from './page/OwnerRegister';
 
 
 const router = createBrowserRouter ([
@@ -39,6 +40,10 @@ const router = createBrowserRouter ([
   {
     path: "user-register",
     element : <UserRegisterPage/>
+  },
+  {
+    path: "owner-register",
+    element: <OwenerRegisterPage/>
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
