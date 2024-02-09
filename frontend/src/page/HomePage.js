@@ -3,7 +3,7 @@ import './HomePage.css'
 import HomeHeaderBar from '../component/HomeHeaderBar'
 
 function HomePage() {
-    const starterPrice = "800";
+    const starterPrice = "500";
     return (
         <div id="Home-page">
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>

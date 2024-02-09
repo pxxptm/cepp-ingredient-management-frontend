@@ -29,7 +29,6 @@ function OwenerRegisterPage() {
         }).catch((error) => {
             console.log(error)
         })
-
     }
 
     return (
@@ -123,7 +122,7 @@ function OwenerRegisterPage() {
                                     ยังไม่ได้เข้าร่วมกับเรา ? <span id="owner-reg-to-contact"><a href="http://localhost:3000/contact-us">ติดต่อเรา</a></span> <br/>
                                     <span>หากพบปัญหากรุณาติดต่อเรา <a href="tel:123-456-7890" id="tel-at-owner-reg">091 234 5678</a></span>
                                 </div>
-                                <div id="Owner-reg-pressed-button"><button id="Owner-reg-submit" type="submit" className="btn-submit">Register</button></div>
+                                <div id="Owner-reg-pressed-button"><button id="Owner-reg-submit" type="submit" className="btn-submit">register</button></div>
                             </div>
                         </form>
                     </div>

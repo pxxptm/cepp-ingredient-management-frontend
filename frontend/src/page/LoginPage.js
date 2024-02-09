@@ -81,7 +81,7 @@ function LoginPage() {
                             </div>
                             <div id="span-zone" className="d-flex">
                                 <div id="notice-txt">หากพบปัญหา  เช่น  ลืมรหัสผ่าน  ไม่สามารถล็อกอินได้<br/>กรุณาติดต่อผู้จัดการร้านหรือผู้ดูแลระบบ</div>
-                                <div id="pressed-button"><button id="login-submit" type="submit" className="btn-submit">Login</button></div>
+                                <div id="pressed-button"><button id="login-submit" type="submit" className="btn-submit">login</button></div>
                             </div>
                         </form>
                     </div>

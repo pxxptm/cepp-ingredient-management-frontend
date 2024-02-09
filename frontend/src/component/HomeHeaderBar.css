@@ -229,6 +229,7 @@
         padding: 0;
         align-items: center;
         height: 100%;
+        padding: 0 ;
     }
       
     .dropdown-content 
@@ -364,7 +365,7 @@
         border-width: 0;
         width: fit-content;
         align-items: center !important;
-        justify-content: center !important;
+        padding: 0 ;
     }
       
     .dropdown-content 
@@ -380,7 +381,7 @@
 
     .dropdown-content a 
     {
-        font-size: 12px;
+        font-size: 1.8vw;
         color: black;
         padding: 12px 16px;
         text-decoration: none;
@@ -618,6 +619,7 @@
         justify-items: center !important;
         align-items: center !important;
         height: 100%;
+        padding: 0 ;
     }
       
     .dropdown-content 
