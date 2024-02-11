@@ -141,6 +141,7 @@
 
     #Owner-reg-input-form-name
     {
+        width: 85%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
@@ -220,7 +221,6 @@
     {
         padding: 3%;
     }
-
 
     #Owner-reg-box
     {
@@ -304,7 +304,7 @@
 
     #owner-name-icon
     {
-        padding: 2.25% 6.5% 2.25% 4.5%;
+        padding: 2.25% 5.75% 2.25% 4.5%;
     }
 
     .Owner-reg-form-input-space
@@ -330,6 +330,7 @@
 
     #Owner-reg-input-form-name
     {
+        width: 80%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
@@ -463,7 +464,7 @@
     {
         color: white;
         font-size: 1.65vw !important; 
-        padding: 3% 4%;
+        padding: 2.5% 4%;
         min-width: 7%;
         text-align: center;
         border-top-left-radius: 40%;
@@ -473,7 +474,7 @@
 
     #owner-name-icon
     {
-        padding: 3% 5.5% 0 4.5%;
+        padding: 2.5% 5.5% 0.5% 4.25%;
     }
 
     .Owner-reg-form-input-space
@@ -500,6 +501,7 @@
 
     #Owner-reg-input-form-name
     {
+        width: 80%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
@@ -645,7 +647,7 @@
 
     #owner-name-icon
     {
-        padding: 3.5% 5.5% 3.5% 5.5%;
+        padding: 3.5% 5.85% 3.5% 5.5%;
     }
 
     .Owner-reg-form-input-space
@@ -671,6 +673,7 @@
 
     #Owner-reg-input-form-name
     {
+        width: 80%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
@@ -794,7 +797,7 @@
 
     .Owner-reg-form-floating
     {
-        margin: 2% auto;
+        margin: 2.1% auto;
         width: 82.5%;
         padding: 0 auto;
     }
@@ -819,7 +822,7 @@
 
     #owner-name-icon
     {
-        padding: 3.5% 6.25% 3.5% 5.5%;
+        padding: 3.5% 6% 3.5% 5.25%;
     }
 
     .Owner-reg-form-input-space
@@ -846,6 +849,7 @@
 
     #Owner-reg-input-form-name
     {
+        width: 75%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }

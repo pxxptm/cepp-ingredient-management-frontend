@@ -751,6 +751,7 @@
 
 @media (max-width: 422.5px)
 {
+    
     #Contact-us-page
     {
         width: 180vw;
@@ -767,14 +768,6 @@
         height: 100vh;
         width: 100%;
         background-color: rgb(255, 255, 255);
-    }
-
-    #Contact-us-page-header
-    {
-        width: 100%;
-        height: fit-content;
-        position: sticky;
-        top: 0;
     }
 
     #Contact-us-page-body
@@ -986,7 +979,7 @@
 
     .Contact-us-form-input-space
     {
-        font-size: 2vw;
+        font-size: 2.5vw;
         width: 100%;
         border-top-right-radius: 4vw;
         border-bottom-right-radius: 4vw;
