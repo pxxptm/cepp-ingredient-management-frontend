@@ -14,7 +14,13 @@ function OwenerRegisterPage() {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        axios.post("http://localhost:3001/auth/register-owner", { Fname, Lname, username, password, ownerSecret },
+        axios.post("http://localhost:3001/auth/register-owner", {
+            firstname: Fname,
+            lastname: Lname,
+            username: username,
+            password: password,
+            ownerSecret: ownerSecret
+        },
             {
                 headers: { "Content-Type": "application/json" }
             }
@@ -43,7 +49,7 @@ function OwenerRegisterPage() {
                     <div id="Owner-reg-element">
                         <div id="Owner-reg-txt">
                             <span className="Owner-reg-head" style={{ color: "#000" }}>Owner</span>
-                            <span className="Owner-reg-head" style={{ color: "#0A82A9" , marginLeft: "3%"}}>Register</span>
+                            <span className="Owner-reg-head" style={{ color: "#0A82A9", marginLeft: "3%" }}>Register</span>
                         </div>
 
                         <div id="Owner-reg-sw-txt">
@@ -119,7 +125,7 @@ function OwenerRegisterPage() {
                             </div>
                             <div id="Owner-reg-span-zone" className="d-flex">
                                 <div id="Owner-reg-notice-txt">
-                                    ยังไม่ได้เข้าร่วมกับเรา ? <span id="owner-reg-to-contact"><a href="http://localhost:3000/contact-us">ติดต่อเรา</a></span> <br/>
+                                    ยังไม่ได้เข้าร่วมกับเรา ? <span id="owner-reg-to-contact"><a href="http://localhost:3000/contact-us">ติดต่อเรา</a></span> <br />
                                     <span>หากพบปัญหากรุณาติดต่อเรา <a href="tel:123-456-7890" id="tel-at-owner-reg">091 234 5678</a></span>
                                 </div>
                                 <div id="Owner-reg-pressed-button"><button id="Owner-reg-submit" type="submit" className="btn-submit">register</button></div>
