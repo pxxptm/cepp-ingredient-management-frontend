@@ -22,7 +22,10 @@ export class User {
   password?: string;
 
   @Prop()
-  name: string;
+  firstname: string;
+
+  @Prop()
+  lastname: string;
 
   @Prop({
     enum: AllRole,

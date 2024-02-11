@@ -16,7 +16,12 @@ export class RegisterUserDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  readonly name: string;
+  readonly firstname: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly lastname: string;
 
   @IsEnum(UserRole)
   @ApiProperty()
@@ -37,7 +42,12 @@ export class RegisterOwnerDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  readonly name: string;
+  readonly firstname: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly lastname: string;
 
   @IsString()
   @IsNotEmpty()

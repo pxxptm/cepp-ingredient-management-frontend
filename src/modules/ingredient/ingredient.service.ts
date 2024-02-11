@@ -31,6 +31,10 @@ export class IngredientService {
     );
   }
 
+  async delete(ingredientId: string) {
+    return await this.ingredientModel.findByIdAndDelete(ingredientId);
+  }
+
   async checkCanMake(ingredientId: string, amount: number) {
     const ingredient = await this.ingredientModel.findById(ingredientId);
     return ingredient.amount >= amount;

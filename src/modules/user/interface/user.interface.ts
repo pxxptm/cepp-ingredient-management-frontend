@@ -1,7 +1,9 @@
 export interface IUser {
   sub: string;
 
-  name: string;
+  firstname: string;
+
+  lastname: string;
 
   role: string;
 }

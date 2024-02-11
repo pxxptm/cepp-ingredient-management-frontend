@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { IngredientService } from './ingredient.service';
 import { CreateIngredientDto } from './dto/ingredient.dto';
 import { AuthGuard } from '../auth/guard/auth.guard';
@@ -14,5 +21,10 @@ export class IngredientController {
   @Post()
   async create(@Body() createIngredientDto: CreateIngredientDto) {
     return await this.ingredientService.create(createIngredientDto);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') ingredientId: string) {
+    return await this.ingredientService.delete(ingredientId);
   }
 }
