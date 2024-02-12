@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './OwnerRegister.css';
 
@@ -31,6 +31,7 @@ function OwenerRegisterPage() {
                 window.localStorage.setItem("token", res.data.accessToken);
                 window.localStorage.setItem("", true);
                 navigate("/", { replace: true })
+                generatePath("/:username/restaurant", { username: username });
             }
         }).catch((error) => {
             console.log(error)

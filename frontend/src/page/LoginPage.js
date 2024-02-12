@@ -10,7 +10,6 @@ function LoginPage() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-
         axios.post("http://localhost:3001/auth/login", { username, password },
             {
                 headers: { "Content-Type": "application/json" }
@@ -21,7 +20,7 @@ function LoginPage() {
                 alert("Login successful")
                 window.localStorage.setItem("token", res.data.accessToken);
                 window.localStorage.setItem("loggedIn", true);
-                navigate("/", { replace: true })
+                navigate("/" + username + "/restaurant", { replace: true })
             }
         }).catch((error) => {
             console.log(error)

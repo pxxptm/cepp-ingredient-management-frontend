@@ -22,6 +22,7 @@ export class UserService {
       firstname: user.firstname,
       lastname: user.lastname,
       role: user.role,
+      ownerSecret: "secret-owner",
     };
   }
 

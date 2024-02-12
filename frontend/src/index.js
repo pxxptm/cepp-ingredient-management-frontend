@@ -14,6 +14,7 @@ import ContactUsPage from './page/ContactUsPage';
 import UserRegisterPage from './page/UserRegisterPage';
 import FAQPage from './page/FAQPage'
 import OwenerRegisterPage from './page/OwnerRegister';
+import RestaurantListPage from './page/RestaurantListPage';
 
 
 const router = createBrowserRouter ([
@@ -44,6 +45,10 @@ const router = createBrowserRouter ([
   {
     path: "owner-register",
     element: <OwenerRegisterPage/>
+  } ,
+  {
+    path: "/:username/restaurant" ,
+    element: <RestaurantListPage/>
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
