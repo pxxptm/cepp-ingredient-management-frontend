@@ -1,0 +1,397 @@
+#rest-list-header-bar
+{
+    width: 100%;
+    margin: 0;
+    background-color: white;
+    box-shadow: 0px 0px 0.8dvh 0px rgba(0, 0, 0, 40%);
+    display: flex;
+    padding: 1.45%;
+}
+
+#name-clock-logout
+{
+    display: flex;
+}
+
+#column-name-and-clock
+{
+    width: 80%;
+    display: felx;
+}
+
+@media (min-width: 1300px)
+{
+    #rest-list-header-bar
+    {
+        display: flex;
+        padding-left: 5.25vw;
+        padding-right: 5.25vw;
+        justify-content: space-between;
+
+    }
+
+    #rest-list-header-bar-SW-name
+    {
+        display: flex;
+        align-items: center;
+        width: 16vw;
+        font-size: 1vw;
+        font-weight: bold;   
+
+        a
+        {   
+            color: rgb(115, 115, 115);
+            text-decoration: none;
+        }
+    }
+
+    #rest-list-header-bar-item-zone
+    {
+        width: 53vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #rest-list-logout-btn
+    {
+        width: 8vw;
+        height: 135%;
+        background-color: white;
+        font-family: 'Kanit', sans-serif;
+        font-size: 1vw;
+        font-weight: 500;
+        color: rgb(10, 129, 169);
+        border-radius: 0.5vw;
+        border-width: 0.5px;
+        border-color: rgb(10, 129, 169);
+        margin-left: 5vw;
+
+        &:hover
+        {
+            color: white;
+            font-weight: 550;
+            background-color: rgb(41, 41, 41);
+            border-color: rgb(41,41,41);
+        }
+    }
+
+    #rest-list-logout-btn-icon
+    {
+        display: none;
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 700px) and (max-width:1299.5px)
+{
+    #rest-list-header-bar
+    {
+        display: flex;
+        padding : 0 5.25vw;
+        justify-content: space-between;
+    }
+
+    #rest-list-header-bar-SW-name
+    {
+        margin: 2vw 0;
+        display: flex;
+        align-items: center;
+        width: 24vw;
+        font-size: 1.25vw;
+        font-weight: bold;   
+        height: 100%;
+
+        a
+        {   
+            color: rgb(115, 115, 115);
+            text-decoration: none;
+        }
+
+        @media (max-width: 800.5px) 
+        {
+            font-size: 1.5vw;
+        }
+    }
+
+    #rest-list-header-bar-item-zone
+    {
+        width: 54vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 7%;
+    }
+
+    #rest-list-logout-btn
+    {
+        display: none;
+    }
+
+    #rest-list-logout-btn-icon
+    {
+        display: flex;
+        border-width: 0;
+        justify-items: center !important;
+        align-items: center !important;
+        height: 100%;
+        padding: 0 ;
+        text-decoration: none !important;
+        color: black !important;
+
+        .material-icons
+        {
+            font-size: 1.75vw !important;
+            text-decoration: none !important;
+        }
+
+        &:hover
+        {
+            color: rgb(10, 129, 169) !important;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 420px) and (max-width:699.5px)
+{
+    #rest-list-header-bar
+    {
+        display: flex;
+        padding : 0 5.5vw;
+        justify-content: space-between;
+    }
+
+    #rest-list-header-bar-SW-name
+    {
+        margin: 2.5vw 0;
+        display: flex;
+        align-items: center;
+        width: 37vw;
+        font-size: 1.8vw;
+        font-weight: bold;   
+        height: 100%;
+
+        a
+        {   
+            color: rgb(115, 115, 115);
+            text-decoration: none;
+        }
+    }
+
+    #rest-list-header-bar-item-zone
+    {
+        width: 50vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-right: 10%;
+        
+        Clock 
+        {
+            display: none;
+        }
+    }
+
+    #rest-list-logout-btn
+    {
+        display: none;
+    }
+
+    #rest-list-logout-btn-icon
+    {
+        display: flex;
+        border-width: 0;
+        justify-items: center !important;
+        align-items: center !important;
+        height: 100%;
+        padding: 0 ;
+        text-decoration: none !important;
+        color: black !important;
+        margin-top: 1%;
+
+        .material-icons
+        {
+            font-size: 2.5vw !important;
+            text-decoration: none !important;
+        }
+
+        &:hover
+        {
+            color: rgb(10, 129, 169) !important;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (max-width:419.5px)
+{
+    #rest-list-header-bar
+    {
+        display: flex;
+        padding: 0 4.25vw;
+        justify-content: space-between;
+        min-width: 423px;
+
+        @media (max-width: 340px) 
+        {
+            padding: 0 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 0 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 0 25vw;
+        }
+    }
+
+    #rest-list-header-bar-SW-name
+    {
+        color: rgb(115, 115, 115);
+        display: flex;
+        align-items: center;
+        margin: 6vw 0;
+
+    }
+
+    #rest-list-header-bar-SW-name a
+    {
+        font-size: 2.5vw;
+        font-weight: bold;
+        color: rgb(115, 115, 115);
+        text-decoration: none;
+
+        @media (max-width: 340px) 
+        {
+            font-size: 3vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            font-size: 4vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            font-size: 4.5vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            font-size: 4.65vw;
+        }
+    }
+
+    #rest-list-header-bar-item-zone
+    {
+        width: 40vw;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        @media (max-width: 340px) 
+        {
+            width: 45vw;
+        }
+
+        @media (max-width: 275.5px) 
+        {
+            width: 65vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            width: 70vw;
+        }
+
+        @media (max-width: 175.5px) 
+        {
+            width: 80vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            width: 120vw;
+        }
+
+        @media (max-width: 100.5px) 
+        {
+            width: 150vw;
+        }
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-right: 20%;
+        
+        Clock 
+        {
+            display: none;
+        }
+    }
+
+    #rest-list-logout-btn
+    {
+        display: none;
+    }
+
+    #rest-list-logout-btn-icon
+    {
+        display: flex;
+        border-width: 0;
+        justify-items: center !important;
+        align-items: center !important;
+        height: 100%;
+        padding: 0 ;
+        text-decoration: none !important;
+        color: black !important;
+        margin-top: 1%;
+
+        .material-icons
+        {
+            font-size: 3.5vw !important;
+            text-decoration: none !important;
+        }
+
+        &:hover
+        {
+            color: rgb(10, 129, 169) !important;
+        }
+    }
+
+}

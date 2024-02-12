@@ -1,26 +1,38 @@
-import React from "react";
-import axios from "axios";
-import './RestaurantListPage.css'
+import React from 'react';
+import axios from 'axios';
+import './RestaurantListPage.css';
+import RestaurantListHeaderBar from '../component/RestaurantListHeaderBar'
 
-function RestaurantListPage(props) {
-    const url = "http://localhost:3001/member/restaurant";
-    const accessToken = localStorage.getItem("token")
+function RestaurantListPage({ username }) {
+  const url = 'http://localhost:3001/member/restaurant';
+  const accessToken = localStorage.getItem('token');
 
-    axios.get(url, {
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        }
-    }).then((response) => {
-        // handle success
-        console.log(response);
+  axios
+    .get(url, {
+      headers: {
+        Authorization: 'Bearer ' + accessToken,
+      },
     })
-        .catch((error) => {
-            console.log(error)
-        });
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-    return (
-        <p>xxxx</p>
-    )
+  return (
+    <div id="Restaurant-list-page">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      ></link>
+      <div id="Restaurant-list-page-body">
+        <div id="Restaurant-list-page-header">
+          <RestaurantListHeaderBar username={username} />
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default RestaurantListPage
+export default RestaurantListPage;

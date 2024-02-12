@@ -1,0 +1,481 @@
+#user-header-bar
+{
+    width: 100%;
+    margin: 0;
+    background-color: white;
+    box-shadow: 0px 0px 0.8dvh 0px rgba(0, 0, 0, 40%);
+    display: flex;
+    padding: 1.45%;
+}
+
+#name-clock-logout
+{
+    display: flex;
+}
+
+#column-name-and-clock
+{
+    width: 80%;
+    display: felx;
+}
+
+@media (min-width: 1300px)
+{
+    #user-header-bar
+    {
+        display: flex;
+        padding-left: 5.25vw;
+        padding-right: 5.25vw;
+        justify-content: space-between;
+
+    }
+
+    #user-header-bar-SW-name
+    {
+        display: flex;
+        align-items: center;
+        width: 16vw;
+        font-size: 1vw;
+        font-weight: bold;   
+
+        a
+        {   
+            color: rgb(115, 115, 115);
+            text-decoration: none;
+        }
+    }
+
+    #user-header-bar-item-zone
+    {
+        width: 53vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #logout-btn
+    {
+        width: 8vw;
+        height: 135%;
+        background-color: white;
+        font-family: 'Kanit', sans-serif;
+        font-size: 1vw;
+        font-weight: 500;
+        color: rgb(10, 129, 169);
+        border-radius: 0.5vw;
+        border-width: 0.5px;
+        border-color: rgb(10, 129, 169);
+        margin-left: 5vw;
+
+        &:hover
+        {
+            color: white;
+            font-weight: 550;
+            background-color: rgb(41, 41, 41);
+            border-color: rgb(41,41,41);
+        }
+    }
+
+    .user-header-bar-sidebar
+    {
+        display: none;
+    }
+
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 700px) and (max-width:1299.5px)
+{
+    #user-header-bar
+    {
+        display: flex;
+        padding : 0 5.25vw;
+        justify-content: space-between;
+    }
+
+    #user-header-bar-SW-name
+    {
+        margin: 2vw 0;
+        display: flex;
+        align-items: center;
+        width: 24vw;
+        font-size: 1.25vw;
+        font-weight: bold;   
+        height: 100%;
+
+        a
+        {   
+            color: rgb(115, 115, 115);
+            text-decoration: none;
+        }
+
+        @media (max-width: 800.5px) 
+        {
+            font-size: 1.5vw;
+        }
+    }
+
+    #user-header-bar-item-zone
+    {
+        width: 54vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 7%;
+    }
+
+    #logout-btn
+    {
+        display: none;
+    }
+
+    .user-header-bar-sidebar
+    {
+        position: relative;
+        display: block;
+        height: 100%;
+    }
+
+    .user-header-bar-sidebar-btn
+    {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        border-width: 0;
+        width: fit-content;
+        padding: 0;
+        align-items: center;
+        height: 100%;
+    }
+      
+    .user-header-bar-sidebar-content 
+    {
+        z-index: -1;
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 180px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 0;
+    }
+
+    .user-header-bar-sidebar-content a 
+    {
+        font-size: 1.2vw;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-family: 'Kanit', sans-serif;
+        display: block;
+    }
+    
+    .user-header-bar-sidebar-content a:hover 
+    { 
+        font-size: 1.25vw;
+        font-weight: 550;
+        background-color: #efefef; 
+        text-decoration: none;
+    }
+
+    .user-header-bar-sidebar:hover .user-header-bar-sidebar-content { display: block; }
+    
+    .user-header-bar-sidebar:hover .user-header-bar-sidebar-btn { color: rgb(10, 129, 169); }
+
+    #user-header-bar-logout
+    {
+        color: rgb(10, 129, 169);
+    }
+
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 420px) and (max-width:699.5px)
+{
+    #user-header-bar
+    {
+        display: flex;
+        padding : 0 5.5vw;
+        justify-content: space-between;
+    }
+
+    #user-header-bar-SW-name
+    {
+        margin: 2.5vw 0;
+        display: flex;
+        align-items: center;
+        width: 37vw;
+        font-size: 1.8vw;
+        font-weight: bold;   
+        height: 100%;
+
+        a
+        {   
+            color: rgb(115, 115, 115);
+            text-decoration: none;
+        }
+    }
+
+    #user-header-bar-item-zone
+    {
+        width: 50vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-right: 10%;
+        
+        Clock 
+        {
+            display: none;
+        }
+    }
+
+    #logout-btn
+    {
+        display: none;
+    }
+
+    .user-header-bar-sidebar
+    {
+        position: relative;
+        display: block;
+        height: 100%;
+    }
+
+    .user-header-bar-sidebar-btn
+    {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        border-width: 0;
+        width: fit-content;
+        padding: 0;
+        align-items: center;
+        height: 100%;
+    }
+      
+    .user-header-bar-sidebar-content 
+    {
+        z-index: -1;
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 0;
+    }
+
+    .user-header-bar-sidebar-content a 
+    {
+        font-size: 1.8vw;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        font-family: 'Kanit', sans-serif;
+        display: block;
+    }
+    
+    .user-header-bar-sidebar-content a:hover 
+    { 
+        font-size: 1.9vw;
+        font-weight: 550;
+        background-color: #efefef; 
+        text-decoration: none;
+    }
+
+    .user-header-bar-sidebar:hover .user-header-bar-sidebar-content { display: block; }
+    
+    .user-header-bar-sidebar:hover .user-header-bar-sidebar-btn { color: rgb(10, 129, 169); }
+
+    #user-header-bar-logout
+    {
+        color: rgb(10, 129, 169);
+    }
+
+}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+@media (max-width:419.5px)
+{
+    #user-header-bar
+    {
+        display: flex;
+        padding: 0 4.25vw;
+        justify-content: space-between;
+        min-width: 423px;
+
+        @media (max-width: 340px) 
+        {
+            padding: 0 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 0 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 0 25vw;
+        }
+    }
+
+    #user-header-bar-SW-name
+    {
+        color: rgb(115, 115, 115);
+        display: flex;
+        align-items: center;
+        margin: 6vw 0;
+
+    }
+
+    #user-header-bar-SW-name a
+    {
+        font-size: 2.5vw;
+        font-weight: bold;
+        color: rgb(115, 115, 115);
+        text-decoration: none;
+
+        @media (max-width: 340px) 
+        {
+            font-size: 3vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            font-size: 4vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            font-size: 4.5vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            font-size: 4.65vw;
+        }
+    }
+
+    #user-header-bar-item-zone
+    {
+        width: 40vw;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        @media (max-width: 340px) 
+        {
+            width: 45vw;
+        }
+
+        @media (max-width: 275.5px) 
+        {
+            width: 65vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            width: 70vw;
+        }
+
+        @media (max-width: 175.5px) 
+        {
+            width: 80vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            width: 120vw;
+        }
+
+        @media (max-width: 100.5px) 
+        {
+            width: 150vw;
+        }
+    }
+
+    #name-clock
+    {
+        width: 90vw;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-right: 20%;
+        
+        Clock 
+        {
+            display: none;
+        }
+    }
+
+    #logout-btn
+    {
+        display: none;
+    }
+
+    .user-header-bar-sidebar
+    {
+        position: relative;
+        display: block;
+        height: 100%;
+    }
+
+    .user-header-bar-sidebar-btn
+    {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        border-width: 0;
+        width: fit-content;
+        padding: 0;
+        align-items: center;
+        height: 100%;
+
+
+    }
+      
+    .user-header-bar-sidebar-content 
+    {
+        z-index: -1;
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        right: 0;
+    }
+
+    .user-header-bar-sidebar:hover .user-header-bar-sidebar-content { display: block; }
+    
+    .user-header-bar-sidebar:hover .user-header-bar-sidebar-btn { color: rgb(10, 129, 169); }
+
+    #user-header-bar-logout
+    {
+        color: rgb(10, 129, 169);
+    }
+
+}

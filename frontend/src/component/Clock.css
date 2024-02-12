@@ -1,11 +1,27 @@
 #clock
 {
-    font-family: 'Kanit', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+    height: fit-content;
+    font-weight: bold;
     color: rgb(83, 83, 83);
     display: flex;
     justify-content: right;
     align-items:center;
-    width: 135px;
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: 1300px)
+    {
+        font-size: 1vw;
+    }
+
+    @media (min-width: 700px) and (max-width:1299.5px)
+    {
+        font-size: 1.225vw;
+    }
+
+    @media (max-width:699.5px)
+    {
+        display: none;
+    }
 }
+

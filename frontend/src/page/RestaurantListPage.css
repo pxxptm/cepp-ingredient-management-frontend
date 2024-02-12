@@ -1,0 +1,18 @@
+#Restaurant-list-page
+{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    padding: 0;
+    margin: 0px;
+    background-color: #F3F4F5;
+}
+
+#Restaurant-list-page-header
+{
+    width: 100%;
+    min-width: 423px;
+    height: fit-content;
+    position: sticky;
+    top: 0;
+}

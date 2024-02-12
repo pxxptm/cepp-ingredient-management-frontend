@@ -1,58 +1,66 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
-import {
-  createBrowserRouter,
-  RouterProvider
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 
 import HomePage from './page/HomePage';
 import FeaturePage from './page/FeaturePage';
 import LoginPage from './page/LoginPage';
 import ContactUsPage from './page/ContactUsPage';
 import UserRegisterPage from './page/UserRegisterPage';
-import FAQPage from './page/FAQPage'
-import OwenerRegisterPage from './page/OwnerRegister';
+import FAQPage from './page/FAQPage';
+import OwnerRegisterPage from './page/OwnerRegister';
 import RestaurantListPage from './page/RestaurantListPage';
 
+const router = (
+  <Routes>
+    <Route 
+      path="/"
+      element={<HomePage />} 
+    />
 
-const router = createBrowserRouter ([
-  {
-    path: "/",
-    element: <HomePage/>
-  },
-  {
-    path: "feature",
-    element: <FeaturePage/>
-  },
-  {
-    path: "login" ,
-    element: <LoginPage/>
-  },
-  {
-    path: "contact-us" ,
-    element: <ContactUsPage></ContactUsPage>
-  },
-  {
-    path: "faq" ,
-    element: <FAQPage></FAQPage>
-  },
-  {
-    path: "user-register",
-    element : <UserRegisterPage/>
-  },
-  {
-    path: "owner-register",
-    element: <OwenerRegisterPage/>
-  } ,
-  {
-    path: "/:username/restaurant" ,
-    element: <RestaurantListPage/>
-  }
-])
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <RouterProvider router = {router}/>
+    <Route 
+      path="feature" 
+      element={<FeaturePage />} 
+    />
+
+    <Route
+      path="login"
+      element={<LoginPage />}
+    />
+
+    <Route
+      path="contact-us"
+      element={<ContactUsPage />}
+    />
+
+    <Route
+      path="faq"
+      element={<FAQPage />}
+    />
+
+    <Route 
+      path="user-register"
+      element={<UserRegisterPage />}
+    />
+
+    <Route
+      path="owner-register"
+      element={<OwnerRegisterPage />}
+    />
+
+    <Route
+      path="/:username/restaurant"
+      element={<RestaurantListPageWrapper />}
+    />
+    
+  </Routes>
 );
 
+function RestaurantListPageWrapper() {
+  let { username } = useParams();
+  return <RestaurantListPage username={username} />;
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Router>{router}</Router>);
