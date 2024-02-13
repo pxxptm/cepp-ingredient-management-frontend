@@ -30,12 +30,12 @@
 {
     #restaurant-list-page-head-zone 
     {
-        padding : 2% 5.25vw;
+        padding : 5% 5.25vw;
         display: flex;
 
         h1 
         {   
-            font-size: 2.5vw;
+            font-size: 3vw;
             font-family: 'Kanit', sans-serif;
             font-weight: bold;
             margin: auto 0;
@@ -50,15 +50,16 @@
             button
             {
                 font-family: 'Kanit', sans-serif;
+                font-size: 1vw;
                 color: white;
                 background-color: rgb(10, 129, 169);
                 margin: auto 0;
-                height: 2vw;
-                width: 7.5vw;
-                border-radius: 0.5vw;
+                height: 2.5vw;
+                width: 10vw;
+                border-radius: 0.7vw;
                 border-width: 0;
                 display: flex;
-                align-content: center;
+                align-items: center;
                 justify-content: center;
 
                 &:hover
@@ -67,15 +68,157 @@
                 }
             }
 
-            p
-            {
-                font-size: 0.75vw;
-                margin: auto 0;
-            }            
             span
             {
-                font-size: 1.3vw;
+                display: flex;
+                margin-right: 4%;
+                margin-top: 0;
+                font-weight: bold;
+                align-content: center;
+            }
+        }
+    }
+}
+
+@media (min-width: 420px) and (max-width: 699.5px)
+{
+    #restaurant-list-page-head-zone 
+    {
+        padding : 5% 5.5vw;
+        display: flex;
+
+        h1 
+        {   
+            font-size: 2.75vw;
+            font-family: 'Kanit', sans-serif;
+            font-weight: bold;
+            margin: auto 0;
+        }
+
+        #restaurant-list-page-head-zone-btn {
+            display: flex;
+            align-content: center;
+            margin-left: 7%;
+            margin-top: 0.5%;
+
+            button
+            {
+                font-family: 'Kanit', sans-serif;
+                font-size: 1vw;
+                color: white;
+                background-color: rgb(10, 129, 169);
+                margin: auto 0;
+                height: 2.5vw;
+                width: 11vw;
+                border-radius: 0.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover
+                {
+                    background-color: rgb(7, 79, 103);
+                }
+            }
+
+            span
+            {
+                display: flex;
+                font-size: 1vw;
                 margin-right: 8%;
+                margin-top: 0;
+                font-weight: bold;
+                align-content: center;
+            }
+        }
+    }
+}
+
+@media (max-width: 419.5px)
+{
+    #restaurant-list-page-head-zone 
+    {
+        padding : 5% 4.25vw;
+        display: flex;
+
+        @media (max-width: 340px) 
+        {
+            padding: 4% 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 3% 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 2% 25vw;
+        }
+        
+
+        h1 
+        {   
+            font-size: 3.1vw;
+            font-family: 'Kanit', sans-serif;
+            font-weight: bold;
+            margin: auto 0;
+
+            @media (max-width: 340px) 
+            {
+                font-size: 3vw;
+            }
+
+            @media (max-width: 195.5px) 
+            {
+                font-size: 4vw;
+            }
+
+            @media (max-width: 195.5px) 
+            {
+                font-size: 4.5vw;
+            }
+
+            @media (max-width: 135.5px) 
+            {
+                font-size: 4.65vw;
+            }
+        }
+
+        #restaurant-list-page-head-zone-btn {
+            display: flex;
+            align-content: center;
+            margin-left: 7%;
+            margin-top: 0.5%;
+
+            button
+            {
+                font-family: 'Kanit', sans-serif;
+                color: white;
+                background-color: rgb(10, 129, 169);
+                margin: auto 0;
+                height: fit-content;
+                width: 12vw;
+                border-radius: 0.7vw;
+                border-width: 0;
+                align-content: center;
+                justify-content: center;
+
+                font-size: 1vw;
+                font-weight: 500;
+                padding: 5% 3% 4.5% 3%;
+
+                &:hover
+                {
+                    background-color: rgb(7, 79, 103);
+                }
+            }
+    
+            span
+            {
+                font-size: 1.15vw;
+                margin-right: 12%;
             }
         }
     }

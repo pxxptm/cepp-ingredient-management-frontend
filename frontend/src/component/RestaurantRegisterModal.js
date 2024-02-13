@@ -49,7 +49,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
                   </button>
 
                   <button id="restaurantPic-remove-file-btn">
-                    ลบรูปภาพ
+                    ลบรูปภาพร้าน
                   </button>
                 </div>
               </div>

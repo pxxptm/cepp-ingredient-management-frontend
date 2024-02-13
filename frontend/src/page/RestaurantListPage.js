@@ -53,8 +53,7 @@ function RestaurantListPage({ username }) {
                   setModalOpen(true);
                 }}
               >
-                <span>+</span>
-                <p>เพิ่มร้านของคุณ</p>
+                <span>+</span>เพิ่มร้านของคุณ
               </button>
             </div>
           </div>
