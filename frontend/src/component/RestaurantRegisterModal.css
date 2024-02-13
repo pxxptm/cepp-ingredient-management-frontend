@@ -1,0 +1,233 @@
+.rest-reg-modalBackground 
+{
+  z-index: 1;
+  position: fixed;
+  padding: 5.5% 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 700px) 
+{
+  .rest-reg-modalContainer 
+  {
+    background-color: #ffffff;
+    margin: auto;
+    padding: 0.8% 3% 1% 3%;
+    width: 70%;
+    margin: auto;
+    border: 1px solid #888;
+    box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+    display: flex;
+    flex-direction: column;
+    border-radius: 2vw;
+  }
+
+  .rest-reg-titleCloseBtn 
+  {
+    font-family: 'Kanit', sans-serif;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    font-weight: lighter;
+    margin-right: -3%;
+  }
+
+  .rest-reg-titleCloseBtn button 
+  {
+    background-color: transparent;
+    border: none;
+    font-size: 1.7vw;
+    font-weight: lighter;
+    cursor: pointer;
+    color: black;
+    width: fit-content;
+    padding: 0;
+    margin-right: -1%;
+
+    &:hover {
+      color: crimson;
+    }
+  }
+
+  .rest-reg-modalContainer .rest-reg-body 
+  {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: antiquewhite;
+
+    form
+    {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(255, 255, 255);
+      justify-content: space-between;
+      padding: 3% 0;
+    }
+  }
+
+  #rest-reg-form
+  {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+  }
+
+  #rest-reg-l1
+  {
+    width: 32%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  #upload-remove-pic
+  {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #restaurantPic-show
+  {
+    width: 100%;
+    aspect-ratio: 1 / 0.925;
+    border-radius: 8%;
+    border: 0.11vw dashed #888;
+    margin-bottom: 7%;
+  }
+
+
+  #restaurantPic-file-btn
+  {
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.6vw;
+    font-weight: normal;
+    background-color: rgb(255, 255, 255);
+    color: rgb(10, 129, 169);
+    width: 5.5vw;
+    padding: 2% 1%;
+    border: 0.01vw solid rgb(10, 129, 169);
+    border-radius: 0.5vw;
+
+    &:hover
+    {
+      background-color: rgb(10, 129, 169);
+      color: white;
+    }
+  }
+
+  #restaurantPic-remove-file-btn
+  {
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.6vw;
+    font-weight: normal;
+    background-color: rgb(255, 255, 255);
+    color: rgb(142, 32, 54);
+    width: 5.5vw;
+    padding: 2% 1%;
+    border: 0.01vw solid rgb(142, 32, 54);
+    border-radius: 0.5vw;
+
+    &:hover
+    {
+      background-color: rgb(142, 32, 54);
+      color: white;
+    }
+  }
+
+  #rest-reg-r2
+  {
+    height: 100%;
+    width: 62%;
+  }
+
+  .rest-reg-form-floating
+  {
+    margin-bottom: 5%;
+  }
+
+  .rest-reg-input-form
+  {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    label
+    {
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.9vw;
+      font-weight: normal;
+      margin-bottom: 2.5%;
+    }
+
+    .rest-reg-form-input-space
+    {
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.9vw;
+      font-weight: normal;
+      width: 100%;
+      padding: 3% 5%;
+      border: 0.01vw solid rgba(0, 0, 0, 0.397);
+      border-radius: 1.25vw;
+      background-color: #fcfcfc;
+
+      &:focus
+      {
+        background-color: #E7E7E7;
+        border: 0.01vw solid rgba(0, 0, 0, 0.397);
+        border-radius: 1.25vw;
+        outline: none;
+      }
+    }
+
+    #rest-reg-descript-input
+    {
+      text-wrap: wrap;
+      padding: 3% 5% 20% 5%;
+      resize: none;
+    }
+  }
+
+  #rest-reg-span-zone
+  {
+    margin-top: 1.5%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #rest-reg-submit
+  {
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.9vw;
+    font-weight: normal;
+    background-color: rgb(10, 129, 169);
+    color: white;
+    width: 6.5vw;
+    padding: 1% 1%;
+    border: none;
+    border-radius: 0.7vw;
+
+    &:hover
+    {
+      background-color: rgb(7, 79, 103);
+    }
+  }
+
+}

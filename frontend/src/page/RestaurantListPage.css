@@ -2,11 +2,13 @@
 {
     height: 100vh;
     width: 100vw;
+    min-width: 423px;
     position: relative;
     padding: 0;
     margin: 0px;
-    background-color: #F3F4F5;
+    background-color: white;
 }
+
 
 #Restaurant-list-page-header
 {
@@ -15,4 +17,66 @@
     height: fit-content;
     position: sticky;
     top: 0;
+}
+
+#create-restaurant-modal
+{
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+}
+
+@media (min-width: 700px)
+{
+    #restaurant-list-page-head-zone 
+    {
+        padding : 2% 5.25vw;
+        display: flex;
+
+        h1 
+        {   
+            font-size: 2.5vw;
+            font-family: 'Kanit', sans-serif;
+            font-weight: bold;
+            margin: auto 0;
+        }
+
+        #restaurant-list-page-head-zone-btn {
+            display: flex;
+            align-content: center;
+            margin-left: 7%;
+            margin-top: 0.5%;
+
+            button
+            {
+                font-family: 'Kanit', sans-serif;
+                color: white;
+                background-color: rgb(10, 129, 169);
+                margin: auto 0;
+                height: 2vw;
+                width: 7.5vw;
+                border-radius: 0.5vw;
+                border-width: 0;
+                display: flex;
+                align-content: center;
+                justify-content: center;
+
+                &:hover
+                {
+                    background-color: rgb(7, 79, 103);
+                }
+            }
+
+            p
+            {
+                font-size: 0.75vw;
+                margin: auto 0;
+            }            
+            span
+            {
+                font-size: 1.3vw;
+                margin-right: 8%;
+            }
+        }
+    }
 }
