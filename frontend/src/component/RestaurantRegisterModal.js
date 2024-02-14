@@ -72,7 +72,6 @@ function RestaurantRegisterModal({ setOpenModal }) {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-          alert('Create restaurant successful');
           generatePath('/:restaurantName', { restaurantName: restaurantName });
           setOpenModal(false);
         }
