@@ -79,10 +79,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
                     style={{ display: 'none' }}
                     onChange={fileUploadHandler}
                   />
-                  <label
-                    htmlFor="restaurantPic-file"
-                    id="restaurantPic-file-btn"
-                  >
+                  <label htmlFor="restaurantPic-file" id="restaurantPic-file-btn">
                     เพิ่มรูปภาพร้าน
                   </label>
 
