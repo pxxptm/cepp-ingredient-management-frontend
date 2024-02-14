@@ -7,7 +7,7 @@ import * as crypto from 'crypto';
 export class MinioClientService {
   private readonly logger: Logger;
   private readonly baseBucket = 'cepp';
-  private readonly endPoint = '10.20.23.35';
+  private readonly endPoint = '100.111.182.51';
   private readonly port = '9000';
 
   public get client() {
