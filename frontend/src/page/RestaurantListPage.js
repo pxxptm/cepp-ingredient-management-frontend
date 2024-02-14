@@ -11,19 +11,26 @@ function RestaurantListPage({ username }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [restaurantList, setRestaurantList] = useState([]);
 
-  axios
-    .get(url, {
+  function fetchData() {
+    axios.get(url, {
       headers: {
         Authorization: 'Bearer ' + accessToken,
       },
     })
     .then((response) => {
-      setRestaurantList(response.data);
-      console.log(restaurantList, restaurantList.length);
+      if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
+        setRestaurantList(response.data);
+        console.log("Updated data:", restaurantList);
+      }
     })
     .catch((error) => {
       console.log(error);
     });
+  }
+  
+
+  fetchData();
+  setInterval(fetchData, 5000);
 
   return (
     <div id="Restaurant-list-page">
@@ -59,7 +66,7 @@ function RestaurantListPage({ username }) {
         </div>
 
         <div id="rest-list-cards">
-          <table id="rest-list-cards-table">
+          <div id="rest-list-cards-table">
           {restaurantList.length > 0 &&
             restaurantList.map(
               (restaurant, index) =>
@@ -70,7 +77,7 @@ function RestaurantListPage({ username }) {
                   />
                 ),
             )}
-          </table>
+          </div>
         </div>
       </div>
     </div>
