@@ -62,7 +62,7 @@ function RestaurantListPage({ username }) {
           {restaurantList.length > 0 &&
             restaurantList.map(
               (restaurant, index) =>
-                restaurant && ( // Check if restaurant is not null
+                restaurant && ( 
                   <RestaurantCard
                     restaurantName={restaurant.name}
                     restaurantDescription={restaurant.description}
