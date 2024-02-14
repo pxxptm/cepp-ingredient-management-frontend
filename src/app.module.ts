@@ -13,6 +13,8 @@ import { IngredientModule } from './modules/ingredient/ingredient.module';
 import { ComponentModule } from './modules/component/component.module';
 import { LogModule } from './modules/log/log.module';
 import { OrderModule } from './modules/order/order.module';
+import { MinioClientModule } from './modules/minio-client/minio-client.module';
+import { FileUploadModule } from './modules/file-upload/file-upload.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { OrderModule } from './modules/order/order.module';
     ComponentModule,
     LogModule,
     OrderModule,
+    MinioClientModule,
+    FileUploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

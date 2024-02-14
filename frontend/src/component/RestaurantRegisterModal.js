@@ -44,9 +44,9 @@ function RestaurantRegisterModal({ setOpenModal }) {
                     style={{ display: 'none' }}
                     onChange={fileUploadHandler}
                   />
-                  <button htmlFor="restaurantPic-file" id="restaurantPic-file-btn">
+                  <label htmlFor="restaurantPic-file" id="restaurantPic-file-btn">
                     เพิ่มรูปภาพร้าน
-                  </button>
+                  </label>
 
                   <button id="restaurantPic-remove-file-btn">
                     ลบรูปภาพ

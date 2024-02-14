@@ -11,6 +11,11 @@ export class CreateRestaurantDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly description: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly image: string;
 }
 
 export class UpdateRestaurantDto {
@@ -23,4 +28,9 @@ export class UpdateRestaurantDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly description: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly image: string;
 }
