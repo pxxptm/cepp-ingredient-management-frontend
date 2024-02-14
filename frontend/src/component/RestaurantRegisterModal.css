@@ -13,6 +13,25 @@
   min-width: 423px;
 }
 
+#restaurantPic-show
+{
+  overflow: hidden;
+}
+
+#restaurantPic-selected-pic
+{
+  width: 100%;
+  height: 100%;
+}
+
+#restaurantPic-default-pic
+{
+  width: 100%;
+  height: 100%;
+  background-image: url("../resource/defualt-pic-for-upload.png");
+  background-size: cover;
+}
+
 @media (min-width: 1300px) 
 {
   .rest-reg-modalBackground 
@@ -110,7 +129,7 @@
   #restaurantPic-show
   {
     width: 100%;
-    aspect-ratio: 1 / 0.925;
+    aspect-ratio: 1 / 1;
     border-radius: 8%;
     border: 0.11vw dashed #888;
     margin-bottom: 7%;
@@ -206,7 +225,7 @@
     #rest-reg-descript-input
     {
       text-wrap: wrap;
-      padding: 3% 5% 20% 5%;
+      padding: 3% 5% 24% 5%;
       resize: none;
     }
   }
@@ -338,7 +357,7 @@
   #restaurantPic-show
   {
     width: 100%;
-    aspect-ratio: 1 / 0.925;
+    aspect-ratio: 1 / 1;
     border-radius: 8%;
     border: 0.13vw dashed #888;
     margin-bottom: 8%;
@@ -434,7 +453,7 @@
     #rest-reg-descript-input
     {
       text-wrap: wrap;
-      padding: 3% 5% 20% 5%;
+      padding: 3% 5% 23% 5%;
       resize: none;
     }
   }
@@ -566,7 +585,7 @@
   #restaurantPic-show
   {
     width: 100%;
-    aspect-ratio: 1 / 0.925;
+    aspect-ratio: 1 / 1;
     border-radius: 8%;
     border: 0.13vw dashed #888;
     margin-bottom: 8%;
@@ -662,7 +681,7 @@
     #rest-reg-descript-input
     {
       text-wrap: wrap;
-      padding: 3% 5% 20% 5%;
+      padding: 3% 5% 23% 5%;
       resize: none;
     }
   }
@@ -714,7 +733,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    
     margin: auto;
   }
 
@@ -733,7 +751,7 @@
   {
     background-color: transparent;
     border: none;
-    font-size: 2.5vw;
+    font-size: 60%;
     font-weight: lighter;
     cursor: pointer;
     color: black;
@@ -783,7 +801,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
   }
 
   #upload-remove-pic
@@ -796,24 +814,25 @@
   #restaurantPic-show
   {
     width: 70%;
-    aspect-ratio: 1 / 0.925;
+    aspect-ratio: 1 / 1;
     border-radius: 8%;
     border: 0.4vw dashed #888;
     margin-bottom: 5%;
+    background: url("../resource/defualt-pic-for-upload.png");
   }
 
 
   #restaurantPic-file-btn
   {
     font-family: 'Kanit', sans-serif;
-    font-size: 1.55vw;
+    font-size: 34%;
     font-weight: normal;
     background-color: rgb(255, 255, 255);
     color: rgb(10, 129, 169);
-    width: 15vw;
+    width: 20%;
     padding: 2% 1%;
     border: 0.001vw solid rgb(10, 129, 169);
-    border-radius: 0.5vw;
+    border-radius: 1vw;
 
     &:hover
     {
@@ -825,14 +844,14 @@
   #restaurantPic-remove-file-btn
   {
     font-family: 'Kanit', sans-serif;
-    font-size: 1.55vw;
+    font-size: 34%;
     font-weight: normal;
     background-color: rgb(255, 255, 255);
     color: rgb(142, 32, 54);
-    width: 15vw;
+    width: 20%;
     padding: 2% 1%;
     border: 0.001vw solid rgb(142, 32, 54);
-    border-radius: 0.5vw;
+    border-radius: 1vw;
 
     &:hover
     {
@@ -864,7 +883,7 @@
     label
     {
       font-family: 'Kanit', sans-serif;
-      font-size: 2vw;
+      font-size: 37%;
       font-weight: normal;
       margin-bottom: 2.5%;
       color: black;
@@ -873,7 +892,7 @@
     .rest-reg-form-input-space
     {
       font-family: 'Kanit', sans-serif;
-      font-size: 2vw;
+      font-size: 37%;
       font-weight: normal;
       width: 100%;
       padding: 3% 5%;
@@ -900,7 +919,7 @@
 
   #rest-reg-span-zone
   {
-    margin-top: 5%;
+    margin-top: 3%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -909,14 +928,14 @@
   #rest-reg-submit
   {
     font-family: 'Kanit', sans-serif;
-    font-size: 1.9vw;
+    font-size: 38%;
     font-weight: normal;
     background-color: rgb(10, 129, 169);
     color: white;
     width: 70%;
-    padding: 1.75% 1% 1% 1%;
+    padding: 2% 1% 1.75% 1%;
     border: none;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;
