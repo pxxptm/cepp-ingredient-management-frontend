@@ -6,7 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User } from '../user/schema/user.schema';
 import { UserSchema } from '../user/schema/user.schema';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConfig } from 'backend/config/jwt.config';
+import { jwtConfig } from 'config/jwt.config';
 import { MemberModule } from '../member/member.module';
 
 @Module({

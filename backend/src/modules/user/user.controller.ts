@@ -5,7 +5,7 @@ import { AuthGuard } from '../auth/guard/auth.guard';
 import { RolesGuard } from '../auth/guard/role.guard';
 import { Roles } from '../auth/decorator/role.decorator';
 import { AllRole } from './schema/user.schema';
-import { appConfig } from 'backend/config/app.config';
+import { appConfig } from 'config/app.config';
 
 @ApiTags('user')
 @Controller('user')

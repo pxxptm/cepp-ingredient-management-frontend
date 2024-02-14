@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { UserRole } from 'backend/src/modules/user/schema/user.schema';
+import { UserRole } from 'src/modules/user/schema/user.schema';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class RegisterUserDto {

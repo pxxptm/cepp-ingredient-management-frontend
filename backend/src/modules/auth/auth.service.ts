@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { AllRole, User } from '../user/schema/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { RegisterOwnerDto, RegisterUserDto } from './dto/auth-register.dto';
-import { authConfig } from 'backend/config/auth.config';
+import { authConfig } from 'config/auth.config';
 import { LoginUserDto } from './dto/auth-login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
