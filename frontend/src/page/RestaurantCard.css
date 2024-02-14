@@ -1,0 +1,35 @@
+#rest-card-container
+{
+    background-color: white;
+    border: 0.01vw solid rgb(173, 173, 173);
+    border-radius: 1.5vw;
+    padding: 0;
+    overflow: hidden;
+}
+
+@media (min-width: 700px) 
+{
+    #rest-card-container
+    {
+        width: 21.5%;
+    }
+
+    #rest-card-pic
+    {
+        width: 100%;
+        aspect-ratio: 1 / 0.7;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #rest-card-content
+    {
+        background-color: white;
+        height: 40%;
+    }
+}
+

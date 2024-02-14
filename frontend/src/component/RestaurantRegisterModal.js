@@ -1,14 +1,49 @@
 import React, { useState } from 'react';
 import './RestaurantRegisterModal.css';
+import axios from 'axios';
+import { generatePath } from 'react-router-dom';
 
 function RestaurantRegisterModal({ setOpenModal }) {
   const [file, setFile] = useState('');
-  const [restaurantName, setRestaurantName] = useState('');
 
   const fileUploadHandler = (event) => {
     setFile(event.target.files[0]);
     console.log(file);
   };
+
+  //update for axios post
+  const [restaurantName, setRestaurantName] = useState('');
+  const [restaurantDescription, setRestaurantDescription] = useState('');
+  const accessToken = localStorage.getItem('token');
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    axios
+      .post(
+        'http://localhost:3001/restaurant',
+        {
+          name: restaurantName,
+          description: restaurantDescription,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + accessToken,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          alert('Create restaurant successful');
+          generatePath('/:restaurantName', { restaurantName: restaurantName });
+          setOpenModal(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div className="rest-reg-modalBackground">
@@ -30,7 +65,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
         </div>
 
         <div className="rest-reg-body">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div id="rest-reg-form">
               <div id="rest-reg-l1">
                 <div id="restaurantPic-show"></div>
@@ -44,9 +79,12 @@ function RestaurantRegisterModal({ setOpenModal }) {
                     style={{ display: 'none' }}
                     onChange={fileUploadHandler}
                   />
-                  <button htmlFor="restaurantPic-file" id="restaurantPic-file-btn">
+                  <label
+                    htmlFor="restaurantPic-file"
+                    id="restaurantPic-file-btn"
+                  >
                     เพิ่มรูปภาพร้าน
-                  </button>
+                  </label>
 
                   <button id="restaurantPic-remove-file-btn">
                     ลบรูปภาพร้าน
@@ -86,7 +124,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
                       autoComplete="None"
                       id="rest-reg-descript-input"
                       onChange={(e) => {
-                        setRestaurantName(e.target.value);
+                        setRestaurantDescription(e.target.value);
                       }}
                     />
                   </div>
@@ -94,11 +132,9 @@ function RestaurantRegisterModal({ setOpenModal }) {
               </div>
             </div>
             <div id="rest-reg-span-zone" className="d-flex">
-              <button
-                id="rest-reg-submit"
-                type="submit"
-                className="btn-submit"
-              >เสร็จสิ้น</button>
+              <button id="rest-reg-submit" type="submit" className="btn-submit">
+                เสร็จสิ้น
+              </button>
             </div>
           </form>
         </div>

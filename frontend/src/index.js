@@ -53,6 +53,11 @@ const router = (
       path="/:username/restaurant"
       element={<RestaurantListPageWrapper />}
     />
+
+    <Route
+      path="/:restaurantName"
+      element={<FAQPage />}
+    />
     
   </Routes>
 );
