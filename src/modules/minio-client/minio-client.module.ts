@@ -5,7 +5,7 @@ import { MinioModule } from 'nestjs-minio-client';
 @Module({
   imports: [
     MinioModule.register({
-      endPoint: '10.20.23.35',
+      endPoint: '100.111.182.51',
       port: 9000,
       useSSL: false,
       accessKey: 'JXNVpF0AulqAC4VoHoms',

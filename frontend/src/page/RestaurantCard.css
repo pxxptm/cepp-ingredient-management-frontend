@@ -17,10 +17,10 @@
     #rest-card-pic
     {
         width: 100%;
-        aspect-ratio: 1 / 0.7;
+        aspect-ratio: 1 / 1;
+        background: url("http://100.111.182.51:9000/cepp/9155af23b4b5ad4c4258c07edeac19fb.png");
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: antiquewhite;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -29,7 +29,7 @@
     #rest-card-content
     {
         background-color: white;
-        height: 40%;
+        padding: 6% 8%;
     }
 }
 
