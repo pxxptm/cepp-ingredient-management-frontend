@@ -19,7 +19,6 @@ function RestaurantListPage({ username }) {
     })
     .then((response) => {
       setRestaurantList(response.data);
-      console.log(restaurantList, restaurantList.length);
     })
     .catch((error) => {
       console.log(error);
@@ -59,18 +58,18 @@ function RestaurantListPage({ username }) {
         </div>
 
         <div id="rest-list-cards">
-          <table id="rest-list-cards-table">
+          <div id="rest-list-cards-table">
           {restaurantList.length > 0 &&
             restaurantList.map(
               (restaurant, index) =>
-                restaurant && ( // Check if restaurant is not null
+                restaurant && ( 
                   <RestaurantCard
                     restaurantName={restaurant.name}
                     restaurantDescription={restaurant.description}
                   />
                 ),
             )}
-          </table>
+          </div>
         </div>
       </div>
     </div>

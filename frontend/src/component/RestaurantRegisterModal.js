@@ -5,10 +5,46 @@ import { generatePath } from 'react-router-dom';
 
 function RestaurantRegisterModal({ setOpenModal }) {
   const [file, setFile] = useState('');
+  const defaultImageUrl = '../resource/defualt-pic-for-upload.png';
 
   const fileUploadHandler = (event) => {
-    setFile(event.target.files[0]);
-    console.log(file);
+    const selectedFile = event.target.files[0];
+
+    if (!selectedFile) {
+      return;
+    }
+
+    setFile(selectedFile);
+    console.log(selectedFile);
+
+    document.getElementById('restaurantPic-show').style.backgroundImage =
+      'none';
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(selectedFile);
+
+    reader.onload = () => {
+      const previewUrl = reader.result;
+      document.getElementById('restaurantPic-default-pic').style.display =
+        'None';
+      document.getElementById('restaurantPic-selected-pic').style.display =
+        'block';
+      document.getElementById(
+        'restaurantPic-selected-pic',
+      ).style.backgroundImage = `url(${previewUrl})`;
+      document.getElementById(
+        'restaurantPic-selected-pic',
+      ).style.backgroundSize = 'Cover';
+    };
+  };
+
+  const removeImageHandler = () => {
+    setFile('');
+    document.getElementById('restaurantPic-selected-pic').style.display =
+        'None';
+      document.getElementById('restaurantPic-default-pic').style.display =
+        'block';
   };
 
   //update for axios post
@@ -24,6 +60,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
         {
           name: restaurantName,
           description: restaurantDescription,
+          image: file
         },
         {
           headers: {
@@ -35,7 +72,6 @@ function RestaurantRegisterModal({ setOpenModal }) {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-          alert('Create restaurant successful');
           generatePath('/:restaurantName', { restaurantName: restaurantName });
           setOpenModal(false);
         }
@@ -68,7 +104,10 @@ function RestaurantRegisterModal({ setOpenModal }) {
           <form onSubmit={handleSubmit}>
             <div id="rest-reg-form">
               <div id="rest-reg-l1">
-                <div id="restaurantPic-show"></div>
+                <div id="restaurantPic-show">
+                  <div id="restaurantPic-default-pic"></div>
+                  <div id="restaurantPic-selected-pic"></div>
+                </div>
 
                 <div id="upload-remove-pic">
                   <input
@@ -79,13 +118,19 @@ function RestaurantRegisterModal({ setOpenModal }) {
                     style={{ display: 'none' }}
                     onChange={fileUploadHandler}
                   />
-                  <label htmlFor="restaurantPic-file" id="restaurantPic-file-btn">
+                  <label
+                    htmlFor="restaurantPic-file"
+                    id="restaurantPic-file-btn"
+                  >
                     เพิ่มรูปภาพร้าน
                   </label>
 
-                  <button id="restaurantPic-remove-file-btn">
+                  <label
+                    id="restaurantPic-remove-file-btn"
+                    onClick={removeImageHandler}
+                  >
                     ลบรูปภาพร้าน
-                  </button>
+                  </label>
                 </div>
               </div>
 
