@@ -1,28 +1,91 @@
-#rest-card-container {
-  background-color: white;
-  border: 0.01vw solid rgb(173, 173, 173);
-  border-radius: 1.5vw;
-  padding: 0;
-  overflow: hidden;
+#rest-card-container
+{
+    background-color: rgb(255, 255, 255);
+    border: 0.01vw solid rgba(173, 173, 173, 0.419);
+    border-radius: 1vw;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 0 1.2vw 0.001vw rgba(0, 0, 0, 0.125);
 }
 
-@media (min-width: 700px) {
-  #rest-card-container {
-    width: 100%;
-  }
+@media (min-width: 700px) 
+{
+    #rest-card-link
+    {
+        text-decoration: none;
+    }
+    
+    #rest-card-container
+    {
+        width: 100%;
+        height: 100%;
+    }
 
-  #rest-card-pic {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    #rest-card-pic
+    {
+        width: 100%;
+        aspect-ratio: 1 / 0.7;
+        background: url("http://100.111.182.51:9000/cepp/9155af23b4b5ad4c4258c07edeac19fb.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: end;
+        align-items:first baseline;
 
-  #rest-card-content {
-    background-color: white;
-    padding: 6% 8%;
-  }
+        button 
+        {
+            width: 2vw;
+            aspect-ratio: 1 / 1;
+            background-color: rgba(60, 60, 60, 0.5);
+            border: 0 solid;
+            border-radius: 3vw;
+            margin-right: 3%;
+            margin-top: 3%;
+            padding: 2%;
+
+            .material-icons
+            {
+                color: white !important;
+                font-size: 0.7vw !important;
+            }
+
+            &:hover
+            {
+                background-color: rgb(13, 160, 209);
+                box-shadow: 0 0 5% 0px rgba(0,0,0,0.75);
+            }
+        }
+    }
+
+    #rest-card-content
+    {
+        background-color: white;
+        padding: 9% 8%;
+    }
+
+    #rest-card-name
+    {
+        font-family: 'Kanit', sans-serif;
+        font-size: 2vw;
+        color: black;
+        margin-bottom: 3%;
+    }
+
+    #rest-card-description
+    {
+        font-family: 'Kanit', sans-serif;
+        font-size: 0.75vw;
+        color: rgba(0, 0, 0, 0.41);
+        height: 50%;
+        margin-bottom: 3%;
+    }
+
+    #rest-card-container
+    {
+        &:hover
+        {
+            box-shadow: 0 0 1.2vw 0.001vw rgba(0, 0, 0, 0.225);
+        }
+    }
 }
+
