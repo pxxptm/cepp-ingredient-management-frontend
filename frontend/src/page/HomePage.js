@@ -214,7 +214,7 @@ function HomePage() {
 
                                 <a href="http://localhost:3000/contact-us" id="s-cont-btn">
                                     ติดต่อเรา 
-                                    <span class="material-icons">chevron_right</span>
+                                    <span className="material-icons">chevron_right</span>
                                 </a>
                             </div>
                         </div>

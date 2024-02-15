@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import axios from 'axios';
 import './RestaurantListPage.css';
 import RestaurantListHeaderBar from '../component/RestaurantListHeaderBar';
 import RestaurantRegisterModal from '../component/RestaurantRegisterModal';
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard from '../component/RestaurantCard';
 
 function RestaurantListPage({ username }) {
   const url = 'http://localhost:3001/member/restaurant';
@@ -11,7 +11,7 @@ function RestaurantListPage({ username }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [restaurantList, setRestaurantList] = useState([]);
 
-  function fetchData() {
+  useEffect(() => {
     axios.get(url, {
       headers: {
         Authorization: 'Bearer ' + accessToken,
@@ -26,11 +26,7 @@ function RestaurantListPage({ username }) {
     .catch((error) => {
       console.log(error);
     });
-  }
-  
-
-  fetchData();
-  setInterval(fetchData, 5000);
+  });
 
   return (
     <div id="Restaurant-list-page">
