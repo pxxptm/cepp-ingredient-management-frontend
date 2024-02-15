@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RestaurantListPage.css';
 import RestaurantListHeaderBar from '../component/RestaurantListHeaderBar';
@@ -17,15 +17,15 @@ function RestaurantListPage({ username }) {
         Authorization: 'Bearer ' + accessToken,
       },
     })
-    .then((response) => {
-      if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
-        setRestaurantList(response.data);
-        console.log("Updated data:", restaurantList);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
+          setRestaurantList(response.data);
+          console.log("Updated data:", restaurantList);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   return (
@@ -63,16 +63,17 @@ function RestaurantListPage({ username }) {
 
         <div id="rest-list-cards">
           <div id="rest-list-cards-table">
-          {restaurantList.length > 0 &&
-            restaurantList.map(
-              (restaurant, index) =>
-                restaurant && ( // Check if restaurant is not null
-                  <RestaurantCard
-                    restaurantName={restaurant.name}
-                    restaurantDescription={restaurant.description}
-                  />
-                ),
-            )}
+            {restaurantList.length > 0 &&
+              restaurantList.map(
+                (restaurant, index) =>
+                  restaurant && ( // Check if restaurant is not null
+                    <RestaurantCard
+                      restaurantName={restaurant.name}
+                      restaurantDescription={restaurant.description}
+                      restaurantImage={restaurant.image}
+                    />
+                  ),
+              )}
           </div>
         </div>
       </div>

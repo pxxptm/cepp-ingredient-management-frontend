@@ -1,51 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './RestaurantRegisterModal.css';
 import axios from 'axios';
 import { generatePath } from 'react-router-dom';
 
 function RestaurantRegisterModal({ setOpenModal }) {
-  const [file, setFile] = useState('');
-  const defaultImageUrl = '../resource/defualt-pic-for-upload.png';
+  // const [file, setFile] = useState('');
+  // const defaultImageUrl = '../resource/defualt-pic-for-upload.png';
 
-  const fileUploadHandler = (event) => {
-    const selectedFile = event.target.files[0];
+  // const fileUploadHandler = (event) => {
+  //   const selectedFile = event.target.files[0];
 
-    if (!selectedFile) {
-      return;
-    }
+  //   if (!selectedFile) {
+  //     return;
+  //   }
 
-    setFile(selectedFile);
-    console.log(selectedFile);
+  //   setFile(selectedFile);
+  //   console.log(selectedFile);
 
-    document.getElementById('restaurantPic-show').style.backgroundImage =
-      'none';
+  //   document.getElementById('restaurantPic-show').style.backgroundImage =
+  //     'none';
 
-    const reader = new FileReader();
+  //   const reader = new FileReader();
 
-    reader.readAsDataURL(selectedFile);
+  //   reader.readAsDataURL(selectedFile);
 
-    reader.onload = () => {
-      const previewUrl = reader.result;
-      document.getElementById('restaurantPic-default-pic').style.display =
-        'None';
-      document.getElementById('restaurantPic-selected-pic').style.display =
-        'block';
-      document.getElementById(
-        'restaurantPic-selected-pic',
-      ).style.backgroundImage = `url(${previewUrl})`;
-      document.getElementById(
-        'restaurantPic-selected-pic',
-      ).style.backgroundSize = 'Cover';
-    };
-  };
+  //   reader.onload = () => {
+  //     const previewUrl = reader.result;
+  //     document.getElementById('restaurantPic-default-pic').style.display =
+  //       'None';
+  //     document.getElementById('restaurantPic-selected-pic').style.display =
+  //       'block';
+  //     document.getElementById(
+  //       'restaurantPic-selected-pic',
+  //     ).style.backgroundImage = `url(${previewUrl})`;
+  //     document.getElementById(
+  //       'restaurantPic-selected-pic',
+  //     ).style.backgroundSize = 'Cover';
+  //   };
+  // };
+
+  // const removeImageHandler = () => {
+  //   setFile('');
+  //   document.getElementById('restaurantPic-selected-pic').style.display =
+  //       'None';
+  //     document.getElementById('restaurantPic-default-pic').style.display =
+  //       'block';
+  // };
+
+  const defaultPreviewImageUrl = "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
+  const [previewImage, setPreviewImage] = useState(defaultPreviewImageUrl);
+  const [imageFile, setImageFile] = useState('')
+  let minioImagePath = defaultPreviewImageUrl
+
+  useEffect(() => {
+    document.getElementById('restaurantPic-pic').style.backgroundImage = `url(${previewImage})`
+  }, [previewImage])
+
+  function refreshPage() {
+    window.location.reload();
+  }
+
+  const fileUploadHandler = (e) => {
+    const selectedFile = URL.createObjectURL(e.target.files[0]);
+    setImageFile(e.target.files[0])
+    setPreviewImage(selectedFile)
+  }
 
   const removeImageHandler = () => {
-    setFile('');
-    document.getElementById('restaurantPic-selected-pic').style.display =
-        'None';
-      document.getElementById('restaurantPic-default-pic').style.display =
-        'block';
-  };
+    setPreviewImage(defaultPreviewImageUrl)
+  }
 
   //update for axios post
   const [restaurantName, setRestaurantName] = useState('');
@@ -54,13 +77,31 @@ function RestaurantRegisterModal({ setOpenModal }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    axios
+
+    if (previewImage != defaultPreviewImageUrl) {
+      await axios.post('http://localhost:3001/file-upload/single', {
+        image: imageFile
+      }, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        }
+      }).then((res) => {
+        if (res.status === 201) {
+          minioImagePath = "http://" + res.data.image_url
+          console.log(minioImagePath)
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+
+    await axios
       .post(
         'http://localhost:3001/restaurant',
         {
           name: restaurantName,
           description: restaurantDescription,
-          image: file
+          image: minioImagePath
         },
         {
           headers: {
@@ -74,6 +115,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
         if (res.status === 201) {
           generatePath('/:restaurantName', { restaurantName: restaurantName });
           setOpenModal(false);
+          refreshPage()
         }
       })
       .catch((error) => {
@@ -105,8 +147,9 @@ function RestaurantRegisterModal({ setOpenModal }) {
             <div id="rest-reg-form">
               <div id="rest-reg-l1">
                 <div id="restaurantPic-show">
-                  <div id="restaurantPic-default-pic"></div>
-                  <div id="restaurantPic-selected-pic"></div>
+                  {/* <div id="restaurantPic-default-pic"></div>
+                  <div id="restaurantPic-selected-pic"></div> */}
+                  <div id="restaurantPic-pic"></div>
                 </div>
 
                 <div id="upload-remove-pic">

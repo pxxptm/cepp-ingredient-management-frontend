@@ -1,35 +1,28 @@
-#rest-card-container
-{
+#rest-card-container {
+  background-color: white;
+  border: 0.01vw solid rgb(173, 173, 173);
+  border-radius: 1.5vw;
+  padding: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 700px) {
+  #rest-card-container {
+    width: 100%;
+  }
+
+  #rest-card-pic {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #rest-card-content {
     background-color: white;
-    border: 0.01vw solid rgb(173, 173, 173);
-    border-radius: 1.5vw;
-    padding: 0;
-    overflow: hidden;
+    padding: 6% 8%;
+  }
 }
-
-@media (min-width: 700px) 
-{
-    #rest-card-container
-    {
-        width: 100%;
-    }
-
-    #rest-card-pic
-    {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        background: url("http://100.111.182.51:9000/cepp/9155af23b4b5ad4c4258c07edeac19fb.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #rest-card-content
-    {
-        background-color: white;
-        padding: 6% 8%;
-    }
-}
-
