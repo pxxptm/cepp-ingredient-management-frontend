@@ -15,6 +15,13 @@ export class UserService {
     return await this.userModel.find();
   }
 
+  async getUserRole(id: string) {
+    const user = await this.userModel.findById(id);
+    return {
+      role: user.role,
+    };
+  }
+
   async getByIdReturnValidData(id: string) {
     const user = await this.userModel.findById(id);
     return {

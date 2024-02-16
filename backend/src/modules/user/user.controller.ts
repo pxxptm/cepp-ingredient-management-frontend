@@ -23,4 +23,10 @@ export class UserController {
       return await this.userService.getAll();
     }
   }
+
+  @Get()
+  @UseGuards(AuthGuard)
+  async getUserRole(@CurrentUser() iuser: IUser) {
+    return await this.userService.getUserRole(iuser.sub);
+  }
 }
