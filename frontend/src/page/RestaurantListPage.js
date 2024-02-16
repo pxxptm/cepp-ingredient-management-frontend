@@ -50,7 +50,7 @@ function RestaurantListPage({ username }) {
       .catch((error) => {
         console.log(error);
       });
-  },[]);
+  });
 
   return (
     <div id="Restaurant-list-page">
