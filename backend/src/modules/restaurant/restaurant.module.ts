@@ -4,6 +4,7 @@ import { RestaurantService } from './restaurant.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Restaurant, RestaurantSchema } from './schema/restaurant.schema';
 import { MemberModule } from '../member/member.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { MemberModule } from '../member/member.module';
       { name: Restaurant.name, schema: RestaurantSchema },
     ]),
     forwardRef(() => MemberModule),
+    UserModule,
   ],
   controllers: [RestaurantController],
   providers: [RestaurantService],

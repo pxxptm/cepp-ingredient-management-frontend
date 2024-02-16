@@ -1,9 +1,16 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+  forwardRef,
+} from '@nestjs/common';
 import mongoose from 'mongoose';
 import { Restaurant } from './schema/restaurant.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateRestaurantDto, UpdateRestaurantDto } from './dto/restaurant.dto';
 import { MemberService } from '../member/member.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class RestaurantService {
@@ -13,6 +20,8 @@ export class RestaurantService {
 
     @Inject(forwardRef(() => MemberService))
     private readonly memberService: MemberService,
+
+    private readonly userService: UserService,
   ) {}
 
   async create(userId: string, creatRestaurantDto: CreateRestaurantDto) {
@@ -36,7 +45,15 @@ export class RestaurantService {
     );
   }
 
-  async delete(restaurantId: string) {
-    return await this.restaurantModel.findByIdAndDelete(restaurantId);
+  async delete(userId: string, password: string, restaurantId: string) {
+    if (await this.userService.confirmPassword(userId, password)) {
+      return await this.restaurantModel.findByIdAndDelete(restaurantId);
+    }
+    throw new HttpException(
+      {
+        message: 'found some error',
+      },
+      HttpStatus.UNAUTHORIZED,
+    );
   }
 }

@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import * as mongoose from 'mongoose';
+import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
 
@@ -28,5 +29,30 @@ export class UserService {
   async getUserByUsername(username: string) {
     const user = await this.userModel.findOne({ username: username });
     return user.id;
+  }
+
+  async confirmPassword(id: string, password: string) {
+    const user = await this.userModel.findById(id);
+
+    if (!user) {
+      throw new HttpException(
+        {
+          message: 'user not found',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      return true;
+    } else {
+      throw new HttpException(
+        {
+          message: 'user or password incorrect.',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
   }
 }

@@ -45,7 +45,11 @@ export class RestaurantController {
 
   @Delete(':id')
   @Roles(AllRole.OWNER)
-  async delete(@Param('id') id: string) {
-    return await this.restaurantService.delete(id);
+  async delete(
+    @Param('id') id: string,
+    @Body() password: string,
+    @CurrentUser() iuser: IUser,
+  ) {
+    return await this.restaurantService.delete(iuser.sub, password, id);
   }
 }
