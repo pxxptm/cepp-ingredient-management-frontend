@@ -78,7 +78,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (previewImage != defaultPreviewImageUrl) {
+    if (previewImage !== defaultPreviewImageUrl) {
       await axios.post('http://localhost:3001/file-upload/single', {
         image: imageFile
       }, {

@@ -84,6 +84,7 @@
     {
         &:hover
         {
+            border: 0.01vw solid rgba(5, 70, 92,0.6);
             box-shadow: 0 0 1.2vw 0.001vw rgba(0, 0, 0, 0.225);
         }
     }
