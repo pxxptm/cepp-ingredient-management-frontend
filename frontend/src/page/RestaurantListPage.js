@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './RestaurantListPage.css';
-import RestaurantListHeaderBar from '../component/RestaurantListHeaderBar';
-import RestaurantRegisterModal from '../component/RestaurantRegisterModal';
-import RestaurantCard from '../component/RestaurantCard';
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import "./RestaurantListPage.css";
+import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
+import RestaurantRegisterModal from "../component/RestaurantRegisterModal";
+import RestaurantCard from "../component/RestaurantCard";
 
 function RestaurantListPage({ username }) {
-  const url = 'http://localhost:3001/member/restaurant';
-  const accessToken = localStorage.getItem('token');
+  const urlRestaurantList = "http://localhost:3001/member/restaurant";
+  const urlUserDetail = "http://localhost:3001/user/role";
+  const accessToken = localStorage.getItem("token");
   const [modalOpen, setModalOpen] = useState(false);
   const [restaurantList, setRestaurantList] = useState([]);
+  const userRole = useRef("staff");
 
+  // get restaurant of this user
   useEffect(() => {
-    axios.get(url, {
-      headers: {
-        Authorization: 'Bearer ' + accessToken,
-      },
-    })
+    axios
+      .get(urlRestaurantList, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
       .then((response) => {
         if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
           setRestaurantList(response.data);
@@ -27,6 +31,26 @@ function RestaurantListPage({ username }) {
         console.log(error);
       });
   });
+
+  // get role of this user
+  useEffect(() => {
+    axios
+      .get(urlUserDetail, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((response) => {
+        if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
+          const role = response.data.role;
+          userRole.current = role; 
+          console.log(userRole.current)
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },[]);
 
   return (
     <div id="Restaurant-list-page">
@@ -49,7 +73,9 @@ function RestaurantListPage({ username }) {
           <div id="restaurant-list-page-head-zone">
             <h1>ร้านอาหารของคุณ</h1>
             <div id="restaurant-list-page-head-zone-btn">
-              <button
+              {
+                userRole.current === "owner" &&
+                <button
                 className="openModalBtn"
                 onClick={() => {
                   setModalOpen(true);
@@ -57,6 +83,7 @@ function RestaurantListPage({ username }) {
               >
                 <span>+</span>เพิ่มร้านของคุณ
               </button>
+              }
             </div>
           </div>
         </div>
@@ -71,8 +98,9 @@ function RestaurantListPage({ username }) {
                       restaurantName={restaurant.name}
                       restaurantDescription={restaurant.description}
                       restaurantImage={restaurant.image}
+                      thisUserRole = {userRole.current}
                     />
-                  ),
+                  )
               )}
           </div>
         </div>

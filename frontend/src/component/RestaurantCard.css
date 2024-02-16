@@ -32,29 +32,6 @@
         justify-content: end;
         align-items:first baseline;
 
-        button 
-        {
-            width: 2vw;
-            aspect-ratio: 1 / 1;
-            background-color: rgba(60, 60, 60, 0.5);
-            border: 0 solid;
-            border-radius: 3vw;
-            margin-right: 3%;
-            margin-top: 3%;
-            padding: 2%;
-
-            .material-icons
-            {
-                color: white !important;
-                font-size: 0.7vw !important;
-            }
-
-            &:hover
-            {
-                background-color: rgb(13, 160, 209);
-                box-shadow: 0 0 5% 0px rgba(0,0,0,0.75);
-            }
-        }
     }
 
     #rest-card-content
@@ -74,7 +51,7 @@
     #rest-card-description
     {
         font-family: 'Kanit', sans-serif;
-        font-size: 0.75vw;
+        font-size: 1vw;
         color: rgba(0, 0, 0, 0.41);
         height: 50%;
         margin-bottom: 3%;
@@ -90,3 +67,7 @@
     }
 }
 
+#rest-card-description
+{
+    overflow-y: hidden;
+}

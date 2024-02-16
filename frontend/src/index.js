@@ -11,6 +11,7 @@ import UserRegisterPage from './page/UserRegisterPage';
 import FAQPage from './page/FAQPage';
 import OwnerRegisterPage from './page/OwnerRegister';
 import RestaurantListPage from './page/RestaurantListPage';
+import MainPageOwner from './page/MainPageOwner';
 
 const router = (
   <Routes>
@@ -55,8 +56,8 @@ const router = (
     />
 
     <Route
-      path="/:restaurantName"
-      element={<FAQPage />}
+      path="/:restaurantName/owner"
+      element={<MainPageOwner />}
     />
     
   </Routes>
@@ -65,6 +66,11 @@ const router = (
 function RestaurantListPageWrapper() {
   let { username } = useParams();
   return <RestaurantListPage username={username} />;
+}
+
+function OwnerMainPageWrapper() {
+  let { restaurantName } = useParams();
+  return <RestaurantListPage restaurantName={restaurantName} />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
