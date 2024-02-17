@@ -1,10 +1,11 @@
 import React from "react";
+import './StaffManagementPage.css'
 import UserHeaderBar from "../component/UserHeaderBar";
 
 function StaffManagementPage({ username , restaurantName }) {
     console.log(username)
   return (
-    <div id="Restaurant-list-page">
+    <div id="Staff-management-page">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -16,11 +17,11 @@ function StaffManagementPage({ username , restaurantName }) {
         type="text/css"
       ></link>
 
-      <div id="Restaurant-list-page-header-bar">
+      <div id="Staff-management-page-header-bar">
         <UserHeaderBar username={ username } />
       </div>
 
-      <div id="Restaurant-list-page-body"></div>
+      <div id="Staff-management-page-body"></div>
     </div>
   );
 }

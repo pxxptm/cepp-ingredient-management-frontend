@@ -43,9 +43,9 @@ const HearderBar = (props) => {
             <Clock />
           </div>
         </div>
-        <a href="http://localhost:3000/login" className="home-nav-btn">
+        <div className="home-nav-btn">
           <button id="logout-btn">ออกจากระบบ</button>
-        </a>
+        </div>
         
         <div className="user-header-bar-sidebar">
           <button className="user-header-bar-sidebar-btn">

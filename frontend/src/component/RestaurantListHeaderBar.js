@@ -1,11 +1,11 @@
-import React from 'react';
-import './RestaurantListHeaderBar.css';
-import Clock from './Clock';
-import UserHeader from './UserHeaderName';
+import React from "react";
+import "./RestaurantListHeaderBar.css";
+import Clock from "./Clock";
+import UserHeader from "./UserHeaderName";
 
 const RestaurantListHeaderBar = (props) => {
   const restaurantListPageURL =
-    'http://localhost:3000/' + props.username + '/restaurant';
+    "http://localhost:3000/" + props.username + "/restaurant";
   return (
     <div id="rest-list-header-bar">
       <link
@@ -43,9 +43,9 @@ const RestaurantListHeaderBar = (props) => {
             <Clock />
           </div>
         </div>
-        <a href="http://localhost:3000/login" className="home-nav-btn">
+        <div className="home-nav-btn">
           <button id="rest-list-logout-btn">ออกจากระบบ</button>
-        </a>
+        </div>
 
         <a href="http://localhost:3000/login" id="rest-list-logout-btn-icon">
           <i className="material-icons">logout</i>

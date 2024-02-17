@@ -1,0 +1,42 @@
+#Owner-main-page
+{
+    height : 100%;
+    width: 100%;
+    min-width: 423px;
+    position: relative;
+    padding: 0;
+    margin: 0px;
+    background-color: white;
+}
+
+#SOwner-main-page-header
+{
+    width: 100%;
+}
+
+#Owner-main-page-header-bar
+{
+    width: 100%;
+    height: fit-content;
+    position: sticky;
+    top: 0;
+}
+
+#Owner-main-page-body
+{
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+@media (min-width: 700px) 
+{
+    #Owner-main-page-side-bar-menu
+    {
+        width: 17.5%;
+        min-height: 100vh;
+        height: 100%;
+        position: fixed;
+        background-color: rgb(255, 157, 157);
+    }
+}

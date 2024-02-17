@@ -148,7 +148,8 @@
     #rest-card-container
     {
         width: 100%;
-        height: 100%;
+        height: fit-content;
+        margin-bottom: 2vw;
     }
 
     #rest-card-pic
@@ -167,7 +168,8 @@
     #rest-card-content
     {
         background-color: white;
-        padding: 9% 8%;
+        height: fit-content;
+        padding: 12% 8%;
     }
 
     #rest-card-name
@@ -175,7 +177,7 @@
         font-family: 'Kanit', sans-serif;
         color: black;
         margin-bottom: 3%;
-        font-size: 4vw;
+        font-size: 3vw;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -206,8 +208,8 @@
         font-family: 'Kanit', sans-serif;
         font-size: 2vw;
         color: rgba(0, 0, 0, 0.41);
-        height: 50%;
-        margin-bottom: 3%;
+        height: fit-content;
+        margin-bottom: 0%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

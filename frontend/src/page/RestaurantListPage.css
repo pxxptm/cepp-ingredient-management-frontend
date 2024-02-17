@@ -2,15 +2,13 @@
 {
     height : 100%;
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
     min-width: 423px;
     position: relative;
     padding: 0;
     margin: 0px;
     background-color: white;
-    overflow-x: hidden;
 }
-
 
 #Restaurant-list-page-header
 {
@@ -23,6 +21,12 @@
     height: fit-content;
     position: sticky;
     top: 0;
+}
+
+#Restaurant-list-page-body
+{
+    width: 100%;
+    min-height: 100vh;
 }
 
 #rest-list-cards
@@ -103,9 +107,9 @@
         width: 100%;
         display: grid;
         height: fit-content;
-        grid-template-columns: repeat(5,18.4%);
+        grid-template-columns: repeat(5,19.2%);
         row-gap: 3%;
-        column-gap: 2%;
+        column-gap: 1%;
         padding: 0 0 10% 0;
     }
 
@@ -227,7 +231,7 @@
 
         h1 
         {   
-            font-size: 3.5vw;
+            font-size: 5vw;
             font-family: 'Kanit', sans-serif;
             font-weight: bold;
             margin: auto 0;
@@ -239,12 +243,12 @@
 
             @media (max-width: 195.5px) 
             {
-                font-size: 8vw;
+                font-size: 10vw;
             }
 
             @media (max-width: 135.5px) 
             {
-                font-size: 10vw;
+                font-size: 11vw;
             }
         }
 
@@ -262,14 +266,36 @@
                 margin: auto 0;
                 height: fit-content;
                 width: 18vw;
-                border-radius: 0.7vw;
+                border-radius: 1vw;
                 border-width: 0;
                 align-content: center;
                 justify-content: center;
 
                 font-size: 2vw;
                 font-weight: 500;
-                padding: 5% 3% 4.5% 3%;
+                padding: 3% 3% 3% 3%;
+
+                @media (max-width: 340px) 
+                {
+                    font-size: 3vw;
+                    width: 30vw;
+                    padding: 1%;
+                }
+
+                @media (max-width: 195.5px) 
+                {
+                    font-size: 4vw;
+                    width: 40vw;
+                    width: 37vw;
+                    padding: 3% 1%;
+                }
+
+                @media (max-width: 135.5px) 
+                {
+                    font-size: 4vw;
+                    width: 43vw;
+                    padding: 2% 1%;
+                }
 
                 &:hover
                 {
@@ -280,7 +306,23 @@
             span
             {
                 font-size: 2vw;
-                margin-right: 7%;
+                margin-right: 5%;
+
+                @media (max-width: 340px) 
+                {
+                    font-size: 4vw;
+                }
+
+                @media (max-width: 195.5px) 
+                {
+                    font-size: 5vw;
+                }
+
+                @media (max-width: 135.5px) 
+                {
+                    font-size: 6vw;
+                }
+
             }
         }
     }
@@ -288,7 +330,7 @@
     #rest-list-cards
     {
         min-width: 423px;
-        height: 20px;
+        height: 100%;
         width: 100%;
         padding : 0 4.25vw;
 
@@ -311,16 +353,18 @@
     #rest-list-cards-table
     {
         width: 100%;
-        height: 100px;
+        height: 100%;
         display: grid;
         grid-template-columns: repeat(3,31.34%);
-        row-gap: 40%;
+        row-gap: 3%;
         column-gap: 3%;
+        padding: 0 0 50% 0; 
         
     }
 
     #rest-card
     {
         width: 100%;
+        height: fit-content;
     }
 }

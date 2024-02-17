@@ -41,11 +41,9 @@ function RestaurantListPage({ username }) {
         },
       })
       .then((response) => {
-        if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
-          const role = response.data.role;
-          userRole.current = role;
-          console.log(userRole.current);
-        }
+        const role = response.data.role;
+        userRole.current = role;
+        console.log(userRole.current);
       })
       .catch((error) => {
         console.log(error);
