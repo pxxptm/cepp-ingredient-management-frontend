@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import "./MainPageOwner.css";
-import UserHeaderBar from "../component/UserHeaderBar";
-import UserSideNavBar from "../component/UserSideNavBar";
+import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
+import UserSideNavBar from "../component/OwnerSideNavBar";
 
-function MainPageOwner({ username }) {
+function MainPageOwner({ username , restaurantName }) {
   const userRole = useRef("staff");
   const urlUserDetail = "http://localhost:3001/user/role";
   const accessToken = localStorage.getItem("token");
@@ -42,12 +42,12 @@ function MainPageOwner({ username }) {
       ></link>
 
       <div id="Owner-main-page-header-bar">
-        <UserHeaderBar username={username} />
+        <RestaurantListHeaderBar username={username} />
       </div>
 
       <div id="Owner-main-page-body">
         <div id="Owner-main-page-side-bar-menu">
-          <UserSideNavBar role={userRole.current} username={username}/>
+          <UserSideNavBar username={username} restaurantName={restaurantName}/>
         </div>
       </div>
     </div>

@@ -74,6 +74,8 @@
 {
     #user-name .material-icons
     {
+        font-size: 3vw !important;
+
         @media (max-width: 340px) 
         {
             font-size: 3vw !important;

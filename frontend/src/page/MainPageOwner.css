@@ -25,7 +25,7 @@
 #Owner-main-page-body
 {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 
@@ -33,10 +33,8 @@
 {
     #Owner-main-page-side-bar-menu
     {
-        width: 17.5%;
-        min-height: 100vh;
+        width: 16%;
         height: 100%;
         position: fixed;
-        background-color: rgb(255, 157, 157);
     }
 }
