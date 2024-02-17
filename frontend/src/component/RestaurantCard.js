@@ -6,7 +6,7 @@ function RestaurantCard(props) {
 
   if ( props.thisUserRole === "owner")
   {
-    urlDependOnRole = "http://localhost:3000/" + props.restaurantName + "/owner";
+    urlDependOnRole = "http://localhost:3000/" + props.restaurantName + "/" + props.username;
   }
 
   return (

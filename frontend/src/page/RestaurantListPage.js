@@ -43,8 +43,8 @@ function RestaurantListPage({ username }) {
       .then((response) => {
         if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
           const role = response.data.role;
-          userRole.current = role; 
-          console.log(userRole.current)
+          userRole.current = role;
+          console.log(userRole.current);
         }
       })
       .catch((error) => {
@@ -65,7 +65,9 @@ function RestaurantListPage({ username }) {
         type="text/css"
       ></link>
 
-      <RestaurantListHeaderBar username={username} />
+      <div id="Restaurant-list-page-header-bar">
+        <RestaurantListHeaderBar username={username} />
+      </div>
 
       <div id="Restaurant-list-page-body">
         {modalOpen && <RestaurantRegisterModal setOpenModal={setModalOpen} />}
@@ -73,17 +75,16 @@ function RestaurantListPage({ username }) {
           <div id="restaurant-list-page-head-zone">
             <h1>ร้านอาหารของคุณ</h1>
             <div id="restaurant-list-page-head-zone-btn">
-              {
-                userRole.current === "owner" &&
+              {userRole.current === "owner" && (
                 <button
-                className="openModalBtn"
-                onClick={() => {
-                  setModalOpen(true);
-                }}
-              >
-                <span>+</span>เพิ่มร้านของคุณ
-              </button>
-              }
+                  className="openModalBtn"
+                  onClick={() => {
+                    setModalOpen(true);
+                  }}
+                >
+                  <span>+</span>เพิ่มร้านของคุณ
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -94,12 +95,17 @@ function RestaurantListPage({ username }) {
               restaurantList.map(
                 (restaurant, index) =>
                   restaurant && ( // Check if restaurant is not null
-                    <RestaurantCard
-                      restaurantName={restaurant.name}
-                      restaurantDescription={restaurant.description}
-                      restaurantImage={restaurant.image}
-                      thisUserRole = {userRole.current}
-                    />
+                    <div id="rest-card">
+                      {
+                        <RestaurantCard
+                          restaurantName={restaurant.name}
+                          restaurantDescription={restaurant.description}
+                          restaurantImage={restaurant.image}
+                          username = {username}
+                          thisUserRole={userRole.current}
+                        />
+                      }
+                    </div>
                   )
               )}
           </div>

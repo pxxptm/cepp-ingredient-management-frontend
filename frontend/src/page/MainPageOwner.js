@@ -1,15 +1,21 @@
-import React from 'react'
+import React from "react";
 
-function MainPageOwner() {
+function MainPageOwner({ username }) {
+  console.log(username);
+
+  const staffManagementURL =
+    "http://localhost:3000/:restaurantName/" + username + "/staff-management";
   return (
     <div>
-        MainPageOwner <br/> <br/>
-        <a>จัดการคลังวัตถุดิบของคุณ</a><br/> <br/>
-        <a>จัดการพนักงาน</a><br/> <br/>
-        <a>จัดการรายการวัตถุดิบ</a><br/> <br/>
-        <a>จัดการเมนูภายในร้าน</a><br/> <br/>
+      MainPageOwner <br /> <br />
+      <a>คลังวัตถุดิบ</a>
+      <br /> <br />
+      <a href={staffManagementURL}>พนักงาน</a>
+      <br /> <br />
+      <a>เมนูและส่วนประกอบ</a>
+      <br /> <br />
     </div>
-  )
+  );
 }
 
-export default MainPageOwner
+export default MainPageOwner;

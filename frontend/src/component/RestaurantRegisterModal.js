@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './RestaurantRegisterModal.css';
 import axios from 'axios';
-import { generatePath } from 'react-router-dom';
 
 function RestaurantRegisterModal({ setOpenModal }) {
   // const [file, setFile] = useState('');
@@ -113,7 +112,6 @@ function RestaurantRegisterModal({ setOpenModal }) {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-          generatePath('/:restaurantName', { restaurantName: restaurantName });
           setOpenModal(false);
           refreshPage()
         }
