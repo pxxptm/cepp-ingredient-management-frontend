@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./StaffManagementPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
+import axios from "axios";
+import CreateStaffAccountModal from "../component/CreateStaffAccountModal";
 
 function StaffManagementPage({ username, restaurantName }) {
-  console.log(username);
+  
+  const accessToken = localStorage.getItem("token");
+  const [staffList, setStaffList] = useState([]);
+  const [restaurantID , setRestaurantID] = useState("")
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // get restaurant data : want - id , pic to pass to side-nav -bar
+    // axios get restaurant data here.
+
+  let staffListURL = "http://localhost:3001/member/user/" + restaurantID;
+
+  // get staff of this restaurant
+  useEffect(() => {
+    axios
+      .get(staffListURL, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((response) => {
+        if (JSON.stringify(response.data) !== JSON.stringify(staffList)) {
+          setStaffList(response.data);
+          console.log("Updated data:", staffList);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+
   return (
     <div id="Staff-management-page">
       <link
@@ -23,6 +54,7 @@ function StaffManagementPage({ username, restaurantName }) {
       </div>
 
       <div id="Staff-management-page-body">
+        {modalOpen && <CreateStaffAccountModal setOpenModal={setModalOpen} />}
         <div id="Staff-management-page-side-bar-menu">
           <UserSideNavBar username={username} restaurantName={restaurantName} />
         </div>
@@ -30,7 +62,14 @@ function StaffManagementPage({ username, restaurantName }) {
         <div id="Staff-management-page-content">
           <div id="Staff-management-page-content-header">
             <h1>พนักงาน</h1>
+            <button id="add-staff-acc-btn"
+            onClick={() => {
+              setModalOpen(true);
+            }}
+            ><span>+</span>เพิ่มบัญชีพนักงาน</button>
           </div>
+
+
         </div>
       </div>
     </div>

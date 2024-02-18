@@ -21,21 +21,21 @@ function OwnerSideNavBar(props) {
   ];
 
   const btnHref = [
-    "http://localhost:3000/"+ props.restaurantName + "/" + "/dashboard",
+    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "/dashboard",
 
-    "http://localhost:3000/"+ props.restaurantName + "/" + props.username + "/order-in",
+    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "/order-in",
 
-    "http://localhost:3000/"+ props.restaurantName + "/" +  +
-      props.username +
+    "http://localhost:3000/"+ props.username + "/" + 
+    props.restaurantName +
       "/inventory-management",
 
-    "http://localhost:3000/"+ props.restaurantName + "/" +
-      props.username +
+    "http://localhost:3000/"+ props.username + "/" +
+    props.restaurantName +
       "/staff-management",
 
-    "http://localhost:3000/"+ props.restaurantName + "/" + "/menu-and-components",
+    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "/menu-and-components",
 
-    "http://localhost:3000/"+ props.restaurantName + "/" + "/restaurant",
+    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "info",
   ];
 
   return (

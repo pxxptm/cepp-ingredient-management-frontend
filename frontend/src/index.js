@@ -38,12 +38,12 @@ const router = (
     />
 
     <Route
-      path="/:restaurantName/:username"
+      path="/:username/:restaurantName"
       element={<OwnerMainPageWrapper />}
     />
 
     <Route
-      path="/:restaurantName/:username/staff-management"
+      path="/:username/:restaurantName/staff-management"
       element={<StaffManagementPageWrapper />}
     />
   </Routes>

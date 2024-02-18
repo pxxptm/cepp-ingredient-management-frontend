@@ -1,0 +1,754 @@
+.staff-reg-modalBackground {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    min-width: 423px;
+  }
+    
+  
+  @media (min-width: 1300px) {
+    .staff-reg-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-reg-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 6% 2.5% 6%;
+      width: 52.5%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 2vw;
+    }
+  
+    .staff-reg-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-reg-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 1.7vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -6%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-reg-modalContainer .staff-reg-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #staff-reg-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-reg-form-floating
+    {
+        margin: 2% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-reg-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 0.8vw;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 0.8vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-reg-form-floating .material-icons
+    {
+        color: white;
+        font-size: 1.2vw !important; 
+        padding: 3% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 2vw;
+        border-bottom-left-radius: 2vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3% 5.65% 3% 4.5%;
+    }
+
+    .staff-reg-form-input-space
+    {
+        font-size: 0.8vw;
+        width: 100%;
+        border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-reg-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-reg-span-zone {
+      margin-top: 5%;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    #staff-reg-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.85vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 7vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (min-width: 700px) and (max-width: 1299.5px) {
+    .staff-reg-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-reg-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 6% 2.5% 6%;
+      width: 60%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 3vw;
+    }
+  
+    .staff-reg-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-reg-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 1.7vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -6%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-reg-modalContainer .staff-reg-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #staff-reg-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-reg-form-floating
+    {
+        margin: 3% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-reg-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 1vw;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 1vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-reg-form-floating .material-icons
+    {
+        color: white;
+        font-size: 1.2vw !important; 
+        padding: 3% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 2vw;
+        border-bottom-left-radius: 2vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3% 5.65% 3% 4.5%;
+    }
+
+    .staff-reg-form-input-space
+    {
+        font-size: 1vw;
+        width: 100%;
+        border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-reg-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-reg-span-zone {
+      margin-top: 5%;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    #staff-reg-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 1vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 8vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (min-width: 420px) and (max-width: 699.5px) {
+    .staff-reg-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-reg-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 6% 2.5% 6%;
+      width: 70%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 3vw;
+    }
+  
+    .staff-reg-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-reg-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 2vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -6%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-reg-modalContainer .staff-reg-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #staff-reg-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-reg-form-floating
+    {
+        margin: 3% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-reg-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 1.25vw;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 1.25vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-reg-form-floating .material-icons
+    {
+        color: white;
+        font-size: 1.5vw !important; 
+        padding: 3% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 2vw;
+        border-bottom-left-radius: 2vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3% 5.65% 3% 4.5%;
+    }
+
+    .staff-reg-form-input-space
+    {
+        font-size: 1.25vw;
+        width: 100%;
+        border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-reg-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-reg-span-zone {
+      margin-top: 7%;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    #staff-reg-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 1.25vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 9vw;
+      padding: 1.75% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (max-width: 419.5px) {
+    .staff-reg-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-reg-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 3% 6% 2.5% 6%;
+      width: 90%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 6vw;
+    }
+  
+    .staff-reg-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-reg-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 3.5vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -2%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-reg-modalContainer .staff-reg-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #staff-reg-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-reg-form-floating
+    {
+        margin: 3% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-reg-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 2.5vw;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 2.5vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-reg-form-floating .material-icons
+    {
+        color: white;
+        font-size: 3vw !important; 
+        padding: 3.25% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 4vw;
+        border-bottom-left-radius: 4vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3.25% 5.65% 3.25% 4.5%;
+    }
+
+    .staff-reg-form-input-space
+    {
+        font-size: 2.5vw;
+        width: 100%;
+        border-top-right-radius: 4vw;
+        border-bottom-right-radius: 4vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-reg-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-reg-span-zone {
+      margin-top: 7%;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    #staff-reg-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 2.65vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: #ffffff;
+      width: 19vw;
+      padding: 1.9% 1%;
+      border: none;
+      border-radius: 1.5vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
