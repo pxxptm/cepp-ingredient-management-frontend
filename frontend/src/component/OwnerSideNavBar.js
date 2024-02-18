@@ -21,42 +21,44 @@ function OwnerSideNavBar(props) {
   ];
 
   const btnHref = [
-    "http://localhost:3000/:restaurantName/" +
-      "/dashboard",
+    "http://localhost:3000/"+ props.restaurantName + "/" + "/dashboard",
 
-      "http://localhost:3000/:restaurantName/" +
-      props.username +
-      "/order-in",
+    "http://localhost:3000/"+ props.restaurantName + "/" + props.username + "/order-in",
 
-    "http://localhost:3000/:restaurantName/" +
+    "http://localhost:3000/"+ props.restaurantName + "/" +  +
       props.username +
       "/inventory-management",
 
-      "http://localhost:3000/:restaurantName/" +
+    "http://localhost:3000/"+ props.restaurantName + "/" +
       props.username +
       "/staff-management",
 
-      "http://localhost:3000/:restaurantName/" +
-      "/menu-and-components",
+    "http://localhost:3000/"+ props.restaurantName + "/" + "/menu-and-components",
 
-      "http://localhost:3000/:restaurantName/" +
-      "/restaurant",
+    "http://localhost:3000/"+ props.restaurantName + "/" + "/restaurant",
   ];
 
   return (
     <div id="owner-side-nav-bar">
-      <div>
-        
+      <div id="restaurant-profile">
+        <div id="restaurant-profile-rest-pic"></div>
+        <div id="restaurant-profile-user-and-rest-name">
+        <div id="restaurant-profile-user-name">{props.username}</div>
+        <div id="restaurant-profile-rest-name">{props.restaurantName}</div>
+        </div>
       </div>
-      {btnMenuOwnerWord.map((word, index) => (
+      <div id="curve"></div>
+      <div  id="owner-side-nav-bar-btn-list">{btnMenuOwnerWord.map((word, index) => (
         <a className="menu-opt" href={btnHref[index]}>
-            <span >
-              <i className="material-icons">{btnMenuIcon[index]}</i>
-            </span>
-            <p>{word}</p>
+          <span>
+            <i className="material-icons">{btnMenuIcon[index]}</i>
+          </span>
+          <p>
+            {word}
+          </p>
         </a>
-        
-      ))}
+      ))}</div>
+      
     </div>
   );
 }

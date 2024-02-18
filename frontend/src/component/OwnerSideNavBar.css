@@ -9,13 +9,79 @@
 
 @media (min-width: 700px) 
 {
+    #restaurant-profile
+    {
+        width: 100%;
+        padding: 12% 10% 2% 10%;
+        background-color: rgb(62, 62, 62);
+        text-align: center;
+
+        #restaurant-profile-rest-pic
+        {
+            width: 85%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background-color: bisque;
+            margin: 0 auto 8% auto;
+        }
+
+        #restaurant-profile-user-and-rest-name
+        {
+            width: 100%;
+        }
+
+        #restaurant-profile-user-name
+        {
+            width: 100%;
+            font-family: 'Kanit', sans-serif;
+            color: rgba(255, 255, 255, 0.51);
+            font-size: 0.75vw;
+            margin-bottom: 3%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin: 0 auto;
+        }
+
+        #restaurant-profile-rest-name
+        {
+            width: 100%;
+            font-family: 'Kanit', sans-serif;
+            color: rgb(255, 255, 255);
+            font-size: 1.2vw;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin: 0 auto;
+        }
+    }
+
+    #curve
+    {
+        width: 100%;
+        height: 1vw;
+        background-color: rgb(62, 62, 62);
+        padding: 10%;
+
+        mask:
+    radial-gradient(var(--r1,100%) var(--r2,50%) at top   ,white 79.5%,transparent 80%) top left,
+    radial-gradient(var(--r1,100%) var(--r2,50%) at bottom,transparent 79.5%,white 80%) top center,
+    radial-gradient(var(--r1,100%) var(--r2,50%) at top   ,white 79.5%,transparent 80%) top right;
+    }
+    
+    #owner-side-nav-bar-btn-list
+    {
+        height: 100%;
+        width: 100%;
+    }
+
     .menu-opt
     {
         width: 100%;
         font-family: 'Kanit', sans-serif;
         color: white;
         display: flex;
-        padding: 8% 0;
+        padding: 5% 0;
         
         span 
         {
@@ -28,8 +94,6 @@
             vertical-align: middle;
             margin-right: 12%;
             margin-left: 10%;
-
-            
         }
 
         p
@@ -48,38 +112,168 @@
 }
 
 @media (max-width: 699.5px) 
-{
+{   
     #owner-side-nav-bar
     {
-        display: grid;
+        width: 100%;
         min-width: 423px;
-        grid-template-columns: repeat(6,auto);
-        column-gap: 0.8%;
-        padding: 1% 0;
+        height: 100%;
+        justify-content: space-between ;
+        background-color: rgb(255, 255, 255);
+        justify-content: center;
+    }
 
+    #restaurant-profile
+    {
+        order: 1;
+        width: 100%;
+        padding: 50% auto 2% auto;
+        background-color: rgb(209, 209, 209);
+        text-align: center;
+        display: grid;
+        grid-template-columns: 50% 41%;
+        column-gap: 2%;
+
+        #restaurant-profile-rest-pic
+        {
+            width: 50%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background-color: rgba(136, 107, 118, 0.582);
+            margin: 8% auto 1% auto;
+        }
+
+        #restaurant-profile-user-and-rest-name
+        {
+            display: flex;
+            width: 100%;
+            background-color: rgb(209, 209, 209);
+            justify-items: center;
+            flex-direction: column;
+            margin: auto;
+            padding: 2% 9% 0 0;
+        }
+
+        #restaurant-profile-user-name
+        {
+            order: 1;
+            width: fit-content;
+            font-family: 'Kanit', sans-serif;
+            color: rgba(104, 104, 104, 0.77);
+            font-size: 1.7vw;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            @media (min-width: 420px) and (max-width:699.5px)
+            {
+                font-size: 2vw;
+            }
+
+            @media (max-width:419.5px)
+            {
+                font-size: 2.25vw;
+            }
+
+            @media (max-width: 340px) 
+            {
+                font-size: 3.25vw;
+            }
+
+            @media (max-width: 195.5px) 
+            {
+                font-size: 5.25vw;
+            }
+
+            @media (max-width: 135.5px) 
+            {
+                font-size: 70%;
+            }
+        }
+
+        #restaurant-profile-rest-name
+        {
+            width: fit-content;
+            font-family: 'Kanit', sans-serif;
+            color: rgba(0, 0, 0, 0.784);
+            font-size: 3.25vw;
+            margin-bottom: 5%;
+            margin-top: 3%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            @media (min-width: 420px) and (max-width:699.5px)
+            {
+                font-size: 3.25vw;
+            }
+
+            @media (max-width:419.5px)
+            {
+                font-size: 3.35vw;
+            }
+
+            @media (max-width: 340px) 
+            {
+                font-size: 5vw;
+            }
+
+            @media (max-width: 195.5px) 
+            {
+                font-size: 7vw;
+            }
+
+            @media (max-width: 135.5px) 
+            {
+                font-size: 100%;
+            }
+        }
+    }
+
+    #curve
+    {
+        order: 1;
+        width: 100%;
+        height: 1vw;
+        background-color: rgb(209, 209, 209);
+        padding: 3%;
+        margin-top: -0.25%;
+
+        border-bottom-left-radius: 100% 200%;
+        border-bottom-right-radius: 100% 200%;
+    }
+
+    #owner-side-nav-bar-btn-list
+    {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        padding: 0;
+        justify-content: space-between;
+        background-color: rgb(45, 45, 45);
         @media (min-width: 420px) and (max-width:699.5px)
         {
-            padding: 2% 4.75vw;
+            padding: 0 5.5vw;
         }
 
         @media (max-width:419.5px)
         {
-            padding: 3% 4.25vw;
+            padding: 0 4.25vw;
         }
 
         @media (max-width: 340px) 
         {
-            padding: 2% 5vw;
+            padding: 0 5vw;
         }
 
         @media (max-width: 195.5px) 
         {
-            padding: 2% 12vw;
+            padding: 0 12vw;
         }
 
         @media (max-width: 135.5px) 
         {
-            padding: 2% 25vw;
+            padding: 0 25vw;
         }
     }
 
@@ -88,9 +282,9 @@
         font-family: 'Kanit', sans-serif;
         color: white;
         display: flex;
-        padding: 2% 0;
-        height: 100%;
+        padding: 2.1% 0;
         justify-content: center;
+        height: 100%;
 
         span 
         {
@@ -122,20 +316,20 @@
 
             @media (max-width: 195.5px) 
             {
-                padding: 2% 12vw;
+                font-size: 2.8vw;
             }
 
             @media (max-width: 135.5px) 
             {
-                padding: 2% 25vw;
+                font-size: 3vw;
             }
         }
 
         &:hover
         {
-            color: black;
             text-decoration: none;
-            background-color: rgba(255, 255, 255, 0.603);
+            color: white;
+            font-weight: bold;
         }
     }
 }
