@@ -3,7 +3,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgb(0, 0, 0);
@@ -21,8 +21,8 @@
     .staff-reg-modalContainer {
       background-color: #ffffff;
       margin: auto;
-      padding: 0.8% 6% 2.5% 6%;
-      width: 52.5%;
+      padding: 0.8% 4% 2.5% 4%;
+      width: 45%;
       margin: auto;
       border: 1px solid #888;
       box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
@@ -50,7 +50,7 @@
       color: black;
       width: fit-content;
       padding: 0;
-      margin-right: -6%;
+      margin-right: -4%;
       margin-top: 2%;
       margin-bottom: 2%;
   
@@ -391,7 +391,7 @@
     .staff-reg-modalContainer {
       background-color: #ffffff;
       margin: auto;
-      padding: 0.8% 6% 2.5% 6%;
+      padding: 0.8% 6% 4% 6%;
       width: 70%;
       margin: auto;
       border: 1px solid #888;
@@ -414,13 +414,13 @@
     .staff-reg-titleCloseBtn button {
       background-color: transparent;
       border: none;
-      font-size: 2vw;
+      font-size: 2.5vw;
       font-weight: lighter;
       cursor: pointer;
       color: black;
       width: fit-content;
       padding: 0;
-      margin-right: -6%;
+      margin-right: -4%;
       margin-top: 2%;
       margin-bottom: 2%;
   
@@ -599,7 +599,7 @@
     .staff-reg-titleCloseBtn button {
       background-color: transparent;
       border: none;
-      font-size: 3.5vw;
+      font-size: 75%;
       font-weight: lighter;
       cursor: pointer;
       color: black;
@@ -627,7 +627,7 @@
         flex-direction: column;
         background-color: rgb(255, 255, 255);
         justify-content: space-between;
-        padding: 3% 0;
+        padding: 3% 0 9% 0;
       }
     }
   
@@ -653,7 +653,7 @@
 
         select 
         {
-            font-size: 2.5vw;
+            font-size: 50%;
             background-color: #E7E7E7;
             color: #8D8786;
             -webkit-appearance: none;
@@ -672,7 +672,7 @@
             option 
             {
                 font-family: 'Kanit' , sans-serif;
-                font-size: 2.5vw;
+                font-size: 2.05vw;
                 color: black;
             }
             
@@ -699,7 +699,7 @@
 
     .staff-reg-form-input-space
     {
-        font-size: 2.5vw;
+        font-size: 50%;
         width: 100%;
         border-top-right-radius: 4vw;
         border-bottom-right-radius: 4vw;
@@ -738,11 +738,11 @@
   
     #staff-reg-submit {
       font-family: "Kanit", sans-serif;
-      font-size: 2.65vw;
+      font-size: 50%;
       font-weight: normal;
       background-color: rgb(10, 129, 169);
       color: #ffffff;
-      width: 19vw;
+      width: 25vw;
       padding: 1.9% 1%;
       border: none;
       border-radius: 1.5vw;
