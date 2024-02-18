@@ -257,3 +257,33 @@
         cursor: pointer;
     }
 }    
+
+/*
+#search-btn
+{
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    margin: 3% ;
+
+    button
+    {
+        background-color: rgba(0, 0, 0, 0.53);
+        color: white;
+        border: none;
+        display: flex;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+
+        .material-icons
+        {
+            font-size: 1vw;
+            margin: auto;
+        }
+
+        &:hover
+        {
+            background-color: rgb(10, 129, 169);
+        }
+    }
+} */
