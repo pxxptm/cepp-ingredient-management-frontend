@@ -19,6 +19,8 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
   //update for axios post
 
   async function handleSubmit() {
+    console.log(username + password + Fname + Lname + role)
+
     await axios
       .post(
         urlCreateStaff,
@@ -30,9 +32,10 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
           role: role,
         },
         {
-          headers: { 
+          headers: {
             Authorization: 'Bearer ' + accessToken,
-            "Content-Type": "application/json" },
+            "Content-Type": "application/json"
+          },
         }
       )
       .then((res) => {
@@ -43,8 +46,7 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
         }
       })
       .catch((error) => {
-        console.log(restaurantId);
-        alert(error);
+        console.log(error);
       });
   }
 
@@ -152,11 +154,11 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
                     >
                       บทบาทของพนักงาน
                     </option>
-                    <option value="ผู้จัดการ">ผู้จัดการ</option>
-                    <option value="พนักงานดูแลคลังวัตถุดิบ">
+                    <option value="manager">ผู้จัดการ</option>
+                    <option value="stockcontroller">
                       พนักงานดูแลคลังวัตถุดิบ
                     </option>
-                    <option value="พนักงานทั่วไป">พนักงานทั่วไป</option>
+                    <option value="employee">พนักงานทั่วไป</option>
                   </select>
                 </div>
               </div>
