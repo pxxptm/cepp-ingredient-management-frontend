@@ -48,9 +48,14 @@ const HearderBar = (props) => {
         </div>
         
         <div className="user-header-bar-sidebar">
-          <button className="user-header-bar-sidebar-btn">
+          <button className="user-header-bar-sidebar-btn" id="user-header-bar-sidebar-btn-menu">
             <i className="material-icons">menu</i>
           </button>
+
+          <button className="user-header-bar-sidebar-btn" id="user-header-bar-sidebar-btn-logout">
+            <i className="material-icons">logout</i>
+          </button>
+
           <div className="user-header-bar-sidebar-content">
             <a href="#">opt1</a>
             <a href="#">วิธีใช้งาน</a>

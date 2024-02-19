@@ -10,16 +10,17 @@ function StaffManagementPage({ username, restaurantId }) {
   const [staffList, setStaffList] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  // get restaurant data : want - id , pic to pass to side-nav -bar
-  // axios get restaurant data here.
-
   let staffListURL = `http://localhost:3001/member/user/${restaurantId}`;
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
 
-  console.log(urlRestaurantDetail);
-
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
+
+  const roleDict = {
+    manager: "ผู้จัดการ",
+    stockcontroller: "พนักงานดูแลคลังวัตถุดิบ",
+    employee: "พนักงานทั่วไป",
+  };
 
   useEffect(() => {
     axios
@@ -115,7 +116,7 @@ function StaffManagementPage({ username, restaurantId }) {
                       <div id="staff-block">
                         {
                           <div id="a-staff-container">
-                            <div id="a-staff-container-r">
+                            <div id="a-staff-container-l">
                               <div id="Fname-and-Lname">
                                 <div id="Fname">{staff.firstname}</div>
                                 <div id="Lname">{staff.lastname}</div>
@@ -128,14 +129,19 @@ function StaffManagementPage({ username, restaurantId }) {
                                 </div>
                                 <div id="role">
                                   <span>role : </span>
-                                  {staff.role}
+                                  {roleDict[staff.role]}
                                 </div>
                               </div>
                             </div>
 
-                            <div></div>
-
-                            <div></div>
+                            <div id="a-staff-container-r">
+                              <div className="a-staff-container-l-btn">
+                                <button id="edit-acc">แก้ไขข้อมูล</button>
+                              </div>
+                              <div className="a-staff-container-l-btn">
+                                <button id="delete-acc">ลบบัญชี</button>
+                              </div>
+                            </div>
                           </div>
                         }
                       </div>

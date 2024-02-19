@@ -21,6 +21,7 @@
 
 @media (min-width: 1300px)
 {
+
     #user-header-bar
     {
         display: flex;
@@ -95,6 +96,32 @@
 
 @media (min-width: 700px) and (max-width:1299.5px)
 {
+    #user-header-bar-sidebar-btn-menu
+    {
+        display: none;
+    }
+
+    #user-header-bar-sidebar-btn-logout
+    {display: flex;
+        border-width: 0;
+        justify-items: center !important;
+        align-items: center !important;
+        height: 100%;
+        padding: 0 ;
+        text-decoration: none !important;
+        color: black !important;
+
+        .material-icons
+        {
+            font-size: 1.75vw !important;
+            text-decoration: none !important;
+        }
+
+        &:hover
+        {
+            color: rgb(10, 129, 169) !important;
+        }}
+
     #user-header-bar
     {
         display: flex;
@@ -193,7 +220,7 @@
         text-decoration: none;
     }
 
-    .user-header-bar-sidebar:hover .user-header-bar-sidebar-content { display: block; }
+    #user-header-bar-sidebar-btn-menu:hover .user-header-bar-sidebar-content { display: block; }
     
     .user-header-bar-sidebar:hover .user-header-bar-sidebar-btn { color: rgb(10, 129, 169); }
 
@@ -208,6 +235,35 @@
 
 @media (min-width: 420px) and (max-width:699.5px)
 {
+    #user-header-bar-sidebar-btn-logout
+    {
+        display: none;
+    }
+    
+    #user-header-bar-sidebar-btn-menu
+    {
+        display: flex;
+        border-width: 0;
+        justify-items: center !important;
+        align-items: center !important;
+        height: 100%;
+        padding: 0 ;
+        text-decoration: none !important;
+        color: black !important;
+        margin-top: 1%;
+
+        .material-icons
+        {
+            font-size: 2.5vw !important;
+            text-decoration: none !important;
+        }
+
+        &:hover
+        {
+            color: rgb(10, 129, 169) !important;
+        }
+    }
+
     #user-header-bar
     {
         display: flex;
@@ -321,6 +377,35 @@
 
 @media (max-width:419.5px)
 {
+    #user-header-bar-sidebar-btn-logout
+    {
+        display: none;
+    }
+
+    #user-header-bar-sidebar-btn-menu
+    {
+        display: flex;
+        border-width: 0;
+        justify-items: center !important;
+        align-items: center !important;
+        height: 100%;
+        padding: 0 ;
+        text-decoration: none !important;
+        color: black !important;
+        margin-top: 1%;
+
+        .material-icons
+        {
+            font-size: 3.5vw !important;
+            text-decoration: none !important;
+        }
+
+        &:hover
+        {
+            color: rgb(10, 129, 169) !important;
+        }
+    }
+
     #user-header-bar
     {
         display: flex;

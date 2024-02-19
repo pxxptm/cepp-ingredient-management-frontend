@@ -17,6 +17,7 @@ import OwnerRegisterPage from "./page/OwnerRegister";
 import RestaurantListPage from "./page/RestaurantListPage";
 import MainPageOwner from "./page/MainPageOwner";
 import StaffManagementPage from "./page/StaffManagementPage";
+import EditRestaurantPage from "./page/EditRestaurantPage";
 
 const router = (
   <Routes>
@@ -46,6 +47,10 @@ const router = (
       path="/:username/:restaurantId/staff-management"
       element={<StaffManagementPageWrapper />}
     />
+
+    <Route
+      path="/:username/:restaurantId/info"
+      element={<EditRestaurantPageWrapper />}/>
   </Routes>
 );
 
@@ -65,6 +70,14 @@ function StaffManagementPageWrapper() {
   let { restaurantId } = useParams();
   return (
     <StaffManagementPage username={username} restaurantId={restaurantId} />
+  );
+}
+
+function EditRestaurantPageWrapper() {
+  let { username } = useParams();
+  let { restaurantId } = useParams();
+  return (
+    <EditRestaurantPage username={username} restaurantId={restaurantId} />
   );
 }
 
