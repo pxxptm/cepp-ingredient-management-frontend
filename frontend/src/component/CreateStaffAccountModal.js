@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./CreateStaffAccountModal.css";
 import axios from "axios";
 
-function CreateStaffAccountModal({ setOpenModal }) {
+function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
   const [Fname, setFname] = useState("");
   const [Lname, setLname] = useState("");
   const [username, setUsername] = useState("");
@@ -10,54 +10,43 @@ function CreateStaffAccountModal({ setOpenModal }) {
   const [role, setRole] = useState("");
   const accessToken = localStorage.getItem("token");
 
+  const urlCreateStaff = "http://localhost:3001/auth/register/" + restaurantId;
+
+  function refreshPage() {
+    window.location.reload();
+  }
+
   //update for axios post
 
-  /*async function handleSubmit(event) {
-    event.preventDefault();
-
-    if (previewImage !== defaultPreviewImageUrl) {
-      await axios.post('http://localhost:3001/file-upload/single', {
-        image: imageFile
-      }, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        }
-      }).then((res) => {
-        if (res.status === 201) {
-          minioImagePath = "http://" + res.data.image_url
-          console.log(minioImagePath)
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
-    }
-
+  async function handleSubmit() {
     await axios
       .post(
-        'http://localhost:3001/restaurant',
+        urlCreateStaff,
         {
-          name: restaurantName,
-          description: restaurantDescription,
-          image: minioImagePath
+          username: username,
+          password: password,
+          firstname: Fname,
+          lastname: Lname,
+          role: role,
         },
         {
-          headers: {
+          headers: { 
             Authorization: 'Bearer ' + accessToken,
-            'Content-Type': 'application/json',
-          },
-        },
+            "Content-Type": "application/json" },
+        }
       )
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
           setOpenModal(false);
-          refreshPage()
+          refreshPage();
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log(restaurantId);
+        alert(error);
       });
-  }*/
+  }
 
   return (
     <div className="staff-reg-modalBackground">
@@ -79,7 +68,7 @@ function CreateStaffAccountModal({ setOpenModal }) {
         </div>
 
         <div className="staff-reg-body">
-          <form /*onSubmit={handleSubmit}*/>
+          <form onSubmit={handleSubmit}>
             <div id="staff-reg-form">
               <div className="staff-reg-form-floating">
                 <div className="staff-reg-input-form">
@@ -152,7 +141,7 @@ function CreateStaffAccountModal({ setOpenModal }) {
                     name="contact back time"
                     id="appointment-time"
                     onChange={(e) => {
-                      setUsername(e.target.value);
+                      setRole(e.target.value);
                     }}
                   >
                     <option

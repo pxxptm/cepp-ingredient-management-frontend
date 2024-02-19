@@ -6,7 +6,6 @@ import axios from "axios";
 import CreateStaffAccountModal from "../component/CreateStaffAccountModal";
 
 function StaffManagementPage({ username, restaurantId }) {
-
   const accessToken = localStorage.getItem("token");
   const [staffList, setStaffList] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -14,28 +13,31 @@ function StaffManagementPage({ username, restaurantId }) {
   // get restaurant data : want - id , pic to pass to side-nav -bar
   // axios get restaurant data here.
 
-  let staffListURL = "http://localhost:3001/member/user/" + restaurantId;
-  const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`
+  let staffListURL = `http://localhost:3001/member/user/${restaurantId}`;
+  const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
 
-  console.log(urlRestaurantDetail)
+  console.log(urlRestaurantDetail);
 
-  const [restaurantName, setRestaurantName] = useState()
-  const [restaurantImage, setRestaurantImage] = useState()
+  const [restaurantName, setRestaurantName] = useState();
+  const [restaurantImage, setRestaurantImage] = useState();
 
   useEffect(() => {
-    axios.get(urlRestaurantDetail, {
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    }).then((res) => {
-      const name = res.data.name
-      const image = res.data.image
-      setRestaurantName(name)
-      setRestaurantImage(image)
-    }).catch((err) => {
-      console.log(err)
-    })
-  })
+    axios
+      .get(urlRestaurantDetail, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((res) => {
+        const name = res.data.name;
+        const image = res.data.image;
+        setRestaurantName(name);
+        setRestaurantImage(image);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   // get staff of this restaurant
   useEffect(() => {
@@ -46,10 +48,10 @@ function StaffManagementPage({ username, restaurantId }) {
         },
       })
       .then((response) => {
-        console.log(response)
+        console.log(response.data);
         if (JSON.stringify(response.data) !== JSON.stringify(staffList)) {
           setStaffList(response.data);
-          console.log("Updated data:", staffList);
+          console.log(staffList);
         }
       })
       .catch((error) => {
@@ -75,22 +77,62 @@ function StaffManagementPage({ username, restaurantId }) {
       </div>
 
       <div id="Staff-management-page-body">
-        {modalOpen && <CreateStaffAccountModal setOpenModal={setModalOpen} />}
+        {modalOpen && <CreateStaffAccountModal setOpenModal={setModalOpen} restaurantId={restaurantId}/>}
         <div id="Staff-management-page-side-bar-menu">
-          <UserSideNavBar username={username} restaurantId={restaurantId} restaurantName={restaurantName} restaurantImage={restaurantImage} />
+          <UserSideNavBar
+            username={username}
+            restaurantId={restaurantId}
+            restaurantName={restaurantName}
+            restaurantImage={restaurantImage}
+          />
         </div>
 
         <div id="Staff-management-page-content">
           <div id="Staff-management-page-content-header">
             <h1>พนักงาน</h1>
-            <button id="add-staff-acc-btn"
+            <button
+              id="add-staff-acc-btn"
               onClick={() => {
                 setModalOpen(true);
               }}
-            ><span>+</span>เพิ่มบัญชีพนักงาน</button>
+            >
+              <span>+</span>เพิ่มบัญชีพนักงาน
+            </button>
           </div>
 
+          <div id="Staff-management-page-content-table-zone">
+            <div id="Staff-management-page-content-table">
+              {staffList.length > 0 &&
+                staffList.map(
+                  (staff, index) =>
+                    staff && index > 0 && ( // Check if staff is not null
+                      <div id="staff-block">
+                        {
+                          <div id="a-staff-container">
 
+                            <div id="a-staff-container-r">
+
+                              <div id="Fname-and-Lname">
+                                <div id="Fname">{staff.firstname}</div>
+                                <div id="Lname">{staff.lastname}</div>
+                              </div>
+
+                              <div id="username-and-role">
+                                <div id="username"><span>username : </span>{staff.username}</div>
+                                <div id="role"><span>role : </span>{staff.role}</div>
+                              </div>
+                            </div>
+
+                            <div></div>
+
+                            <div></div>
+                          </div>
+                        }
+                      </div>
+                    )
+                )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
