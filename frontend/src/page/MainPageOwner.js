@@ -1,13 +1,29 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./MainPageOwner.css";
 import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
 
-function MainPageOwner({ username , restaurantName }) {
+function MainPageOwner({ username, restaurantId }) {
   const userRole = useRef("staff");
   const urlUserDetail = "http://localhost:3001/user/role";
+  const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`
   const accessToken = localStorage.getItem("token");
+
+  const [restaurantName, setRestaurantName] = useState()
+
+  useEffect(() => {
+    axios.get(urlRestaurantDetail, {
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    }).then((res) => {
+      const name = res.data.name
+      setRestaurantName(name)
+    }).catch((err) => {
+      console.log(err)
+    })
+  })
 
   // get role of this user
   useEffect(() => {
@@ -47,7 +63,7 @@ function MainPageOwner({ username , restaurantName }) {
 
       <div id="Owner-main-page-body">
         <div id="Owner-main-page-side-bar-menu">
-          <UserSideNavBar username={username} restaurantName={restaurantName}/>
+          <UserSideNavBar username={username} restaurantId={restaurantId} restaurantName={restaurantName} />
         </div>
       </div>
     </div>

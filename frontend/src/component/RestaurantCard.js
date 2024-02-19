@@ -4,9 +4,8 @@ import "./RestaurantCard.css";
 function RestaurantCard(props) {
   let urlDependOnRole;
 
-  if ( props.thisUserRole === "owner")
-  {
-    urlDependOnRole = "http://localhost:3000/" + props.username + "/" + props.restaurantName ;
+  if (props.thisUserRole === "owner") {
+    urlDependOnRole = "http://localhost:3000/" + props.username + "/" + props.restaurantId;
   }
 
   return (

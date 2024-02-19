@@ -21,21 +21,17 @@ function OwnerSideNavBar(props) {
   ];
 
   const btnHref = [
-    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "/dashboard",
+    "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/dashboard",
 
-    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "/order-in",
+    "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/order-in",
 
-    "http://localhost:3000/"+ props.username + "/" + 
-    props.restaurantName +
-      "/inventory-management",
+    "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/inventory-management",
 
-    "http://localhost:3000/"+ props.username + "/" +
-    props.restaurantName +
-      "/staff-management",
+    "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/staff-management",
 
-    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "/menu-and-components",
+    "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/menu-and-components",
 
-    "http://localhost:3000/"+ props.username + "/" + props.restaurantName + "info",
+    "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/info",
   ];
 
   return (
@@ -43,12 +39,12 @@ function OwnerSideNavBar(props) {
       <div id="restaurant-profile">
         <div id="restaurant-profile-rest-pic"></div>
         <div id="restaurant-profile-user-and-rest-name">
-        <div id="restaurant-profile-user-name">{props.username}</div>
-        <div id="restaurant-profile-rest-name">{props.restaurantName}</div>
+          <div id="restaurant-profile-user-name">{props.username}</div>
+          <div id="restaurant-profile-rest-name">{props.restaurantName}</div>
         </div>
       </div>
       <div id="curve"></div>
-      <div  id="owner-side-nav-bar-btn-list">{btnMenuOwnerWord.map((word, index) => (
+      <div id="owner-side-nav-bar-btn-list">{btnMenuOwnerWord.map((word, index) => (
         <a className="menu-opt" href={btnHref[index]}>
           <span>
             <i className="material-icons">{btnMenuIcon[index]}</i>
@@ -58,7 +54,7 @@ function OwnerSideNavBar(props) {
           </p>
         </a>
       ))}</div>
-      
+
     </div>
   );
 }

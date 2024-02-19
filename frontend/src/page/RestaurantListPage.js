@@ -96,10 +96,11 @@ function RestaurantListPage({ username }) {
                     <div id="rest-card">
                       {
                         <RestaurantCard
+                          restaurantId={restaurant._id}
                           restaurantName={restaurant.name}
                           restaurantDescription={restaurant.description}
                           restaurantImage={restaurant.image}
-                          username = {username}
+                          username={username}
                           thisUserRole={userRole.current}
                         />
                       }

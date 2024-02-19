@@ -25,6 +25,11 @@ import { IUser } from '../user/interface/user.interface';
 export class RestaurantController {
   constructor(private readonly restaurantService: RestaurantService) {}
 
+  @Get(':id')
+  async getById(@Param('id') id: string) {
+    return await this.restaurantService.findOneById(id);
+  }
+
   @Post()
   @Roles(AllRole.OWNER)
   async create(

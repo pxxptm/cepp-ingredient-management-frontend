@@ -38,12 +38,12 @@ const router = (
     />
 
     <Route
-      path="/:username/:restaurantName"
+      path="/:username/:restaurantId"
       element={<OwnerMainPageWrapper />}
     />
 
     <Route
-      path="/:username/:restaurantName/staff-management"
+      path="/:username/:restaurantId/staff-management"
       element={<StaffManagementPageWrapper />}
     />
   </Routes>
@@ -56,15 +56,15 @@ function RestaurantListPageWrapper() {
 
 function OwnerMainPageWrapper() {
   let { username } = useParams();
-  let { restaurantName } = useParams();
-  return <MainPageOwner username={username} restaurantName={restaurantName} />;
+  let { restaurantId } = useParams();
+  return <MainPageOwner username={username} restaurantId={restaurantId} />;
 }
 
 function StaffManagementPageWrapper() {
   let { username } = useParams();
-  let { restaurantName } = useParams();
+  let { restaurantId } = useParams();
   return (
-    <StaffManagementPage username={username} restaurantName={restaurantName} />
+    <StaffManagementPage username={username} restaurantId={restaurantId} />
   );
 }
 

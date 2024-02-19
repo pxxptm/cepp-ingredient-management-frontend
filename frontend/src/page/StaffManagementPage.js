@@ -5,17 +5,34 @@ import UserSideNavBar from "../component/OwnerSideNavBar";
 import axios from "axios";
 import CreateStaffAccountModal from "../component/CreateStaffAccountModal";
 
-function StaffManagementPage({ username, restaurantName }) {
-  
+function StaffManagementPage({ username, restaurantId }) {
+
   const accessToken = localStorage.getItem("token");
   const [staffList, setStaffList] = useState([]);
-  const [restaurantID , setRestaurantID] = useState("")
   const [modalOpen, setModalOpen] = useState(false);
 
   // get restaurant data : want - id , pic to pass to side-nav -bar
-    // axios get restaurant data here.
+  // axios get restaurant data here.
 
-  let staffListURL = "http://localhost:3001/member/user/" + restaurantID;
+  let staffListURL = "http://localhost:3001/member/user/" + restaurantId;
+  const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`
+
+  console.log(urlRestaurantDetail)
+
+  const [restaurantName, setRestaurantName] = useState()
+
+  useEffect(() => {
+    axios.get(urlRestaurantDetail, {
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    }).then((res) => {
+      const name = res.data.name
+      setRestaurantName(name)
+    }).catch((err) => {
+      console.log(err)
+    })
+  })
 
   // get staff of this restaurant
   useEffect(() => {
@@ -26,6 +43,7 @@ function StaffManagementPage({ username, restaurantName }) {
         },
       })
       .then((response) => {
+        console.log(response)
         if (JSON.stringify(response.data) !== JSON.stringify(staffList)) {
           setStaffList(response.data);
           console.log("Updated data:", staffList);
@@ -56,16 +74,16 @@ function StaffManagementPage({ username, restaurantName }) {
       <div id="Staff-management-page-body">
         {modalOpen && <CreateStaffAccountModal setOpenModal={setModalOpen} />}
         <div id="Staff-management-page-side-bar-menu">
-          <UserSideNavBar username={username} restaurantName={restaurantName} />
+          <UserSideNavBar username={username} restaurantId={restaurantId} restaurantName={restaurantName} />
         </div>
 
         <div id="Staff-management-page-content">
           <div id="Staff-management-page-content-header">
             <h1>พนักงาน</h1>
             <button id="add-staff-acc-btn"
-            onClick={() => {
-              setModalOpen(true);
-            }}
+              onClick={() => {
+                setModalOpen(true);
+              }}
             ><span>+</span>เพิ่มบัญชีพนักงาน</button>
           </div>
 
