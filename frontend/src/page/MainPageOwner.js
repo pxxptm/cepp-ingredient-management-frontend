@@ -11,6 +11,7 @@ function MainPageOwner({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
 
   const [restaurantName, setRestaurantName] = useState()
+  const [restaurantImage, setRestaurantImage] = useState()
 
   useEffect(() => {
     axios.get(urlRestaurantDetail, {
@@ -19,7 +20,9 @@ function MainPageOwner({ username, restaurantId }) {
       },
     }).then((res) => {
       const name = res.data.name
+      const image = res.data.image
       setRestaurantName(name)
+      setRestaurantImage(image)
     }).catch((err) => {
       console.log(err)
     })
@@ -63,7 +66,7 @@ function MainPageOwner({ username, restaurantId }) {
 
       <div id="Owner-main-page-body">
         <div id="Owner-main-page-side-bar-menu">
-          <UserSideNavBar username={username} restaurantId={restaurantId} restaurantName={restaurantName} />
+          <UserSideNavBar username={username} restaurantId={restaurantId} restaurantName={restaurantName} restaurantImage={restaurantImage} />
         </div>
       </div>
     </div>

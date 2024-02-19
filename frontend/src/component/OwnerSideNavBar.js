@@ -37,7 +37,9 @@ function OwnerSideNavBar(props) {
   return (
     <div id="owner-side-nav-bar">
       <div id="restaurant-profile">
-        <div id="restaurant-profile-rest-pic"></div>
+        <div id="restaurant-profile-rest-pic" style={{
+          backgroundImage: `url(${props.restaurantImage})`,
+        }}></div>
         <div id="restaurant-profile-user-and-rest-name">
           <div id="restaurant-profile-user-name">{props.username}</div>
           <div id="restaurant-profile-rest-name">{props.restaurantName}</div>

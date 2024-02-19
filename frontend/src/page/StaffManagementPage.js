@@ -20,6 +20,7 @@ function StaffManagementPage({ username, restaurantId }) {
   console.log(urlRestaurantDetail)
 
   const [restaurantName, setRestaurantName] = useState()
+  const [restaurantImage, setRestaurantImage] = useState()
 
   useEffect(() => {
     axios.get(urlRestaurantDetail, {
@@ -28,7 +29,9 @@ function StaffManagementPage({ username, restaurantId }) {
       },
     }).then((res) => {
       const name = res.data.name
+      const image = res.data.image
       setRestaurantName(name)
+      setRestaurantImage(image)
     }).catch((err) => {
       console.log(err)
     })
@@ -74,7 +77,7 @@ function StaffManagementPage({ username, restaurantId }) {
       <div id="Staff-management-page-body">
         {modalOpen && <CreateStaffAccountModal setOpenModal={setModalOpen} />}
         <div id="Staff-management-page-side-bar-menu">
-          <UserSideNavBar username={username} restaurantId={restaurantId} restaurantName={restaurantName} />
+          <UserSideNavBar username={username} restaurantId={restaurantId} restaurantName={restaurantName} restaurantImage={restaurantImage} />
         </div>
 
         <div id="Staff-management-page-content">
