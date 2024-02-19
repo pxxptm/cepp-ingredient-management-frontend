@@ -21,7 +21,7 @@ function OwnerSideNavBar(props) {
   ];
 
   const btnHref = [
-    "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/dashboard",
+    "http://localhost:3000/" + props.username + "/" + props.restaurantId ,
 
     "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/order-in",
 

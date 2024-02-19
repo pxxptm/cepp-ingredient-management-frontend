@@ -77,7 +77,12 @@ function StaffManagementPage({ username, restaurantId }) {
       </div>
 
       <div id="Staff-management-page-body">
-        {modalOpen && <CreateStaffAccountModal setOpenModal={setModalOpen} restaurantId={restaurantId}/>}
+        {modalOpen && (
+          <CreateStaffAccountModal
+            setOpenModal={setModalOpen}
+            restaurantId={restaurantId}
+          />
+        )}
         <div id="Staff-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -105,21 +110,26 @@ function StaffManagementPage({ username, restaurantId }) {
               {staffList.length > 0 &&
                 staffList.map(
                   (staff, index) =>
-                    staff && index > 0 && ( // Check if staff is not null
+                    staff &&
+                    index > 0 && ( // Check if staff is not null
                       <div id="staff-block">
                         {
                           <div id="a-staff-container">
-
                             <div id="a-staff-container-r">
-
                               <div id="Fname-and-Lname">
                                 <div id="Fname">{staff.firstname}</div>
                                 <div id="Lname">{staff.lastname}</div>
                               </div>
 
                               <div id="username-and-role">
-                                <div id="username"><span>username : </span>{staff.username}</div>
-                                <div id="role"><span>role : </span>{staff.role}</div>
+                                <div id="username">
+                                  <span>username : </span>
+                                  {staff.username}
+                                </div>
+                                <div id="role">
+                                  <span>role : </span>
+                                  {staff.role}
+                                </div>
                               </div>
                             </div>
 
