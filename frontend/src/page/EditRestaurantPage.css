@@ -151,7 +151,13 @@
                     background-color: rgb(0, 0, 0);
                 }
             }
+
+            
         }
+        #restaurantPic-file-btn-icon , #restaurantPic-remove-file-btn-icon
+            {
+                display: none;
+            }
 
         .Edit-restaurant-Container
         {
@@ -295,6 +301,632 @@
                         border-radius: 0.7vw;
                         float: right;
                     
+                        &:hover {
+                          background-color: rgb(7, 79, 103);
+                        }
+                      }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 420px) and (max-width: 699.5px)
+{
+    #Edit-restaurant-page-side-bar-menu
+    {
+        display: none;
+    }
+
+    #Edit-restaurant-page-content
+    {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100%;
+        padding-left: 0%;
+        background-color: rgb(255, 255, 255);
+        padding: 0 5.25vw;
+
+        #Edit-restaurant-page-content-header
+        {
+            width: 100%;
+            height: fit-content;
+            padding: 7% 0;
+            display: grid;
+            grid-template-columns: 54% 23% 23%;
+
+            h1
+            {
+                font-family: 'Kanit', sans-serif;
+                font-size: 3.75vw;
+                font-weight: bold;
+                margin: auto;
+                width: 100%;
+            }
+
+            .btn-box-col
+            {
+                width: 100%;
+                height: fit-content;
+                align-self: center;
+            }
+
+            #edit-rest-btn 
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 9vw;
+                height: 3vw;
+                font-size: 1.1vw;
+                background-color: darkmagenta;
+                color: white;
+                border: none;
+                border-radius: 0.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                float: right;
+
+                &:hover
+                {
+                    background-color: rgb(93, 0, 93);
+                }
+            }
+
+            #cancle-edit-rest-btn
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 9vw;
+                height: 3vw;
+                font-size: 1.1vw;
+                background-color: white;
+                color: darkmagenta;
+                border: 0.1vw solid darkmagenta;
+                border: 0.1 solid darkmagenta;
+                border-radius: 0.7vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                float: right;
+
+                &:hover
+                {
+                    color: white;
+                    background-color: darkmagenta;
+                }
+            }
+            
+            #delete-rest-btn
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 9vw;
+                height: 3vw;
+                font-size: 1.1vw;
+                background-color: rgb(50, 50, 50);
+                color: white;
+                border: none;
+                border-radius: 0.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                float: right;
+
+                &:hover
+                {
+                    background-color: rgb(0, 0, 0);
+                }
+            }
+        }
+
+        .Edit-restaurant-Container
+        {
+            width: 100%;
+            background-color: white;
+
+            .Edit-restaurant-body
+            {
+                width: 100%;
+
+                form
+                {
+                    width: 100%;
+                }
+            }
+
+            #Edit-restaurant-form
+            {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-top: 1%;
+
+                #Edit-restaurant-l1
+                {
+                    width: 100%;
+                    height: 50%;
+                    display: grid;
+                    grid-template-columns: 90% 10%;
+                  
+                    #restaurantPic-show
+                    {
+                        margin-top: auto;
+                        width: 60%;
+                        aspect-ratio: 1 / 1;
+                        border-radius: 8%;
+                        border: 0.11vw dashed #888;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    #upload-remove-pic 
+                    {
+                        width: 100%;
+                        height: 30%;
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: -130%;
+                        margin-top: 350%;
+                    }
+
+                    #restaurantPic-file-btn , #restaurantPic-remove-file-btn
+                    {
+                        display: none;
+                    }
+
+                    #restaurantPic-file-btn-icon {
+                        font-family: "Kanit", sans-serif;
+                        font-weight: normal;
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(10, 129, 169);
+                        width: 5.5vw;
+                        padding: 0;
+                        border: 0.001vw solid rgb(10, 129, 169);
+                        aspect-ratio: 1 / 1;
+                        border-radius: 50%;
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+                        height: fit-content;
+
+                        .material-icons
+                        {
+                            font-size: 2vw;
+                            margin: auto;
+                        }
+                    
+                        &:hover {
+                          background-color: rgb(10, 129, 169);
+                          color: white;
+                        }
+                      }
+                    
+                      #restaurantPic-remove-file-btn-icon {
+                        font-family: "Kanit", sans-serif;
+                        font-weight: normal;
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(142, 32, 54);
+                        width: 5.5vw;
+                        aspect-ratio: 1 / 1;
+                        border: 0.001vw solid rgb(142, 32, 54);
+                        border-radius: 50%;
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+                        height: fit-content;
+
+                        .material-icons
+                        {
+                            font-size: 2vw;
+                            margin: auto;
+                        }
+                    
+                        &:hover {
+                          background-color: rgb(142, 32, 54);
+                          color: white;
+                        }
+                      }
+                }
+
+                #Edit-restaurant-r2
+                {
+                    height: 100%;
+                    width: 100%;
+                    margin-top: 2%;
+                    font-family: "Kanit", sans-serif;
+
+                    .Edit-restaurant-form-floating {
+                        margin-bottom: 5%;
+                      }
+                    
+                      .Edit-restaurant-input-form {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                    
+                        label {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 1.8vw;
+                          font-weight: normal;
+                          margin-bottom: 2%;
+                          color: black;
+                        }
+                    
+                        .Edit-restaurant-form-input-space {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 1.8vw;
+                          font-weight: normal;
+                          width: 100%;
+                          padding: 2% 5%;
+                          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                          border-radius: 2.5vw;
+                          background-color: #fcfcfc;
+                    
+                          &:focus {
+                            background-color: #e7e7e7;
+                            border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                            border-radius: 2.5vw;
+                            outline: none;
+                          }
+                        }
+                    
+                        #Edit-restaurant-descript-input {
+                          text-wrap: wrap;
+                          padding: 3% 5% 19% 5% ;
+                          height: 100%;
+                          resize: none;
+                        }
+                    }
+
+                    #Edit-restaurant-submit {
+                        margin: auto;
+                        font-family: 'Kanit', sans-serif;
+                        text-wrap: nowrap;
+                        width: 13.5vw;
+                        height: 4.5vw;
+                        font-size: 1.7vw;
+                        background-color: rgb(10, 129, 169);
+                        color: white;
+                        border: none;
+                        border-radius: 1vw;
+                        border-width: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        float: right;
+                        margin-bottom: 5%;
+
+                        &:hover {
+                          background-color: rgb(7, 79, 103);
+                        }
+                      }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 419.5px)
+{
+    #Edit-restaurant-page-side-bar-menu
+    {
+        display: none;
+    }
+
+    #Edit-restaurant-page-content
+    {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100%;
+        padding-left: 0%;
+        background-color: rgb(255, 255, 255);
+        padding: 0 4.25vw;
+
+        @media (max-width: 340px) 
+        {
+            padding: 0 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 0 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 0 25vw;
+        }
+
+        #Edit-restaurant-page-content-header
+        {
+            width: 100%;
+            height: fit-content;
+            padding: 7% 0;
+            display: grid;
+            grid-template-columns: 54% 23% 23%;
+
+            h1
+            {
+                font-family: 'Kanit', sans-serif;
+                font-size: 100%;
+                font-weight: bold;
+                margin: auto;
+                width: 100%;
+            }
+
+            .btn-box-col
+            {
+                width: 100%;
+                height: fit-content;
+                align-self: center;
+            }
+
+            #edit-rest-btn 
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 43%;
+                padding: 3.5% 0;
+                font-size: 30%;
+                background-color: darkmagenta;
+                color: white;
+                border: none;
+                border-radius: 1.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                float: right;
+
+                &:hover
+                {
+                    background-color: rgb(93, 0, 93);
+                }
+            }
+
+            #cancle-edit-rest-btn
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 43%;
+                padding: 3.5% 0;
+                font-size: 30%;
+                background-color: white;
+                color: darkmagenta;
+                border: 0.05vw solid darkmagenta;
+                border-radius: 1.2vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                float: right;
+
+                &:hover
+                {
+                    color: white;
+                    background-color: darkmagenta;
+                }
+            }
+            
+            #delete-rest-btn
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 43%;
+                padding: 3.5% 0;
+                font-size: 30%;
+                background-color: rgb(50, 50, 50);
+                color: white;
+                border: none;
+                border-radius: 1.2vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                float: right;
+
+                &:hover
+                {
+                    background-color: rgb(0, 0, 0);
+                }
+            }
+        }
+
+        .Edit-restaurant-Container
+        {
+            width: 100%;
+            background-color: white;
+
+            .Edit-restaurant-body
+            {
+                width: 100%;
+
+                form
+                {
+                    width: 100%;
+                }
+            }
+
+            #Edit-restaurant-form
+            {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-top: 1%;
+
+                #Edit-restaurant-l1
+                {
+                    width: 100%;
+                    height: 50%;
+                    display: grid;
+                    grid-template-columns: 90% 10%;
+                  
+                    #restaurantPic-show
+                    {
+                        margin-top: auto;
+                        width: 60%;
+                        aspect-ratio: 1 / 1;
+                        border-radius: 8%;
+                        border: 0.11vw dashed #888;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    #upload-remove-pic 
+                    {
+                        width: 100%;
+                        height: 30%;
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: -130%;
+                        margin-top: 350%;
+                    }
+
+                    #restaurantPic-file-btn , #restaurantPic-remove-file-btn
+                    {
+                        display: none;
+                    }
+
+                    #restaurantPic-file-btn-icon {
+                        font-family: "Kanit", sans-serif;
+                        font-weight: normal;
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(10, 129, 169);
+                        width: 52%;
+                        padding: 0;
+                        border: 0.001vw solid rgb(10, 129, 169);
+                        aspect-ratio: 1 / 1;
+                        border-radius: 50%;
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+                        height: fit-content;
+
+                        .material-icons
+                        {
+                            font-size: 60%;
+                            margin: auto;
+                        }
+                    
+                        &:hover {
+                          background-color: rgb(10, 129, 169);
+                          color: white;
+                        }
+                      }
+                    
+                      #restaurantPic-remove-file-btn-icon {
+                        font-family: "Kanit", sans-serif;
+                        font-weight: normal;
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(142, 32, 54);
+                        width: 52%;
+                        aspect-ratio: 1 / 1;
+                        border: 0.001vw solid rgb(142, 32, 54);
+                        border-radius: 50%;
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+                        height: fit-content;
+
+                        .material-icons
+                        {
+                            font-size: 60%;
+                            margin: auto;
+                        }
+                    
+                        &:hover {
+                          background-color: rgb(142, 32, 54);
+                          color: white;
+                        }
+                      }
+                }
+
+                #Edit-restaurant-r2
+                {
+                    height: 100%;
+                    width: 100%;
+                    margin-top: 2%;
+                    font-family: "Kanit", sans-serif;
+
+                    .Edit-restaurant-form-floating {
+                        margin-bottom: 5%;
+                      }
+                    
+                      .Edit-restaurant-input-form {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                    
+                        label {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 40%;
+                          font-weight: normal;
+                          margin-bottom: 2%;
+                          color: black;
+                        }
+                    
+                        .Edit-restaurant-form-input-space {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 40%;
+                          font-weight: normal;
+                          width: 100%;
+                          padding: 2% 5%;
+                          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                          border-radius: 3vw;
+                          background-color: #fcfcfc;
+                    
+                          &:focus {
+                            background-color: #e7e7e7;
+                            border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                            border-radius: 3vw;
+                            outline: none;
+                          }
+                        }
+                    
+                        #Edit-restaurant-descript-input {
+                          text-wrap: wrap;
+                          padding: 3% 5% 19% 5% ;
+                          height: 100%;
+                          resize: none;
+                        }
+                    }
+
+                    #Edit-restaurant-submit {
+                        margin: auto;
+                        font-family: 'Kanit', sans-serif;
+                        text-wrap: nowrap;
+                        width: 15%;
+                        padding: 1.5% 0 1% 0;
+                        font-size: 45%;
+                        background-color: rgb(10, 129, 169);
+                        color: white;
+                        border: none;
+                        border-radius: 1.5vw;
+                        border-width: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        float: right;
+                        margin-bottom: 5%;
+
                         &:hover {
                           background-color: rgb(7, 79, 103);
                         }

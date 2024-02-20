@@ -3,6 +3,7 @@ import "./EditRestaurantPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
 import axios from "axios";
+import DeleteRestaurantAuthModal from "../component/DeleteRestaurantAuthModal";
 
 function EditRestaurantPage({ username, restaurantId }) {
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -26,9 +27,12 @@ function EditRestaurantPage({ username, restaurantId }) {
         const name = res.data.name;
         const image = res.data.image;
         const description = res.data.description;
+        setRestaurantNameStatic(name);
         setRestaurantName(name);
         setRestaurantImage(image);
+        setRestaurantescriptStatic(description);
         setRestaurantDescription(description);
+        setRestaurantImgStatic(image || defaultPreviewImageUrl)
         setPreviewImage(image || defaultPreviewImageUrl);
         setExPic(image)
       })
@@ -44,6 +48,9 @@ function EditRestaurantPage({ username, restaurantId }) {
   const [imageFile, setImageFile] = useState("");
   const [expic , setExPic] = useState("")
   let minioImagePath = expic;
+  const [restaurantNameStatic, setRestaurantNameStatic] = useState("");
+  const [restaurantDescriptStatic, setRestaurantescriptStatic] = useState("");
+  const [restaurantImgStatic, setRestaurantImgStatic] = useState("");
 
   useEffect(() => {
     console.log(previewImage);
@@ -126,6 +133,8 @@ function EditRestaurantPage({ username, restaurantId }) {
       });
   }
 
+  const [openDeleteModal , setOpenDeleteModal] = useState(false)
+
   return (
     <div id="Edit-restaurant-page">
       <link
@@ -145,11 +154,12 @@ function EditRestaurantPage({ username, restaurantId }) {
       </div>
 
       <div id="Edit-restaurant-page-body">
+      {openDeleteModal && <DeleteRestaurantAuthModal restaurantName={restaurantNameStatic} restaurantId={restaurantId} setOpenDeleteModal={setOpenDeleteModal} />}
         <div id="Staff-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
             restaurantId={restaurantId}
-            restaurantName={restaurantName}
+            restaurantName={restaurantNameStatic}
             restaurantImage={restaurantImage}
           />
         </div>
@@ -174,6 +184,9 @@ function EditRestaurantPage({ username, restaurantId }) {
                   id="cancle-edit-rest-btn"
                   onClick={() => {
                     setEditMode(false);
+                    setRestaurantName(restaurantNameStatic);
+                    setRestaurantDescription(restaurantDescriptStatic);
+                    setPreviewImage(restaurantImgStatic)
                   }}
                 >
                   ยกเลิกการแก้ไข
@@ -181,7 +194,8 @@ function EditRestaurantPage({ username, restaurantId }) {
               )}
             </div>
             <div className="btn-box-col">
-              <button id="delete-rest-btn">ลบร้านของคุณ</button>
+              <button id="delete-rest-btn"
+              onClick={()=>setOpenDeleteModal(true)}>ลบร้านของคุณ</button>
             </div>
           </div>
 
@@ -210,12 +224,24 @@ function EditRestaurantPage({ username, restaurantId }) {
                         >
                           เพิ่มรูปภาพร้าน
                         </label>
+                        <label
+                          htmlFor="restaurantPic-file"
+                          id="restaurantPic-file-btn-icon"
+                        >
+                          <i className="material-icons">upload</i>
+                        </label>
 
                         <label
                           id="restaurantPic-remove-file-btn"
                           onClick={removeImageHandler}
                         >
                           ลบรูปภาพร้าน
+                        </label>
+                        <label
+                          id="restaurantPic-remove-file-btn-icon"
+                          onClick={removeImageHandler}
+                        >
+                          <i className="material-icons">delete</i>
                         </label>
                       </div>
                     )}
