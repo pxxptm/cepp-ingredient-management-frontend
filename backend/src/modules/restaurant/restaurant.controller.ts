@@ -11,7 +11,11 @@ import {
 import { RestaurantService } from './restaurant.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/guard/auth.guard';
-import { CreateRestaurantDto, UpdateRestaurantDto } from './dto/restaurant.dto';
+import {
+  CreateRestaurantDto,
+  DeleteRestaurantDto,
+  UpdateRestaurantDto,
+} from './dto/restaurant.dto';
 import { RolesGuard } from '../auth/guard/role.guard';
 import { Roles } from '../auth/decorator/role.decorator';
 import { AllRole } from '../user/schema/user.schema';
@@ -52,9 +56,13 @@ export class RestaurantController {
   @Roles(AllRole.OWNER)
   async delete(
     @Param('id') id: string,
-    @Body() password: string,
+    @Body() deleteRestaurantDto: DeleteRestaurantDto,
     @CurrentUser() iuser: IUser,
   ) {
-    return await this.restaurantService.delete(iuser.sub, password, id);
+    return await this.restaurantService.delete(
+      iuser.sub,
+      deleteRestaurantDto.password,
+      id,
+    );
   }
 }
