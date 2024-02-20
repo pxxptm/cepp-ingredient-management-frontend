@@ -1,18 +1,24 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./DeleteRestaurantAuthModal.css";
+import { useNavigate } from "react-router-dom";
 
 function DeleteRestaurantAuthModal({
+    OwnerUsername,
   restaurantName,
   restaurantId,
   setOpenDeleteModal,
 }) {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const accessToken = localStorage.getItem("token");
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
 
   async function handleSubmit() {
     // delete restaurant
+    console.log(restaurantId);
+    console.log(password);
+    console.log(accessToken);
     await axios
       .delete(
         urlRestaurantDetail,
@@ -22,18 +28,18 @@ function DeleteRestaurantAuthModal({
         {
           headers: {
             Authorization: "Bearer " + accessToken,
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
         }
       )
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          alert("delete successful");
+          const urlRestaurantListPage = "/" + {OwnerUsername} +"/restaurant"
+          navigate(urlRestaurantListPage, { replace: true });
         }
       })
       .catch((error) => {
-        alert("delete fail");
         console.log(error);
       });
   }
@@ -58,7 +64,7 @@ function DeleteRestaurantAuthModal({
         </div>
 
         <div id="confirm-txt-1">
-          คุณแน่ใจใช่ไหมว่าต้องการลบร้าน<span>{restaurantName}</span>
+          แน่ใจใช่ไหมว่าต้องการลบร้าน<span>{restaurantName}</span>
         </div>
         <div id="confirm-txt-2">กรุณาป้อนรหัสผ่านของคุณเพื่อยืนยัน</div>
 

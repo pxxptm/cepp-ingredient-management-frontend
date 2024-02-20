@@ -121,8 +121,8 @@
         min-width: 7%;
         justify-content: auto;
         text-align: center;
-        border-top-left-radius: 2vw;
-        border-bottom-left-radius: 2vw;
+        border-top-left-radius: 1.75vw;
+        border-bottom-left-radius: 1.75vw;
         background-color: rgb(33, 33, 33);
     }
   
@@ -140,7 +140,7 @@
         width: 100%;
         padding: 3.25% 5%;
         border: 0.01vw solid rgba(0, 0, 0, 0.397);
-        border-radius: 0 1.5vw 1.5vw 0;
+        border-radius: 0 1.75vw 1.75vw 0;
         background-color: #fcfcfc;
   
         &:focus {
@@ -483,7 +483,7 @@
     {
         color: white;
         font-size: 2.25vw !important; 
-        padding: 3.54% 6%;
+        padding: 3.9% 6%;
         min-width: 7%;
         justify-content: auto;
         text-align: center;
@@ -576,7 +576,7 @@
       box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
       display: flex;
       flex-direction: column;
-      border-radius: 9vw;
+      border-radius: 6vw;
     }
   
     .rest-del-titleCloseBtn {

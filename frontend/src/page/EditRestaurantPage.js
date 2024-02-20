@@ -154,7 +154,7 @@ function EditRestaurantPage({ username, restaurantId }) {
       </div>
 
       <div id="Edit-restaurant-page-body">
-      {openDeleteModal && <DeleteRestaurantAuthModal restaurantName={restaurantNameStatic} restaurantId={restaurantId} setOpenDeleteModal={setOpenDeleteModal} />}
+      {openDeleteModal && <DeleteRestaurantAuthModal OwnerUsername={username} restaurantName={restaurantNameStatic} restaurantId={restaurantId} setOpenDeleteModal={setOpenDeleteModal} />}
         <div id="Staff-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
