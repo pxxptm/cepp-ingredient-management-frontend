@@ -40,9 +40,19 @@ export class UserService {
   }
 
   async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    return await this.userModel.findByIdAndUpdate(id, updateUserDto, {
-      new: true,
-    });
+    const user = await this.getUserByUsername(updateUserDto.username);
+    if (!user || id == user) {
+      return await this.userModel.findByIdAndUpdate(id, updateUserDto, {
+        new: true,
+      });
+    } else {
+      throw new HttpException(
+        {
+          message: 'this username is already used',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   async confirmPassword(id: string, password: string) {

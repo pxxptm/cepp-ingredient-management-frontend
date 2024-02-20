@@ -39,12 +39,12 @@ export class UserController {
     return await this.userService.getUserRole(iuser.sub);
   }
 
-  @Patch('id')
+  @Patch(':id')
   @UseGuards(AuthGuard)
   async updateUser(
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    this.userService.updateUser(id, updateUserDto);
+    return await this.userService.updateUser(id, updateUserDto);
   }
 }
