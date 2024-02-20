@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
-import { UpdateUserDto } from './dto/user.dto';
+import { UpdateUserByOwnerDto, UpdateUserByUserDto } from './dto/user.dto';
 
 @Injectable()
 export class UserService {
@@ -39,10 +39,48 @@ export class UserService {
     return user.id;
   }
 
-  async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.getUserByUsername(updateUserDto.username);
+  async updateUserByUser(id: string, updateUserByUserDto: UpdateUserByUserDto) {
+    const user = await this.getUserByUsername(updateUserByUserDto.username);
+
+    if (id != user) {
+      throw new HttpException(
+        {
+          message: 'this user do not have permission to access',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    if (updateUserByUserDto.role != null) {
+      throw new HttpException(
+        {
+          message: 'this user do not have permission to access role',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
     if (!user || id == user) {
-      return await this.userModel.findByIdAndUpdate(id, updateUserDto, {
+      return await this.userModel.findByIdAndUpdate(id, updateUserByUserDto, {
+        new: true,
+      });
+    } else {
+      throw new HttpException(
+        {
+          message: 'this username is already used',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async updateUserByOwner(
+    id: string,
+    updateUserByOwnerDto: UpdateUserByOwnerDto,
+  ) {
+    const user = await this.getUserByUsername(updateUserByOwnerDto.username);
+    if (!user || id == user) {
+      return await this.userModel.findByIdAndUpdate(id, updateUserByOwnerDto, {
         new: true,
       });
     } else {
