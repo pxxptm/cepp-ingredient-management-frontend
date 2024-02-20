@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/guard/auth.guard';
@@ -8,6 +8,7 @@ import { AllRole } from './schema/user.schema';
 import { appConfig } from 'config/app.config';
 import { CurrentUser } from '../auth/decorator/currentuser.decorator';
 import { IUser } from './interface/user.interface';
+import { UpdateUserByOwnerDto, UpdateUserByUserDto } from './dto/user.dto';
 
 @ApiTags('user')
 @Controller('user')
@@ -28,5 +29,24 @@ export class UserController {
   @UseGuards(AuthGuard)
   async getUserRole(@CurrentUser() iuser: IUser) {
     return await this.userService.getUserRole(iuser.sub);
+  }
+
+  @Patch('/updated-by-owner/:id')
+  @Roles(AllRole.OWNER)
+  @UseGuards(AuthGuard, RolesGuard)
+  async updateUserByOwner(
+    @Param('id') id: string,
+    @Body() updateUserByOwnerDto: UpdateUserByOwnerDto,
+  ) {
+    return await this.userService.updateUserByOwner(id, updateUserByOwnerDto);
+  }
+
+  @Patch('/updated-by-user/:id')
+  @UseGuards(AuthGuard)
+  async updateUserByUser(
+    @Param('id') id: string,
+    @Body() updateUserByUserDto: UpdateUserByUserDto,
+  ) {
+    return await this.userService.updateUserByUser(id, updateUserByUserDto);
   }
 }

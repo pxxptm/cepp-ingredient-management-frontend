@@ -34,3 +34,10 @@ export class UpdateRestaurantDto {
   @ApiProperty()
   readonly image: string;
 }
+
+export class DeleteRestaurantDto {
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly password: string;
+}
