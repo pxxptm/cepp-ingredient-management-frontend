@@ -14,8 +14,10 @@ function DeleteRestaurantAuthModal({
   const accessToken = localStorage.getItem("token");
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault()
     // delete restaurant
+    console.log(restaurantId)
     await axios
       .delete(
         urlRestaurantDetail,
