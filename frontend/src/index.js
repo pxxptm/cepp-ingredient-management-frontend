@@ -38,10 +38,7 @@ const router = (
       element={<RestaurantListPageWrapper />}
     />
 
-    <Route
-      path="/:username/:restaurantId"
-      element={<OwnerMainPageWrapper />}
-    />
+    <Route path="/:username/:restaurantId" element={<OwnerMainPageWrapper />} />
 
     <Route
       path="/:username/:restaurantId/staff-management"
@@ -50,7 +47,10 @@ const router = (
 
     <Route
       path="/:username/:restaurantId/info"
-      element={<EditRestaurantPageWrapper />}/>
+      element={<EditRestaurantPageWrapper />}
+    />
+
+    <Route path="/:username/account" element={<HomePage />} />
   </Routes>
 );
 
@@ -73,12 +73,17 @@ function StaffManagementPageWrapper() {
   );
 }
 
-function EditRestaurantPageWrapper() {
+function EditSelfAccountPageWrapper() {
   let { username } = useParams();
   let { restaurantId } = useParams();
   return (
-    <EditRestaurantPage username={username} restaurantId={restaurantId} />
+    <StaffManagementPage username={username} restaurantId={restaurantId} />
   );
+}
+
+function EditRestaurantPageWrapper() {
+  let { username } = useParams();
+  return <EditRestaurantPage username={username} />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
