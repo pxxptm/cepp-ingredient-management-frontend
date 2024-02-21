@@ -22,10 +22,10 @@ import { AllRole } from '../user/schema/user.schema';
 import { CurrentUser } from '../auth/decorator/currentuser.decorator';
 import { IUser } from '../user/interface/user.interface';
 
-@ApiBearerAuth()
 @UseGuards(AuthGuard, RolesGuard)
 @ApiTags('restaurant')
 @Controller('restaurant')
+@ApiBearerAuth()
 export class RestaurantController {
   constructor(private readonly restaurantService: RestaurantService) {}
 

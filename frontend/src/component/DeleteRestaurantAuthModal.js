@@ -4,7 +4,7 @@ import "./DeleteRestaurantAuthModal.css";
 import { useNavigate } from "react-router-dom";
 
 function DeleteRestaurantAuthModal({
-    OwnerUsername,
+  OwnerUsername,
   restaurantName,
   restaurantId,
   setOpenDeleteModal,
@@ -14,28 +14,27 @@ function DeleteRestaurantAuthModal({
   const accessToken = localStorage.getItem("token");
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault()
     // delete restaurant
-    console.log(restaurantId);
-    console.log(password);
-    console.log(accessToken);
+    console.log(restaurantId)
     await axios
       .delete(
         urlRestaurantDetail,
         {
-          password: password,
-        },
-        {
           headers: {
-            Authorization: "Bearer " + accessToken,
+            Authorization: 'Bearer ' + accessToken,
             "Content-Type": "application/json"
           },
+          data: {
+            password: password,
+          }
         }
       )
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          const urlRestaurantListPage = "/" + {OwnerUsername} +"/restaurant"
+          const urlRestaurantListPage = "/" + { OwnerUsername } + "/restaurant"
           navigate(urlRestaurantListPage, { replace: true });
         }
       })
