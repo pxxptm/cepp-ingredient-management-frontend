@@ -10,6 +10,7 @@ function SelfEditAccountPage({ username }) {
     "http://localhost:3000/" + username + "/restaurant";
 
   const accessToken = localStorage.getItem("token");
+  console.log(accessToken)
   const [restaurantList, setRestaurantList] = useState([]);
   const [FNameStatic, setFNameStatic] = useState("");
   const [LNameStatic, setLNameStatic] = useState("");
@@ -24,27 +25,7 @@ function SelfEditAccountPage({ username }) {
 
   const navigate = useNavigate();
 
-  // get restaurant of this user
-  useEffect(() => {
-    axios
-      .get(urlRestaurantList, {
-        headers: {
-          Authorization: "Bearer " + accessToken,
-        },
-      })
-      .then((response) => {
-        if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
-          setRestaurantList(response.data);
-          console.log("Updated data:", restaurantList);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
-
   // get detail of this user
-
   useEffect(() => {
     axios
       .get("http://localhost:3001/user", {
@@ -64,6 +45,25 @@ function SelfEditAccountPage({ username }) {
         setLName(thisUser[0].lastname);
         setPassword(thisUser[0].password);
         setUsernameEdit(thisUser[0].username);
+        console.log(FName + " " + LName + " " + username + " " + password);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // get restaurant of this user
+  useEffect(() => {
+    axios
+      .get(urlRestaurantList, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((response) => {
+        if (JSON.stringify(response.data) !== JSON.stringify(restaurantList)) {
+          setRestaurantList(response.data);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -93,6 +93,7 @@ function SelfEditAccountPage({ username }) {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
+          console.log("complete");
         }
       })
       .catch((error) => {
@@ -226,14 +227,13 @@ function SelfEditAccountPage({ username }) {
                           onChange={(e) => {
                             setPassword(e.target.value);
                           }}
-                          value=""
+                          value={password}
                           readOnly={!editMode}
                         />
                       </div>
                     </div>
-
-                    {editMode && (
-                      <div id="Self-edit-account-span-zone" className="d-flex">
+                    <div id="Self-edit-account-span-zone" className="d-flex">
+                      {editMode && (
                         <button
                           id="Self-edit-account-submit"
                           type="submit"
@@ -241,8 +241,8 @@ function SelfEditAccountPage({ username }) {
                         >
                           เสร็จสิ้น
                         </button>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               </form>
@@ -262,22 +262,34 @@ function SelfEditAccountPage({ username }) {
 
             <div id="rest-list-space-zone">
               <div id="rest-list-space">
-                {
-                  restaurantList.length > 0 &&
-                  restaurantList.map (
-                    (restaurant , index) =>
-                    restaurant &&
-                    <div id="a-rest-block" onClick={()=>navigate(`/${usernameStatic}/${restaurant._id}/info`)}>
-                      <div id="rest-name-and-descript">
-                        <div id="rest-name">{restaurant.name}</div>
-                        <div id="rest-descript">{restaurant.description}</div>
-                      </div>
-                      <div id="to-full-rest-detail-page-btn">
-                        <a  href={`http://localhost:3000/${usernameStatic}/${restaurant._id}/info`}>ดูข้อมูลร้าน</a>
-                      </div>
-                    </div>
-                  )
-                }
+                {restaurantList.length > 0 &&
+                  restaurantList.map(
+                    (restaurant, index) =>
+                      restaurant && (
+                        <div
+                          id="a-rest-block"
+                          onClick={() =>
+                            navigate(
+                              `/${usernameStatic}/${restaurant._id}/info`
+                            )
+                          }
+                        >
+                          <div id="rest-name-and-descript">
+                            <div id="rest-name">{restaurant.name}</div>
+                            <div id="rest-descript">
+                              {restaurant.description}
+                            </div>
+                          </div>
+                          <div id="to-full-rest-detail-page-btn">
+                            <a
+                              href={`http://localhost:3000/${usernameStatic}/${restaurant._id}/info`}
+                            >
+                              ดูข้อมูลร้าน
+                            </a>
+                          </div>
+                        </div>
+                      )
+                  )}
               </div>
             </div>
           </div>
