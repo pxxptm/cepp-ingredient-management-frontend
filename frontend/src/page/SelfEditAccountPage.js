@@ -8,6 +8,7 @@ function SelfEditAccountPage({ username }) {
   const urlRestaurantList = "http://localhost:3001/member/restaurant";
   const urlRestaurantListPage =
     "http://localhost:3000/" + username + "/restaurant";
+  const urlGetUserID = "http://localhost:3001/user/user-id-by-username/" + username;
 
   const accessToken = localStorage.getItem("token");
   const [restaurantList, setRestaurantList] = useState([]);
@@ -49,19 +50,16 @@ function SelfEditAccountPage({ username }) {
   // get ID
   useEffect(() => {
     axios
-      .get(
-        "http://localhost:3001/user/user-id-by-username",
+      .get( urlGetUserID
+        ,
         {
           headers : {Authorization: "Bearer " + accessToken,
           "Content-Type": "application/json",}
         },
-        {
-          username: username,
-        }
       )
       .then((response) => {
-        console.log(response.data);
         setUserID(response.data);
+        console.log(userID)
       })
       .catch((error) => {
         console.log(error);
@@ -88,17 +86,16 @@ function SelfEditAccountPage({ username }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const uslPathUserAccount =
-      "http://localhost:3001/user/updated-by-user/" + userID;
+  
     // patch change
     await axios
       .patch(
-        uslPathUserAccount,
+        `http://localhost:3001/user/updated-by-user/${userID}`,
         {
           username: usernameEdit,
+          password: password,
           firstname: FName,
           lastname: LName,
-          password: password,
         },
         {
           headers: {
