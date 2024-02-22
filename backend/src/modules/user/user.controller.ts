@@ -29,10 +29,10 @@ export class UserController {
     }
   }
 
-  @Get('/user-id-by-username')
+  @Get('/user-id-by-username/:username')
   @UseGuards(AuthGuard)
-  async getUserIdByUsername(@Body() userUsernameDto: UserUsernameDto) {
-    return await this.userService.getUserByUsername(userUsernameDto.username);
+  async getUserIdByUsername(@Param('username') username: string) {
+    return await this.userService.getUserByUsername(username);
   }
 
   @Get('/user-info')
