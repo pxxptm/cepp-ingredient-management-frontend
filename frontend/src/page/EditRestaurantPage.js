@@ -14,7 +14,6 @@ function EditRestaurantPage({ username, restaurantId }) {
   const [restaurantImage, setRestaurantImage] = useState();
   const [editMode, setEditMode] = useState(false);
 
-
   // get restaurant detail
   useEffect(() => {
     axios
@@ -32,9 +31,9 @@ function EditRestaurantPage({ username, restaurantId }) {
         setRestaurantImage(image);
         setRestaurantescriptStatic(description);
         setRestaurantDescription(description);
-        setRestaurantImgStatic(image || defaultPreviewImageUrl)
+        setRestaurantImgStatic(image || defaultPreviewImageUrl);
         setPreviewImage(image || defaultPreviewImageUrl);
-        setExPic(image)
+        setExPic(image);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +45,7 @@ function EditRestaurantPage({ username, restaurantId }) {
   const [restaurantDescription, setRestaurantDescription] = useState("");
   const [previewImage, setPreviewImage] = useState(restaurantPicRef);
   const [imageFile, setImageFile] = useState("");
-  const [expic , setExPic] = useState("")
+  const [expic, setExPic] = useState("");
   let minioImagePath = expic;
   const [restaurantNameStatic, setRestaurantNameStatic] = useState("");
   const [restaurantDescriptStatic, setRestaurantescriptStatic] = useState("");
@@ -77,7 +76,7 @@ function EditRestaurantPage({ username, restaurantId }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (previewImage !== expic && previewImage!==defaultPreviewImageUrl) {
+    if (previewImage !== expic && previewImage !== defaultPreviewImageUrl) {
       await axios
         .post(
           "http://localhost:3001/file-upload/single",
@@ -101,9 +100,8 @@ function EditRestaurantPage({ username, restaurantId }) {
         });
     }
 
-    if (previewImage===defaultPreviewImageUrl)
-    {
-        minioImagePath = defaultPreviewImageUrl;
+    if (previewImage === defaultPreviewImageUrl) {
+      minioImagePath = defaultPreviewImageUrl;
     }
 
     // patch change
@@ -125,7 +123,7 @@ function EditRestaurantPage({ username, restaurantId }) {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-            refreshPage();
+          refreshPage();
         }
       })
       .catch((error) => {
@@ -133,7 +131,7 @@ function EditRestaurantPage({ username, restaurantId }) {
       });
   }
 
-  const [openDeleteModal , setOpenDeleteModal] = useState(false)
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   return (
     <div id="Edit-restaurant-page">
@@ -154,7 +152,14 @@ function EditRestaurantPage({ username, restaurantId }) {
       </div>
 
       <div id="Edit-restaurant-page-body">
-      {openDeleteModal && <DeleteRestaurantAuthModal OwnerUsername={username} restaurantName={restaurantNameStatic} restaurantId={restaurantId} setOpenDeleteModal={setOpenDeleteModal} />}
+        {openDeleteModal && (
+          <DeleteRestaurantAuthModal
+            OwnerUsername={username}
+            restaurantName={restaurantNameStatic}
+            restaurantId={restaurantId}
+            setOpenDeleteModal={setOpenDeleteModal}
+          />
+        )}
         <div id="Staff-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -181,12 +186,12 @@ function EditRestaurantPage({ username, restaurantId }) {
 
               {editMode && (
                 <button
-                  id="cancle-edit-rest-btn"
+                  id="cancel-edit-rest-btn"
                   onClick={() => {
                     setEditMode(false);
                     setRestaurantName(restaurantNameStatic);
                     setRestaurantDescription(restaurantDescriptStatic);
-                    setPreviewImage(restaurantImgStatic)
+                    setPreviewImage(restaurantImgStatic);
                   }}
                 >
                   ยกเลิกการแก้ไข
@@ -194,8 +199,12 @@ function EditRestaurantPage({ username, restaurantId }) {
               )}
             </div>
             <div className="btn-box-col">
-              <button id="delete-rest-btn"
-              onClick={()=>setOpenDeleteModal(true)}>ลบร้านของคุณ</button>
+              <button
+                id="delete-rest-btn"
+                onClick={() => setOpenDeleteModal(true)}
+              >
+                ลบร้านของคุณ
+              </button>
             </div>
           </div>
 

@@ -4,7 +4,6 @@
     font-size: 13px !important;
     font-weight: 600;
     color: rgb(83, 83, 83);
-    display: flex;
     justify-content: end;
     align-items: center;
 }
@@ -127,3 +126,16 @@
         margin: auto  0 auto 0.9vw;
     }
 }
+
+#name-and-icon
+{
+    width: fit-content;
+    display: flex;
+    float: right;
+
+    &:hover
+    {
+        color: rgb(10, 129, 169);
+        cursor: pointer;
+    }
+}    

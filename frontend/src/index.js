@@ -18,6 +18,7 @@ import RestaurantListPage from "./page/RestaurantListPage";
 import MainPageOwner from "./page/MainPageOwner";
 import StaffManagementPage from "./page/StaffManagementPage";
 import EditRestaurantPage from "./page/EditRestaurantPage";
+import SelfEditAccountPage from "./page/SelfEditAccountPage";
 
 const router = (
   <Routes>
@@ -38,10 +39,7 @@ const router = (
       element={<RestaurantListPageWrapper />}
     />
 
-    <Route
-      path="/:username/:restaurantId"
-      element={<OwnerMainPageWrapper />}
-    />
+    <Route path="/:username/:restaurantId" element={<OwnerMainPageWrapper />} />
 
     <Route
       path="/:username/:restaurantId/staff-management"
@@ -50,7 +48,10 @@ const router = (
 
     <Route
       path="/:username/:restaurantId/info"
-      element={<EditRestaurantPageWrapper />}/>
+      element={<EditRestaurantPageWrapper />}
+    />
+
+    <Route path="/:username/account" element={<SelfEditAccountPageWrapper />} />
   </Routes>
 );
 
@@ -73,12 +74,17 @@ function StaffManagementPageWrapper() {
   );
 }
 
+function SelfEditAccountPageWrapper() {
+  let { username } = useParams();
+  return (
+    <SelfEditAccountPage username={username} />
+  );
+}
+
 function EditRestaurantPageWrapper() {
   let { username } = useParams();
   let { restaurantId } = useParams();
-  return (
-    <EditRestaurantPage username={username} restaurantId={restaurantId} />
-  );
+  return <EditRestaurantPage username={username} restaurantId={restaurantId} />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

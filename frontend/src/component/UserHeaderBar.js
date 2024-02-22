@@ -1,11 +1,11 @@
-import React from 'react';
-import './UserHeaderBar.css';
-import Clock from './Clock';
-import UserHeader from './UserHeaderName';
+import React from "react";
+import "./UserHeaderBar.css";
+import Clock from "./Clock";
+import UserHeaderName from "./UserHeaderName";
 
 const HearderBar = (props) => {
   const restaurantListPageURL =
-    'http://localhost:3000/' + props.username + '/restaurant';
+    "http://localhost:3000/" + props.username + "/restaurant";
   return (
     <div id="user-header-bar">
       <link
@@ -28,7 +28,7 @@ const HearderBar = (props) => {
       <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-      ></link>    
+      ></link>
 
       <div id="user-header-bar-SW-name">
         <a href={restaurantListPageURL}>Victual Ingredients Management</a>
@@ -36,8 +36,8 @@ const HearderBar = (props) => {
 
       <div id="user-header-bar-item-zone">
         <div id="name-clock">
-          <div>
-            <UserHeader username={props.username} />
+          <div id="user-header-name">
+            <UserHeaderName username={props.username} />
           </div>
           <div id="div-clock">
             <Clock />
@@ -46,13 +46,19 @@ const HearderBar = (props) => {
         <div className="home-nav-btn">
           <button id="logout-btn">ออกจากระบบ</button>
         </div>
-        
+
         <div className="user-header-bar-sidebar">
-          <button className="user-header-bar-sidebar-btn" id="user-header-bar-sidebar-btn-menu">
+          <button
+            className="user-header-bar-sidebar-btn"
+            id="user-header-bar-sidebar-btn-menu"
+          >
             <i className="material-icons">menu</i>
           </button>
 
-          <button className="user-header-bar-sidebar-btn" id="user-header-bar-sidebar-btn-logout">
+          <button
+            className="user-header-bar-sidebar-btn"
+            id="user-header-bar-sidebar-btn-logout"
+          >
             <i className="material-icons">logout</i>
           </button>
 
@@ -63,7 +69,7 @@ const HearderBar = (props) => {
               ออกจากระบบ
             </a>
           </div>
-        </div>   
+        </div>
       </div>
     </div>
   );

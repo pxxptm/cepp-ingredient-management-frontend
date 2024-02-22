@@ -1,0 +1,990 @@
+#Self-edit-account-page
+{
+    height : 100%;
+    min-height: 100vh;
+    width: 100%;
+    min-width: 423px;
+    position: relative;
+    padding: 0;
+    margin: 0px;
+    background-color: white;
+}
+
+#Self-edit-account-page-header
+{
+    width: 100%;
+}
+
+#Self-edit-account-page-header-bar
+{
+    width: 100%;
+    height: fit-content;
+    position: sticky;
+    top: 0;
+}
+
+#Self-edit-account-page-body
+{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
+#rest-list-cards
+{
+    width: 100%;
+}
+
+#create-restaurant-modal
+{
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+}
+
+@media (min-width: 700px)
+{
+    #Self-edit-account-page-body
+    {
+        width: 100%;
+        min-height: 100%;
+        display: grid;
+        grid-template-columns: 65% 32%;
+        column-gap: 3%;
+        overflow: hidden;
+    }
+
+    #Self-edit-account-page-body-l1
+    {
+        width: 100%;
+        height: 100%;
+    }
+
+    #Self-edit-account-page-head-zone 
+    {
+        padding : 5% 0 5% 5.25vw;
+        display: grid;
+        grid-template-columns: 60% 20%;
+        column-gap: 3%;
+
+        h1 
+        {   
+            font-size: 3vw;
+            font-family: 'Kanit', sans-serif;
+            font-weight: bold;
+            margin: auto 0;
+        }
+
+        #Self-edit-account-page-head-zone-btn {
+            display: flex;
+            align-content: center;
+            margin-left: 7%;
+            margin-top: 0.5%;
+
+
+            #edit-acc-btn 
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 9vw;
+                height: 2.5vw;
+                font-size: 1vw;
+                background-color: darkmagenta;
+                color: white;
+                border: none;
+                border-radius: 0.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
+
+                &:hover
+                {
+                    background-color: rgb(93, 0, 93);
+                }
+            }
+
+            #cancel-edit-acc-btn
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 9vw;
+                height: 2.5vw;
+                font-size: 1vw;
+                background-color: white;
+                color: darkmagenta;
+                border: 0.1vw solid darkmagenta;
+                border-radius: 0.7vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
+
+                &:hover
+                {
+                    color: white;
+                    background-color: darkmagenta;
+                }
+            }
+        }
+    }
+
+    .Self-edit-account-Container
+    {
+        width: 100%;
+        height: 69.5vh;
+        padding-left: 5.25vw;
+        padding-bottom: 3%;
+
+        .Self-edit-account-body
+        {
+            width: 100%;
+            height: 100%;
+
+            form , #Self-edit-account-form
+            {
+                width: 100%;
+                height: fit-content;
+                background-color: white;
+                border-right: 0.01vw solid rgba(0, 0, 0, 0.181);
+            }
+        }
+
+        #Self-edit-account
+                {
+                    height: 100%;
+                    width: 83%;
+                    font-family: "Kanit", sans-serif;
+
+                    .Self-edit-account-form-floating {
+                        margin-bottom: 3%;
+                      }
+                    
+                      .Self-edit-account-input-form {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                    
+                        label {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 1vw;
+                          font-weight: normal;
+                          margin-bottom: 2%;
+                          color: black;
+                        }
+                    
+                        .Self-edit-account-form-input-space {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 1vw;
+                          font-weight: normal;
+                          width: 100%;
+                          padding: 1.5% 5%;
+                          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                          border-radius: 1.25vw;
+                          background-color: #fcfcfc;
+                    
+                          &:focus {
+                            background-color: #e7e7e7;
+                            border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                            border-radius: 1.25vw;
+                            outline: none;
+                          }
+                        }
+                    }
+
+                    #Self-edit-account-submit {
+                        font-family: "Kanit", sans-serif;
+                        font-size: 0.9vw;
+                        font-weight: normal;
+                        background-color: rgb(10, 129, 169);
+                        color: white;
+                        width: 6.5vw;
+                        padding: 1% 1%;
+                        border: none;
+                        border-radius: 0.7vw;
+                        float: right;
+                        margin-top: 1.75%;
+                    
+                        &:hover {
+                          background-color: rgb(7, 79, 103);
+                        }
+                      }
+                }
+            
+    }
+
+    #Self-edit-account-page-body-r2
+    {
+        width: 100%;
+        height: 100%;
+        padding-right: 5.25vw;
+
+        #Self-edit-account-page-head-zone
+        {
+            padding-left: 0;
+            padding-top: 3%;
+            display: flex;
+            flex-direction: column;
+            h5
+            {
+                font-size: 1.35vw;
+                padding: 10% 0 0 0;
+                font-family: 'Kanit', sans-serif;
+                font-weight: bold;
+                margin: auto 0;
+                margin-bottom: 6%;
+            }
+
+            h6
+            {
+                font-size: 0.725vw;
+                padding: 0;
+                font-family: 'Kanit', sans-serif;
+                margin: auto 0;
+                margin-bottom: 3%;
+
+                a 
+                {
+                    color: rgb(10, 129, 169);
+                    text-decoration: none;
+                    margin-left: 1%;
+
+                    &:hover
+                    {
+                        color: rgb(7, 79, 103);
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        #rest-list-space-zone
+        {
+            width: 100%;
+            height: 69.5vh;
+            padding-bottom: 21%;
+        }
+
+        #rest-list-space
+        {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        #a-rest-block
+        {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
+            padding: 4% 1%;
+            height: fit-content;
+            font-family: 'Kanit', sans-serif;
+            display: grid;
+            grid-template-columns: 75% 20%;
+            column-gap: 5%;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            #rest-name-and-descript
+            {
+                color: black;
+                font-size: 0.925vw;
+                width: 100%;
+
+                @media (max-width: 1299.5px) 
+                {
+                    font-size: 0.945vw;
+                }
+
+                #rest-descript
+                {
+                    width: 100%;
+                    font-size: 0.65vw;
+                    color: rgba(0, 0, 0, 0.603);
+                    margin-top: 3%;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }  
+            
+            #to-full-rest-detail-page-btn
+            {
+                width: 100%;
+                height: 100%;
+                display: flex;
+
+                a
+                {
+                    height: fit-content;
+                    font-size: 0.5vw;
+                    color: white;
+                    background-color: rgba(7, 79, 103, 0.621);
+                    margin : auto 0 auto auto;
+                    padding: 3% 13%;
+                    border-radius: 2vw;
+                    text-decoration: none;
+
+                    &:hover
+                    {
+                        text-decoration: none;
+                        background-color: rgb(10, 129, 169);
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+
+@media (min-width: 420px) and (max-width: 699.5px)
+{
+    #Self-edit-account-page-body
+    {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #Self-edit-account-page-body-l1
+    {
+        width: 100%;
+        height: fit-content;
+    }
+
+    #Self-edit-account-page-head-zone 
+    {
+        padding : 5% 5.5vw;
+        display: grid;
+        grid-template-columns: 60% 37%;
+        column-gap: 3%;
+
+        h1 
+        {   
+            font-size: 3.25vw;
+            font-family: 'Kanit', sans-serif;
+            font-weight: bold;
+            margin: auto 0;
+        }
+
+        #Self-edit-account-page-head-zone-btn {
+            display: flex;
+            align-content: center;
+            margin-left: 7%;
+            margin-top: 0.5%;
+
+
+            #edit-acc-btn 
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 12vw;
+                height: 3.5vw;
+                font-size: 1.4vw;
+                background-color: darkmagenta;
+                color: white;
+                border: none;
+                border-radius: 1vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
+
+                &:hover
+                {
+                    background-color: rgb(93, 0, 93);
+                }
+            }
+
+            #cancel-edit-acc-btn
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 12vw;
+                height: 3.5vw;
+                font-size: 1.4vw;
+                background-color: white;
+                color: darkmagenta;
+                border: 0.1vw solid darkmagenta;
+                border-radius: 1vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
+
+                &:hover
+                {
+                    color: white;
+                    background-color: darkmagenta;
+                }
+            }
+        }
+    }
+
+    .Self-edit-account-Container
+    {
+        width: 100%;
+        height: fit-content;
+        padding-left: 5.5vw;
+        padding-right: 5.5vw;
+        padding-bottom: 0%;
+
+        .Self-edit-account-body
+        {
+            width: 100%;
+            height: 100%;
+
+            form , #Self-edit-account-form
+            {
+                width: 100%;
+                height: fit-content;
+                background-color: white;
+                margin-top: 5%;
+            }
+        }
+
+        #Self-edit-account
+                {
+                    height: 100%;
+                    width: 100%;
+                    font-family: "Kanit", sans-serif;
+
+                    .Self-edit-account-form-floating {
+                        margin-bottom: 4%;
+                      }
+                    
+                      .Self-edit-account-input-form {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                    
+                        label {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 1.5vw;
+                          font-weight: normal;
+                          margin-bottom: 2%;
+                          color: black;
+                        }
+                    
+                        .Self-edit-account-form-input-space {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 1.5vw;
+                          font-weight: normal;
+                          width: 100%;
+                          height: 3.5vw;
+                          padding: 3% 5%;
+                          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                          border-radius: 2.2vw;
+                          background-color: #fcfcfc;
+                    
+                          &:focus {
+                            background-color: #e7e7e7;
+                            border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                            border-radius: 2.2vw;
+                            outline: none;
+                          }
+                        }
+                    }
+
+                    #Self-edit-account-span-zone
+                    {
+                        width: 100%;
+                        height: 5vw;
+                        margin-bottom: 1%;
+                    }
+
+                    #Self-edit-account-submit {
+                        font-family: "Kanit", sans-serif;
+                        font-size: 1.35vw;
+                        font-weight: normal;
+                        background-color: rgb(10, 129, 169);
+                        color: white;
+                        width: 10vw;
+                        height: 3.5vw;
+                        padding: 1% 1.25%;
+                        border: none;
+                        border-radius: 0.9vw;
+                        float: right;
+                        margin-top: 1.75%;
+                    
+                        &:hover {
+                          background-color: rgb(7, 79, 103);
+                        }
+                      }
+                }
+            
+    }
+
+    #Self-edit-account-page-body-r2
+    {
+        width: 100%;
+        height: 100%;
+        padding: 0 5.5vw;
+
+        #Self-edit-account-page-head-zone
+        {
+            padding-left: 0;
+            padding-top: 0%;
+            display: flex;
+            flex-direction: column;
+            h5
+            {
+                font-size: 2.65vw;
+                padding: 10% 0 0 0;
+                font-family: 'Kanit', sans-serif;
+                font-weight: bold;
+                margin: auto 0;
+                margin-bottom: 5%;
+            }
+
+            h6
+            {
+                font-size: 1.5vw;
+                padding: 0;
+                font-family: 'Kanit', sans-serif;
+                margin: auto 0;
+                margin-bottom: 5%;
+
+                a 
+                {
+                    color: rgb(10, 129, 169);
+                    text-decoration: none;
+                    margin-left: 1%;
+
+                    &:hover
+                    {
+                        color: rgb(7, 79, 103);
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        #rest-list-space-zone
+        {
+            width: 100%;
+            height: fit-content;
+            padding-bottom: 5%;
+        }
+
+        #rest-list-space
+        {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        #a-rest-block
+        {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
+            padding: 5% 1%;
+            height: fit-content;
+            font-family: 'Kanit', sans-serif;
+            display: grid;
+            grid-template-columns: 75% 20%;
+            column-gap: 5%;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            #rest-name-and-descript
+            {
+                color: black;
+                font-size: 2.25vw;
+                width: 100%;
+
+                #rest-descript
+                {
+                    width: 100%;
+                    font-size: 1.75vw;
+                    color: rgba(0, 0, 0, 0.603);
+                    margin-top: 4%;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }  
+            
+            #to-full-rest-detail-page-btn
+            {
+                width: 100%;
+                height: 100%;
+                display: flex;
+
+                a
+                {
+                    height: fit-content;
+                    font-size: 1.2vw;
+                    color: white;
+                    background-color: rgba(7, 79, 103, 0.621);
+                    margin : auto 0 auto auto;
+                    padding: 3% 13%;
+                    border-radius: 2vw;
+                    text-decoration: none;
+
+                    &:hover
+                    {
+                        text-decoration: none;
+                        background-color: rgb(10, 129, 169);
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 419.5px)
+{
+    #Self-edit-account-page-body
+    {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #Self-edit-account-page-body-l1
+    {
+        width: 100%;
+        height: fit-content;
+    }
+
+    #Self-edit-account-page-head-zone 
+    {
+        padding : 7% 4.25vw;
+        display: grid;
+        grid-template-columns: 60% 37%;
+        column-gap: 3%;
+
+        @media (max-width: 340px) 
+        {
+            padding: 6% 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 7% 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 7% 25vw;
+        }
+
+        h1 
+        {   
+            font-size: 110%;
+            font-family: 'Kanit', sans-serif;
+            font-weight: bold;
+            margin: auto 0;
+        }
+
+        #Self-edit-account-page-head-zone-btn {
+            display: flex;
+            align-content: center;
+            margin-left: 7%;
+            margin-top: 0.5%;
+
+
+            #edit-acc-btn 
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 35%;
+                padding: 2.2% 0;
+                font-size: 40%;
+                background-color: darkmagenta;
+                color: white;
+                border: none;
+                border-radius: 1vw;
+                border-width: 0;
+                margin-left: auto;
+
+                &:hover
+                {
+                    background-color: rgb(93, 0, 93);
+                }
+            }
+
+            #cancel-edit-acc-btn
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 35%;
+                padding: 2.2% 0;
+                font-size: 40%;
+                background-color: white;
+                color: darkmagenta;
+                border: 0.1vw solid darkmagenta;
+                border-radius: 1vw;
+ 
+                margin-left: auto;
+
+                &:hover
+                {
+                    color: white;
+                    background-color: darkmagenta;
+                }
+            }
+        }
+    }
+
+    .Self-edit-account-Container
+    {
+        width: 100%;
+        height: fit-content;
+        padding: 0% 4.25vw;
+        padding-bottom: 0%;
+
+        @media (max-width: 340px) 
+        {
+            padding: 0% 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 0% 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 0% 25vw;
+        }
+
+        .Self-edit-account-body
+        {
+            width: 100%;
+            height: 100%;
+
+            form , #Self-edit-account-form
+            {
+                width: 100%;
+                height: fit-content;
+                background-color: white;
+                margin-top: 5%;
+            }
+        }
+
+        #Self-edit-account
+                {
+                    height: 100%;
+                    width: 100%;
+                    font-family: "Kanit", sans-serif;
+
+                    .Self-edit-account-form-floating {
+                        margin-bottom: 4%;
+                      }
+                    
+                      .Self-edit-account-input-form {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                    
+                        label {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 50%;
+                          font-weight: normal;
+                          margin-bottom: 2%;
+                          color: black;
+                        }
+                    
+                        .Self-edit-account-form-input-space {
+                          font-family: "Kanit", sans-serif;
+                          font-size: 50%;
+                          font-weight: normal;
+                          width: 100%;
+                          height: 4.5vw;
+                          padding: 3% 5%;
+                          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                          border-radius: 3vw;
+                          background-color: #fcfcfc;
+                    
+                          &:focus {
+                            background-color: #e7e7e7;
+                            border: 0.01vw solid rgba(0, 0, 0, 0.397);
+                            border-radius: 3vw;
+                            outline: none;
+                          }
+                        }
+                    }
+
+                    #Self-edit-account-span-zone
+                    {
+                        margin-top: 9%;
+                        width: 100%;
+                        height: 8vw;
+                        margin-bottom: 0%;
+                    }
+
+                    #Self-edit-account-submit {
+                        font-family: "Kanit", sans-serif;
+                        font-size: 40%;
+                        font-weight: normal;
+                        background-color: rgb(10, 129, 169);
+                        color: white;
+                        width: 11%;
+                        padding: 1.2% 1.25%;
+                        border: none;
+                        border-radius: 1vw;
+                        float: right;
+                        margin-top: 1.75%;
+                    
+                        &:hover {
+                          background-color: rgb(7, 79, 103);
+                        }
+                      }
+                }
+            
+    }
+
+    #Self-edit-account-page-body-r2
+    {
+        width: 100%;
+        height: 100%;
+        padding: 0 5.5vw;
+
+        #Self-edit-account-page-head-zone
+        {
+            padding-left: 0;
+            padding-top: 0%;
+            display: flex;
+            flex-direction: column;
+
+            h5
+            {
+                font-size: 85%;
+                padding: 10% 0 0 0;
+                font-family: 'Kanit', sans-serif;
+                font-weight: bold;
+                margin: auto 0;
+                margin-bottom: 5%;
+            }
+
+            h6
+            {
+                font-size: 50%;
+                padding: 0;
+                font-family: 'Kanit', sans-serif;
+                margin: auto 0;
+                margin-bottom: 2%;
+
+                a 
+                {
+                    color: rgb(10, 129, 169);
+                    text-decoration: none;
+                    margin-left: 1%;
+
+                    &:hover
+                    {
+                        color: rgb(7, 79, 103);
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        #rest-list-space-zone
+        {
+            width: 100%;
+            height: fit-content;
+            padding-bottom: 0%;
+        }
+
+        #rest-list-space
+        {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        #a-rest-block
+        {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
+            padding: 5% 1%;
+            height: fit-content;
+            font-family: 'Kanit', sans-serif;
+            display: grid;
+            grid-template-columns: 75% 20%;
+            column-gap: 5%;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            #rest-name-and-descript
+            {
+                color: black;
+                font-size: 75%;
+                width: 100%;
+
+                #rest-descript
+                {
+                    width: 100%;
+                    font-size: 67.5%;
+                    color: rgba(0, 0, 0, 0.603);
+                    margin-top: 4%;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }  
+            
+            #to-full-rest-detail-page-btn
+            {
+                width: 100%;
+                height: 100%;
+                display: flex;
+
+                a
+                {
+                    height: fit-content;
+                    font-size: 37.5%;
+                    color: white;
+                    background-color: rgba(7, 79, 103, 0.621);
+                    margin : auto 0 auto auto;
+                    padding: 5% 13% 3% 13%;
+                    border-radius: 2vw;
+                    text-decoration: none;
+
+                    &:hover
+                    {
+                        text-decoration: none;
+                        background-color: rgb(10, 129, 169);
+                    }
+                }
+            }
+        }
+    }
+
+
+}
