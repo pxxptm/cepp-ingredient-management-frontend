@@ -19,6 +19,7 @@ import MainPageOwner from "./page/MainPageOwner";
 import StaffManagementPage from "./page/StaffManagementPage";
 import EditRestaurantPage from "./page/EditRestaurantPage";
 import SelfEditAccountPage from "./page/SelfEditAccountPage";
+import OwnerInventoryPage from "./page/OwnerInventoryPage";
 
 const router = (
   <Routes>
@@ -50,6 +51,10 @@ const router = (
       path="/:username/:restaurantId/info"
       element={<EditRestaurantPageWrapper />}
     />
+
+    <Route
+    path="/:username/:restaurantId/inventory-management"
+    element= {<OwnerInventoryPageWrapper/>}/>
 
     <Route path="/:username/account" element={<SelfEditAccountPageWrapper />} />
   </Routes>
@@ -85,6 +90,12 @@ function EditRestaurantPageWrapper() {
   let { username } = useParams();
   let { restaurantId } = useParams();
   return <EditRestaurantPage username={username} restaurantId={restaurantId} />;
+}
+
+function OwnerInventoryPageWrapper() {
+  let { username } = useParams();
+  let { restaurantId } = useParams();
+  return <OwnerInventoryPage username={username} restaurantId={restaurantId} />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
