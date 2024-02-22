@@ -10,13 +10,12 @@ function SelfEditAccountPage({ username }) {
     "http://localhost:3000/" + username + "/restaurant";
 
   const accessToken = localStorage.getItem("token");
-  console.log(accessToken)
   const [restaurantList, setRestaurantList] = useState([]);
   const [FNameStatic, setFNameStatic] = useState("");
   const [LNameStatic, setLNameStatic] = useState("");
   const [usernameStatic, setUsernameStatic] = useState("");
-  const [passwordStatic, setPasswordStatic] = useState("");
   const [editMode, setEditMode] = useState(false);
+  const [userID, setUserID] = useState("");
 
   const [FName, setFName] = useState("");
   const [LName, setLName] = useState("");
@@ -28,29 +27,46 @@ function SelfEditAccountPage({ username }) {
   // get detail of this user
   useEffect(() => {
     axios
-      .get("http://localhost:3001/user", {
+      .get("http://localhost:3001/user/user-info", {
         headers: {
           Authorization: "Bearer " + accessToken,
         },
       })
       .then((response) => {
-        const thisUser = response.data.filter(
-          (user) => user.username === username
-        );
-        setFNameStatic(thisUser[0].firstname);
-        setLNameStatic(thisUser[0].lastname);
-        setPasswordStatic(thisUser[0].password);
-        setUsernameStatic(thisUser[0].username);
-        setFName(thisUser[0].firstname);
-        setLName(thisUser[0].lastname);
-        setPassword(thisUser[0].password);
-        setUsernameEdit(thisUser[0].username);
-        console.log(FName + " " + LName + " " + username + " " + password);
+        const user = response.data;
+        setFNameStatic(user.firstname);
+        setLNameStatic(user.lastname);
+        setUsernameStatic(user.username);
+        setFName(user.firstname);
+        setLName(user.lastname);
+        setUsernameEdit(user.username);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  // get ID
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:3001/user/user-id-by-username",
+        {
+          headers : {Authorization: "Bearer " + accessToken,
+          "Content-Type": "application/json",}
+        },
+        {
+          username: username,
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setUserID(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
   // get restaurant of this user
   useEffect(() => {
@@ -72,7 +88,8 @@ function SelfEditAccountPage({ username }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const uslPathUserAccount = "http://localhost:3001/user/updated-by-user/";
+    const uslPathUserAccount =
+      "http://localhost:3001/user/updated-by-user/" + userID;
     // patch change
     await axios
       .patch(
@@ -142,7 +159,6 @@ function SelfEditAccountPage({ username }) {
                       setEditMode(false);
                       setFName(FNameStatic);
                       setLName(LNameStatic);
-                      setPassword(passwordStatic);
                       setUsernameEdit(usernameStatic);
                     }}
                   >
