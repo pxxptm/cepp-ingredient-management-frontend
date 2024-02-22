@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./SelfEditAccountPage.css";
 import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
+import { useNavigate } from "react-router-dom";
 
 function SelfEditAccountPage({ username }) {
   const urlRestaurantList = "http://localhost:3001/member/restaurant";
-  const urlRestaurantListPage = "http://localhost:3000/"+username+"/restaurant"
+  const urlRestaurantListPage =
+    "http://localhost:3000/" + username + "/restaurant";
 
   const accessToken = localStorage.getItem("token");
   const [restaurantList, setRestaurantList] = useState([]);
@@ -19,6 +21,8 @@ function SelfEditAccountPage({ username }) {
   const [LName, setLName] = useState("");
   const [usernameEdit, setUsernameEdit] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   // get restaurant of this user
   useEffect(() => {
@@ -247,16 +251,34 @@ function SelfEditAccountPage({ username }) {
         </div>
 
         <div id="Self-edit-account-page-body-r2">
-        <div id="Self-edit-account-page-header">
+          <div id="Self-edit-account-page-header">
             <div id="Self-edit-account-page-head-zone">
               <h5>ร้านที่คุณเป็นสมาชิก</h5>
-              <h6>* หากต้องการจัดการการร้านที่คุณเป็นสมาชิก กรุณาไปที่ <a href={urlRestaurantListPage}>ร้านทั้งหมดของคุณ</a></h6>
+              <h6>
+                * หากต้องการจัดการการร้านที่คุณเป็นสมาชิก กรุณาไปที่{" "}
+                <a href={urlRestaurantListPage}>ร้านทั้งหมดของคุณ</a>
+              </h6>
             </div>
 
             <div id="rest-list-space-zone">
-            <div id="rest-list-space">
-
-</div>
+              <div id="rest-list-space">
+                {
+                  restaurantList.length > 0 &&
+                  restaurantList.map (
+                    (restaurant , index) =>
+                    restaurant &&
+                    <div id="a-rest-block" onClick={()=>navigate(`/${usernameStatic}/${restaurant._id}/info`)}>
+                      <div id="rest-name-and-descript">
+                        <div id="rest-name">{restaurant.name}</div>
+                        <div id="rest-descript">{restaurant.description}</div>
+                      </div>
+                      <div id="to-full-rest-detail-page-btn">
+                        <a  href={`http://localhost:3000/${usernameStatic}/${restaurant._id}/info`}>ดูข้อมูลร้าน</a>
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
             </div>
           </div>
         </div>
