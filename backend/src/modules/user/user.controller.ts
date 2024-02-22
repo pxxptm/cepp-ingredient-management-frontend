@@ -25,10 +25,10 @@ export class UserController {
     }
   }
 
-  @Get('/user-info/:id')
+  @Get('/user-info')
   @UseGuards(AuthGuard)
-  async getUserInfo(@Param('id') id: string) {
-    return await this.userService.getByIdReturnValidData(id);
+  async getUserInfo(@CurrentUser() iuser: IUser) {
+    return await this.userService.getByIdReturnValidData(iuser.sub);
   }
 
   @Get('role')
