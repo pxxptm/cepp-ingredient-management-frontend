@@ -67,7 +67,7 @@
             h1
             {
                 font-family: 'Kanit', sans-serif;
-                font-size: 3vw;
+                font-size: 2.75vw;
                 font-weight: bold;
                 margin: auto;
                 width: 100%;
@@ -161,6 +161,7 @@
 
         .Edit-restaurant-Container
         {
+            padding-top: 3%;
             width: 100%;
             background-color: white;
 

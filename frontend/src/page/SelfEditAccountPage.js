@@ -27,6 +27,7 @@ function SelfEditAccountPage({ username }) {
 
   // get detail of this user
   useEffect(() => {
+    
     axios
       .get("http://localhost:3001/user/user-info", {
         headers: {
@@ -41,6 +42,7 @@ function SelfEditAccountPage({ username }) {
         setFName(user.firstname);
         setLName(user.lastname);
         setUsernameEdit(user.username);
+        console.log(user)
       })
       .catch((error) => {
         console.log(error);
@@ -85,8 +87,6 @@ function SelfEditAccountPage({ username }) {
   });
 
   async function handleSubmit(event) {
-    event.preventDefault();
-  
     // patch change
     await axios
       .patch(
@@ -268,7 +268,7 @@ function SelfEditAccountPage({ username }) {
             <div id="Self-edit-account-page-head-zone">
               <h5>ร้านที่คุณเป็นสมาชิก</h5>
               <h6>
-                * หากต้องการจัดการการร้านที่คุณเป็นสมาชิก กรุณาไปที่{" "}
+                * หากต้องการจัดการร้านที่คุณเป็นสมาชิก กรุณาไปที่{" "}
                 <a href={urlRestaurantListPage}>ร้านทั้งหมดของคุณ</a>
               </h6>
             </div>

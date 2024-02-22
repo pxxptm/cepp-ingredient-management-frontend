@@ -13,6 +13,26 @@ function EditRestaurantPage({ username, restaurantId }) {
 
   const [restaurantImage, setRestaurantImage] = useState();
   const [editMode, setEditMode] = useState(false);
+  const userRole = useRef("staff");
+  const urlUserDetail = "http://localhost:3001/user/role";
+
+  // get role of this user
+  useEffect(() => {
+    axios
+      .get(urlUserDetail, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((response) => {
+        const role = response.data.role;
+        userRole.current = role;
+        console.log(userRole.current);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
   // get restaurant detail
   useEffect(() => {
@@ -173,7 +193,7 @@ function EditRestaurantPage({ username, restaurantId }) {
           <div id="Edit-restaurant-page-content-header">
             <h1>ข้อมูลร้าน</h1>
             <div className="btn-box-col">
-              {!editMode && (
+              {!editMode && userRole.current === "owner" && (
                 <button
                   id="edit-rest-btn"
                   onClick={() => {
@@ -184,7 +204,7 @@ function EditRestaurantPage({ username, restaurantId }) {
                 </button>
               )}
 
-              {editMode && (
+              {editMode && userRole.current === "owner" && (
                 <button
                   id="cancel-edit-rest-btn"
                   onClick={() => {
@@ -199,12 +219,12 @@ function EditRestaurantPage({ username, restaurantId }) {
               )}
             </div>
             <div className="btn-box-col">
-              <button
+              {(userRole.current === "owner") && <button
                 id="delete-rest-btn"
                 onClick={() => setOpenDeleteModal(true)}
               >
                 ลบร้านของคุณ
-              </button>
+              </button>}
             </div>
           </div>
 
