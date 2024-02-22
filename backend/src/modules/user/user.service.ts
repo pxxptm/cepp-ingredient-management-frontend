@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
 import { UpdateUserByOwnerDto, UpdateUserByUserDto } from './dto/user.dto';
+import { authConfig } from 'config/auth.config';
 
 @Injectable()
 export class UserService {
@@ -36,11 +37,16 @@ export class UserService {
 
   async getUserByUsername(username: string) {
     const user = await this.userModel.findOne({ username: username });
-    return user.id;
+    if (user) return user.id;
+    return null;
   }
 
   async updateUserByUser(id: string, updateUserByUserDto: UpdateUserByUserDto) {
-    const user = await this.getUserByUsername(updateUserByUserDto.username);
+    let user = null;
+
+    if (updateUserByUserDto.username != null) {
+      user = await this.getUserByUsername(updateUserByUserDto.username);
+    }
 
     if (id != user) {
       throw new HttpException(
@@ -61,6 +67,16 @@ export class UserService {
     }
 
     if (!user || id == user) {
+      if (updateUserByUserDto.password != null) {
+        const saltOrRounds = +authConfig().saltround;
+        const hash = await bcrypt.hash(
+          updateUserByUserDto.password,
+          saltOrRounds,
+        );
+
+        (updateUserByUserDto.password as string) = hash;
+      }
+
       return await this.userModel.findByIdAndUpdate(id, updateUserByUserDto, {
         new: true,
       });
@@ -78,8 +94,23 @@ export class UserService {
     id: string,
     updateUserByOwnerDto: UpdateUserByOwnerDto,
   ) {
-    const user = await this.getUserByUsername(updateUserByOwnerDto.username);
+    let user = null;
+
+    if (updateUserByOwnerDto.username != null) {
+      user = await this.getUserByUsername(updateUserByOwnerDto.username);
+    }
+
     if (!user || id == user) {
+      if (updateUserByOwnerDto.password != null) {
+        const saltOrRounds = +authConfig().saltround;
+        const hash = await bcrypt.hash(
+          updateUserByOwnerDto.password,
+          saltOrRounds,
+        );
+
+        (updateUserByOwnerDto.password as string) = hash;
+      }
+
       return await this.userModel.findByIdAndUpdate(id, updateUserByOwnerDto, {
         new: true,
       });

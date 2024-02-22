@@ -1,60 +1,54 @@
-import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { UserRole } from '../schema/user.schema';
 
 export class UpdateUserByOwnerDto {
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly username: string;
+  readonly username?: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly password: string;
+  readonly password?: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly firstname: string;
+  readonly firstname?: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly lastname: string;
+  readonly lastname?: string;
 
+  @ApiProperty({ required: false })
   @IsEnum(UserRole)
-  @ApiProperty()
-  readonly role: UserRole;
+  @IsOptional()
+  readonly role?: UserRole;
 }
 
 export class UpdateUserByUserDto {
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly username: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly password: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly firstname: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly lastname: string;
 
   readonly role: string;
-}
-
-export class UserUsernameDto {
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly username: string;
 }

@@ -8,11 +8,7 @@ import { AllRole } from './schema/user.schema';
 import { appConfig } from 'config/app.config';
 import { CurrentUser } from '../auth/decorator/currentuser.decorator';
 import { IUser } from './interface/user.interface';
-import {
-  UpdateUserByOwnerDto,
-  UpdateUserByUserDto,
-  UserUsernameDto,
-} from './dto/user.dto';
+import { UpdateUserByOwnerDto, UpdateUserByUserDto } from './dto/user.dto';
 
 @ApiTags('user')
 @Controller('user')
