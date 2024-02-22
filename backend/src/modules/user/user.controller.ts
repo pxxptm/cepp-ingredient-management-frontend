@@ -8,7 +8,11 @@ import { AllRole } from './schema/user.schema';
 import { appConfig } from 'config/app.config';
 import { CurrentUser } from '../auth/decorator/currentuser.decorator';
 import { IUser } from './interface/user.interface';
-import { UpdateUserByOwnerDto, UpdateUserByUserDto } from './dto/user.dto';
+import {
+  UpdateUserByOwnerDto,
+  UpdateUserByUserDto,
+  UserUsernameDto,
+} from './dto/user.dto';
 
 @ApiTags('user')
 @Controller('user')
@@ -23,6 +27,12 @@ export class UserController {
     if (appConfig().version == 'TEST') {
       return await this.userService.getAll();
     }
+  }
+
+  @Get('/user-id-by-username')
+  @UseGuards(AuthGuard)
+  async getUserIdByUsername(@Body() userUsernameDto: UserUsernameDto) {
+    return await this.userService.getUserByUsername(userUsernameDto.username);
   }
 
   @Get('/user-info')

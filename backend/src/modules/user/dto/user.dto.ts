@@ -51,3 +51,10 @@ export class UpdateUserByUserDto {
 
   readonly role: string;
 }
+
+export class UserUsernameDto {
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly username: string;
+}
