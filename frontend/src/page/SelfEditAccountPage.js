@@ -5,10 +5,12 @@ import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
 import { useNavigate } from "react-router-dom";
 
 function SelfEditAccountPage({ username }) {
+  console.log(window.location.pathname);
   const urlRestaurantList = "http://localhost:3001/member/restaurant";
   const urlRestaurantListPage =
     "http://localhost:3000/" + username + "/restaurant";
-  const urlGetUserID = "http://localhost:3001/user/user-id-by-username/" + username;
+  const urlGetUserID =
+    "http://localhost:3001/user/user-id-by-username/" + username;
 
   const accessToken = localStorage.getItem("token");
   const [restaurantList, setRestaurantList] = useState([]);
@@ -27,7 +29,6 @@ function SelfEditAccountPage({ username }) {
 
   // get detail of this user
   useEffect(() => {
-    
     axios
       .get("http://localhost:3001/user/user-info", {
         headers: {
@@ -42,7 +43,7 @@ function SelfEditAccountPage({ username }) {
         setFName(user.firstname);
         setLName(user.lastname);
         setUsernameEdit(user.username);
-        console.log(user)
+        console.log(user);
       })
       .catch((error) => {
         console.log(error);
@@ -52,16 +53,14 @@ function SelfEditAccountPage({ username }) {
   // get ID
   useEffect(() => {
     axios
-      .get( urlGetUserID
-        ,
-        {
-          headers : {Authorization: "Bearer " + accessToken,
-          "Content-Type": "application/json",}
+      .get(urlGetUserID, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+          "Content-Type": "application/json",
         },
-      )
+      })
       .then((response) => {
         setUserID(response.data);
-        console.log(userID)
       })
       .catch((error) => {
         console.log(error);
@@ -107,7 +106,10 @@ function SelfEditAccountPage({ username }) {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          console.log("complete");
+          var currentUrl = window.location.href;
+          var url = currentUrl.replace(username, usernameEdit);
+          window.location.href = url;
+          navigate(url , {replace: true});
         }
       })
       .catch((error) => {
