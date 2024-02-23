@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateIngredientDto {
   @IsString()
@@ -15,17 +15,27 @@ export class CreateIngredientDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
+  readonly unit: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   readonly restaurantId: string;
 }
 
 export class UpdateIngredientDto {
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly name: string;
+  readonly name?: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsNumber()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly amount: number;
+  readonly amount?: number;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  readonly unit?: string;
 }
