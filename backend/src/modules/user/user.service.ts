@@ -48,7 +48,7 @@ export class UserService {
       user = await this.getUserByUsername(updateUserByUserDto.username);
     }
 
-    if (id != user) {
+    if (id != user && user != null) {
       throw new HttpException(
         {
           message: 'this user do not have permission to access',
