@@ -16,15 +16,15 @@ function AddIngredientsModal({ restaurantId, setModalOpen }) {
   //update for axios post
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(restaurantId);
+    console.log(typeof amountQuantity); // Outputs: "number"
     await axios
       .post(
         "http://localhost:3001/ingredient",
         {
           name: ingredientName,
-          amount: 0,
+          amount: parseInt(amountQuantity, 10),
           unit: unit,
-          atLeast: 0,
+          atLeast: parseInt(minQuantity, 10),
           restaurantId: restaurantId,
         },
         {
