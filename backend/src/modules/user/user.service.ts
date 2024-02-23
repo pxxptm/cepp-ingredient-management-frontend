@@ -67,7 +67,7 @@ export class UserService {
     }
 
     if (!user || id == user) {
-      if (updateUserByUserDto.password != null) {
+      if (updateUserByUserDto.password != '') {
         const saltOrRounds = +authConfig().saltround;
         const hash = await bcrypt.hash(
           updateUserByUserDto.password,
@@ -75,6 +75,8 @@ export class UserService {
         );
 
         (updateUserByUserDto.password as string) = hash;
+      } else {
+        delete updateUserByUserDto.password;
       }
 
       return await this.userModel.findByIdAndUpdate(id, updateUserByUserDto, {
@@ -109,6 +111,8 @@ export class UserService {
         );
 
         (updateUserByOwnerDto.password as string) = hash;
+      } else {
+        delete updateUserByOwnerDto.password;
       }
 
       return await this.userModel.findByIdAndUpdate(id, updateUserByOwnerDto, {

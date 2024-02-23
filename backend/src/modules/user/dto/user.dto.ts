@@ -11,7 +11,7 @@ export class UpdateUserByOwnerDto {
   @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
-  readonly password?: string;
+  password?: string;
 
   @ApiProperty({ required: false })
   @IsOptional()
@@ -38,7 +38,7 @@ export class UpdateUserByUserDto {
   @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
-  readonly password: string;
+  password: string;
 
   @ApiProperty({ required: false })
   @IsOptional()
