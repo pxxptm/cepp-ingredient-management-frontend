@@ -17,6 +17,11 @@ export class CreateIngredientDto {
   @ApiProperty()
   readonly unit: string;
 
+  @IsNumber()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly atLeast: number;
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
@@ -33,6 +38,11 @@ export class UpdateIngredientDto {
   @IsOptional()
   @IsNumber()
   readonly amount?: number;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsNumber()
+  readonly atLeast?: number;
 
   @ApiProperty({ required: false })
   @IsOptional()
