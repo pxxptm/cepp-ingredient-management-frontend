@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddIngredientsModal.css";
 import axios from "axios";
 
-function AddIngredientsModal({ restaurantID, setModalOpen }) {
+function AddIngredientsModal({ restaurantId, setModalOpen }) {
   const accessToken = localStorage.getItem("token");
   function refreshPage() {
     window.location.reload();
@@ -11,10 +11,12 @@ function AddIngredientsModal({ restaurantID, setModalOpen }) {
   const [ingredientName, setIngredientName] = useState();
   const [unit, setUnit] = useState();
   const [minQuantity, setMinQuantity] = useState();
+  const [amountQuantity, setAmountQuantity] = useState();
 
   //update for axios post
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log(restaurantId);
     await axios
       .post(
         "http://localhost:3001/ingredient",
@@ -22,8 +24,8 @@ function AddIngredientsModal({ restaurantID, setModalOpen }) {
           name: ingredientName,
           amount: 0,
           unit: unit,
-          restaurantId: restaurantID,
-          /*minQuantity : minQuantity ,*/
+          atLeast: 0,
+          restaurantId: restaurantId,
         },
         {
           headers: {
@@ -101,16 +103,18 @@ function AddIngredientsModal({ restaurantID, setModalOpen }) {
 
             <div className="add-ingredient-form-floating-half">
               <div className="add-ingredient-input-form">
-                <label>ปริมาณเริ่มต้น</label>
+                <label>ปริมาณเริ่มต้น *</label>
                 <input
-                id="default-amount"
                   className="add-ingredient-form-input-space"
                   type="number"
-                  placeholder="0 (ค่าเริ่มต้น)"
-                  name="default-amount"
+                  placeholder="amount quantity (ปริมาณเริ่มต้น)"
+                  name="amount-quantity"
                   aria-invalid="false"
                   autoComplete="None"
-                  readOnly={true}
+                  min="0"
+                  onChange={(e) => {
+                    setAmountQuantity(e.target.value);
+                  }}
                 />
               </div>
               <div className="add-ingredient-input-form">
@@ -123,7 +127,9 @@ function AddIngredientsModal({ restaurantID, setModalOpen }) {
                   aria-invalid="false"
                   autoComplete="None"
                   min="0"
-                  onChange={(e) => {setMinQuantity(e.target.value)}}
+                  onChange={(e) => {
+                    setMinQuantity(e.target.value);
+                  }}
                 />
                 <p>เมื่อวัตถุดิบเหลือตามขั้นต่ำจะมีการแจ้งเตือน</p>
               </div>
@@ -144,7 +150,7 @@ function AddIngredientsModal({ restaurantID, setModalOpen }) {
                 type="submit"
                 className="btn-submit"
               >
-                เพิ่มบัญชี
+                เพิ่มวัตถุดิบ
               </button>
             </div>
           </form>

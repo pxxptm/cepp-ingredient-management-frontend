@@ -52,7 +52,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       <div id="Owner-inventory-page-body">
       {modalOpen && (
           <AddingredientsModal
-          setModalOpen={setModalOpen}
+           setModalOpen={setModalOpen}
             restaurantId={restaurantId}
           />
         )}
