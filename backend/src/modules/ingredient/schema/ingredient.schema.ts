@@ -9,6 +9,12 @@ export class Ingredient {
   amount: number;
 
   @Prop()
+  atLeast: number;
+
+  @Prop()
+  unit: string;
+
+  @Prop()
   restaurantId: string;
 }
 
