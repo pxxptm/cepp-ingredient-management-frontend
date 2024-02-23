@@ -1,66 +1,157 @@
-import React from 'react'
-import './AddIngredientsModal.css'
+import React, { useState } from "react";
+import "./AddIngredientsModal.css";
+import axios from "axios";
 
-function AddIngredientsModal({restaurantID , setModalOpen}) {
+function AddIngredientsModal({ restaurantID, setModalOpen }) {
+  const accessToken = localStorage.getItem("token");
+  function refreshPage() {
+    window.location.reload();
+  }
+
+  const [ingredientName, setIngredientName] = useState();
+  const [unit, setUnit] = useState();
+  const [minQuantity, setMinQuantity] = useState();
+
+  //update for axios post
+  async function handleSubmit(event) {
+    event.preventDefault();
+    await axios
+      .post(
+        "http://localhost:3001/ingredient",
+        {
+          name: ingredientName,
+          amount: 0,
+          unit: unit,
+          restaurantId: restaurantID,
+          /*minQuantity : minQuantity ,*/
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          setModalOpen(false);
+          refreshPage();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
-    <div className="rest-del-modalBackground">
+    <div className="add-ingredient-modalBackground">
       <link
         href="https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin"
         rel="stylesheet"
         type="text/css"
       ></link>
 
-      <div className="rest-del-modalContainer">
-        <div className="rest-del-titleCloseBtn">
+      <div className="add-ingredient-modalContainer">
+        <div className="add-ingredient-titleCloseBtn">
           <button
             onClick={() => {
-                setModalOpen(false);
+              setModalOpen(false);
             }}
           >
             x
           </button>
         </div>
 
-        <div id="confirm-txt-1">
-          แน่ใจใช่ไหมว่าต้องการลบร้าน<span>{restaurantName}</span>
-        </div>
-        <div id="confirm-txt-2">กรุณาป้อนรหัสผ่านของคุณเพื่อยืนยัน</div>
-
-        <div className="rest-del-body">
+        <div className="add-ingredient-body">
           <form onSubmit={handleSubmit}>
-            <div className="rest-del-form-floating">
-              <div className="rest-del-input-form">
-                <i className="material-icons">lock</i>
+            <div className="add-ingredient-form-floating">
+              <div className="add-ingredient-input-form">
+                <label>ชื่อวัตถุดิบ *</label>
                 <input
-                  className="rest-del-form-input-space"
-                  type="password"
-                  placeholder="password (รหัสผ่าน)"
-                  name="password"
+                  className="add-ingredient-form-input-space"
+                  type="text"
+                  placeholder="ingredient (ชื่อวัตถุดิบ)"
+                  name="ingredient"
                   aria-invalid="false"
                   autoComplete="None"
                   onChange={(e) => {
-                    setPassword(e.target.value);
+                    setIngredientName(e.target.value);
                   }}
                 />
               </div>
             </div>
 
-            <div id="rest-del-span-zone" className="d-flex">
+            <div className="add-ingredient-form-floating">
+              <div className="add-ingredient-input-form">
+                <label>หน่วย *</label>
+                <input
+                  className="add-ingredient-form-input-space"
+                  type="text"
+                  placeholder="unit (หน่วย)"
+                  name="unit"
+                  aria-invalid="false"
+                  autoComplete="None"
+                  onChange={(e) => {
+                    setUnit(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="add-ingredient-form-floating-half">
+              <div className="add-ingredient-input-form">
+                <label>ปริมาณเริ่มต้น</label>
+                <input
+                id="default-amount"
+                  className="add-ingredient-form-input-space"
+                  type="number"
+                  placeholder="0 (ค่าเริ่มต้น)"
+                  name="default-amount"
+                  aria-invalid="false"
+                  autoComplete="None"
+                  readOnly={true}
+                />
+              </div>
+              <div className="add-ingredient-input-form">
+                <label>ปริมาณขั้นต่ำ *</label>
+                <input
+                  className="add-ingredient-form-input-space"
+                  type="number"
+                  placeholder="minimum quantity (ปริมาณขั้นต่ำ)"
+                  name="minimum-quantity"
+                  aria-invalid="false"
+                  autoComplete="None"
+                  min="0"
+                  onChange={(e) => {setMinQuantity(e.target.value)}}
+                />
+                <p>เมื่อวัตถุดิบเหลือตามขั้นต่ำจะมีการแจ้งเตือน</p>
+              </div>
+            </div>
+
+            <div id="add-ingredient-span-zone" className="d-flex">
               <button
-                id="rest-del-cancel"
-                onClick={() => setOpenDeleteModal(false)}
+                id="add-ingredient-cancel"
+                onClick={() => {
+                  setModalOpen(false);
+                }}
               >
                 ยกเลิก
               </button>
-              <button id="rest-del-submit" type="submit" className="btn-submit">
-                เสร็จสิ้น
+
+              <button
+                id="add-ingredient-submit"
+                type="submit"
+                className="btn-submit"
+              >
+                เพิ่มบัญชี
               </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default AddIngredientsModal
+export default AddIngredientsModal;

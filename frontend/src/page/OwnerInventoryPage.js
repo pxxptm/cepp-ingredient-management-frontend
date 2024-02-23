@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./OwnerInventoryPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
+import AddingredientsModal from "../component/AddIngredientsModal"
 import axios from "axios";
 
 export default function OwnerInventoryPage({ username, restaurantId }) {
@@ -31,7 +32,6 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       });
   });
 
-
   return (
     <div id="Owner-inventory-page">
       <link
@@ -50,6 +50,12 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       </div>
 
       <div id="Owner-inventory-page-body">
+      {modalOpen && (
+          <AddingredientsModal
+          setModalOpen={setModalOpen}
+            restaurantId={restaurantId}
+          />
+        )}
         <div id="Owner-inventory-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -62,22 +68,16 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
         <div id="Owner-inventory-page-content">
           <div id="Owner-inventory-page-content-header">
             <h1>สต็อกวัตถุดิบ</h1>
-            <div id="Owner-inventory-page-sub-page-tab">
-              <div id="add-staff-acc-btn-zone">
-              <button
-                id="add-staff-acc-btn"
-                onClick={() => {
-                  setModalOpen(true);
-                }}
-              >
-                <span>+</span>เพิ่มวัตถุดิบ
-              </button>
+            <div id="add-staff-acc-btn-zone">
+                <button
+                  id="add-ingredient-btn"
+                  onClick={() => {
+                    setModalOpen(true);
+                  }}
+                >
+                  <span>+</span>เพิ่มวัตถุดิบ
+                </button>
               </div>
-
-              <div id="Owner-inventory-page-sub-page-tab-btn">
-
-              </div>
-            </div>
           </div>
 
           <div id="Owner-inventory-page-content-table-zone">
@@ -103,7 +103,6 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                                 </div>
                                 <div id="role">
                                   <span>role : </span>
-                                
                                 </div>
                               </div>
                             </div>

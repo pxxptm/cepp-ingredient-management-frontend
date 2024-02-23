@@ -109,7 +109,7 @@ function SelfEditAccountPage({ username }) {
           var currentUrl = window.location.href;
           var url = currentUrl.replace(username, usernameEdit);
           window.location.href = url;
-          navigate(url , {replace: true});
+          navigate(url, { replace: true });
         }
       })
       .catch((error) => {
@@ -281,16 +281,18 @@ function SelfEditAccountPage({ username }) {
                   restaurantList.map(
                     (restaurant, index) =>
                       restaurant && (
-                        <div
-                          id="a-rest-block"
-                          onClick={() =>
-                            navigate(
-                              `/${usernameStatic}/${restaurant._id}/info`
-                            )
-                          }
-                        >
+                        <div id="a-rest-block">
                           <div id="rest-name-and-descript">
-                            <div id="rest-name">{restaurant.name}</div>
+                            <div
+                              id="rest-name"
+                              onClick={() =>
+                                navigate(
+                                  `/${usernameStatic}/${restaurant._id}/info`
+                                )
+                              }
+                            >
+                              {restaurant.name}
+                            </div>
                             <div id="rest-descript">
                               {restaurant.description}
                             </div>
