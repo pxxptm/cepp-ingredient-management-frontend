@@ -59,11 +59,11 @@
         {
             width: 100%;
             height: fit-content;
-            padding: 5% 0;
+            padding: 5% 0 0 0;
             display: grid;
-            grid-template-columns: 10% 14%;
+            grid-template-columns: 10% 70%;
             column-gap: 20%;
-            background-color: #888;
+            background-color: #c6ffe0;
             padding-right: 5.25vw;
 
             h1
@@ -73,37 +73,63 @@
                 font-weight: bold;
                 margin: auto;
                 text-wrap: nowrap;
+                margin-bottom: 45%;
             }
 
-            #add-staff-acc-btn
+            #Owner-inventory-page-sub-page-tab
             {
-                margin: auto;
-                font-family: 'Kanit', sans-serif;
-                text-wrap: nowrap;
-                width: 8.25vw;
-                height: 2.5vw;
-                font-size: 1vw;
-                background-color: #00aa88;
-                color: white;
-                border: none;
-                border-radius: 0.7vw;
-                border-width: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                width: 100%;
+                background-color: pink;
 
-                &:hover
+                #add-staff-acc-btn-zone
                 {
-                    background-color: #006d58;
+                    width: 100%;
+                    height: 2.5vw;
+                    margin-left: auto;
+
+
+                    #add-staff-acc-btn
+                    {
+                        margin: auto;
+                        font-family: 'Kanit', sans-serif;
+                        text-wrap: nowrap;
+                        width: 8.25vw;
+                        height: 2.5vw;
+                        font-size: 1vw;
+                        background-color: #00aa88;
+                        color: white;
+                        border: none;
+                        border-radius: 0.7vw;
+                        border-width: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        float: right;
+
+                        &:hover
+                        {
+                            background-color: #006d58;
+                        }
+                        
+                        span 
+                        {
+                            font-size: 1.2vw;
+                            font-family: 'Kanit', sans-serif;
+                            margin-right: 6%;
+                        }
+                    }
                 }
-                
-                span 
+
+                #Owner-inventory-page-sub-page-tab-btn
                 {
-                    font-size: 1.2vw;
-                    font-family: 'Kanit', sans-serif;
-                    margin-right: 6%;
+                    margin-top: 2%;
+                    width: 100%;
+                    height: 100%;
+                    background-color: darksalmon;
                 }
             }
+
+            
         }
     }
 
