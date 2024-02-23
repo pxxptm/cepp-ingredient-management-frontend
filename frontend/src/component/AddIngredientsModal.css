@@ -92,7 +92,7 @@
     }
   
     .add-ingredient-form-floating {
-      margin-bottom: 4%;
+      margin-bottom: 3%;
     }
 
     
@@ -109,7 +109,7 @@
         font-family: "Kanit", sans-serif;
         color: rgba(0, 0, 0, 0.81);
         font-size: 0.75vw;
-        margin-bottom: 2.5%;
+        margin-bottom: 2%;
       }
   
       .add-ingredient-form-input-space {
@@ -136,6 +136,14 @@
         column-gap: 2%;
         margin-bottom: 3%;
         margin-top: 3%;
+
+        label
+      {
+        font-family: "Kanit", sans-serif;
+        color: rgba(0, 0, 0, 0.81);
+        font-size: 0.75vw;
+        margin-bottom: 4.5%;
+      }
 
         .add-ingredient-form-input-space {
             font-family: "Kanit", sans-serif;
@@ -243,8 +251,9 @@
       color: black;
       width: fit-content;
       padding: 0;
-      margin-right: -5%;
-      margin-top: 1%;
+      margin-right: -5.5%;
+      margin-top: 2%;
+      margin-bottom: 2%;
   
       &:hover {
         color: crimson;
@@ -268,35 +277,7 @@
       }
     }
 
-    #confirm-txt-1
-    {
-        font-family: "Kanit", sans-serif;
-      width: 100%;
-      display: flex;
-      color: black;
-      justify-content: center;
-      font-size: 1vw;
-      margin-bottom: 3%;
-      margin-top: 3%;
 
-      span 
-      {
-        font-weight: bold;
-        margin-left: 2%;
-        color: rgb(7, 79, 103);
-      }
-    }
-
-    #confirm-txt-2
-    {
-        font-family: "Kanit", sans-serif;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      font-size: 1.7vw;
-      font-weight: bold;
-      margin-bottom: 5%;
-    }
   
     #add-ingredient-form {
       width: 100%;
@@ -306,7 +287,7 @@
     }
   
     .add-ingredient-form-floating {
-      margin-bottom: 8%;
+      margin-bottom: 4%;
     }
 
     .add-ingredient-form-floating .material-icons
@@ -326,7 +307,16 @@
       width: 100%;
       height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: flex-start;
+
+      label
+      {
+        font-family: "Kanit", sans-serif;
+        color: rgba(0, 0, 0, 0.81);
+        font-size: 1.1vw;
+        margin-bottom: 1.5%;
+      }
 
   
       .add-ingredient-form-input-space {
@@ -334,9 +324,9 @@
         font-size: 1.1vw;
         font-weight: normal;
         width: 100%;
-        padding: 3.25% 5%;
+        padding: 2.5% 5%;
         border: 0.01vw solid rgba(0, 0, 0, 0.397);
-        border-radius: 0 3vw 3vw 0;
+        border-radius: 3vw;
         background-color: #fcfcfc;
   
         &:focus {
@@ -346,6 +336,72 @@
         }
       }
     }
+
+    .add-ingredient-form-floating-half {
+      display: grid;
+      grid-template-columns: repeat(2,49%) ;
+      column-gap: 2%;
+      margin-bottom: 3%;
+      margin-top: 2%;
+
+      label
+          {
+            margin-bottom: 3.5%;
+          }
+
+      .add-ingredient-form-input-space {
+          font-family: "Kanit", sans-serif;
+          font-size: 1.1vw;
+          font-weight: normal;
+          width: 100%;
+          padding: 5% 10%;
+          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+          border-radius: 1.75vw;
+          background-color: #fcfcfc;
+
+          
+    
+          &:focus {
+            background-color: #e7e7e7;
+            border: 0.01vw solid rgba(0, 0, 0, 0.397);
+            outline: none;
+          }
+        }
+
+        p{
+          font-family: "Kanit", sans-serif;
+          font-size: 0.85vw;
+          margin-top: 4%;
+          margin-left: auto;
+          margin-right: 4%;
+          color: rgb(101, 101, 101);
+        }
+    }
+
+  #add-ingredient-span-zone
+  {
+      margin: 5% 0 0 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+  }
+
+  #add-ingredient-cancel
+  {
+      font-family: "Kanit", sans-serif;
+    font-size: 0.8vw;
+    font-weight: normal;
+    background-color: rgb(118,118,118);
+    color: white;
+    width: 6.25vw;
+    padding: 1.25% 1%;
+    border: none;
+    border-radius: 0.7vw;
+
+    &:hover {
+      background-color: rgb(56,56,56);
+    }
+  }
   
     #add-ingredient-span-zone
     {
@@ -404,7 +460,7 @@
       box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
       display: flex;
       flex-direction: column;
-      border-radius: 2.5vw;
+      border-radius: 3vw;
     }
   
     .add-ingredient-titleCloseBtn {
@@ -427,7 +483,7 @@
       width: fit-content;
       padding: 0;
       margin-right: -3%;
-      margin-top: 1%;
+      margin-top: 2%;
   
       &:hover {
         color: crimson;
@@ -451,36 +507,7 @@
       }
     }
 
-    #confirm-txt-1
-    {
-        font-family: "Kanit", sans-serif;
-      width: 100%;
-      display: flex;
-      color: black;
-      justify-content: center;
-      font-size: 1.75vw;
-      margin-bottom: 3%;
-      margin-top: 3%;
 
-      span 
-      {
-        font-weight: bold;
-        margin-left: 2%;
-        color: rgb(7, 79, 103);
-      }
-    }
-
-    #confirm-txt-2
-    {
-        font-family: "Kanit", sans-serif;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      font-size: 2.55vw;
-      font-weight: bold;
-      margin-bottom: 5%;
-    }
-  
     #add-ingredient-form {
       width: 100%;
       display: flex;
@@ -488,38 +515,47 @@
       background-color: rgb(255, 255, 255);
     }
   
-    .add-ingredient-form-floating {
-      margin-bottom: 8%;
+    .add-ingredient-form-floating ,.add-ingredient-form-floating-half .add-ingredient-input-form {
+      margin-bottom: 2%;
     }
 
-    .add-ingredient-form-floating .material-icons
+    .add-ingredient-form-floating-half .add-ingredient-input-form 
     {
-        color: white;
-        font-size: 2.25vw !important; 
-        padding: 3.9% 6%;
-        min-width: 7%;
-        justify-content: auto;
-        text-align: center;
-        border-top-left-radius: 3vw;
-        border-bottom-left-radius: 3vw;
-        background-color: rgb(33, 33, 33);
+      p
+      {
+        font-family: "Kanit", sans-serif;
+        color: rgba(0, 0, 0, 0.81);
+        font-size: 1.5vw;
+        margin-top: 1.5%;
+        margin-left: auto;
+      }
     }
-  
+    
+
     .add-ingredient-input-form {
       width: 100%;
       height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: flex-start;
+
+      label
+      {
+        font-family: "Kanit", sans-serif;
+        color: rgba(0, 0, 0, 0.81);
+        font-size: 1.75vw;
+        margin-bottom: 1.5%;
+      }
 
   
       .add-ingredient-form-input-space {
         font-family: "Kanit", sans-serif;
-        font-size: 2vw;
+        font-size: 1.75vw;
         font-weight: normal;
         width: 100%;
-        padding: 3.25% 5%;
+        padding: 2.75% 5%;
         border: 0.01vw solid rgba(0, 0, 0, 0.397);
-        border-radius: 0 3vw 3vw 0;
+        border-radius: 3vw;
         background-color: #fcfcfc;
   
         &:focus {
@@ -541,11 +577,11 @@
     #add-ingredient-cancel
     {
         font-family: "Kanit", sans-serif;
-      font-size: 1.1vw;
+      font-size: 1.5vw;
       font-weight: normal;
       background-color: rgb(118,118,118);
       color: white;
-      width: 9vw;
+      width: 12vw;
       padding: 1.3% 1%;
       border: none;
       border-radius: 0.7vw;
@@ -557,11 +593,11 @@
   
     #add-ingredient-submit {
       font-family: "Kanit", sans-serif;
-      font-size: 1.1vw;
+      font-size: 1.5vw;
       font-weight: normal;
       background-color: rgb(10, 129, 169);
       color: white;
-      width: 9vw;
+      width: 12vw;
       padding: 1.3% 1%;
       border: none;
       border-radius: 0.7vw;
