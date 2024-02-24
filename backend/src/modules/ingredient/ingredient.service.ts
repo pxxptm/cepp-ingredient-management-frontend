@@ -15,6 +15,10 @@ export class IngredientService {
     return await this.ingredientModel.findById(ingredientId);
   }
 
+  async getByRestaurantId(restaurantId: string) {
+    return await this.ingredientModel.find({ restaurantId: restaurantId });
+  }
+
   async create(createIngredientDto: CreateIngredientDto) {
     const createdIngredient = new this.ingredientModel(createIngredientDto);
     await createdIngredient.save();

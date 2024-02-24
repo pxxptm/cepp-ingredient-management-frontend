@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   Patch,
   Post,
@@ -18,6 +19,11 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 @Controller('ingredient')
 export class IngredientController {
   constructor(private readonly ingredientService: IngredientService) {}
+
+  @Get('restaurant/:id')
+  async getByRestaurantId(@Param('id') id: string) {
+    return await this.ingredientService.getByRestaurantId(id);
+  }
 
   @Post()
   async create(@Body() createIngredientDto: CreateIngredientDto) {
