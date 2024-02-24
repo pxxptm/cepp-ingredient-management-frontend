@@ -89,21 +89,10 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                     index > 0 && ( // Check if staff is not null
                       <div id="staff-block">
                         {
-                          <div id="a-staff-container">
-                            <div id="a-staff-container-l">
-                              <div id="Fname-and-Lname">
-                                <div id="Fname">{ingredient.firstname}</div>
-                                <div id="Lname">{ingredient.lastname}</div>
-                              </div>
-
-                              <div id="username-and-role">
-                                <div id="username">
-                                  <span>username : </span>
-                                  {ingredient.username}
-                                </div>
-                                <div id="role">
-                                  <span>role : </span>
-                                </div>
+                          <div id="a-ingredient-container">
+                            <div id="a-ingredient-container-l">
+                              <div id="ingredient-name">
+                                <div id="ingredient-name-txt">{ingredient.name}</div>
                               </div>
                             </div>
 

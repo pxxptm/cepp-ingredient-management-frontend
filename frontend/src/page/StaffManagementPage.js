@@ -113,7 +113,7 @@ function StaffManagementPage({ username, restaurantId }) {
                   (staff, index) =>
                     staff &&
                     index > 0 && ( // Check if staff is not null
-                      <div id="staff-block">
+                      <div id="staff-block" key={staff.userId}>
                         {
                           <div id="a-staff-container">
                             <div id="a-staff-container-l">
