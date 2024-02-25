@@ -994,16 +994,16 @@
 
 }
 
-::-webkit-scrollbar {
+#rest-list-space::-webkit-scrollbar {
     width: 0.25vw; /* Width of the scrollbar */
   }
   
-::-webkit-scrollbar-thumb {
+  #rest-list-space::-webkit-scrollbar-thumb {
     background-color: #88888869;
     border-radius: 2vw;
   }
   
-::-webkit-scrollbar-track {
+  #rest-list-space::-webkit-scrollbar-track {
     background-color: #9dabc539;
 
   }

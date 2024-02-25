@@ -165,12 +165,12 @@
                 #username-and-role
                 {
                     color: #727272;
-                    font-size: 0.75vw;
+                    font-size: 0.825vw;
                     display: flex;
 
                     @media (max-width: 1299.5px) 
                     {
-                        font-size: 0.9vw;
+                        font-size: 0.875vw;
                     }
 
                     #username , #role
@@ -339,7 +339,7 @@
                     color: black;
                     font-size: 1.8vw;
                     display: flex;
-                    margin-bottom: 5%;
+                    margin-bottom: 4%;
 
                     #Fname 
                     {

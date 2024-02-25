@@ -1,4 +1,4 @@
-.add-ingredient-modalBackground {
+.edit-ingredient-modalBackground {
     z-index: 1;
     position: fixed;
     left: 0;
@@ -13,11 +13,11 @@
   }
 
   @media (min-width: 1300px) {
-    .add-ingredient-modalBackground {
+    .edit-ingredient-modalBackground {
       padding: 0 0;
     }
   
-    .add-ingredient-modalContainer {
+    .edit-ingredient-modalContainer {
       background-color: #ffffff;
       margin: auto;
       padding: 0.8% 3% 3% 3%;
@@ -30,7 +30,7 @@
       border-radius: 2vw;
     }
   
-    .add-ingredient-titleCloseBtn {
+    .edit-ingredient-titleCloseBtn {
       font-family: "Kanit", sans-serif;
       width: 100%;
       display: flex;
@@ -51,7 +51,7 @@
       }
     }
   
-    .add-ingredient-titleCloseBtn button {
+    .edit-ingredient-titleCloseBtn button {
       background-color: transparent;
       border: none;
       font-size: 1.7vw;
@@ -67,7 +67,7 @@
       }
     }
   
-    .add-ingredient-modalContainer .add-ingredient-body {
+    .edit-ingredient-modalContainer .edit-ingredient-body {
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -84,20 +84,20 @@
       }
     }
 
-    #add-ingredient-form {
+    #edit-ingredient-form {
       width: 100%;
       display: flex;
       flex-direction: column;
       background-color: rgb(255, 255, 255);
     }
   
-    .add-ingredient-form-floating {
+    .edit-ingredient-form-floating {
       margin-bottom: 3%;
     }
 
     
 
-    .add-ingredient-input-form {
+    .edit-ingredient-input-form {
       width: 100%;
       height: 100%;
       display: flex;
@@ -112,7 +112,7 @@
         margin-bottom: 2%;
       }
   
-      .add-ingredient-form-input-space {
+      .edit-ingredient-form-input-space {
         font-family: "Kanit", sans-serif;
         font-size: 0.75vw;
         font-weight: normal;
@@ -130,7 +130,7 @@
       }
     }
 
-    .add-ingredient-form-floating-half {
+    .edit-ingredient-form-floating-half {
         display: grid;
         grid-template-columns: repeat(2,49%) ;
         column-gap: 2%;
@@ -145,7 +145,7 @@
         margin-bottom: 4.5%;
       }
 
-        .add-ingredient-form-input-space {
+        .edit-ingredient-form-input-space {
             font-family: "Kanit", sans-serif;
             font-size: 0.75vw;
             font-weight: normal;
@@ -172,7 +172,7 @@
           }
       }
   
-    #add-ingredient-span-zone
+    #edit-ingredient-span-zone
     {
         margin: 5% 0 0 0;
         width: 100%;
@@ -180,7 +180,7 @@
         justify-content: space-between;
     }
 
-    #add-ingredient-cancel
+    #edit-ingredient-cancel
     {
         font-family: "Kanit", sans-serif;
       font-size: 0.8vw;
@@ -197,7 +197,7 @@
       }
     }
   
-    #add-ingredient-submit {
+    #edit-ingredient-submit {
       font-family: "Kanit", sans-serif;
       font-size: 0.8vw;
       font-weight: normal;
@@ -215,11 +215,11 @@
   }
 
   @media (min-width: 700px) and (max-width: 1299.5px) {
-    .add-ingredient-modalBackground {
+    .edit-ingredient-modalBackground {
       padding: 0 0;
     }
   
-    .add-ingredient-modalContainer {
+    .edit-ingredient-modalContainer {
       background-color: #ffffff;
       margin: auto;
       padding: 0.5% 5% 1% 5%;
@@ -232,7 +232,7 @@
       border-radius: 2vw;
     }
   
-    .add-ingredient-titleCloseBtn {
+    .edit-ingredient-titleCloseBtn {
       font-family: "Kanit", sans-serif;
       width: 100%;
       display: flex;
@@ -242,7 +242,7 @@
       margin-right: -8%;
     }
   
-    .add-ingredient-titleCloseBtn button {
+    .edit-ingredient-titleCloseBtn button {
       background-color: transparent;
       border: none;
       font-size: 1.7vw;
@@ -260,7 +260,7 @@
       }
     }
   
-    .add-ingredient-modalContainer .add-ingredient-body {
+    .edit-ingredient-modalContainer .edit-ingredient-body {
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -279,18 +279,18 @@
 
 
   
-    #add-ingredient-form {
+    #edit-ingredient-form {
       width: 100%;
       display: flex;
       justify-content: space-between;
       background-color: rgb(255, 255, 255);
     }
   
-    .add-ingredient-form-floating {
+    .edit-ingredient-form-floating {
       margin-bottom: 4%;
     }
 
-    .add-ingredient-form-floating .material-icons
+    .edit-ingredient-form-floating .material-icons
     {
         color: white;
         font-size: 1.5vw !important; 
@@ -303,7 +303,7 @@
         background-color: rgb(33, 33, 33);
     }
   
-    .add-ingredient-input-form {
+    .edit-ingredient-input-form {
       width: 100%;
       height: 100%;
       display: flex;
@@ -319,7 +319,7 @@
       }
 
   
-      .add-ingredient-form-input-space {
+      .edit-ingredient-form-input-space {
         font-family: "Kanit", sans-serif;
         font-size: 1.1vw;
         font-weight: normal;
@@ -337,7 +337,7 @@
       }
     }
 
-    .add-ingredient-form-floating-half {
+    .edit-ingredient-form-floating-half {
       display: grid;
       grid-template-columns: repeat(2,49%) ;
       column-gap: 2%;
@@ -349,7 +349,7 @@
             margin-bottom: 3.5%;
           }
 
-      .add-ingredient-form-input-space {
+      .edit-ingredient-form-input-space {
           font-family: "Kanit", sans-serif;
           font-size: 1.1vw;
           font-weight: normal;
@@ -378,7 +378,7 @@
         }
     }
 
-  #add-ingredient-span-zone
+  #edit-ingredient-span-zone
   {
       margin: 5% 0 0 0;
       width: 100%;
@@ -386,7 +386,7 @@
       justify-content: space-between;
   }
 
-  #add-ingredient-cancel
+  #edit-ingredient-cancel
   {
       font-family: "Kanit", sans-serif;
     font-size: 0.8vw;
@@ -403,7 +403,7 @@
     }
   }
   
-    #add-ingredient-span-zone
+    #edit-ingredient-span-zone
     {
         margin: 3% 0 2% 0;
         width: 100%;
@@ -411,7 +411,7 @@
         justify-content: space-between;
     }
 
-    #add-ingredient-cancel
+    #edit-ingredient-cancel
     {
         font-family: "Kanit", sans-serif;
       font-size: 0.9vw;
@@ -428,7 +428,7 @@
       }
     }
   
-    #add-ingredient-submit {
+    #edit-ingredient-submit {
       font-family: "Kanit", sans-serif;
       font-size: 0.9vw;
       font-weight: normal;
@@ -446,11 +446,11 @@
   }
 
   @media (min-width: 420px) and (max-width: 699.5px){
-    .add-ingredient-modalBackground {
+    .edit-ingredient-modalBackground {
       padding: 0 0;
     }
   
-    .add-ingredient-modalContainer {
+    .edit-ingredient-modalContainer {
       background-color: #ffffff;
       margin: auto;
       padding: 0.5% 5% 2% 5%;
@@ -463,7 +463,7 @@
       border-radius: 3vw;
     }
   
-    .add-ingredient-titleCloseBtn {
+    .edit-ingredient-titleCloseBtn {
       font-family: "Kanit", sans-serif;
       width: 100%;
       display: flex;
@@ -473,7 +473,7 @@
       margin-right: -8%;
     }
   
-    .add-ingredient-titleCloseBtn button {
+    .edit-ingredient-titleCloseBtn button {
       background-color: transparent;
       border: none;
       font-size: 2.35vw;
@@ -490,7 +490,7 @@
       }
     }
   
-    .add-ingredient-modalContainer .add-ingredient-body {
+    .edit-ingredient-modalContainer .edit-ingredient-body {
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -508,18 +508,18 @@
     }
 
 
-    #add-ingredient-form {
+    #edit-ingredient-form {
       width: 100%;
       display: flex;
       justify-content: space-between;
       background-color: rgb(255, 255, 255);
     }
   
-    .add-ingredient-form-floating ,.add-ingredient-form-floating-half .add-ingredient-input-form {
+    .edit-ingredient-form-floating ,.edit-ingredient-form-floating-half .edit-ingredient-input-form {
       margin-bottom: 2%;
     }
 
-    .add-ingredient-form-floating-half .add-ingredient-input-form 
+    .edit-ingredient-form-floating-half .edit-ingredient-input-form 
     {
       p
       {
@@ -532,7 +532,7 @@
     }
     
 
-    .add-ingredient-input-form {
+    .edit-ingredient-input-form {
       width: 100%;
       height: 100%;
       display: flex;
@@ -548,7 +548,7 @@
       }
 
   
-      .add-ingredient-form-input-space {
+      .edit-ingredient-form-input-space {
         font-family: "Kanit", sans-serif;
         font-size: 1.75vw;
         font-weight: normal;
@@ -566,7 +566,7 @@
       }
     }
   
-    #add-ingredient-span-zone
+    #edit-ingredient-span-zone
     {
         margin: 3% 0 2% 0;
         width: 100%;
@@ -574,7 +574,7 @@
         justify-content: space-between;
     }
 
-    #add-ingredient-cancel
+    #edit-ingredient-cancel
     {
         font-family: "Kanit", sans-serif;
       font-size: 1.5vw;
@@ -591,7 +591,7 @@
       }
     }
   
-    #add-ingredient-submit {
+    #edit-ingredient-submit {
       font-family: "Kanit", sans-serif;
       font-size: 1.5vw;
       font-weight: normal;
@@ -610,11 +610,11 @@
 
   @media (max-width: 419.5px)
   {
-    .add-ingredient-modalBackground {
+    .edit-ingredient-modalBackground {
       padding: 0 0;
     }
   
-    .add-ingredient-modalContainer {
+    .edit-ingredient-modalContainer {
       background-color: #ffffff;
       margin: auto;
       padding: 0.5% 5% 2% 5%;
@@ -628,7 +628,7 @@
       border-radius: 6vw;
     }
   
-    .add-ingredient-titleCloseBtn {
+    .edit-ingredient-titleCloseBtn {
       font-family: "Kanit", sans-serif;
       width: 100%;
       display: flex;
@@ -638,7 +638,7 @@
       margin-right: -8%;
     }
   
-    .add-ingredient-titleCloseBtn button {
+    .edit-ingredient-titleCloseBtn button {
       background-color: transparent;
       border: none;
       font-size: 75%;
@@ -655,7 +655,7 @@
       }
     }
   
-    .add-ingredient-modalContainer .add-ingredient-body {
+    .edit-ingredient-modalContainer .edit-ingredient-body {
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -672,18 +672,18 @@
       }
     }
   
-    #add-ingredient-form {
+    #edit-ingredient-form {
       width: 100%;
       display: flex;
       justify-content: space-between;
       background-color: rgb(255, 255, 255);
     }
   
-    .add-ingredient-form-floating ,.add-ingredient-form-floating-half .add-ingredient-input-form {
+    .edit-ingredient-form-floating ,.edit-ingredient-form-floating-half .edit-ingredient-input-form {
       margin-bottom: 4%;
     }
 
-    .add-ingredient-form-floating-half .add-ingredient-input-form 
+    .edit-ingredient-form-floating-half .edit-ingredient-input-form 
     {
       p
       {
@@ -695,7 +695,7 @@
       }
     }
 
-    .add-ingredient-input-form {
+    .edit-ingredient-input-form {
       width: 100%;
       height: 100%;
       display: flex;
@@ -711,7 +711,7 @@
       }
 
   
-      .add-ingredient-form-input-space {
+      .edit-ingredient-form-input-space {
         font-family: "Kanit", sans-serif;
         font-size: 55%;
         font-weight: normal;
@@ -729,7 +729,7 @@
       }
     }
   
-    #add-ingredient-span-zone
+    #edit-ingredient-span-zone
     {
         margin: 0 0 3% 0;
         width: 100%;
@@ -737,7 +737,7 @@
         justify-content: space-between;
     }
 
-    #add-ingredient-cancel
+    #edit-ingredient-cancel
     {
         font-family: "Kanit", sans-serif;
       font-size: 45%;
@@ -754,7 +754,7 @@
       }
     }
   
-    #add-ingredient-submit {
+    #edit-ingredient-submit {
       font-family: "Kanit", sans-serif;
       font-size: 45%;
       font-weight: normal;

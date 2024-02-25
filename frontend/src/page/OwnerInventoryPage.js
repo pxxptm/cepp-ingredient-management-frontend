@@ -4,10 +4,15 @@ import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
 import AddingredientsModal from "../component/AddIngredientsModal";
 import axios from "axios";
+import EditIngredientsModal from "../component/EditIngredientsModal";
+import DeleteIngredientConfirmModal from "../component/DeleteIngredientConfirmModal";
 
 export default function OwnerInventoryPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
-  const [modalOpen, setModalOpen] = useState(false);
+  const [addIngredientModalOpen, setAddIngredientModalOpen] = useState(false);
+  const [editIngredientModalOpen, setEditIngredientModalOpen] = useState(false);
+  const [deleteIngredientModalOpen, setDeleteIngredientModalOpen] =
+    useState(false);
   const [ingredientList, setIngredientList] = useState([]);
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
   const urlIngredientList = `http://localhost:3001/ingredient/restaurant/${restaurantId}`;
@@ -60,8 +65,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
   const updateQuantity = (iname, atLeast, unit, ingredientId, newQuantity) => {
     // Patch updated quantity to API
     console.log(
-      "name : " +
-        iname +
+      iname +
         " " +
         atLeast +
         " " +
@@ -122,6 +126,30 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
     updateQuantity(iname, atLeast, unit, ingredientId, newQuantity);
   };
 
+  // Function to handle edit ingredient click event and set props
+  const handleEditIngredient = (
+    name,
+    atLeast,
+    unit,
+    ingredientId,
+    newQuantity
+  ) => {
+    setEditIngredientModalOpen(true);
+    setEditIngredientProps({ name, atLeast, unit, ingredientId, newQuantity });
+  };
+
+  // State to hold edit ingredient props
+  const [editIngredientProps, setEditIngredientProps] = useState(null);
+
+  // Function to handle edit ingredient click event and set props
+  const handleDeleteIngredient = (name, ingredientId) => {
+    setDeleteIngredientModalOpen(true);
+    setDeleteIngredientProps({ name, ingredientId });
+  };
+
+  // State to hold delete ingredient props
+  const [delteIngredientProps, setDeleteIngredientProps] = useState(null);
+
   return (
     <div id="Owner-inventory-page">
       <link
@@ -140,10 +168,29 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       </div>
 
       <div id="Owner-inventory-page-body">
-        {modalOpen && (
+        {addIngredientModalOpen && (
           <AddingredientsModal
-            setModalOpen={setModalOpen}
+            setModalOpen={setAddIngredientModalOpen}
             restaurantId={restaurantId}
+          />
+        )}
+        {editIngredientModalOpen && editIngredientProps && (
+          <EditIngredientsModal
+            setModalOpen={setEditIngredientModalOpen}
+            restaurantId={restaurantId}
+            nameStatic={editIngredientProps.name}
+            atLeastStatic={editIngredientProps.atLeast}
+            unitStatic={editIngredientProps.unit}
+            ingredientId={editIngredientProps.ingredientId}
+            amountStatic={editIngredientProps.newQuantity}
+          />
+        )}
+
+        {deleteIngredientModalOpen && delteIngredientProps && (
+          <DeleteIngredientConfirmModal
+          setDeleteIngredientConfirmModalOpen={setDeleteIngredientModalOpen}
+            ingredientId={delteIngredientProps.ingredientId}
+            ingredientName={delteIngredientProps.name}
           />
         )}
         <div id="Owner-inventory-page-side-bar-menu">
@@ -162,7 +209,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
               <button
                 id="add-ingredient-btn"
                 onClick={() => {
-                  setModalOpen(true);
+                  setAddIngredientModalOpen(true);
                 }}
               >
                 <span>+</span>เพิ่มวัตถุดิบ
@@ -172,6 +219,14 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
 
           <div id="Owner-inventory-page-content-table-zone">
             <div id="Owner-inventory-page-content-table">
+              <div id="inventory-table-header">
+                <div id="inventory-table-header-txt">
+                  <div>ชื่อวัตถุดิบ</div>
+                  <div id="header-col-2">ปริมาณคงคลัง</div>
+                  <div id="header-col-3">หน่วย</div>
+                  <div id="header-col-4">ขั้นต่ำ</div>
+                </div>
+              </div>
               {ingredientList.length > 0 &&
                 ingredientList.map(
                   (ingredient, index) =>
@@ -185,7 +240,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
 
                             <div id="a-ingredient-container-col-2">
                               {/* increase - decrease */}
-                              <div
+                              <button
                                 className="value-button"
                                 onClick={() =>
                                   decreaseQuantity(
@@ -197,7 +252,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                                 }
                               >
                                 -
-                              </div>
+                              </button>
                               <input
                                 type="number"
                                 value={ingredient.amount}
@@ -212,13 +267,16 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                                       return;
                                     }
                                   }
-                                  updateQuantity(ingredient.name,
+                                  updateQuantity(
+                                    ingredient.name,
                                     ingredient.atLeast,
                                     ingredient.unit,
-                                    ingredient._id,parseInt(newQuantity,10));
+                                    ingredient._id,
+                                    parseInt(newQuantity, 10)
+                                  );
                                 }}
                               />
-                              <div
+                              <button
                                 className="value-button"
                                 onClick={() =>
                                   increaseQuantity(
@@ -230,7 +288,51 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                                 }
                               >
                                 +
-                              </div>
+                              </button>
+                            </div>
+
+                            <div id="a-ingredient-container-col-3">
+                              {ingredient.unit}
+                            </div>
+
+                            <div id="a-ingredient-container-col-4">
+                              {ingredient.atLeast}
+                            </div>
+
+                            <div id="a-ingredient-container-col-5">
+                              <button
+                                id="edit-ingredient-btn"
+                                onClick={() =>
+                                  handleEditIngredient(
+                                    ingredient.name,
+                                    ingredient.atLeast,
+                                    ingredient.unit,
+                                    ingredient._id,
+                                    ingredient.amount
+                                  )
+                                }
+                              >
+                                แก้ไข
+                              </button>
+                            </div>
+
+                            <div id="a-ingredient-container-col-6">
+                              <button
+                                id="delete-ingredient-btn"
+                                onClick={() => {
+                                  handleDeleteIngredient(
+                                    ingredient.name,
+                                    ingredient._id
+                                  );
+                                }}
+                              >
+                                <i
+                                  className="material-icons"
+                                  id="delete-ingredient-btn-icon"
+                                >
+                                  delete
+                                </i>
+                              </button>
                             </div>
                           </div>
                         }
