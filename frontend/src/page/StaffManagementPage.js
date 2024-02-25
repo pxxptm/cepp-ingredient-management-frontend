@@ -4,11 +4,13 @@ import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
 import axios from "axios";
 import CreateStaffAccountModal from "../component/CreateStaffAccountModal";
+import OwnerEditStaffAccountModal from "../component/OwnerEditStaffAccountModal";
 
 function StaffManagementPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
   const [staffList, setStaffList] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [editStaffModalOpen, setEditStaffModalOpen] = useState(false);
 
   let staffListURL = `http://localhost:3001/member/user/${restaurantId}`;
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -60,6 +62,27 @@ function StaffManagementPage({ username, restaurantId }) {
       });
   });
 
+  // Function to handle edit ingredient click event and set props
+  const handleEditStaff = (
+    staffId,
+    staffFName,
+    staffLName,
+    staffUsername,
+    staffRole
+  ) => {
+    setEditStaffModalOpen(true);
+    setEditStaffProps({
+      staffId,
+      staffFName,
+      staffLName,
+      staffUsername,
+      staffRole,
+    });
+  };
+
+  // State to hold edit ingredient props
+  const [editStaffProps, setEditStaffProps] = useState(null);
+
   return (
     <div id="Staff-management-page">
       <link
@@ -82,6 +105,16 @@ function StaffManagementPage({ username, restaurantId }) {
           <CreateStaffAccountModal
             setOpenModal={setModalOpen}
             restaurantId={restaurantId}
+          />
+        )}
+        {editStaffModalOpen && editStaffProps && (
+          <OwnerEditStaffAccountModal
+            setOpenModal={setEditStaffModalOpen}
+            staffId={editStaffProps.staffId}
+            staffFName={editStaffProps.staffFName}
+            staffLName={editStaffProps.staffLName}
+            staffUsername={editStaffProps.staffUsername}
+            staffRole = {editStaffProps.staffRole}
           />
         )}
         <div id="Staff-management-page-side-bar-menu">
@@ -136,7 +169,20 @@ function StaffManagementPage({ username, restaurantId }) {
 
                             <div id="a-staff-container-r">
                               <div className="a-staff-container-l-btn">
-                                <button id="edit-acc">แก้ไขข้อมูล</button>
+                                <button
+                                  id="edit-acc"
+                                  onClick={() => {
+                                    handleEditStaff(
+                                      staff.userId,
+                                      staff.firstname,
+                                      staff.lastname,
+                                      staff.username,
+                                      staff.role
+                                    );
+                                  }}
+                                >
+                                  แก้ไขข้อมูล
+                                </button>
                               </div>
                               <div className="a-staff-container-l-btn">
                                 <button id="delete-acc">ลบบัญชี</button>

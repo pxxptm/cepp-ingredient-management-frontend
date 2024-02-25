@@ -141,7 +141,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
   // State to hold edit ingredient props
   const [editIngredientProps, setEditIngredientProps] = useState(null);
 
-  // Function to handle edit ingredient click event and set props
+  // Function to handle delete ingredient click event and set props
   const handleDeleteIngredient = (name, ingredientId) => {
     setDeleteIngredientModalOpen(true);
     setDeleteIngredientProps({ name, ingredientId });
@@ -217,9 +217,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
             </div>
           </div>
 
-          <div id="Owner-inventory-page-content-table-zone">
-            <div id="Owner-inventory-page-content-table">
-              <div id="inventory-table-header">
+          <div id="inventory-table-header">
                 <div id="inventory-table-header-txt">
                   <div>ชื่อวัตถุดิบ</div>
                   <div id="header-col-2">ปริมาณคงคลัง</div>
@@ -227,6 +225,9 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                   <div id="header-col-4">ขั้นต่ำ</div>
                 </div>
               </div>
+          <div id="Owner-inventory-page-content-table-zone">
+            <div id="Owner-inventory-page-content-table">
+              
               {ingredientList.length > 0 &&
                 ingredientList.map(
                   (ingredient, index) =>
