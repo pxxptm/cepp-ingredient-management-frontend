@@ -94,7 +94,6 @@
     .edit-ingredient-form-floating {
       margin-bottom: 3%;
     }
-
     
 
     .edit-ingredient-input-form {
@@ -769,4 +768,11 @@
         background-color: rgb(7, 79, 103);
       }
     }
+  }
+
+  #current-quantity-readonly
+  {
+    background-color: #e7e7e7;
+          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+          outline: none;
   }

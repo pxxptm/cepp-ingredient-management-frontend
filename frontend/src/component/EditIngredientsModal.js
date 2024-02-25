@@ -19,18 +19,19 @@ function EditIngredientsModal({
   const [ingredientName, setIngredientName] = useState(nameStatic);
   const [unit, setUnit] = useState(unitStatic);
   const [minQuantity, setMinQuantity] = useState(atLeastStatic);
-  const [amountQuantity, setAmountQuantity] = useState(amountStatic);
+
+  const currentQuantity = amountStatic + " (ปริมาณปัจจุบัน)";
 
   //update for axios post
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(typeof amountQuantity); // Outputs: "number"
+    console.log(typeof amountStatic); // Outputs: "number"
     await axios
       .patch(
         `http://localhost:3001/ingredient/${ingredientId}`,
         {
           name: ingredientName,
-          amount: parseInt(amountQuantity, 10),
+          amount: parseInt(amountStatic, 10),
           unit: unit,
           atLeast: parseInt(minQuantity, 10),
           restaurantId: restaurantId,
@@ -113,19 +114,18 @@ function EditIngredientsModal({
 
             <div className="edit-ingredient-form-floating-half">
               <div className="edit-ingredient-input-form">
-                <label>ปริมาณเริ่มต้น *</label>
+                <label>ปริมาณคงคลัง *</label>
                 <input
                   className="edit-ingredient-form-input-space"
-                  type="number"
+                  id="current-quantity-readonly"
+                  type="text"
                   placeholder="amount quantity (ปริมาณเริ่มต้น)"
                   name="amount-quantity"
                   aria-invalid="false"
                   autoComplete="None"
                   min="0"
-                  value={amountQuantity}
-                  onChange={(e) => {
-                    setAmountQuantity(e.target.value);
-                  }}
+                  value={currentQuantity}
+                  readOnly={true}
                 />
               </div>
               <div className="edit-ingredient-input-form">

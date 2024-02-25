@@ -342,7 +342,7 @@
 {
     #Owner-inventory-page-side-bar-menu
     {
-        display: none;
+        display: none
     }
 
     #Owner-inventory-page-content
@@ -350,28 +350,30 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 88vh;
+        height: 100%;
         min-height: 100%;
-        padding: 0 5.5vw;
+        padding-left: 5.25vw;
         background-color: rgb(255, 255, 255);
-        padding-right: 5.25vw;
 
         #Owner-inventory-page-content-header
         {
             width: 100%;
             height: fit-content;
-            padding: 7% 0;
+            padding: 5% 0;
             display: grid;
-            grid-template-columns: 20% 60%;
+            grid-template-columns: 10% 70%;
             column-gap: 20%;
+            background-color: #ffffff;
+            padding-right: 5.25vw;
 
             h1
             {
                 font-family: 'Kanit', sans-serif;
-                font-size: 3.75vw;
+                font-size: 2.75vw;
                 font-weight: bold;
                 margin: auto;
                 text-wrap: nowrap;
+                background-color: rgb(255, 255, 255);
             }
 
             #add-staff-acc-btn-zone
@@ -381,6 +383,7 @@
                     margin-left: auto;
                     background-color: rgb(255, 255, 255);
                     margin: auto 0;
+
 
                     #add-ingredient-btn
                     {
@@ -414,6 +417,7 @@
                     }
                 }
 
+            
         }
     }
 
@@ -421,96 +425,175 @@
     {
         width: 100%;
         height: 100%;
-        max-height: 78%;
+        max-height: 77%;
+        padding-right: 5.25vw;
         background-color: rgb(255, 255, 255);
     }
+    
+    #inventory-table-header
+    {
+        width: 100%;
+        font-family: 'Kanit', sans-serif;
+        background-color: rgb(226, 226, 226);
+        position: sticky;
+        top: 0;
+        font-size: 1.35vw;
+        color: rgba(0, 0, 0, 0.797);
+    }
+
+    #inventory-table-header-txt
+    {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 23% 15% 13% 4% 11% auto;
+        column-gap: 5.5%;
+        padding: 0.75% 1%;
+        
+        div
+        {
+            width: fit-content;
+        }
+
+        #header-col-2
+        {
+            margin: auto;
+        }
+
+        #header-col-3
+        {
+            padding-left: 20%;
+        }
+
+        #header-col-4
+        {
+            width: fit-content;
+        }
+
+    }
+
 
     #Owner-inventory-page-content-table
     {
         width: 100%;
         height: 100%;
         overflow-y: auto;
+        
 
-        #a-staff-container
+        #ingredient-block
         {
             width: 100%;
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
             padding: 2% 1%;
             height: fit-content;
             font-family: 'Kanit', sans-serif;
-            display: flex;
-
-            #a-staff-container-l
+            
+            #a-ingredient-container
             {
-                width: 60%;
-                height: fit-content;
-                display: flex;
-                flex-direction: column;
-                border-right: 0.1vw solid rgba(0, 0, 0, 0.2);
-                background-color: white;
-
-                #Fname-and-Lname
+                display: grid;
+                grid-template-columns: 23% 15% 13% 4% 11% auto;
+                column-gap: 5.5%;
+                
+                #a-ingredient-container-col-1
                 {
-                    color: black;
-                    font-size: 1.8vw;
+                    background-color: rgb(255, 255, 255);
+                    width: 100%;
+                    height: 100%;
                     display: flex;
-                    margin-bottom: 5%;
 
-                    #Fname 
+                    #ingredient-name
                     {
-                        width: fit-content;
-                        margin-right: 5%;
-                    }
-
-                    #Lname 
-                    {
-                        width: fit-content;
+                        width: 100%;
+                        margin: auto 0;
+                        background-color: rgb(255, 255, 255);
+                        text-wrap: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        color: black;
+                        font-size: 1.65vw;
                     }
                 }
 
-                #username-and-role
+                #a-ingredient-container-col-2
                 {
-                    color: #727272;
-                    font-size: 1.25vw;
-                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: 15% 50% 15%;
+                    column-gap: 11.25%;
 
-                    #username , #role
-                    {
-                        width: 40%;
+                    input{
+                        font-size: 1.5vw;
+                        text-align:center;
+                        border: none;
 
-                        span 
+                        &:focus
                         {
-                            margin-right: 3%;
+                            outline: none;
+                            border: none;
+                            border-bottom: 0.01vw solid rgb(82, 82, 82);
                         }
                     }
-                }
-            }
 
-            #a-staff-container-r
-            {
-                width: 40%;
-                height: fit-content;
-                display: flex;
-                align-self: center;
-
-                .a-staff-container-l-btn
-                {
-                    width: 50%;
-
-                    button
+                    .value-button
                     {
-                        width: 35%;
-                        color: white;
+                        background-color: rgb(168, 168, 168);
+                        width: fit-content;
+                        border-radius: 50%;
+                        padding: auto;
+                        aspect-ratio: 1 / 1;
+                        padding: -0.5%;
                         border: none;
-                        border-radius: 0.5vw;
-                        padding: 2.75% 0;
-                        font-size: 0.8vw;
-                    }
+                        color: white;
+                        font-size: 1.3vw;
 
-                    #edit-acc
+                        &:hover
+                        {
+                            background-color: rgb(50, 50, 50);
+                        }
+                    }
+                      
+                }
+
+                #a-ingredient-container-col-3
+                {
+                    height: fit-content;
+                    width: 100%;
+                    color: black;
+                    font-size: 1.4vw;
+                    justify-content: center;
+                    margin: auto;
+                    padding-left: 20%;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                #a-ingredient-container-col-4
+                {
+                    width: 100%;
+                    margin: auto;
+                    font-size: 1.4vw;
+                    color: #727272;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                #a-ingredient-container-col-5
+                {
+                    width: 100%;
+                    display: flex;
+
+                    #edit-ingredient-btn
                     {
-                        float: right;
+                        margin-left: auto;
+                        width: 70%;
+                        padding: 1% 0;
+                        border: none;
+                        border-radius: 1.75vw;
+                        color: white;
+                        font-size: 1vw;
                         background-color: darkmagenta;
 
                         &:hover
@@ -518,21 +601,38 @@
                             background-color: rgb(93, 0, 93);
                         }
                     }
+                }
 
-                    #delete-acc
+                #a-ingredient-container-col-6
+                {
+                    width: 100%;
+                    display: flex;
+                    padding: 0 2%;
+
+                    #delete-ingredient-btn
                     {
-                        float: right;
-                        background-color: rgb(50, 50, 50);
+                        margin: auto;
+                        border-radius: 50%;
+                        border: none;
+                        display: flex;
+                        padding: 0%;
+                        aspect-ratio: 1 / 1 ;
+                        background-color: rgb(255, 255, 255);
 
-                        &:hover
+                        #delete-ingredient-btn-icon
                         {
-                            background-color: rgb(0, 0, 0);
+                            font-size: 1.7vw;
+                            color: rgba(169, 0, 34, 0.6);
+                            margin: auto;
+
+                            &:hover
+                            {
+                                color: rgb(169, 0, 34);
+                            }
                         }
                     }
                 }
             }
-
-            
         }
         
     }
@@ -542,7 +642,7 @@
 {
     #Owner-inventory-page-side-bar-menu
     {
-        display: none;
+        display: none
     }
 
     #Owner-inventory-page-content
@@ -550,6 +650,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        min-width: 423px;
         height: 88vh;
         min-height: 100%;
         padding: 0 4.25vw;
@@ -576,8 +677,9 @@
             height: fit-content;
             padding: 5% 0;
             display: grid;
-            grid-template-columns: 7% 14%;
+            grid-template-columns: 10% 70%;
             column-gap: 20%;
+            background-color: #ffffff;
 
             h1
             {
@@ -585,38 +687,50 @@
                 font-size: 100%;
                 font-weight: bold;
                 margin: auto;
-            }
-
-            #add-staff-acc-btn
-            {
-                margin: auto;
-                font-family: 'Kanit', sans-serif;
                 text-wrap: nowrap;
-                width: 90%;
-                padding: 5.5% 0;
-                font-size: 30%;
-                background-color: #00aa88;
-                color: white;
-                border: none;
-                border-radius: 0.7vw;
-                border-width: 0;
-                align-items: center;
-                justify-content: center;
-                display: flex;
-
-                &:hover
-                {
-                    background-color: #006d58;
-                }
-                
-                span 
-                {
-                    font-size: 150%;
-                    font-family: 'Kanit', sans-serif;
-                    margin-right: 6%;
-                    margin-top: -2%;
-                }
+                background-color: rgb(255, 255, 255);
             }
+
+            #add-staff-acc-btn-zone
+                {
+                    width: 100%;
+                    height: 2.5vw;
+                    margin-left: auto;
+                    background-color: rgb(255, 255, 255);
+                    margin: auto 0;
+
+
+                    #add-ingredient-btn
+                    {
+                        margin: auto;
+                        font-family: 'Kanit', sans-serif;
+                        text-wrap: nowrap;
+                        width: 20%;
+                        height: fit-content;
+                        font-size: 50%;
+                        background-color: #00aa88;
+                        color: white;
+                        border: none;
+                        border-radius: 2vw;
+                        border-width: 0;
+                       
+                        float: right;
+
+                        &:hover
+                        {
+                            background-color: #006d58;
+                        }
+                        
+                        span 
+                        {
+                            font-size: 120%;
+                            font-family: 'Kanit', sans-serif;
+                            margin-right: 10%;
+                        }
+                    }
+                }
+
+            
         }
     }
 
@@ -627,93 +741,174 @@
         max-height: 78%;
         background-color: rgb(255, 255, 255);
     }
+    
+    #inventory-table-header
+    {
+        width: 100%;
+        font-family: 'Kanit', sans-serif;
+        background-color: rgb(226, 226, 226);
+        position: sticky;
+        top: 0;
+        font-size: 45%;
+        color: rgba(0, 0, 0, 0.797);
+    }
+
+    #inventory-table-header-txt
+    {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 23% 15% 13% 4% 11% auto;
+        column-gap: 5.5%;
+        padding: 0.75% 1%;
+        
+        div
+        {
+            width: fit-content;
+        }
+
+        #header-col-2
+        {
+            margin: auto;
+        }
+
+        #header-col-3
+        {
+            padding-left: 20%;
+        }
+
+        #header-col-4
+        {
+            width: fit-content;
+        }
+
+    }
+
 
     #Owner-inventory-page-content-table
     {
         width: 100%;
         height: 100%;
         overflow-y: auto;
+        
 
-        #a-staff-container
+        #ingredient-block
         {
             width: 100%;
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
-            padding: 3% 1%;
+            padding: 2% 1%;
             height: fit-content;
             font-family: 'Kanit', sans-serif;
-            display: flex;
-
-            #a-staff-container-l
+            
+            #a-ingredient-container
             {
-                width: 60%;
-                height: fit-content;
-                display: flex;
-                flex-direction: column;
-                border-right: 0.1vw solid rgba(0, 0, 0, 0.2);
-                background-color: white;
-
-                #Fname-and-Lname
+                display: grid;
+                grid-template-columns: 23% 15% 13% 4% 11% auto;
+                column-gap: 5.5%;
+                
+                #a-ingredient-container-col-1
                 {
-                    color: black;
-                    font-size: 75%;
+                    background-color: rgb(255, 255, 255);
+                    width: 100%;
+                    height: 100%;
                     display: flex;
-                    margin-bottom: 3%;
 
-                    #Fname 
+                    #ingredient-name
                     {
-                        width: fit-content;
-                        margin-right: 5%;
-                    }
-
-                    #Lname 
-                    {
-                        width: fit-content;
+                        width: 100%;
+                        margin: auto 0;
+                        background-color: rgb(255, 255, 255);
+                        text-wrap: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        color: black;
+                        font-size: 55%;
                     }
                 }
 
-                #username-and-role
+                #a-ingredient-container-col-2
                 {
-                    color: #727272;
-                    font-size: 45%;
-                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: 15% 50% 15%;
+                    column-gap: 11.25%;
 
-                    #username , #role
-                    {
-                        width: 40%;
+                    input{
+                        font-size: 55%;
+                        text-align:center;
+                        border: none;
 
-                        span 
+                        &:focus
                         {
-                            margin-right: 3%;
+                            outline: none;
+                            border: none;
+                            border-bottom: 0.01vw solid rgb(82, 82, 82);
                         }
                     }
-                }
-            }
 
-            #a-staff-container-r
-            {
-                width: 40%;
-                height: fit-content;
-                display: flex;
-                align-self: center;
-
-                .a-staff-container-l-btn
-                {
-                    width: 50%;
-
-                    button
+                    .value-button
                     {
-                        width: 47.5%;
-                        color: white;
+                        background-color: rgb(168, 168, 168);
+                        width: fit-content;
+                        border-radius: 50%;
+                        padding: auto;
+                        aspect-ratio: 1 / 1;
+                        padding: -0.5%;
                         border: none;
-                        border-radius: 0.5vw;
-                        padding: 3% 0;
+                        color: white;
                         font-size: 35%;
-                    }
+                        font-weight: bold;
+                        margin: 0;
 
-                    #edit-acc
+                        &:hover
+                        {
+                            background-color: rgb(50, 50, 50);
+                        }
+                    }
+                      
+                }
+
+                #a-ingredient-container-col-3
+                {
+                    height: fit-content;
+                    width: 100%;
+                    color: black;
+                    font-size: 50%;
+                    justify-content: center;
+                    margin: auto;
+                    padding-left: 20%;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                #a-ingredient-container-col-4
+                {
+                    width: 100%;
+                    margin: auto;
+                    font-size: 52.5%;
+                    color: #727272;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                #a-ingredient-container-col-5
+                {
+                    width: 100%;
+                    display: flex;
+
+                    #edit-ingredient-btn
                     {
-                        float: right;
+                        margin: auto 0 auto auto;
+                        width: 70%;
+                        height: fit-content;
+                        padding: 2.5% 0;
+                        border: none;
+                        border-radius: 19vw;
+                        color: white;
+                        font-size: 35%;
                         background-color: darkmagenta;
 
                         &:hover
@@ -721,21 +916,38 @@
                             background-color: rgb(93, 0, 93);
                         }
                     }
+                }
 
-                    #delete-acc
+                #a-ingredient-container-col-6
+                {
+                    width: 100%;
+                    display: flex;
+                    padding: 0 2%;
+
+                    #delete-ingredient-btn
                     {
-                        float: right;
-                        background-color: rgb(50, 50, 50);
+                        margin: auto;
+                        border-radius: 50%;
+                        border: none;
+                        display: flex;
+                        padding: 0%;
+                        aspect-ratio: 1 / 1 ;
+                        background-color: rgb(255, 255, 255);
 
-                        &:hover
+                        #delete-ingredient-btn-icon
                         {
-                            background-color: rgb(0, 0, 0);
+                            font-size: 50%;
+                            color: rgba(169, 0, 34, 0.6);
+                            margin: auto;
+
+                            &:hover
+                            {
+                                color: rgb(169, 0, 34);
+                            }
                         }
                     }
                 }
             }
-
-            
         }
         
     }
