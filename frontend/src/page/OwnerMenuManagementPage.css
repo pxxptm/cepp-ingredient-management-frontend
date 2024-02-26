@@ -130,104 +130,59 @@
             font-family: 'Kanit', sans-serif;
             display: flex;
 
-            #a-menu-container-l
+            #a-menu-container-col-1
             {
-                width: 45%;
+                width: 8%;
                 height: fit-content;
                 display: flex;
                 flex-direction: column;
-                border-right: 0.1vw solid rgba(0, 0, 0, 0.2);
-                background-color: white;
+                background-color: rgb(255, 255, 255);
 
-                #Fname-and-Lname
+                #menu-pic
                 {
-                    color: black;
-                    font-size: 1.17vw;
-                    display: flex;
-                    margin-bottom: 4%;
-
-                    @media (max-width: 1299.5px) 
-                    {
-                        font-size: 1.4vw;
-                    }
-
-                    #Fname 
-                    {
-                        width: fit-content;
-                        margin-right: 5%;
-                    }
-
-                    #Lname 
-                    {
-                        width: fit-content;
-                    }
-                }
-
-                #username-and-role
-                {
-                    color: #727272;
-                    font-size: 0.825vw;
-                    display: flex;
-
-                    @media (max-width: 1299.5px) 
-                    {
-                        font-size: 0.875vw;
-                    }
-
-                    #username , #role
-                    {
-                        width: 40%;
-
-                        span 
-                        {
-                            margin-right: 3%;
-                        }
-                    }
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                    border-radius: 0.5vw;
                 }
             }
 
-            #a-menu-container-r
+            #a-menu-container-col-2-have-pic
             {
-                width: 55%;
-                height: fit-content;
+                width: 35%;
+                background-color: antiquewhite;
                 display: flex;
-                align-self: center;
+                margin-right: 5%;
 
-                .a-menu-container-l-btn
+                #menu-name-have-pic
                 {
-                    width: 50%;
+                    width: 100%;
+                    font-size: 1.1vw;
+                    font-weight: bold;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin: auto 0;
+                    margin-left: 10%;
+                }
+            }
 
-                    button
-                    {
-                        width: 32%;
-                        color: white;
-                        border: none;
-                        border-radius: 0.5vw;
-                        padding: 2% 0;
-                        font-size: 0.75vw;
-                    }
+            #a-menu-container-col-2-have-no-pic
+            {
+                width: 43%;
+                background-color: antiquewhite;
+                display: flex;
+                margin-left: -8%;
+                margin-right: 5%;
 
-                    #edit-acc
-                    {
-                        float: right;
-                        background-color: darkmagenta;
-
-                        &:hover
-                        {
-                            background-color: rgb(93, 0, 93);
-                        }
-                    }
-
-                    #delete-acc
-                    {
-                        float: right;
-                        background-color: rgb(50, 50, 50);
-
-                        &:hover
-                        {
-                            background-color: rgb(0, 0, 0);
-                        }
-                    }
+                #menu-name-have-no-pic
+                {
+                    width: 100%;
+                    font-size: 1.1vw;
+                    font-weight: bold;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin: auto 0;
                 }
             }
         }
@@ -531,51 +486,22 @@
             padding: 3% 1%;
             height: fit-content;
             font-family: 'Kanit', sans-serif;
-            display: flex;
+            display: grid;
+            grid-template-columns: 5%;
 
-            #a-menu-container-l
+            #a-menu-container-col-1
             {
-                width: 60%;
+                width: 100%;
                 height: fit-content;
                 display: flex;
                 flex-direction: column;
                 border-right: 0.1vw solid rgba(0, 0, 0, 0.2);
-                background-color: white;
+                background-color: rgb(112, 66, 66);
 
-                #Fname-and-Lname
+                #menu-pic
                 {
-                    color: black;
-                    font-size: 62.5%;
-                    display: flex;
-                    margin-bottom: 3%;
-
-                    #Fname 
-                    {
-                        width: fit-content;
-                        margin-right: 5%;
-                    }
-
-                    #Lname 
-                    {
-                        width: fit-content;
-                    }
-                }
-
-                #username-and-role
-                {
-                    color: #727272;
-                    font-size: 45%;
-                    display: flex;
-
-                    #username , #role
-                    {
-                        width: 40%;
-
-                        span 
-                        {
-                            margin-right: 3%;
-                        }
-                    }
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
                 }
             }
 

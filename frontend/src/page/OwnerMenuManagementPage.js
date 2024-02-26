@@ -5,7 +5,6 @@ import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
 import CreateMenuModal from "../component/CreateMenuModal";
 
-
 function OwnerMenuManagementPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
   const [menuList, setMenuList] = useState([]);
@@ -17,6 +16,8 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
 
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
+  const defaultPreviewImageUrl =
+    "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
 
   const roleDict = {
     manager: "ผู้จัดการ",
@@ -102,7 +103,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
       </div>
 
       <div id="Menu-management-page-body">
-      {createMenuModalOpen && (
+        {createMenuModalOpen && (
           <CreateMenuModal
             setCreateMenuModalOpen={setCreateMenuModalOpen}
             restaurantId={restaurantId}
@@ -135,38 +136,48 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
               {menuList.length > 0 &&
                 menuList.map(
                   (menu, index) =>
-                    menu &&
-                     ( // Check if menu is not null
+                    menu && ( // Check if menu is not null
                       <div id="menu-block" key={menu.userId}>
                         {
                           <div id="a-menu-container">
-                            <div id="a-menu-container-l">
-                              <div id="Fname-and-Lname">
-                                <div id="Fname">{menu.name}</div>
-                                <div id="Lname">{menu.lastname}</div>
-                              </div>
-
-                              <div id="username-and-role">
-                                <div id="username">
-                                  <span>username : </span>
-                                  {menu.username}
-                                </div>
-                                <div id="role">
-                                  <span>role : </span>
-                                  {roleDict[menu.role]}
-                                </div>
-                              </div>
+                            <div id="a-menu-container-col-1">
+                              {menu.image !== defaultPreviewImageUrl && (
+                                <div
+                                  id="menu-pic"
+                                  style={{
+                                    backgroundImage: `url(${menu.image})`,
+                                    backgroundSize: "Cover",
+                                    marginRight: "5%",
+                                  }}
+                                ></div>
+                              )}
+                              {menu.image === defaultPreviewImageUrl && (
+                                <div id="menu-pic"></div>
+                              )}
                             </div>
 
-                            <div id="a-menu-container-r">
-                              <div className="a-menu-container-l-btn">
-                                <button id="edit-acc" onClick={() => {}}>
-                                  แก้ไขข้อมูล
-                                </button>
+                            {menu.image !== defaultPreviewImageUrl && (
+                              <div id="a-menu-container-col-2-have-pic">
+                                <div id="menu-name-have-pic"> {menu.name} </div>
                               </div>
-                              <div className="a-menu-container-l-btn">
-                                <button id="delete-acc">ลบบัญชี</button>
+                            )}
+                            {menu.image === defaultPreviewImageUrl && (
+                              <div id="a-menu-container-col-2-have-no-pic">
+                                <div id="menu-name-have-no-pic">
+                                  {" "}
+                                  {menu.name}{" "}
+                                </div>
                               </div>
+                            )}
+                            <div id="a-menu-container-col-3">
+                              {menu.status}
+                            </div>
+
+                            <div>
+                              <label class="switch">
+                                <input type="checkbox" checked />
+                                <span class="slider round"></span>
+                              </label>
                             </div>
                           </div>
                         }
