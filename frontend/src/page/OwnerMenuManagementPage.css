@@ -74,7 +74,7 @@
                 text-wrap: nowrap;
             }
 
-            #add-staff-acc-btn
+            #add-menu-btn
             {
                 margin: auto;
                 font-family: 'Kanit', sans-serif;
@@ -120,7 +120,7 @@
         height: 100%;
         overflow-y: auto;
 
-        #a-staff-container
+        #a-menu-container
         {
             width: 100%;
             background-color: rgb(255, 255, 255);
@@ -130,7 +130,7 @@
             font-family: 'Kanit', sans-serif;
             display: flex;
 
-            #a-staff-container-l
+            #a-menu-container-l
             {
                 width: 45%;
                 height: fit-content;
@@ -186,14 +186,14 @@
                 }
             }
 
-            #a-staff-container-r
+            #a-menu-container-r
             {
                 width: 55%;
                 height: fit-content;
                 display: flex;
                 align-self: center;
 
-                .a-staff-container-l-btn
+                .a-menu-container-l-btn
                 {
                     width: 50%;
 
@@ -268,14 +268,15 @@
                 font-size: 3.75vw;
                 font-weight: bold;
                 margin: auto;
+                text-wrap: nowrap;
             }
 
-            #add-staff-acc-btn
+            #add-menu-btn
             {
                 margin: auto;
                 font-family: 'Kanit', sans-serif;
                 text-wrap: nowrap;
-                width: 10vw;
+                width: 8vw;
                 height: 2.5vw;
                 font-size: 1vw;
                 background-color: #00aa88;
@@ -316,7 +317,7 @@
         height: 100%;
         overflow-y: auto;
 
-        #a-staff-container
+        #a-menu-container
         {
             width: 100%;
             background-color: white;
@@ -326,7 +327,7 @@
             font-family: 'Kanit', sans-serif;
             display: flex;
 
-            #a-staff-container-l
+            #a-menu-container-l
             {
                 width: 60%;
                 height: fit-content;
@@ -372,14 +373,14 @@
                 }
             }
 
-            #a-staff-container-r
+            #a-menu-container-r
             {
                 width: 40%;
                 height: fit-content;
                 display: flex;
                 align-self: center;
 
-                .a-staff-container-l-btn
+                .a-menu-container-l-btn
                 {
                     width: 50%;
 
@@ -474,23 +475,24 @@
                 background-color: rgb(255, 255, 255);
             }
 
-            #add-staff-acc-btn
+            #add-menu-btn
             {
                 margin: auto;
                         font-family: 'Kanit', sans-serif;
                         text-wrap: nowrap;
-                        width: 125%;
+                        width: 90%;
                         height: fit-content;
                         font-size: 50%;
                         background-color: #00aa88;
                         color: white;
                         border: none;
-                        border-radius: 0.75vw;
+                        border-radius: 1vw;
                         border-width: 0;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         float: right;
+                        padding: 3% 0;
 
                         &:hover
                         {
@@ -521,7 +523,7 @@
         height: 100%;
         overflow-y: auto;
 
-        #a-staff-container
+        #a-menu-container
         {
             width: 100%;
             background-color: white;
@@ -531,7 +533,7 @@
             font-family: 'Kanit', sans-serif;
             display: flex;
 
-            #a-staff-container-l
+            #a-menu-container-l
             {
                 width: 60%;
                 height: fit-content;
@@ -577,14 +579,14 @@
                 }
             }
 
-            #a-staff-container-r
+            #a-menu-container-r
             {
                 width: 40%;
                 height: fit-content;
                 display: flex;
                 align-self: center;
 
-                .a-staff-container-l-btn
+                .a-menu-container-l-btn
                 {
                     width: 50%;
 

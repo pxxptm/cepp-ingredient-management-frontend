@@ -164,6 +164,14 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
               </div>
             </div>
             <div id="staff-reg-span-zone" className="d-flex">
+            <button
+                id="staff-reg-cancel"
+                onClick={()=>{
+                  setOpenModal(false)
+                }}
+              >
+                ยกเลิก
+              </button>
               <button
                 id="staff-reg-submit"
                 type="submit"

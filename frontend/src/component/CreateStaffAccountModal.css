@@ -52,7 +52,7 @@
       padding: 0;
       margin-right: -4%;
       margin-top: 2%;
-      margin-bottom: 2%;
+      margin-bottom: 0%;
   
       &:hover {
         color: crimson;
@@ -63,7 +63,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: antiquewhite;
   
       form {
         width: 100%;
@@ -177,10 +176,27 @@
 
     
     #staff-reg-span-zone {
-      margin-top: 5%;
+      margin-top: 7%;
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+    }
+
+    #staff-reg-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.85vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 7vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
     }
   
     #staff-reg-submit {
@@ -367,7 +383,24 @@
       margin-top: 5%;
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+    }
+
+    #staff-reg-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 1vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 8vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
     }
   
     #staff-reg-submit {
@@ -554,7 +587,24 @@
       margin-top: 7%;
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+    }
+
+    #staff-reg-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 1.25vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 9vw;
+      padding: 1.75% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
     }
   
     #staff-reg-submit {
@@ -624,7 +674,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: antiquewhite;
   
       form {
         width: 100%;
@@ -741,7 +790,24 @@
       margin-top: 7%;
       width: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+    }
+
+    #staff-reg-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 50%;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 20%;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 1.5vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
     }
   
     #staff-reg-submit {
@@ -750,7 +816,7 @@
       font-weight: normal;
       background-color: rgb(10, 129, 169);
       color: #ffffff;
-      width: 25vw;
+      width: 20%;
       padding: 1.9% 1%;
       border: none;
       border-radius: 1.5vw;

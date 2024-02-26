@@ -1,0 +1,887 @@
+.menu-create-modalBackground {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    min-width: 423px;
+  }
+  
+  #restaurantPic-show {
+    overflow: hidden;
+  }
+  
+  #restaurantPic-selected-pic {
+    width: 100%;
+    height: 100%;
+  }
+  
+  #restaurantPic-default-pic {
+    width: 100%;
+    height: 100%;
+    background-image: url("../resource/defualt-pic-for-upload.png");
+    background-size: cover;
+  }
+  
+  #restaurantPic-pic {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+  
+  @media (min-width: 1300px) {
+    .menu-create-modalBackground {
+      padding: 0 0;
+    }
+  
+    .menu-create-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 3% 2% 3%;
+      width: 32.5%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.75vw;
+    }
+  
+    .menu-create-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -3%;
+    }
+  
+    .menu-create-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 1.7vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -5%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .menu-create-modalContainer .menu-create-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #menu-create-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: rgb(255, 255, 255);
+    }
+  
+    #menu-create-l1 {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: space-between;
+    }
+  
+    #upload-remove-pic {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto 5% auto;
+    }
+  
+    #restaurantPic-show {
+      width: 80%;
+      aspect-ratio: 1 / 1;
+      border-radius: 8%;
+      border: 0.11vw dashed #888;
+      margin: 0 auto 4% auto;
+    }
+  
+    #restaurantPic-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.6vw;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(10, 129, 169);
+      width: 5.5vw;
+      padding: 2% 1%;
+      border: 0.001vw solid rgb(10, 129, 169);
+      border-radius: 0.5vw;
+  
+      &:hover {
+        background-color: rgb(10, 129, 169);
+        color: white;
+      }
+    }
+  
+    #restaurantPic-remove-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.6vw;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(142, 32, 54);
+      width: 5.5vw;
+      padding: 2% 1%;
+      border: 0.001vw solid rgb(142, 32, 54);
+      border-radius: 0.5vw;
+  
+      &:hover {
+        background-color: rgb(142, 32, 54);
+        color: white;
+      }
+    }
+  
+    #menu-create-r2 {
+      height: 100%;
+      width: 100%;
+    }
+  
+    .menu-create-form-floating {
+      margin: 3% 0 8% 0;
+    }
+  
+    .menu-create-input-form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+  
+      .menu-create-form-input-space {
+        font-family: "Kanit", sans-serif;
+        font-size: 0.9vw;
+        font-weight: normal;
+        width: 100%;
+        padding: 3% 5%;
+        border: 0.01vw solid rgba(0, 0, 0, 0.397);
+        border-radius: 1.25vw;
+        background-color: #fcfcfc;
+  
+        &:focus {
+          background-color: #e7e7e7;
+          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+          border-radius: 1.25vw;
+          outline: none;
+        }
+      }
+    }
+  
+    #menu-create-span-zone {
+      margin-top: 1.5%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #menu-create-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.9vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 6.5vw;
+      padding:  1.9% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
+    }
+  
+    #menu-create-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.9vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 6.5vw;
+      padding: 1.9% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (min-width: 700px) and (max-width: 1299.5px) {
+    .menu-create-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 3% 2.5% 3%;
+      width: 40%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.5vw;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+  
+      margin: auto;
+    }
+  
+    .menu-create-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -3%;
+    }
+  
+    .menu-create-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 2vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -2%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .menu-create-modalContainer .menu-create-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3.25% 0;
+      }
+    }
+  
+    #menu-create-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(255, 255, 255);
+    }
+  
+    #menu-create-l1 {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: space-between;
+    }
+  
+    #upload-remove-pic {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto 4% auto;
+    }
+  
+    #restaurantPic-show {
+      width: 70%;
+      aspect-ratio: 1 / 1;
+      border-radius: 8%;
+      border: 0.13vw dashed #888;
+      margin : 0 auto 4% auto;
+
+    }
+  
+    #restaurantPic-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.7vw;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(10, 129, 169);
+      width: 5.5vw;
+      padding: 2% 1%;
+      border: 0.001vw solid rgb(10, 129, 169);
+      border-radius: 0.5vw;
+  
+      &:hover {
+        background-color: rgb(10, 129, 169);
+        color: white;
+      }
+    }
+  
+    #restaurantPic-remove-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.7vw;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(142, 32, 54);
+      width: 5.5vw;
+      padding: 2% 1%;
+      border: 0.001vw solid rgb(142, 32, 54);
+      border-radius: 0.5vw;
+  
+      &:hover {
+        background-color: rgb(142, 32, 54);
+        color: white;
+      }
+    }
+  
+    #menu-create-r2 {
+      height: 100%;
+      width: 100%;
+    }
+  
+    .menu-create-form-floating {
+      margin-bottom: 7%;
+    }
+  
+    .menu-create-input-form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+  
+      .menu-create-form-input-space {
+        font-family: "Kanit", sans-serif;
+        font-size: 1vw;
+        font-weight: normal;
+        width: 90%;
+        padding: 3% 5%;
+        border: 0.01vw solid rgba(0, 0, 0, 0.397);
+        border-radius: 1.5vw;
+        background-color: #fcfcfc;
+  
+        &:focus {
+          background-color: #e7e7e7;
+          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+          border-radius: 1.25vw;
+          outline: none;
+        }
+      }
+    }
+  
+    #menu-create-span-zone {
+      margin-top: 5%;
+      width: 90%;
+      display: flex;
+      margin: 0 auto;
+      justify-content: space-between;
+    }
+
+    #menu-create-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.9vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 6.25vw;
+      padding:  1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
+    }
+  
+    #menu-create-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.9vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 6.25vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (min-width: 420px) and (max-width: 699.5px) {
+    .menu-create-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 3% 3% 3%;
+      width: 70%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 2.5vw;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+  
+      margin: auto;
+    }
+  
+    .menu-create-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -3%;
+      margin-top: 1%;
+    }
+  
+    .menu-create-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 2.3vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -1%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .menu-create-modalContainer .menu-create-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3.25% 0;
+      }
+    }
+  
+    #menu-create-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(255, 255, 255);
+    }
+  
+    #menu-create-l1 {
+      width: 100;
+      height: 100%;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: space-between;
+    }
+  
+    #upload-remove-pic {
+      width: 65%;
+      display: flex;
+      margin: 0 auto 5% auto;
+      justify-content: space-between;
+    }
+  
+    #restaurantPic-show {
+      width: 65%;
+      aspect-ratio: 1 / 1;
+      border-radius: 8%;
+      border: 0.13vw dashed #888;
+      margin: 0 auto;
+      margin-bottom: 4%;
+    }
+  
+    #restaurantPic-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 1vw;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(10, 129, 169);
+      width: 8vw;
+      padding: 1.5% 1%;
+      border: 0.001vw solid rgb(10, 129, 169);
+      border-radius: 0.5vw;
+  
+      &:hover {
+        background-color: rgb(10, 129, 169);
+        color: white;
+      }
+    }
+  
+    #restaurantPic-remove-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 1vw;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(142, 32, 54);
+      width: 8vw;
+      padding: 1.5% 1%;
+      border: 0.001vw solid rgb(142, 32, 54);
+      border-radius: 0.5vw;
+  
+      &:hover {
+        background-color: rgb(142, 32, 54);
+        color: white;
+      }
+    }
+  
+    #menu-create-r2 {
+      height: 100%;
+      width: 100%;
+    }
+  
+    .menu-create-form-floating {
+      margin-bottom: 9%;
+    }
+  
+    .menu-create-input-form {
+      width: 87.5%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+  
+      .menu-create-form-input-space {
+        font-family: "Kanit", sans-serif;
+        font-size: 1.7vw;
+        font-weight: normal;
+        width: 100%;
+        padding: 3% 5%;
+        border: 0.01vw solid rgba(0, 0, 0, 0.397);
+        border-radius: 2.5vw;
+        background-color: #fcfcfc;
+  
+        &:focus {
+          background-color: #e7e7e7;
+          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+          border-radius: 1.25vw;
+          outline: none;
+        }
+      }
+  
+      #menu-create-descript-input {
+        text-wrap: wrap;
+        padding: 3% 5% 23% 5%;
+        resize: none;
+      }
+    }
+  
+    #menu-create-span-zone {
+      margin-top: 1.5%;
+      width: 87.5%;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+    }
+
+    #menu-create-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 1.5vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 10vw;
+      padding:  1.75% 1%;
+      border: none;
+      border-radius: 1vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
+    }
+  
+    #menu-create-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 1.5vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 10vw;
+      padding: 1.75% 1%;
+      border: none;
+      border-radius: 1vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (max-width: 419.5px) {
+    .menu-create-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 3% 5% 3%;
+      width: 85%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 2.75vw;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      
+    }
+  
+    .menu-create-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -2%;
+      margin-top: 2%;
+    }
+  
+    .menu-create-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 80%;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: 0%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .menu-create-modalContainer .menu-create-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3.25% 0;
+      }
+    }
+  
+    #menu-create-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: rgb(255, 255, 255);
+    }
+  
+    #menu-create-l1 {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5%;
+    }
+  
+    #upload-remove-pic {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    #restaurantPic-show {
+      width: 70%;
+      aspect-ratio: 1 / 1;
+      border-radius: 8%;
+      border: 0.4vw dashed #888;
+      margin-bottom: 5%;
+      background: url("../resource/defualt-pic-for-upload.png");
+    }
+  
+    #restaurantPic-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 40%;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(10, 129, 169);
+      width: 20%;
+      padding: 2% 1%;
+      border: 0.001vw solid rgb(10, 129, 169);
+      border-radius: 1vw;
+  
+      &:hover {
+        background-color: rgb(10, 129, 169);
+        color: white;
+      }
+    }
+  
+    #restaurantPic-remove-file-btn {
+      font-family: "Kanit", sans-serif;
+      font-size: 40%;
+      font-weight: normal;
+      background-color: rgb(255, 255, 255);
+      color: rgb(142, 32, 54);
+      width: 20%;
+      padding: 2% 1%;
+      border: 0.001vw solid rgb(142, 32, 54);
+      border-radius: 1vw;
+  
+      &:hover {
+        background-color: rgb(142, 32, 54);
+        color: white;
+      }
+    }
+  
+    #menu-create-r2 {
+      height: 100%;
+      width: 90%;
+      align-self: center;
+    }
+  
+    .menu-create-form-floating {
+      margin-bottom: 5%;
+    }
+  
+    .menu-create-input-form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+  
+      label {
+        font-family: "Kanit", sans-serif;
+        font-size: 37%;
+        font-weight: normal;
+        margin-bottom: 2.5%;
+        color: black;
+      }
+  
+      .menu-create-form-input-space {
+        font-family: "Kanit", sans-serif;
+        font-size: 57.5%;
+        font-weight: normal;
+        width: 100%;
+        padding: 3% 5%;
+        border: 0.01vw solid rgba(0, 0, 0, 0.397);
+        border-radius: 5vw;
+        background-color: #fcfcfc;
+  
+        &:focus {
+          background-color: #e7e7e7;
+          border: 0.01vw solid rgba(0, 0, 0, 0.397);
+          border-radius: 1.25vw;
+          outline: none;
+        }
+      }
+  
+      #menu-create-descript-input {
+        text-wrap: wrap;
+        padding: 3% 5% 20% 5%;
+        resize: none;
+      }
+    }
+  
+    #menu-create-span-zone {
+      margin-top: 3%;
+      width: 90%;
+      align-self: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #menu-create-cancel
+    {
+      font-family: "Kanit", sans-serif;
+      font-size: 42%;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 17.5%;
+      padding: 2.25% 1% 1.75% 1%;
+      border: none;
+      border-radius: 1vw;
+  
+      &:hover {
+        background-color: rgb(56, 56, 56);
+      }
+    }
+  
+    #menu-create-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 42%;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 17.5%;
+      padding: 2.25% 1% 1.75% 1%;
+      border: none;
+      border-radius: 1vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  

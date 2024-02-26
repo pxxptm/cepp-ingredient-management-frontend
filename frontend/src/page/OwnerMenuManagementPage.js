@@ -3,12 +3,14 @@ import "./OwnerMenuManagementPage.css";
 import axios from "axios";
 import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
+import CreateMenuModal from "../component/CreateMenuModal";
+
 
 function OwnerMenuManagementPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
   const [menuList, setMenuList] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editStaffModalOpen, setEditStaffModalOpen] = useState(false);
+  const [createMenuModalOpen, setCreateMenuModalOpen] = useState(false);
+  const [editmenuModalOpen, setEditmenuModalOpen] = useState(false);
 
   let menuListURL = `http://localhost:3001/menu/restaurant/${restaurantId}`;
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -62,25 +64,25 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
 
   /*
   // Function to handle edit ingredient click event and set props
-  const handleEditStaff = (
-    staffId,
-    staffFName,
-    staffLName,
-    staffUsername,
-    staffRole
+  const handleEditmenu = (
+    menuId,
+    menuFName,
+    menuLName,
+    menuUsername,
+    menuRole
   ) => {
-    setEditStaffModalOpen(true);
-    setEditStaffProps({
-      staffId,
-      staffFName,
-      staffLName,
-      staffUsername,
-      staffRole,
+    setEditmenuModalOpen(true);
+    setEditmenuProps({
+      menuId,
+      menuFName,
+      menuLName,
+      menuUsername,
+      menuRole,
     });
   };
 
   // State to hold edit ingredient props
-  const [editStaffProps, setEditStaffProps] = useState(null); */
+  const [editmenuProps, setEditmenuProps] = useState(null); */
 
   return (
     <div id="Menu-management-page">
@@ -100,6 +102,12 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
       </div>
 
       <div id="Menu-management-page-body">
+      {createMenuModalOpen && (
+          <CreateMenuModal
+            setCreateMenuModalOpen={setCreateMenuModalOpen}
+            restaurantId={restaurantId}
+          />
+        )}
         <div id="Menu-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -113,9 +121,9 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
           <div id="Menu-management-page-content-header">
             <h1>รายการเมนู</h1>
             <button
-              id="add-staff-acc-btn"
+              id="add-menu-btn"
               onClick={() => {
-                setModalOpen(true);
+                setCreateMenuModalOpen(true);
               }}
             >
               <span>+</span>เพิ่มเมนู
@@ -128,13 +136,13 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                 menuList.map(
                   (menu, index) =>
                     menu &&
-                    index > 0 && ( // Check if staff is not null
-                      <div id="staff-block" key={menu.userId}>
+                     ( // Check if menu is not null
+                      <div id="menu-block" key={menu.userId}>
                         {
-                          <div id="a-staff-container">
-                            <div id="a-staff-container-l">
+                          <div id="a-menu-container">
+                            <div id="a-menu-container-l">
                               <div id="Fname-and-Lname">
-                                <div id="Fname">{menu.firstname}</div>
+                                <div id="Fname">{menu.name}</div>
                                 <div id="Lname">{menu.lastname}</div>
                               </div>
 
@@ -150,18 +158,13 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                               </div>
                             </div>
 
-                            <div id="a-staff-container-r">
-                              <div className="a-staff-container-l-btn">
-                                <button
-                                  id="edit-acc"
-                                  onClick={() => {
-                                    
-                                  }}
-                                >
+                            <div id="a-menu-container-r">
+                              <div className="a-menu-container-l-btn">
+                                <button id="edit-acc" onClick={() => {}}>
                                   แก้ไขข้อมูล
                                 </button>
                               </div>
-                              <div className="a-staff-container-l-btn">
+                              <div className="a-menu-container-l-btn">
                                 <button id="delete-acc">ลบบัญชี</button>
                               </div>
                             </div>
