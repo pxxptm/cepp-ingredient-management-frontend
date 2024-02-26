@@ -20,8 +20,15 @@ export class MenuService {
     return await this.menuModel.findById(menuId);
   }
 
-  async findByRestaurantId(restaurantId: string) {
+  async findAllByRestaurantId(restaurantId: string) {
     return await this.menuModel.find({ restaurantId: restaurantId });
+  }
+
+  async findValidByRestaurantId(restaurantId: string) {
+    return await this.menuModel.find({
+      restaurantId: restaurantId,
+      status: true,
+    });
   }
 
   async update(menuId: string, updateMenuDto: UpdateMenuDto) {

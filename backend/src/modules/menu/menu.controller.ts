@@ -25,9 +25,14 @@ export class MenuController {
     return await this.menuService.findOneById(id);
   }
 
-  @Get('restaurant/:id')
-  async findByRestaurantId(@Param('id') id: string) {
-    return await this.menuService.findByRestaurantId(id);
+  @Get('get-all-menu/:restaurantId')
+  async findByRestaurantId(@Param('restaurantId') id: string) {
+    return await this.menuService.findAllByRestaurantId(id);
+  }
+
+  @Get('get-valid-menu/:restaurantId')
+  async findValidByRestaurantId(@Param('restaurantId') id: string) {
+    return await this.menuService.findValidByRestaurantId(id);
   }
 
   @Post()
