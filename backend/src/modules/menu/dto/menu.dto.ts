@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateMenuDto {
@@ -11,11 +11,21 @@ export class CreateMenuDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly restaurantId: string;
-}
 
-export class UpdateMenuDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  readonly name: string;
+  readonly image: string;
+}
+
+export class UpdateMenuDto {
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  readonly name?: string;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  readonly image?: string;
 }

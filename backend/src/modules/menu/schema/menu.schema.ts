@@ -7,6 +7,9 @@ export class Menu {
 
   @Prop()
   restaurantId: string;
+
+  @Prop()
+  image: string;
 }
 
 export const MenuSchema = SchemaFactory.createForClass(Menu);
