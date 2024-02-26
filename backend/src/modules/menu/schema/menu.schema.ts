@@ -10,6 +10,9 @@ export class Menu {
 
   @Prop()
   image: string;
+
+  @Prop()
+  status: boolean;
 }
 
 export const MenuSchema = SchemaFactory.createForClass(Menu);
