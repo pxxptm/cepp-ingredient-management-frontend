@@ -11,7 +11,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   const [createMenuModalOpen, setCreateMenuModalOpen] = useState(false);
   const [editmenuModalOpen, setEditmenuModalOpen] = useState(false);
 
-  let menuListURL = `http://localhost:3001/menu/restaurant/${restaurantId}`;
+  let menuListURL = `http://localhost:3001/menu/get-all-menu/${restaurantId}`;
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
 
   const [restaurantName, setRestaurantName] = useState();
@@ -61,7 +61,30 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
       .catch((error) => {
         console.log(error);
       });
-  });
+  },[menuList]);
+
+  const toggleMenuStatus = (menuId, status) => {
+    const updatedMenuList = menuList.map((menu) =>
+      menu.id === menuId ? { ...menu, status: !status } : menu
+    );
+    setMenuList(updatedMenuList);
+    axios
+      .patch(
+        `http://localhost:3001/menu/${menuId}`,
+        { status: !status },
+        {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        }
+      )
+      .then(() => {
+        console.log("success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   /*
   // Function to handle edit ingredient click event and set props
@@ -170,15 +193,49 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                               </div>
                             )}
                             <div id="a-menu-container-col-3">
-                              {menu.status}
+                              {menu.status === true && <div>เปิดการขาย</div>}
+                              {menu.status !== true && <div>ปิดการขาย</div>}
                             </div>
 
-                            <div>
-                              <label class="switch">
-                                <input type="checkbox" checked />
-                                <span class="slider round"></span>
+                            <div id="a-menu-container-col-4">
+                              <div id="a-menu-container-col-4-toggleSwitch">
+                              <label className="switch">
+                                <input
+                                  type="checkbox"
+                                  checked={menu.status}
+                                  onChange={() =>
+                                    toggleMenuStatus(menu._id, menu.status)
+                                  }
+                                />
+                                <span className="slider round"></span>
                               </label>
+                              </div>
                             </div>
+
+                            <div id="a-menu-container-col-5">
+                              <button>สูตรและข้อมูลเมนู</button>
+                            </div>
+
+                            <div id="a-menu-container-col-6">
+                            <button
+                                id="delete-menu-btn"
+                                /*onClick={() => {
+                                  handleDeleteIngredient(
+                                    ingredient.name,
+                                    ingredient._id
+                                  );
+                                }}*/
+                              >
+                                <i
+                                  className="material-icons"
+                                  id="delete-menu-btn-icon"
+                                >
+                                  delete
+                                </i>
+                              </button>
+                            </div>
+
+                            
                           </div>
                         }
                       </div>

@@ -148,15 +148,14 @@
 
             #a-menu-container-col-2-have-pic
             {
-                width: 35%;
-                background-color: antiquewhite;
+                width: 32%;
                 display: flex;
                 margin-right: 5%;
 
                 #menu-name-have-pic
                 {
                     width: 100%;
-                    font-size: 1.1vw;
+                    font-size: 1.2vw;
                     font-weight: bold;
                     text-wrap: nowrap;
                     overflow: hidden;
@@ -168,8 +167,7 @@
 
             #a-menu-container-col-2-have-no-pic
             {
-                width: 43%;
-                background-color: antiquewhite;
+                width: 40%;
                 display: flex;
                 margin-left: -8%;
                 margin-right: 5%;
@@ -185,6 +183,147 @@
                     margin: auto 0;
                 }
             }
+
+            #a-menu-container-col-3
+            {
+                width: 9%;
+                display: flex;
+
+                div 
+                {
+                    font-size: 0.85vw;
+                    width: 100%;
+                    margin: auto;
+                }
+            }
+
+            #a-menu-container-col-4
+            {
+                width: 5%;
+                display: flex;
+                margin-left: 1.5%;
+                padding-top: 0.5%;
+
+                #a-menu-container-col-4-toggleSwitch
+                {
+                    margin: auto;
+                    height: fit-content;
+                    width: 100%;
+                }
+
+                /* The switch - the box around the slider */
+                .switch {
+                    position: relative;
+                    display: inline-block;
+                    width: 100%;
+                    height: 1.3vw; /* Adjust height as needed */
+                }
+                
+                /* Hide default HTML checkbox */
+                .switch input {
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+                
+                /* The slider */
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #dadada;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                    border-radius: 2.5vw; /* Adjust border-radius to make it round */
+                }
+                
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 1.25vw;
+                    aspect-ratio: 1 / 1;
+                    left: 0vw;
+                    bottom: 4%;
+                    background-color: rgb(10, 129, 169);
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                    border-radius: 50%;
+                }
+                
+                input:checked + .slider {
+                    background-color: rgba(10, 129, 169, 0.307);
+                }
+                
+                input:focus + .slider {
+                    box-shadow: 0 0 1px #2196F3;
+                }
+                
+                input:checked + .slider:before {
+                    -webkit-transform: translateX(100%);
+                    -ms-transform: translateX(2.35vw);
+                    transform: translateX(2.35vw);
+                }
+            }
+
+            #a-menu-container-col-5
+            {
+                width: 19%;
+                height: 100%;
+                display: flex;
+                margin: auto;
+                margin-left: 3%;
+
+                button
+                {
+                    font-size: 0.7vw;
+                    margin-left: auto;
+                    border: none;
+                    color: white;
+                    background-color: darkmagenta;
+                    height: fit-content;
+                    width: fit-content;
+                    padding: 2% 5%;
+                    border-radius: 3vw;
+
+                    &:hover
+                    {
+                        background-color: rgb(93, 0, 93);
+                    }    
+                }
+            }
+
+            #a-menu-container-col-6
+                {
+                    width: 10%;
+                    display: flex;
+                    padding: 0 2%;
+
+                    #delete-menu-btn
+                    {
+                        margin: auto;
+                        border-radius: 50%;
+                        border: none;
+                        display: flex;
+                        padding: 0%;
+                        aspect-ratio: 1 / 1 ;
+                        background-color: rgb(255, 255, 255);
+
+                        #delete-menu-btn-icon
+                        {
+                            font-size: 1.5vw;
+                            color: rgba(169, 0, 34, 0.6);
+                            margin: auto;
+
+                            &:hover
+                            {
+                                color: rgb(169, 0, 34);
+                            }
+                        }
+                    }
+                }
         }
         
     }

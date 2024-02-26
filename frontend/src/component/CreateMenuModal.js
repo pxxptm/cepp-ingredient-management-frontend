@@ -67,6 +67,7 @@ function CreateMenuModal({ setCreateMenuModalOpen, restaurantId }) {
           name: menuName,
           restaurantId: restaurantId,
           image: minioImagePath,
+          status: true,
         },
         {
           headers: {
