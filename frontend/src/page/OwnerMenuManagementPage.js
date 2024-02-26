@@ -61,7 +61,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
       .catch((error) => {
         console.log(error);
       });
-  },[menuList]);
+  }, [menuList]);
 
   const toggleMenuStatus = (menuId, status) => {
     const updatedMenuList = menuList.map((menu) =>
@@ -193,22 +193,26 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                               </div>
                             )}
                             <div id="a-menu-container-col-3">
-                              {menu.status === true && <div>เปิดการขาย</div>}
+                              {menu.status === true && (
+                                <div style={{ color: "rgb(10, 129, 169)" , fontWeight:"bold" }}>
+                                  เปิดการขาย
+                                </div>
+                              )}
                               {menu.status !== true && <div>ปิดการขาย</div>}
                             </div>
 
                             <div id="a-menu-container-col-4">
                               <div id="a-menu-container-col-4-toggleSwitch">
-                              <label className="switch">
-                                <input
-                                  type="checkbox"
-                                  checked={menu.status}
-                                  onChange={() =>
-                                    toggleMenuStatus(menu._id, menu.status)
-                                  }
-                                />
-                                <span className="slider round"></span>
-                              </label>
+                                <label className="switch">
+                                  <input
+                                    type="checkbox"
+                                    checked={menu.status}
+                                    onChange={() =>
+                                      toggleMenuStatus(menu._id, menu.status)
+                                    }
+                                  />
+                                  <span className="slider round"></span>
+                                </label>
                               </div>
                             </div>
 
@@ -217,7 +221,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                             </div>
 
                             <div id="a-menu-container-col-6">
-                            <button
+                              <button
                                 id="delete-menu-btn"
                                 /*onClick={() => {
                                   handleDeleteIngredient(
@@ -234,8 +238,6 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                                 </i>
                               </button>
                             </div>
-
-                            
                           </div>
                         }
                       </div>
