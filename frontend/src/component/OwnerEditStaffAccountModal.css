@@ -1,0 +1,831 @@
+.staff-edit-modalBackground {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    min-width: 423px;
+  }
+    
+  
+  @media (min-width: 1300px) {
+    .staff-edit-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-edit-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 4% 2.5% 4%;
+      width: 45%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 2vw;
+    }
+  
+    .staff-edit-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-edit-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 1.7vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -4%;
+      margin-top: 2%;
+      margin-bottom: 0%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-edit-modalContainer .staff-edit-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #staff-edit-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-edit-form-floating
+    {
+        margin: 2% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-edit-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 0.8vw;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+            border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 0.85vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-edit-form-floating .material-icons
+    {
+        color: white;
+        font-size: 1.2vw !important; 
+        padding: 3% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 2vw;
+        border-bottom-left-radius: 2vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3% 5.65% 3% 4.5%;
+    }
+
+    .staff-edit-form-input-space
+    {
+        font-size: 0.8vw;
+        width: 100%;
+        border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-edit-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-edit-span-zone {
+      margin-top: 7%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #staff-edit-cancel
+    {
+        font-family: "Kanit", sans-serif;
+      font-size: 0.85vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 7vw;
+      padding: 1.75% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56,56,56);
+      }
+    }
+  
+  
+    #staff-edit-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 0.85vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 7vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (min-width: 700px) and (max-width: 1299.5px) {
+    .staff-edit-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-edit-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 6% 2.5% 6%;
+      width: 60%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 3vw;
+    }
+  
+    .staff-edit-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-edit-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 1.7vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -6%;
+      margin-top: 2%;
+      margin-bottom: 0%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-edit-modalContainer .staff-edit-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #staff-edit-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-edit-form-floating
+    {
+        margin: 3% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-edit-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 1vw;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+            border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 1vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-edit-form-floating .material-icons
+    {
+        color: white;
+        font-size: 1.2vw !important; 
+        padding: 3% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 2vw;
+        border-bottom-left-radius: 2vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3% 5.65% 3% 4.5%;
+    }
+
+    .staff-edit-form-input-space
+    {
+        font-size: 1vw;
+        width: 100%;
+        border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-edit-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-edit-span-zone {
+      margin-top: 5%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #staff-edit-cancel
+    {
+        font-family: "Kanit", sans-serif;
+      font-size: 1vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 8vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56,56,56);
+      }
+    }
+  
+  
+    #staff-edit-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 1vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 8vw;
+      padding: 1.5% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (min-width: 420px) and (max-width: 699.5px) {
+    .staff-edit-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-edit-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 0.8% 6% 4% 6%;
+      width: 70%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 3vw;
+    }
+  
+    .staff-edit-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-edit-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 2.5vw;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -4%;
+      margin-top: 2%;
+      margin-bottom: 0%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-edit-modalContainer .staff-edit-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0;
+      }
+    }
+  
+    #staff-edit-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-edit-form-floating
+    {
+        margin: 3% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-edit-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 1.25vw;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+            border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 1.25vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-edit-form-floating .material-icons
+    {
+        color: white;
+        font-size: 1.5vw !important; 
+        padding: 3% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 2vw;
+        border-bottom-left-radius: 2vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3% 5.65% 3% 4.5%;
+    }
+
+    .staff-edit-form-input-space
+    {
+        font-size: 1.25vw;
+        width: 100%;
+        border-top-right-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-edit-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-edit-span-zone {
+      margin-top: 7%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #staff-edit-cancel
+    {
+        font-family: "Kanit", sans-serif;
+      font-size: 1.25vw;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 11vw;
+      padding: 1.75% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(56,56,56);
+      }
+    }
+  
+    #staff-edit-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 1.25vw;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: white;
+      width: 11vw;
+      padding: 1.75% 1%;
+      border: none;
+      border-radius: 0.7vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }
+  
+  @media (max-width: 419.5px) {
+    .staff-edit-modalBackground {
+      padding: 0 0;
+    }
+  
+    .staff-edit-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 3% 6% 2.5% 6%;
+      width: 90%;
+      margin: auto;
+      border: 1px solid #888;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 6vw;
+    }
+  
+    .staff-edit-titleCloseBtn {
+      font-family: "Kanit", sans-serif;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      font-weight: lighter;
+      margin-right: -5%;
+    }
+  
+    .staff-edit-titleCloseBtn button {
+      background-color: transparent;
+      border: none;
+      font-size: 75%;
+      font-weight: lighter;
+      cursor: pointer;
+      color: black;
+      width: fit-content;
+      padding: 0;
+      margin-right: -2%;
+      margin-top: 2%;
+      margin-bottom: 0%;
+  
+      &:hover {
+        color: crimson;
+      }
+    }
+  
+    .staff-edit-modalContainer .staff-edit-body {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: antiquewhite;
+  
+      form {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+        padding: 3% 0 9% 0;
+      }
+    }
+  
+    #staff-edit-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  
+    .staff-edit-form-floating
+    {
+        margin: 3% auto;
+        width: 100%;
+        padding: 0 auto;
+    }
+
+    .staff-edit-input-form
+    {
+        display: flex;
+        width: 100%;
+        font-family: 'Kanit' , sans-serif;
+
+        select 
+        {
+            font-size: 50%;
+            background-color: #E7E7E7;
+            color: #8D8786;
+            -webkit-appearance: none;
+            appearance: none;
+            color: black;
+            padding: 1% 3% 1% 5%;
+            border-top-right-radius: 4vw;
+        border-bottom-right-radius: 4vw;
+
+            &:focus
+            {
+                outline: none;
+                background-color: #d5d5d5;
+                border-width: 0.3px 0.3px 0.3px 0px;
+                border-color: rgb(10, 129, 169);
+            }
+
+            option 
+            {
+                font-family: 'Kanit' , sans-serif;
+                font-size: 2.05vw;
+                color: black;
+            }
+            
+        }
+    }
+
+    .staff-edit-form-floating .material-icons
+    {
+        color: white;
+        font-size: 3vw !important; 
+        padding: 3.25% 4.5%;
+        min-width: 7%;
+        justify-content: auto;
+        text-align: center;
+        border-top-left-radius: 4vw;
+        border-bottom-left-radius: 4vw;
+        background-color: rgb(33, 33, 33);
+    }
+
+    #staff-name-icon
+    {
+        padding: 3.25% 5.65% 3.25% 4.5%;
+    }
+
+    .staff-edit-form-input-space
+    {
+        font-size: 50%;
+        width: 100%;
+        border-top-right-radius: 4vw;
+        border-bottom-right-radius: 4vw;
+        background-color: #E7E7E7;
+        outline: none;
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-color: rgba(0, 0, 0, 0.384);
+        padding: 1% 3% 1% 5%;
+        font-family: 'Kanit', sans-serif;
+
+        &:focus
+        {
+            outline: none;
+            background-color: #d5d5d5;
+            border-width: 0.3px 0.3px 0.3px 0px;
+            border-color: rgb(10, 129, 169);
+        }
+
+        
+    }
+
+    #staff-edit-input-form-name
+    {
+        width: 85%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    
+    #staff-edit-span-zone {
+      margin-top: 7%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #staff-edit-cancel
+    {
+        font-family: "Kanit", sans-serif;
+      font-size: 45%;
+      font-weight: normal;
+      background-color: rgb(118,118,118);
+      color: white;
+      width: 17.5%;
+      padding: 1.3% 1%;
+      border: none;
+      border-radius: 1.5vw;
+  
+      &:hover {
+        background-color: rgb(56,56,56);
+      }
+    }
+  
+    #staff-edit-submit {
+      font-family: "Kanit", sans-serif;
+      font-size: 45%;
+      font-weight: normal;
+      background-color: rgb(10, 129, 169);
+      color: #ffffff;
+      width: 17.5%;
+      padding: 1.3% 1%;
+      border: none;
+      border-radius: 1.5vw;
+  
+      &:hover {
+        background-color: rgb(7, 79, 103);
+      }
+    }
+  }

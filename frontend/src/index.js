@@ -16,10 +16,11 @@ import FAQPage from "./page/FAQPage";
 import OwnerRegisterPage from "./page/OwnerRegister";
 import RestaurantListPage from "./page/RestaurantListPage";
 import MainPageOwner from "./page/MainPageOwner";
-import StaffManagementPage from "./page/StaffManagementPage";
+import OwnerStaffManagementPage from "./page/OwnerStaffManagementPage";
 import EditRestaurantPage from "./page/EditRestaurantPage";
 import SelfEditAccountPage from "./page/SelfEditAccountPage";
 import OwnerInventoryPage from "./page/OwnerInventoryPage";
+import OwnerMenuManagementPage from "./page/OwnerMenuManagementPage";
 
 const router = (
   <Routes>
@@ -44,7 +45,7 @@ const router = (
 
     <Route
       path="/:username/:restaurantId/staff-management"
-      element={<StaffManagementPageWrapper />}
+      element={<OwnerStaffManagementPageWrapper />}
     />
 
     <Route
@@ -53,10 +54,16 @@ const router = (
     />
 
     <Route
-    path="/:username/:restaurantId/inventory-management"
-    element= {<OwnerInventoryPageWrapper/>}/>
+      path="/:username/:restaurantId/inventory-management"
+      element={<OwnerInventoryPageWrapper />}
+    />
 
     <Route path="/:username/account" element={<SelfEditAccountPageWrapper />} />
+
+    <Route
+      path="/:username/:restaurantId/menu-and-components"
+      element={<OwnerMenuManagementPageWrapper />}
+    />
   </Routes>
 );
 
@@ -71,19 +78,17 @@ function OwnerMainPageWrapper() {
   return <MainPageOwner username={username} restaurantId={restaurantId} />;
 }
 
-function StaffManagementPageWrapper() {
+function OwnerStaffManagementPageWrapper() {
   let { username } = useParams();
   let { restaurantId } = useParams();
   return (
-    <StaffManagementPage username={username} restaurantId={restaurantId} />
+    <OwnerStaffManagementPage username={username} restaurantId={restaurantId} />
   );
 }
 
 function SelfEditAccountPageWrapper() {
   let { username } = useParams();
-  return (
-    <SelfEditAccountPage username={username} />
-  );
+  return <SelfEditAccountPage username={username} />;
 }
 
 function EditRestaurantPageWrapper() {
@@ -96,6 +101,14 @@ function OwnerInventoryPageWrapper() {
   let { username } = useParams();
   let { restaurantId } = useParams();
   return <OwnerInventoryPage username={username} restaurantId={restaurantId} />;
+}
+
+function OwnerMenuManagementPageWrapper() {
+  let { username } = useParams();
+  let { restaurantId } = useParams();
+  return (
+    <OwnerMenuManagementPage username={username} restaurantId={restaurantId} />
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -23,7 +23,7 @@ function OwnerEditStaffAccountModal({
   //update for axios post
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     // alert(username + password + Fname + Lname + role);
     await axios
       .patch(
@@ -43,7 +43,7 @@ function OwnerEditStaffAccountModal({
         }
       )
       .then((res) => {
-        console.log(res)
+        console.log(res);
         // alert(res);
         if (res.status === 200) {
           setOpenModal(false);
@@ -51,21 +51,21 @@ function OwnerEditStaffAccountModal({
         }
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         // alert(error);
       });
   }
 
   return (
-    <div className="staff-reg-modalBackground">
+    <div className="staff-edit-modalBackground">
       <link
         href="https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin"
         rel="stylesheet"
         type="text/css"
       ></link>
 
-      <div className="staff-reg-modalContainer">
-        <div className="staff-reg-titleCloseBtn">
+      <div className="staff-edit-modalContainer">
+        <div className="staff-edit-titleCloseBtn">
           <button
             onClick={() => {
               setOpenModal(false);
@@ -75,17 +75,17 @@ function OwnerEditStaffAccountModal({
           </button>
         </div>
 
-        <div className="staff-reg-body">
+        <div className="staff-edit-body">
           <form onSubmit={handleSubmit}>
-            <div id="staff-reg-form">
-              <div className="staff-reg-form-floating">
-                <div className="staff-reg-input-form">
+            <div id="staff-edit-form">
+              <div className="staff-edit-form-floating">
+                <div className="staff-edit-input-form">
                   <i className="material-icons" id="staff-name-icon">
                     badge
                   </i>
                   <input
-                    className="staff-reg-form-input-space"
-                    id="staff-reg-input-form-name"
+                    className="staff-edit-form-input-space"
+                    id="staff-edit-input-form-name"
                     type="text"
                     placeholder="staff's name (ชื่อพนักงาน)"
                     name="name"
@@ -97,7 +97,7 @@ function OwnerEditStaffAccountModal({
                     }}
                   />
                   <input
-                    className="staff-reg-form-input-space"
+                    className="staff-edit-form-input-space"
                     type="text"
                     placeholder="staff's lastname (นามสกุลพนักงาน)"
                     name="username"
@@ -110,11 +110,11 @@ function OwnerEditStaffAccountModal({
                   />
                 </div>
               </div>
-              <div className="staff-reg-form-floating">
-                <div className="staff-reg-input-form">
+              <div className="staff-edit-form-floating">
+                <div className="staff-edit-input-form">
                   <i className="material-icons">person</i>
                   <input
-                    className="staff-reg-form-input-space"
+                    className="staff-edit-form-input-space"
                     type="text"
                     placeholder="staff's username (ชื่อผู้ใช้ของพนักงาน)"
                     name="username"
@@ -127,11 +127,11 @@ function OwnerEditStaffAccountModal({
                   />
                 </div>
               </div>
-              <div className="staff-reg-form-floating">
-                <div className="staff-reg-input-form ">
+              <div className="staff-edit-form-floating">
+                <div className="staff-edit-input-form ">
                   <i className="material-icons">lock</i>
                   <input
-                    className="staff-reg-form-input-space"
+                    className="staff-edit-form-input-space"
                     type="password"
                     placeholder="staff's password (รหัสผ่านของพนักงาน)"
                     name="password"
@@ -144,8 +144,8 @@ function OwnerEditStaffAccountModal({
                 </div>
               </div>
 
-              <div className="staff-reg-form-floating">
-                <div className="staff-reg-input-form ">
+              <div className="staff-edit-form-floating">
+                <div className="staff-edit-input-form ">
                   <i className="material-icons">attribution</i>
                   <select
                     className="Contact-us-form-input-space"
@@ -173,9 +173,15 @@ function OwnerEditStaffAccountModal({
                 </div>
               </div>
             </div>
-            <div id="staff-reg-span-zone" className="d-flex">
+            <div id="staff-edit-span-zone" className="d-flex">
               <button
-                id="staff-reg-submit"
+                id="staff-edit-cancel"
+                onClick={() => setOpenModal(false)}
+              >
+                ยกเลิก
+              </button>
+              <button
+                id="staff-edit-submit"
                 type="submit"
                 className="btn-submit"
               >

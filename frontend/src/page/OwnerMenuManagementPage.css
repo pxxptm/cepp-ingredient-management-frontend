@@ -1,0 +1,643 @@
+#Menu-management-page
+{
+    height : 100%;
+    width: 100%;
+    min-width: 423px;
+    position: relative;
+    padding: 0;
+    margin: 0px;
+    background-color: white;
+    overflow-y: hidden;
+}
+
+#Menu-management-page-header
+{
+    width: 100%;
+}
+
+#Menu-management-page-header-bar
+{
+    width: 100%;
+    min-width: 423px;
+    height: fit-content;
+    position: sticky;
+    top: 0;
+}
+
+#Menu-management-page-side-bar-menu
+{
+    display: none;
+}
+
+#Menu-management-page-body
+{
+    display: flex;
+}
+
+
+@media (min-width: 700px) 
+{
+    #Menu-management-page-side-bar-menu
+    {
+        display: inline-block;
+        width: 16%;
+        height: 100%;
+        position: fixed;
+    }
+
+    #Menu-management-page-content
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 88vh;
+        min-height: 100%;
+        padding-left: 20%;
+        background-color: rgb(255, 255, 255);
+        padding-right: 5.25vw;
+
+        #Menu-management-page-content-header
+        {
+            width: 100%;
+            height: fit-content;
+            padding: 5% 0;
+            display: grid;
+            grid-template-columns: 7% 14%;
+            column-gap: 20%;
+
+            h1
+            {
+                font-family: 'Kanit', sans-serif;
+                font-size: 2.75vw;
+                font-weight: bold;
+                margin: auto;
+                text-wrap: nowrap;
+            }
+
+            #add-staff-acc-btn
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 7vw;
+                height: 2.5vw;
+                font-size: 1vw;
+                background-color: #00aa88;
+                color: white;
+                border: none;
+                border-radius: 0.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover
+                {
+                    background-color: #006d58;
+                }
+                
+                span 
+                {
+                    font-size: 1.2vw;
+                    font-family: 'Kanit', sans-serif;
+                    margin-right: 11%;
+                }
+            }
+        }
+    }
+
+    #Menu-management-page-content-table-zone 
+    {
+        width: 100%;
+        height: 100%;
+        max-height: 77%;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #Menu-management-page-content-table
+    {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+
+        #a-staff-container
+        {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
+            padding: 2% 1%;
+            height: fit-content;
+            font-family: 'Kanit', sans-serif;
+            display: flex;
+
+            #a-staff-container-l
+            {
+                width: 45%;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                border-right: 0.1vw solid rgba(0, 0, 0, 0.2);
+                background-color: white;
+
+                #Fname-and-Lname
+                {
+                    color: black;
+                    font-size: 1.17vw;
+                    display: flex;
+                    margin-bottom: 4%;
+
+                    @media (max-width: 1299.5px) 
+                    {
+                        font-size: 1.4vw;
+                    }
+
+                    #Fname 
+                    {
+                        width: fit-content;
+                        margin-right: 5%;
+                    }
+
+                    #Lname 
+                    {
+                        width: fit-content;
+                    }
+                }
+
+                #username-and-role
+                {
+                    color: #727272;
+                    font-size: 0.825vw;
+                    display: flex;
+
+                    @media (max-width: 1299.5px) 
+                    {
+                        font-size: 0.875vw;
+                    }
+
+                    #username , #role
+                    {
+                        width: 40%;
+
+                        span 
+                        {
+                            margin-right: 3%;
+                        }
+                    }
+                }
+            }
+
+            #a-staff-container-r
+            {
+                width: 55%;
+                height: fit-content;
+                display: flex;
+                align-self: center;
+
+                .a-staff-container-l-btn
+                {
+                    width: 50%;
+
+                    button
+                    {
+                        width: 32%;
+                        color: white;
+                        border: none;
+                        border-radius: 0.5vw;
+                        padding: 2% 0;
+                        font-size: 0.75vw;
+                    }
+
+                    #edit-acc
+                    {
+                        float: right;
+                        background-color: darkmagenta;
+
+                        &:hover
+                        {
+                            background-color: rgb(93, 0, 93);
+                        }
+                    }
+
+                    #delete-acc
+                    {
+                        float: right;
+                        background-color: rgb(50, 50, 50);
+
+                        &:hover
+                        {
+                            background-color: rgb(0, 0, 0);
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 420px) and (max-width: 699.5px)
+{
+    #Menu-management-page-side-bar-menu
+    {
+        display: none;
+    }
+
+    #Menu-management-page-content
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 88vh;
+        min-height: 100%;
+        padding: 0 5.5vw;
+        background-color: rgb(255, 255, 255);
+        padding-right: 5.25vw;
+
+        #Menu-management-page-content-header
+        {
+            width: 100%;
+            height: fit-content;
+            padding: 7% 0;
+            display: grid;
+            grid-template-columns: 7% 14%;
+            column-gap: 20%;
+
+            h1
+            {
+                font-family: 'Kanit', sans-serif;
+                font-size: 3.75vw;
+                font-weight: bold;
+                margin: auto;
+            }
+
+            #add-staff-acc-btn
+            {
+                margin: auto;
+                font-family: 'Kanit', sans-serif;
+                text-wrap: nowrap;
+                width: 10vw;
+                height: 2.5vw;
+                font-size: 1vw;
+                background-color: #00aa88;
+                color: white;
+                border: none;
+                border-radius: 0.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover
+                {
+                    background-color: #006d58;
+                }
+                
+                span 
+                {
+                    font-size: 1.2vw;
+                    font-family: 'Kanit', sans-serif;
+                    margin-right: 6%;
+                }
+            }
+        }
+    }
+
+    #Menu-management-page-content-table-zone 
+    {
+        width: 100%;
+        height: 100%;
+        max-height: 78%;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #Menu-management-page-content-table
+    {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+
+        #a-staff-container
+        {
+            width: 100%;
+            background-color: white;
+            border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
+            padding: 2% 1%;
+            height: fit-content;
+            font-family: 'Kanit', sans-serif;
+            display: flex;
+
+            #a-staff-container-l
+            {
+                width: 60%;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                border-right: 0.1vw solid rgba(0, 0, 0, 0.2);
+                background-color: white;
+
+                #Fname-and-Lname
+                {
+                    color: black;
+                    font-size: 1.8vw;
+                    display: flex;
+                    margin-bottom: 4%;
+
+                    #Fname 
+                    {
+                        width: fit-content;
+                        margin-right: 5%;
+                    }
+
+                    #Lname 
+                    {
+                        width: fit-content;
+                    }
+                }
+
+                #username-and-role
+                {
+                    color: #727272;
+                    font-size: 1.25vw;
+                    display: flex;
+
+                    #username , #role
+                    {
+                        width: 40%;
+
+                        span 
+                        {
+                            margin-right: 3%;
+                        }
+                    }
+                }
+            }
+
+            #a-staff-container-r
+            {
+                width: 40%;
+                height: fit-content;
+                display: flex;
+                align-self: center;
+
+                .a-staff-container-l-btn
+                {
+                    width: 50%;
+
+                    button
+                    {
+                        width: 35%;
+                        color: white;
+                        border: none;
+                        border-radius: 0.5vw;
+                        padding: 2.75% 0;
+                        font-size: 0.8vw;
+                    }
+
+                    #edit-acc
+                    {
+                        float: right;
+                        background-color: darkmagenta;
+
+                        &:hover
+                        {
+                            background-color: rgb(93, 0, 93);
+                        }
+                    }
+
+                    #delete-acc
+                    {
+                        float: right;
+                        background-color: rgb(50, 50, 50);
+
+                        &:hover
+                        {
+                            background-color: rgb(0, 0, 0);
+                        }
+                    }
+                }
+            }
+
+            
+        }
+        
+    }
+}
+
+@media (max-width: 419.5px)
+{
+    #Menu-management-page-side-bar-menu
+    {
+        display: none;
+    }
+
+    #Menu-management-page-content
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 88vh;
+        min-height: 100%;
+        padding: 0 4.25vw;
+        background-color: rgb(255, 255, 255);
+
+        @media (max-width: 340px) 
+        {
+            padding: 0 5vw;
+        }
+
+        @media (max-width: 195.5px) 
+        {
+            padding: 0 12vw;
+        }
+
+        @media (max-width: 135.5px) 
+        {
+            padding: 0 25vw;
+        }
+
+        #Menu-management-page-content-header
+        {
+            width: 100%;
+            height: fit-content;
+            padding: 5% 0;
+            display: grid;
+            grid-template-columns: 7% 14%;
+            column-gap: 20%;
+
+            h1
+            {
+                font-family: 'Kanit', sans-serif;
+                font-size: 110%;
+                font-weight: bold;
+                margin: auto;
+                text-wrap: nowrap;
+                background-color: rgb(255, 255, 255);
+            }
+
+            #add-staff-acc-btn
+            {
+                margin: auto;
+                        font-family: 'Kanit', sans-serif;
+                        text-wrap: nowrap;
+                        width: 125%;
+                        height: fit-content;
+                        font-size: 50%;
+                        background-color: #00aa88;
+                        color: white;
+                        border: none;
+                        border-radius: 0.75vw;
+                        border-width: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        float: right;
+
+                        &:hover
+                        {
+                            background-color: #006d58;
+                        }
+                        
+                        span 
+                        {
+                            font-size: 120%;
+                            font-family: 'Kanit', sans-serif;
+                            margin-right: 6%;
+                        }
+            }
+        }
+    }
+
+    #Menu-management-page-content-table-zone 
+    {
+        width: 100%;
+        height: 100%;
+        max-height: 78%;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #Menu-management-page-content-table
+    {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+
+        #a-staff-container
+        {
+            width: 100%;
+            background-color: white;
+            border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
+            padding: 3% 1%;
+            height: fit-content;
+            font-family: 'Kanit', sans-serif;
+            display: flex;
+
+            #a-staff-container-l
+            {
+                width: 60%;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                border-right: 0.1vw solid rgba(0, 0, 0, 0.2);
+                background-color: white;
+
+                #Fname-and-Lname
+                {
+                    color: black;
+                    font-size: 62.5%;
+                    display: flex;
+                    margin-bottom: 3%;
+
+                    #Fname 
+                    {
+                        width: fit-content;
+                        margin-right: 5%;
+                    }
+
+                    #Lname 
+                    {
+                        width: fit-content;
+                    }
+                }
+
+                #username-and-role
+                {
+                    color: #727272;
+                    font-size: 45%;
+                    display: flex;
+
+                    #username , #role
+                    {
+                        width: 40%;
+
+                        span 
+                        {
+                            margin-right: 3%;
+                        }
+                    }
+                }
+            }
+
+            #a-staff-container-r
+            {
+                width: 40%;
+                height: fit-content;
+                display: flex;
+                align-self: center;
+
+                .a-staff-container-l-btn
+                {
+                    width: 50%;
+
+                    button
+                    {
+                        width: 47.5%;
+                        color: white;
+                        border: none;
+                        border-radius: 0.5vw;
+                        padding: 3% 0;
+                        font-size: 35%;
+                    }
+
+                    #edit-acc
+                    {
+                        float: right;
+                        background-color: darkmagenta;
+
+                        &:hover
+                        {
+                            background-color: rgb(93, 0, 93);
+                        }
+                    }
+
+                    #delete-acc
+                    {
+                        float: right;
+                        background-color: rgb(50, 50, 50);
+
+                        &:hover
+                        {
+                            background-color: rgb(0, 0, 0);
+                        }
+                    }
+                }
+            }
+
+            
+        }
+        
+    }
+}
+
+
+#Menu-management-page-content-table::-webkit-scrollbar {
+    width: 0.25vw; /* Width of the scrollbar */
+  }
+  
+  #Menu-management-page-content-table::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2vw;
+  }
+  
+  #Menu-management-page-content-table::-webkit-scrollbar-track {
+    background-color: #9dabc539;
+  }

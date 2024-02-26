@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./StaffManagementPage.css";
+import "./OwnerMenuManagementPage.css";
+import axios from "axios";
 import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/OwnerSideNavBar";
-import axios from "axios";
-import CreateStaffAccountModal from "../component/CreateStaffAccountModal";
-import OwnerEditStaffAccountModal from "../component/OwnerEditStaffAccountModal";
 
-function StaffManagementPage({ username, restaurantId }) {
+function OwnerMenuManagementPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
-  const [staffList, setStaffList] = useState([]);
+  const [menuList, setMenuList] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editStaffModalOpen, setEditStaffModalOpen] = useState(false);
 
-  let staffListURL = `http://localhost:3001/member/user/${restaurantId}`;
+  let menuListURL = `http://localhost:3001/menu/restaurant/${restaurantId}`;
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
 
   const [restaurantName, setRestaurantName] = useState();
@@ -42,19 +40,19 @@ function StaffManagementPage({ username, restaurantId }) {
       });
   });
 
-  // get staff of this restaurant
+  // get menu of this restaurant
   useEffect(() => {
     axios
-      .get(staffListURL, {
+      .get(menuListURL, {
         headers: {
           Authorization: "Bearer " + accessToken,
         },
       })
       .then((response) => {
         console.log(response.data);
-        if (JSON.stringify(response.data) !== JSON.stringify(staffList)) {
-          setStaffList(response.data);
-          console.log(staffList);
+        if (JSON.stringify(response.data) !== JSON.stringify(menuList)) {
+          setMenuList(response.data);
+          console.log(menuList);
         }
       })
       .catch((error) => {
@@ -62,6 +60,7 @@ function StaffManagementPage({ username, restaurantId }) {
       });
   });
 
+  /*
   // Function to handle edit ingredient click event and set props
   const handleEditStaff = (
     staffId,
@@ -81,10 +80,10 @@ function StaffManagementPage({ username, restaurantId }) {
   };
 
   // State to hold edit ingredient props
-  const [editStaffProps, setEditStaffProps] = useState(null);
+  const [editStaffProps, setEditStaffProps] = useState(null); */
 
   return (
-    <div id="Staff-management-page">
+    <div id="Menu-management-page">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -96,28 +95,12 @@ function StaffManagementPage({ username, restaurantId }) {
         type="text/css"
       ></link>
 
-      <div id="Staff-management-page-header-bar">
+      <div id="Menu-management-page-header-bar">
         <UserHeaderBar username={username} />
       </div>
 
-      <div id="Staff-management-page-body">
-        {modalOpen && (
-          <CreateStaffAccountModal
-            setOpenModal={setModalOpen}
-            restaurantId={restaurantId}
-          />
-        )}
-        {editStaffModalOpen && editStaffProps && (
-          <OwnerEditStaffAccountModal
-            setOpenModal={setEditStaffModalOpen}
-            staffId={editStaffProps.staffId}
-            staffFName={editStaffProps.staffFName}
-            staffLName={editStaffProps.staffLName}
-            staffUsername={editStaffProps.staffUsername}
-            staffRole = {editStaffProps.staffRole}
-          />
-        )}
-        <div id="Staff-management-page-side-bar-menu">
+      <div id="Menu-management-page-body">
+        <div id="Menu-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
             restaurantId={restaurantId}
@@ -126,43 +109,43 @@ function StaffManagementPage({ username, restaurantId }) {
           />
         </div>
 
-        <div id="Staff-management-page-content">
-          <div id="Staff-management-page-content-header">
-            <h1>พนักงาน</h1>
+        <div id="Menu-management-page-content">
+          <div id="Menu-management-page-content-header">
+            <h1>รายการเมนู</h1>
             <button
               id="add-staff-acc-btn"
               onClick={() => {
                 setModalOpen(true);
               }}
             >
-              <span>+</span>เพิ่มบัญชีพนักงาน
+              <span>+</span>เพิ่มเมนู
             </button>
           </div>
 
-          <div id="Staff-management-page-content-table-zone">
-            <div id="Staff-management-page-content-table">
-              {staffList.length > 0 &&
-                staffList.map(
-                  (staff, index) =>
-                    staff &&
+          <div id="Menu-management-page-content-table-zone">
+            <div id="Menu-management-page-content-table">
+              {menuList.length > 0 &&
+                menuList.map(
+                  (menu, index) =>
+                    menu &&
                     index > 0 && ( // Check if staff is not null
-                      <div id="staff-block" key={staff.userId}>
+                      <div id="staff-block" key={menu.userId}>
                         {
                           <div id="a-staff-container">
                             <div id="a-staff-container-l">
                               <div id="Fname-and-Lname">
-                                <div id="Fname">{staff.firstname}</div>
-                                <div id="Lname">{staff.lastname}</div>
+                                <div id="Fname">{menu.firstname}</div>
+                                <div id="Lname">{menu.lastname}</div>
                               </div>
 
                               <div id="username-and-role">
                                 <div id="username">
                                   <span>username : </span>
-                                  {staff.username}
+                                  {menu.username}
                                 </div>
                                 <div id="role">
                                   <span>role : </span>
-                                  {roleDict[staff.role]}
+                                  {roleDict[menu.role]}
                                 </div>
                               </div>
                             </div>
@@ -172,13 +155,7 @@ function StaffManagementPage({ username, restaurantId }) {
                                 <button
                                   id="edit-acc"
                                   onClick={() => {
-                                    handleEditStaff(
-                                      staff.userId,
-                                      staff.firstname,
-                                      staff.lastname,
-                                      staff.username,
-                                      staff.role
-                                    );
+                                    
                                   }}
                                 >
                                   แก้ไขข้อมูล
@@ -201,4 +178,4 @@ function StaffManagementPage({ username, restaurantId }) {
   );
 }
 
-export default StaffManagementPage;
+export default OwnerMenuManagementPage;
