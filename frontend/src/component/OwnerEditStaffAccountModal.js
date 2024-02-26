@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./OwnerEditStaffAccountModal.css";
 import axios from "axios";
 
@@ -16,15 +16,15 @@ function OwnerEditStaffAccountModal({
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(staffRole);
   const accessToken = localStorage.getItem("token");
-
   function refreshPage() {
     window.location.reload();
   }
 
   //update for axios post
 
-  async function handleSubmit() {
-    alert(username + password + Fname + Lname + role);
+  async function handleSubmit(e) {
+    e.preventDefault()
+    // alert(username + password + Fname + Lname + role);
     await axios
       .patch(
         `http://localhost:3001/user/updated-by-owner/${staffId}`,
@@ -43,14 +43,16 @@ function OwnerEditStaffAccountModal({
         }
       )
       .then((res) => {
-        alert(res);
+        console.log(res)
+        // alert(res);
         if (res.status === 200) {
           setOpenModal(false);
           refreshPage();
         }
       })
       .catch((error) => {
-        alert(error);
+        console.log(error)
+        // alert(error);
       });
   }
 
@@ -149,7 +151,7 @@ function OwnerEditStaffAccountModal({
                     className="Contact-us-form-input-space"
                     name="contact back time"
                     id="appointment-time"
-                    value={staffRole}
+                    value={role}
                     onChange={(e) => {
                       setRole(e.target.value);
                     }}

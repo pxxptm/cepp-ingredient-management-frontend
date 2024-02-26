@@ -4,6 +4,13 @@ import Clock from "./Clock";
 import UserHeaderName from "./UserHeaderName";
 
 const HearderBar = (props) => {
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  }
+
   const restaurantListPageURL =
     "http://localhost:3000/" + props.username + "/restaurant";
   return (
@@ -44,7 +51,7 @@ const HearderBar = (props) => {
           </div>
         </div>
         <div className="home-nav-btn">
-          <button id="logout-btn">ออกจากระบบ</button>
+          <button id="logout-btn" onClick={handleLogout}>ออกจากระบบ</button>
         </div>
 
         <div className="user-header-bar-sidebar">
@@ -58,6 +65,7 @@ const HearderBar = (props) => {
           <button
             className="user-header-bar-sidebar-btn"
             id="user-header-bar-sidebar-btn-logout"
+            onClick={handleLogout}
           >
             <i className="material-icons">logout</i>
           </button>
@@ -65,7 +73,7 @@ const HearderBar = (props) => {
           <div className="user-header-bar-sidebar-content">
             <a href="#">opt1</a>
             <a href="#">วิธีใช้งาน</a>
-            <a href="http://localhost:3000/login" id="user-header-bar-logout">
+            <a href="#" id="user-header-bar-logout" onClick={handleLogout}>
               ออกจากระบบ
             </a>
           </div>
