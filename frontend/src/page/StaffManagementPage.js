@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./OwnerStaffManagementPage.css";
+import "./StaffManagementPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
