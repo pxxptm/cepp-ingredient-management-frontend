@@ -21,13 +21,13 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   const defaultPreviewImageUrl =
     "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
 
-    // Function to handle delete ingredient click event and set props
+    // Function to handle delete menu click event and set props
   const handleDeleteIngredient = (name, ingredientId) => {
     setDeleteMenuModalOpen(true);
     setDeleteMenuProps({ name, ingredientId });
   };
 
-  // State to hold delete ingredient props
+  // State to hold delete mennu props
   const [delteMenuProps, setDeleteMenuProps] = useState(null);
 
   useEffect(() => {

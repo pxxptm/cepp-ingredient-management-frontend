@@ -29,7 +29,7 @@
 }
 
 
-@media (min-width: 700px) 
+@media (min-width: 1000px) 
 {
     #order-handler-page-side-bar-menu
     {
@@ -37,4 +37,203 @@
         height: 100%;
         position: fixed;
     }
+
+    #order-handler-page-content-header
+    {
+        width: 100%;
+        padding-left: 16%;
+        font-family: "Kanit", sans-serif;
+        display: flex;
+
+        div 
+        {
+            width: 25%;
+            font-size: 1vw;
+            font-weight: bold;
+            padding: 1.65% 1.4%;
+            margin-left: auto;
+            
+            border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
+            border-bottom: 0.25vw solid rgba(0, 0, 0, 0.21);
+        }
+    }
+
+    #order-handler-page-content
+    {
+        width: 100%;
+        height: 81vh;
+        min-height: 100%;
+        padding-left: 16%;
+        display: flex;
+    }
+
+    #order-handler-page-content-inner
+    {
+        width: 75%;
+        height: 103%;
+        overflow-y: auto;
+        background-color: rgb(255, 255, 255);
+        margin-top: -3%; /* if want to add group menu , erase here */
+    }
+
+    #menu-list-cards
+    {
+        width: 100%;
+        max-width: 100%;
+        height: fit-content;
+        padding: 0;
+    }
+
+    #menu-list-cards-table
+    {
+        width: 100%;
+        display: grid;
+        height: fit-content;
+        grid-template-columns: repeat(5,18.88%);
+        column-gap: 1.4%;
+        padding: 0 2% ;
+        
+    }
+
+    #menu-card-container 
+    {
+        background-color: rgb(255, 255, 255);
+        height: fit-content;
+        width: 100%;
+        border: 0.01vw solid rgba(173, 173, 173, 0.419);
+        border-radius: 0.6vw;
+        padding: 0;
+        overflow: hidden;
+        margin-bottom: 8%;
+        box-shadow: 0 0 0.3vw 0.05vw rgba(0, 0, 0, 0.125);
+
+        &:hover
+        {
+            border: 0.01vw solid rgba(5, 70, 92, 0.45);
+        }
+    }
+
+    #menu-card
+    {
+        width: 100%;
+        height: fit-content;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #menu-card-pic
+    {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background: url("http://100.111.182.51:9000/cepp/9155af23b4b5ad4c4258c07edeac19fb.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: end;
+        align-items:first baseline;
+
+    }
+
+    #menu-card-content
+    {
+        background-color: white;
+        padding: 8% 9%;
+    }
+
+    #menu-card-name
+    {
+        font-family: 'Kanit', sans-serif;
+        font-size: 1vw;
+        color: black;
+        margin: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+
+    #order-summary-zone
+    {
+        width: 25%;
+        height: 100%;
+        border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
+
+        #order-summary-list-box 
+        {
+            width: 100%;
+            height: 87%;
+            margin: auto;
+            
+            overflow: auto;
+            padding-right: 2%;
+
+            #a-order-block
+            {
+                width: 100%;
+                height: fit-content;
+                padding: 5% 6%;
+                border-bottom: 0.1vw solid rgba(0, 0, 0, 0.129);
+
+                #a-order-block-menu-name
+                {
+                    padding-right: 15%;
+                    font-family: 'Kanit', sans-serif;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: 0.95vw;
+                    margin-bottom: 6%;
+                }
+            }
+        }
+
+
+    }
 }
+
+@media (min-width: 700px) and (max-width: 999.5px)
+{
+    #order-handler-page-side-bar-menu
+    {
+        width: 16%;
+        height: 100%;
+        position: fixed;
+    }
+
+    #order-handler-page-content
+    {
+        width: 77.5%;
+        height: 88vh;
+        min-height: 100%;
+        padding-left: 20%;
+        padding-top: 2.5%;
+        background-color: palevioletred;
+    }
+
+    #order-handler-page-content-inner
+    {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 80% 16%;
+        column-gap: 4%;
+        background-color: pink;
+    }
+}
+
+#order-handler-page-content-inner::-webkit-scrollbar {
+    width: 0vw; /* Width of the scrollbar */
+  }
+
+  #order-summary-zone #order-summary-list-box::-webkit-scrollbar {
+    width: 0.25vw; /* Width of the scrollbar */
+  }
+
+  #order-summary-zone #order-summary-list-box::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2vw;
+  }
+  
+  #order-summary-zone #order-summary-list-box::-webkit-scrollbar-track {
+    background-color: #9dabc539;
+  }
+  
