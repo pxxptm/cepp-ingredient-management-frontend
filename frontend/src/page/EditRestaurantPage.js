@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./EditRestaurantPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
-import UserSideNavBar from "../component/OwnerSideNavBar";
+import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 import DeleteRestaurantAuthModal from "../component/DeleteRestaurantAuthModal";
 
@@ -13,26 +13,27 @@ function EditRestaurantPage({ username, restaurantId }) {
 
   const [restaurantImage, setRestaurantImage] = useState();
   const [editMode, setEditMode] = useState(false);
-  const userRole = useRef("staff");
+  const [userRole, setUserRole] = useState("staff");
   const urlUserDetail = "http://localhost:3001/user/role";
 
-  // get role of this user
-  useEffect(() => {
-    axios
-      .get(urlUserDetail, {
-        headers: {
-          Authorization: "Bearer " + accessToken,
-        },
-      })
-      .then((response) => {
-        const role = response.data.role;
-        userRole.current = role;
-        console.log(userRole.current);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+  
+// Get role of this user
+useEffect(() => {
+  axios
+    .get(urlUserDetail, {
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    })
+    .then((response) => {
+      const role = response.data.role;
+      setUserRole(role); // Update state instead of ref
+      console.log(role);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}, [accessToken, urlUserDetail]);
 
   // get restaurant detail
   useEffect(() => {
@@ -193,7 +194,7 @@ function EditRestaurantPage({ username, restaurantId }) {
           <div id="Edit-restaurant-page-content-header">
             <h1>ข้อมูลร้าน</h1>
             <div className="btn-box-col">
-              {!editMode && userRole.current === "owner" && (
+              {!editMode && userRole === "owner" && (
                 <button
                   id="edit-rest-btn"
                   onClick={() => {
@@ -204,7 +205,7 @@ function EditRestaurantPage({ username, restaurantId }) {
                 </button>
               )}
 
-              {editMode && userRole.current === "owner" && (
+              {editMode && userRole === "owner" && (
                 <button
                   id="cancel-edit-rest-btn"
                   onClick={() => {
@@ -219,12 +220,14 @@ function EditRestaurantPage({ username, restaurantId }) {
               )}
             </div>
             <div className="btn-box-col">
-              {(userRole.current === "owner") && <button
-                id="delete-rest-btn"
-                onClick={() => setOpenDeleteModal(true)}
-              >
-                ลบร้านของคุณ
-              </button>}
+              {userRole === "owner" && (
+                <button
+                  id="delete-rest-btn"
+                  onClick={() => setOpenDeleteModal(true)}
+                >
+                  ลบร้านของคุณ
+                </button>
+              )}
             </div>
           </div>
 

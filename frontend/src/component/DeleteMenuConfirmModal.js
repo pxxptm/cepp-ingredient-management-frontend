@@ -1,11 +1,11 @@
 import axios from "axios";
 import React from "react";
-import "./DeleteIngredientConfirmModal.css";
+import "./DeleteMenuConfirmModal.css";
 
-function DeleteIngredientConfirmModal({
-  setDeleteIngredientConfirmModalOpen,
-  ingredientId,
-  ingredientName,
+function DeleteMenuConfirmModal({
+  setDeleteMenuConfirmModalOpen,
+  menuId,
+  menuName,
 }) {
   const accessToken = localStorage.getItem("token");
 
@@ -16,7 +16,7 @@ function DeleteIngredientConfirmModal({
   async function handleSubmit() {
     // delete ingredient
     await axios
-      .delete(`http://localhost:3001/ingredient/${ingredientId}`, {
+      .delete(`http://localhost:3001/menu/${menuId}`, {
         headers: {
           Authorization: "Bearer " + accessToken,
         },
@@ -33,18 +33,18 @@ function DeleteIngredientConfirmModal({
   }
 
   return (
-    <div className="ingredient-del-modalBackground">
+    <div className="menu-del-modalBackground">
       <link
         href="https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin"
         rel="stylesheet"
         type="text/css"
       ></link>
 
-      <div className="ingredient-del-modalContainer">
-        <div className="ingredient-del-titleCloseBtn">
+      <div className="menu-del-modalContainer">
+        <div className="menu-del-titleCloseBtn">
           <button
             onClick={() => {
-                setDeleteIngredientConfirmModalOpen(false);
+              setDeleteMenuConfirmModalOpen(false);
             }}
           >
             x
@@ -52,24 +52,24 @@ function DeleteIngredientConfirmModal({
         </div>
 
         <div id="confirm-txt-1">
-          แน่ใจใช่ไหมว่าต้องการลบ<span>{ingredientName}</span>
+          แน่ใจใช่ไหมว่าต้องการลบ<span>{menuName}</span>
         </div>
 
-        <div className="ingredient-del-body">
-          <div id="ingredient-del-span-zone" className="d-flex">
+        <div className="menu-del-body">
+          <div id="menu-del-span-zone" className="d-flex">
             <button
-              id="ingredient-del-cancel"
-              onClick={() => setDeleteIngredientConfirmModalOpen(false)}
+              id="menu-del-cancel"
+              onClick={() => setDeleteMenuConfirmModalOpen(false)}
             >
               ยกเลิก
             </button>
             <button
-              id="ingredient-del-submit"
+              id="menu-del-submit"
               type="submit"
               className="btn-submit"
               onClick={() => {
-                handleSubmit()
-            }}
+                handleSubmit();
+              }}
             >
               เสร็จสิ้น
             </button>
@@ -80,4 +80,4 @@ function DeleteIngredientConfirmModal({
   );
 }
 
-export default DeleteIngredientConfirmModal;
+export default DeleteMenuConfirmModal;

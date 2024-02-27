@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./MainPageOwner.css";
 import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
-import UserSideNavBar from "../component/OwnerSideNavBar";
+import UserSideNavBar from "../component/UserSideNavBar";
 
 function MainPageOwner({ username, restaurantId }) {
   const userRole = useRef("staff");

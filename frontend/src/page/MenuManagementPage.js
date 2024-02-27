@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./OwnerMenuManagementPage.css";
+import "./MenuManagementPage.css";
 import axios from "axios";
 import UserHeaderBar from "../component/UserHeaderBar";
-import UserSideNavBar from "../component/OwnerSideNavBar";
+import UserSideNavBar from "../component/UserSideNavBar";
 import CreateMenuModal from "../component/CreateMenuModal";
+import DeleteMenuConfirmModal from "../component/DeleteMenuConfirmModal";
 
 function OwnerMenuManagementPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
   const [menuList, setMenuList] = useState([]);
   const [createMenuModalOpen, setCreateMenuModalOpen] = useState(false);
-  const [editmenuModalOpen, setEditmenuModalOpen] = useState(false);
+  const [editmenuModalOpen, setEditMenuModalOpen] = useState(false);
+  const [deletemenuModalOpen, setDeleteMenuModalOpen] = useState(false);
 
   let menuListURL = `http://localhost:3001/menu/get-all-menu/${restaurantId}`;
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -19,11 +21,14 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   const defaultPreviewImageUrl =
     "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
 
-  const roleDict = {
-    manager: "ผู้จัดการ",
-    stockcontroller: "พนักงานดูแลคลังวัตถุดิบ",
-    employee: "พนักงานทั่วไป",
+    // Function to handle delete ingredient click event and set props
+  const handleDeleteIngredient = (name, ingredientId) => {
+    setDeleteMenuModalOpen(true);
+    setDeleteMenuProps({ name, ingredientId });
   };
+
+  // State to hold delete ingredient props
+  const [delteMenuProps, setDeleteMenuProps] = useState(null);
 
   useEffect(() => {
     axios
@@ -132,6 +137,14 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
             restaurantId={restaurantId}
           />
         )}
+        
+        {deletemenuModalOpen && delteMenuProps && (
+          <DeleteMenuConfirmModal
+          setDeleteMenuConfirmModalOpen={setDeleteMenuModalOpen}
+            menuId={delteMenuProps.ingredientId}
+            menuName={delteMenuProps.name}
+          />
+        )}
         <div id="Menu-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -223,12 +236,12 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                             <div id="a-menu-container-col-6">
                               <button
                                 id="delete-menu-btn"
-                                /*onClick={() => {
+                                onClick={() => {
                                   handleDeleteIngredient(
-                                    ingredient.name,
-                                    ingredient._id
+                                    menu.name,
+                                    menu._id
                                   );
-                                }}*/
+                                }}
                               >
                                 <i
                                   className="material-icons"

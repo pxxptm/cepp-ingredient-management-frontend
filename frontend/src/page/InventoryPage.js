@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./OwnerInventoryPage.css";
+import "./InventoryPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
-import UserSideNavBar from "../component/OwnerSideNavBar";
+import UserSideNavBar from "../component/UserSideNavBar";
 import AddingredientsModal from "../component/AddIngredientsModal";
 import axios from "axios";
 import EditIngredientsModal from "../component/EditIngredientsModal";
@@ -150,6 +150,27 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
   // State to hold delete ingredient props
   const [delteIngredientProps, setDeleteIngredientProps] = useState(null);
 
+  const [userRole, setUserRole] = useState("staff");
+  const urlUserDetail = "http://localhost:3001/user/role";
+
+  // Get role of this user
+  useEffect(() => {
+    axios
+      .get(urlUserDetail, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((response) => {
+        const role = response.data.role;
+        setUserRole(role); // Update state instead of ref
+        console.log(role);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [accessToken, urlUserDetail]);
+
   return (
     <div id="Owner-inventory-page">
       <link
@@ -168,7 +189,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       </div>
 
       <div id="Owner-inventory-page-body">
-        {addIngredientModalOpen && (
+        {userRole === "owner" && addIngredientModalOpen && (
           <AddingredientsModal
             setModalOpen={setAddIngredientModalOpen}
             restaurantId={restaurantId}
@@ -188,7 +209,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
 
         {deleteIngredientModalOpen && delteIngredientProps && (
           <DeleteIngredientConfirmModal
-          setDeleteIngredientConfirmModalOpen={setDeleteIngredientModalOpen}
+            setDeleteIngredientConfirmModalOpen={setDeleteIngredientModalOpen}
             ingredientId={delteIngredientProps.ingredientId}
             ingredientName={delteIngredientProps.name}
           />
@@ -206,28 +227,29 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
           <div id="Owner-inventory-page-content-header">
             <h1>สต็อกวัตถุดิบ</h1>
             <div id="add-staff-acc-btn-zone">
-              <button
-                id="add-ingredient-btn"
-                onClick={() => {
-                  setAddIngredientModalOpen(true);
-                }}
-              >
-                <span>+</span>เพิ่มวัตถุดิบ
-              </button>
+              {userRole === "owner" && (
+                <button
+                  id="add-ingredient-btn"
+                  onClick={() => {
+                    setAddIngredientModalOpen(true);
+                  }}
+                >
+                  <span>+</span>เพิ่มวัตถุดิบ
+                </button>
+              )}
             </div>
           </div>
 
           <div id="inventory-table-header">
-                <div id="inventory-table-header-txt">
-                  <div>ชื่อวัตถุดิบ</div>
-                  <div id="header-col-2">ปริมาณคงคลัง</div>
-                  <div id="header-col-3">หน่วย</div>
-                  <div id="header-col-4">ขั้นต่ำ</div>
-                </div>
-              </div>
+            <div id="inventory-table-header-txt">
+              <div>ชื่อวัตถุดิบ</div>
+              <div id="header-col-2">ปริมาณคงคลัง</div>
+              <div id="header-col-3">หน่วย</div>
+              <div id="header-col-4">ขั้นต่ำ</div>
+            </div>
+          </div>
           <div id="Owner-inventory-page-content-table-zone">
             <div id="Owner-inventory-page-content-table">
-              
               {ingredientList.length > 0 &&
                 ingredientList.map(
                   (ingredient, index) =>

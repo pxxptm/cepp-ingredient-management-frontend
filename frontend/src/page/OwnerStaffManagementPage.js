@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./OwnerStaffManagementPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
-import UserSideNavBar from "../component/OwnerSideNavBar";
+import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 import CreateStaffAccountModal from "../component/CreateStaffAccountModal";
 import OwnerEditStaffAccountModal from "../component/OwnerEditStaffAccountModal";

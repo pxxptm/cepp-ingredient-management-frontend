@@ -632,6 +632,7 @@
 
 @media (max-width: 419.5px)
 {
+    
     #Menu-management-page-side-bar-menu
     {
         display: none;
@@ -829,7 +830,7 @@
                     position: relative;
                     display: inline-block;
                     width: 100%;
-                    height: 10px; /* Adjust height as needed */
+                    height: 9px; /* Adjust height as needed */
                 }
                 
                 /* Hide default HTML checkbox */
@@ -850,7 +851,7 @@
                     background-color: #dadada;
                     -webkit-transition: .4s;
                     transition: .4s;
-                    border-radius: 5vw; /* Adjust border-radius to make it round */
+                    border-radius: 10vw; /* Adjust border-radius to make it round */
                 }
                 
                 .slider:before {
@@ -891,7 +892,7 @@
 
                 button
                 {
-                    font-size: 0.85vw;
+                    font-size: 35%;
                     margin-left: auto;
                     border: none;
                     color: white;
@@ -926,7 +927,7 @@
 
                         #delete-menu-btn-icon
                         {
-                            font-size: 2vw;
+                            font-size: 60%;
                             color: rgba(169, 0, 34, 0.6);
                             margin: auto;
 
