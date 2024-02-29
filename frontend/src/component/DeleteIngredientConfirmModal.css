@@ -58,7 +58,7 @@
   
  
 
-    #confirm-txt-1
+    .ingredient-del-modalContainer #confirm-txt-1
     {
         font-family: "Kanit", sans-serif;
       width: 100%;
@@ -69,6 +69,7 @@
       margin-top: 5%;
       margin-bottom: 10%;
       text-wrap: nowrap;
+      white-space: nowrap;
 
       span 
       {
@@ -220,7 +221,7 @@
   
  
 
-    #confirm-txt-1
+    .ingredient-del-modalContainer #confirm-txt-1
     {
         font-family: "Kanit", sans-serif;
       width: 100%;
@@ -231,6 +232,7 @@
       margin-bottom: 10%;
       margin-top: 5%;
       text-wrap: nowrap;
+      white-space: nowrap;
 
       span 
       {
@@ -381,7 +383,7 @@
   
  
 
-    #confirm-txt-1
+    .ingredient-del-modalContainer #confirm-txt-1
     {
         font-family: "Kanit", sans-serif;
       width: 100%;
@@ -392,6 +394,7 @@
       margin-bottom: 6%;
       margin-top: 4%;
       text-wrap: nowrap;
+      white-space: nowrap;
 
       span 
       {
@@ -544,30 +547,28 @@
   
 
 
-    #confirm-txt-1
+    .ingredient-del-modalContainer #confirm-txt-1
     {
-        font-family: "Kanit", sans-serif;
+      font-family: "Kanit", sans-serif;
       width: 100%;
       display: flex;
       color: black;
       justify-content: center;
       font-size: 90%;
-      margin-bottom: 7%;
+      margin-bottom: 8%;
       margin-top: 3%;
-      text-wrap: nowrap;
-      flex-direction: column;
-      align-content: center;
-      text-align: center;
+      white-space: nowrap;
+
 
       span 
       {
         font-weight: bold;
-        margin-top: 3%;
-        margin-top: 2%;
+        margin-left: 2%;
         color: rgb(7, 79, 103);
         text-wrap: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        
       }
     }
   

@@ -21,12 +21,12 @@ function OwnerSideNavBar(props) {
 
   const btnMenuIcon = {
     แดชบอร์ด: "dashboard",
-    รับออเดอร์:"list_alt",
-    สต็อกวัตถุดิบ:"inventory",
-    พนักงาน:"groups",
-    รายการเมนู:"restaurant_menu",
-    ข้อมูลร้าน:"info",
-  }
+    รับออเดอร์: "list_alt",
+    สต็อกวัตถุดิบ: "inventory",
+    พนักงาน: "groups",
+    รายการเมนู: "restaurant_menu",
+    ข้อมูลร้าน: "info",
+  };
 
   const btnHref = {
     แดชบอร์ด: `http://localhost:3000/${props.username}/${props.restaurantId}`,
@@ -64,7 +64,7 @@ function OwnerSideNavBar(props) {
   }, [accessToken, urlUserDetail]);
 
   return (
-    <div id="owner-side-nav-bar">
+    <div id="side-nav-bar">
       <div id="restaurant-profile">
         <div
           id="restaurant-profile-rest-pic"
@@ -79,7 +79,7 @@ function OwnerSideNavBar(props) {
         </div>
       </div>
       <div id="curve"></div>
-      <div id="owner-side-nav-bar-btn-list">
+      <div id="side-nav-bar-btn-list">
         {allowedMenuOptions.map((option, index) => (
           <a key={index} className="menu-opt" href={btnHref[option.label]}>
             <span>

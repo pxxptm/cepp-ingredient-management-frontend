@@ -1,4 +1,4 @@
-#Owner-main-page
+#main-page
 {
     height : 100%;
     width: 100%;
@@ -9,12 +9,12 @@
     background-color: white;
 }
 
-#Owner-main-page-header
+#main-page-header
 {
     width: 100%;
 }
 
-#Owner-main-page-header-bar
+#main-page-header-bar
 {
     width: 100%;
     height: fit-content;
@@ -22,7 +22,7 @@
     top: 0;
 }
 
-#Owner-main-page-body
+#main-page-body
 {
     width: 100%;
     min-height: 100%;
@@ -31,7 +31,7 @@
 
 @media (min-width: 700px) 
 {
-    #Owner-main-page-side-bar-menu
+    #main-page-side-bar-menu
     {
         width: 16%;
         height: 100%;

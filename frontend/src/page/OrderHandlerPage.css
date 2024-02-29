@@ -155,6 +155,7 @@
     {
         width: 25%;
         height: 100%;
+        background-color: white;
         border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
 
         #order-summary-list-box 
@@ -170,7 +171,9 @@
             {
                 width: 100%;
                 height: fit-content;
-                padding: 5% 6%;
+                display: flex;
+                flex-direction: column;
+                padding: 7% 6%;
                 border-bottom: 0.1vw solid rgba(0, 0, 0, 0.129);
 
                 #a-order-block-menu-name
@@ -181,11 +184,129 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     font-size: 0.95vw;
-                    margin-bottom: 6%;
+                    margin-bottom: 7%;
                 }
+
+                #a-order-block-menu-amount
+                {
+                    width: 100%;
+                    height: 1vw;
+                }
+
+                #a-order-block-menu-amount-editor
+                {
+                    width: 40%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: 15% 50% 15%;
+                    column-gap: 11.25%;
+                    float: right;
+
+                    input{
+                        font-size: 0.9vw;
+                        font-family: 'Kanit', sans-serif;
+                        text-align:center;
+                        border: none;
+
+                        &:focus
+                        {
+                            outline: none;
+                            border: none;
+                            border-bottom: 0.01vw solid rgb(82, 82, 82);
+                        }
+                    }
+
+                    .value-button
+                    {
+                        background-color: rgb(168, 168, 168);
+                        width: fit-content;
+                        border-radius: 50%;
+                        padding: auto;
+                        aspect-ratio: 1 / 1;
+                        padding: -0.5%;
+                        border: none;
+                        color: white;
+                        font-size: 0.6vw;
+                        font-family: 'Kanit', sans-serif;
+
+                        &:hover
+                        {
+                            background-color: rgb(50, 50, 50);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        #choice-remove-menu-form-order
+        {
+            width: 55%;
+            height: 1vw;
+            float: right;
+
+            .cancel-remove-button
+        {
+            width: 40%;
+            font-size: 0.7vw;
+            font-family: 'Kanit', sans-serif;
+            color: white;
+            background-color: rgb(118,118,118);
+            border: none;
+            padding: 1.5% 3%;
+            border-radius: 0.3vw;
+            margin-right: 20%;
+
+            &:hover
+            {
+                background-color: rgb(56,56,56);
             }
         }
 
+        .remove-button
+        {
+            width: 40%;
+            font-size: 0.7vw;
+            font-family: 'Kanit', sans-serif;
+            color: white;
+            background-color: rgb(208, 18, 18);
+            border: none;
+            padding: 1.5% 3%;
+            border-radius: 0.3vw;
+
+            &:hover
+            {
+                background-color: rgb(146, 0, 0);
+            }
+        }
+        }
+
+        
+
+        #commit-order-btn
+        {
+            width: 100%;
+            height: 13%;
+            display: flex;
+            border-top: 0.15vw solid rgba(0, 0, 0, 0.21);
+            background-color: rgb(255, 255, 255);
+
+            button 
+            {
+                width: 90%;
+                padding: 3% 0;
+                margin: auto;
+                background-color: rgb(10, 129, 169);
+                color: white;
+                border: none;
+                border-radius: 0.5vw;
+                font-family: 'Kanit', sans-serif;
+            
+                &:hover {
+                    background-color: rgb(7, 79, 103);
+                }
+            }
+        }    
 
     }
 }
@@ -220,20 +341,3 @@
     }
 }
 
-#order-handler-page-content-inner::-webkit-scrollbar {
-    width: 0vw; /* Width of the scrollbar */
-  }
-
-  #order-summary-zone #order-summary-list-box::-webkit-scrollbar {
-    width: 0.25vw; /* Width of the scrollbar */
-  }
-
-  #order-summary-zone #order-summary-list-box::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 2vw;
-  }
-  
-  #order-summary-zone #order-summary-list-box::-webkit-scrollbar-track {
-    background-color: #9dabc539;
-  }
-  

@@ -1,4 +1,4 @@
-#owner-side-nav-bar
+#side-nav-bar
 {
     width: 100%;
     height: 100%;
@@ -69,7 +69,7 @@
     radial-gradient(var(--r1,100%) var(--r2,50%) at top   ,white 79.5%,transparent 80%) top right;
     }
     
-    #owner-side-nav-bar-btn-list
+    #side-nav-bar-btn-list
     {
         height: 100%;
         width: 100%;
@@ -114,7 +114,7 @@
 
 @media (max-width: 699.5px) 
 {   
-    #owner-side-nav-bar
+    #side-nav-bar
     {
         width: 100%;
         min-width: 423px;
@@ -244,7 +244,7 @@
         border-bottom-right-radius: 100% 200%;
     }
 
-    #owner-side-nav-bar-btn-list
+    #side-nav-bar-btn-list
     {
         height: 100%;
         width: 100%;

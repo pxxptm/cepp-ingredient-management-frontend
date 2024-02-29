@@ -98,13 +98,13 @@ function OrderHandlerPage({ username, restaurantId }) {
   const updateQuantity = (id, newAmount) => {
     if (newAmount <= 0) {
       // If the quantity is 0 or less, remove the item from the order summary
-      setOrderSummary(prevOrderSummary =>
-        prevOrderSummary.filter(item => item.id !== id)
+      setOrderSummary((prevOrderSummary) =>
+        prevOrderSummary.filter((item) => item.id !== id)
       );
     } else {
       // Otherwise, update the quantity of the item
-      setOrderSummary(prevOrderSummary =>
-        prevOrderSummary.map(item =>
+      setOrderSummary((prevOrderSummary) =>
+        prevOrderSummary.map((item) =>
           item.id === id ? { ...item, amount: newAmount } : item
         )
       );
@@ -183,29 +183,52 @@ function OrderHandlerPage({ username, restaurantId }) {
                 <div id="a-order-block" key={index}>
                   <div id="a-order-block-menu-name">{order.name}</div>
                   <div id="a-order-block-menu-amount">
-                    <div id="a-order-block-menu-amount-editor">
-                      {/* Increase and Decrease buttons for adjusting quantity */}
-                      <button
-                        className="value-button"
-                        onClick={() => decreaseQuantity(order.id)}
-                      >
-                        -
-                      </button>
-                      <input
-                        type="number"
-                        value={order.amount}
-                        onChange={(e) => updateQuantity(order.id, parseInt(e.target.value))}
-                      />
-                      <button
-                        className="value-button"
-                        onClick={() => increaseQuantity(order.id)}
-                      >
-                        +
-                      </button>
-                    </div>
+                    {order.amount > 0 ? (
+                      <div id="a-order-block-menu-amount-editor">
+                        {/* Increase and Decrease buttons for adjusting quantity */}
+                        <button
+                          className="value-button"
+                          onClick={() => decreaseQuantity(order.id)}
+                        >
+                          -
+                        </button>
+                        <input
+                          type="number"
+                          value={order.amount}
+                          onChange={(e) =>
+                            updateQuantity(order.id, parseInt(e.target.value))
+                          }
+                        />
+                        <button
+                          className="value-button"
+                          onClick={() => increaseQuantity(order.id)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <div id="choice-remove-menu-form-order">
+                        <button
+                          className="cancel-remove-button"
+                          onClick={() => updateQuantity(order.id, 1)}
+                        >
+                          ยกเลิก
+                        </button>
+
+                        <button
+                          className="remove-button"
+                          onClick={() => updateQuantity(order.id, 0)}
+                        >
+                          ลบเมนู
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
+            </div>
+            <div id="commit-order-btn">
+              <button>ส่งออเดอร์</button>
             </div>
           </div>
         </div>

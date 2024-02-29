@@ -1,4 +1,4 @@
-#Owner-inventory-page
+#inventory-page
 {
     height : 100%;
     width: 100%;
@@ -10,12 +10,12 @@
     overflow-y: hidden;
 }
 
-#Owner-inventory-page-header
+#inventory-page-header
 {
     width: 100%;
 }
 
-#Owner-inventory-page-header-bar
+#inventory-page-header-bar
 {
     width: 100%;
     min-width: 423px;
@@ -24,12 +24,12 @@
     top: 0;
 }
 
-#Owner-inventory-page-side-bar-menu
+#inventory-page-side-bar-menu
 {
     display: none;
 }
 
-#Owner-inventory-page-body
+#inventory-page-body
 {
     display: flex;
 }
@@ -37,7 +37,7 @@
 
 @media (min-width: 700px) 
 {
-    #Owner-inventory-page-side-bar-menu
+    #inventory-page-side-bar-menu
     {
         display: inline-block;
         width: 16%;
@@ -45,7 +45,7 @@
         position: fixed;
     }
 
-    #Owner-inventory-page-content
+    #inventory-page-content
     {
         display: flex;
         flex-direction: column;
@@ -56,7 +56,7 @@
         background-color: rgba(255, 255, 255, 0);
         padding-right: 5.25vw;
 
-        #Owner-inventory-page-content-header
+        #inventory-page-content-header
         {
             width: 100%;
             height: fit-content;
@@ -120,7 +120,7 @@
         }
     }
 
-    #Owner-inventory-page-content-table-zone 
+    #inventory-page-content-table-zone 
     {
         width: 100%;
         height: 100%;
@@ -170,7 +170,7 @@
     }
 
 
-    #Owner-inventory-page-content-table
+    #inventory-page-content-table
     {
         width: 100%;
         height: 100%;
@@ -338,12 +338,12 @@
 
 @media (min-width: 420px) and (max-width: 699.5px)
 {
-    #Owner-inventory-page-side-bar-menu
+    #inventory-page-side-bar-menu
     {
         display: none
     }
 
-    #Owner-inventory-page-content
+    #inventory-page-content
     {
         display: flex;
         flex-direction: column;
@@ -353,7 +353,7 @@
         padding-left: 5.25vw;
         padding-right: 5.25vw;
 
-        #Owner-inventory-page-content-header
+        #inventory-page-content-header
         {
             width: 100%;
             height: fit-content;
@@ -417,7 +417,7 @@
         }
     }
 
-    #Owner-inventory-page-content-table-zone 
+    #inventory-page-content-table-zone 
     {
         width: 100%;
         height: 100%;
@@ -467,7 +467,7 @@
     }
 
 
-    #Owner-inventory-page-content-table
+    #inventory-page-content-table
     {
         width: 100%;
         height: 100%;
@@ -635,12 +635,12 @@
 
 @media (max-width: 419.5px)
 {
-    #Owner-inventory-page-side-bar-menu
+    #inventory-page-side-bar-menu
     {
         display: none
     }
 
-    #Owner-inventory-page-content
+    #inventory-page-content
     {
         display: flex;
         flex-direction: column;
@@ -665,7 +665,7 @@
             padding: 0 25vw;
         }
 
-        #Owner-inventory-page-content-header
+        #inventory-page-content-header
         {
             width: 100%;
             height: fit-content;
@@ -725,7 +725,7 @@
         }
     }
 
-    #Owner-inventory-page-content-table-zone 
+    #inventory-page-content-table-zone 
     {
         width: 100%;
         height: 100%;
@@ -775,7 +775,7 @@
     }
 
 
-    #Owner-inventory-page-content-table
+    #inventory-page-content-table
     {
         width: 100%;
         height: 100%;
@@ -944,16 +944,16 @@
 }
 
 
-#Owner-inventory-page-content-table::-webkit-scrollbar {
+#inventory-page-content-table::-webkit-scrollbar {
     width: 0.25vw; /* Width of the scrollbar */
   }
   
-  #Owner-inventory-page-content-table::-webkit-scrollbar-thumb {
+  #inventory-page-content-table::-webkit-scrollbar-thumb {
     background-color: #888;
     border-radius: 2vw;
   }
   
-  #Owner-inventory-page-content-table::-webkit-scrollbar-track {
+  #inventory-page-content-table::-webkit-scrollbar-track {
     background-color: #9dabc539;
   }
 

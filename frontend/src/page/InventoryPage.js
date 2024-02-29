@@ -172,7 +172,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
   }, [accessToken, urlUserDetail]);
 
   return (
-    <div id="Owner-inventory-page">
+    <div id="inventory-page">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -184,11 +184,11 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
         type="text/css"
       ></link>
 
-      <div id="Owner-inventory-page-header-bar">
+      <div id="inventory-page-header-bar">
         <UserHeaderBar username={username} />
       </div>
 
-      <div id="Owner-inventory-page-body">
+      <div id="inventory-page-body">
         {userRole === "owner" && addIngredientModalOpen && (
           <AddingredientsModal
             setModalOpen={setAddIngredientModalOpen}
@@ -214,7 +214,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
             ingredientName={delteIngredientProps.name}
           />
         )}
-        <div id="Owner-inventory-page-side-bar-menu">
+        <div id="inventory-page-side-bar-menu">
           <UserSideNavBar
             username={username}
             restaurantId={restaurantId}
@@ -223,8 +223,8 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
           />
         </div>
 
-        <div id="Owner-inventory-page-content">
-          <div id="Owner-inventory-page-content-header">
+        <div id="inventory-page-content">
+          <div id="inventory-page-content-header">
             <h1>สต็อกวัตถุดิบ</h1>
             <div id="add-staff-acc-btn-zone">
               {userRole === "owner" && (
@@ -248,8 +248,8 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
               <div id="header-col-4">ขั้นต่ำ</div>
             </div>
           </div>
-          <div id="Owner-inventory-page-content-table-zone">
-            <div id="Owner-inventory-page-content-table">
+          <div id="inventory-page-content-table-zone">
+            <div id="inventory-page-content-table">
               {ingredientList.length > 0 &&
                 ingredientList.map(
                   (ingredient, index) =>

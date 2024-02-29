@@ -1,4 +1,4 @@
-#Owner-reg-page-body
+#reg-page-body
 {
     height: 100vh;
     width: 100vw;
@@ -7,7 +7,7 @@
     overflow-y: hidden;
 }
 
-#Owner-reg-page
+#reg-page
 {
     display: flex;
     height: 100vh;
@@ -20,7 +20,7 @@
     padding: 0%;
 }    
 
-.Owner-reg-form-input-space
+.reg-form-input-space
 {
     font-family: 'Kanit', sans-serif;
 }
@@ -28,12 +28,12 @@
 
 @media (min-width: 899.5px)
 {
-    #Owner-reg-page
+    #reg-page
     {
         padding: 3%;
     }
 
-    #Owner-reg-box
+    #reg-box
     {
         width: 37%;
         aspect-ratio: auto 1 / 1;
@@ -44,13 +44,13 @@
         display: flex;
     }
 
-    #Owner-reg-element
+    #reg-element
     {
         width: 100%;
         margin: auto;
     }
 
-    .Owner-reg-head
+    .reg-head
     {
         font: 'inter' , sans-serif;
         font-size: 3.5vw;
@@ -59,13 +59,13 @@
         
     }
 
-    #Owner-reg-txt
+    #reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #Owner-reg-sw-txt
+    #reg-sw-txt
     {
         display: flex;
         justify-content: center;
@@ -74,7 +74,7 @@
         margin: 1% 12.5% 5% 12.5%;
     }
     
-    #Owner-reg-sw-name
+    #reg-sw-name
     {
         font-size: 0.775vw;
         font-style: normal;
@@ -87,20 +87,20 @@
         }
     }
 
-    .Owner-reg-form-floating
+    .reg-form-floating
     {
         margin: 2.5% auto;
         width: 75%;
         padding: 0 auto;
     }
 
-    .Owner-reg-input-form
+    .reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .Owner-reg-form-floating .material-icons
+    .reg-form-floating .material-icons
     {
         color: white;
         font-size: 1.2vw !important; 
@@ -113,12 +113,12 @@
         background-color: rgb(10, 129, 169);
     }
 
-    #owner-name-icon
+    #name-icon
     {
         padding: 3% 6.5% 3% 4.5%;
     }
 
-    .Owner-reg-form-input-space
+    .reg-form-input-space
     {
         font-size: 0.75vw;
         width: 100%;
@@ -139,21 +139,21 @@
         }
     }
 
-    #Owner-reg-input-form-name
+    #reg-input-form-name
     {
         width: 85%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
 
-    #Owner-reg-span-zone
+    #reg-span-zone
     {
         margin-top: 8%;
         display: flex;
         margin-bottom: 4%;
     }
     
-    #Owner-reg-notice-txt
+    #reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
@@ -170,7 +170,7 @@
         }
     }
 
-    #owner-reg-to-contact
+    #reg-to-contact
     {
         color: rgb(10, 129, 169);
         font-weight: bold;
@@ -178,14 +178,14 @@
         text-decoration: none;
     }
 
-    #tel-at-owner-reg
+    #tel-at-reg
     {
         margin-left: 2%;
         color: rgb(10, 129, 169);
         text-decoration: none;
     }
 
-    #Owner-reg-pressed-button
+    #reg-pressed-button
     {
         margin-right: 11%;
         display: flex;
@@ -193,7 +193,7 @@
         justify-content: flex-end;
     }
 
-    #Owner-reg-submit
+    #reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
@@ -217,12 +217,12 @@
 
 @media (min-width: 700px) and (max-width: 899.5px)
 {
-    #Owner-reg-page
+    #reg-page
     {
         padding: 3%;
     }
 
-    #Owner-reg-box
+    #reg-box
     {
         width: 44%;
         aspect-ratio: auto 1 / 1;
@@ -233,13 +233,13 @@
         display: flex;
     }
 
-    #Owner-reg-element
+    #reg-element
     {
         width: 100%;
         margin: auto;
     }
 
-    .Owner-reg-head
+    .reg-head
     {
         font: 'inter' , sans-serif;
         font-size: 4.35vw;
@@ -247,13 +247,13 @@
         font-style: normal;
     }
 
-    #Owner-reg-txt
+    #reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #Owner-reg-sw-txt
+    #reg-sw-txt
     {
         margin-top: 1%;
         margin-bottom: 8%;
@@ -261,7 +261,7 @@
         justify-content: center;
     }
     
-    #Owner-reg-sw-name
+    #reg-sw-name
     {
         font: "inter";
         font-size: 0.95vw;
@@ -276,20 +276,20 @@
         }
     }
 
-    .Owner-reg-form-floating
+    .reg-form-floating
     {
         margin: 2.75% auto;
         width: 80%;
         padding: 0 auto;
     }
 
-    .Owner-reg-input-form
+    .reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .Owner-reg-form-floating .material-icons
+    .reg-form-floating .material-icons
     {
         color: white;
         font-size:1.75vw !important; 
@@ -302,12 +302,12 @@
         background-color: rgb(10, 129, 169);
     }
 
-    #owner-name-icon
+    #name-icon
     {
         padding: 2.25% 5.75% 2.25% 4.5%;
     }
 
-    .Owner-reg-form-input-space
+    .reg-form-input-space
     {
         font-size: 0.85vw;
         width: 100%;
@@ -328,21 +328,21 @@
         }
     }
 
-    #Owner-reg-input-form-name
+    #reg-input-form-name
     {
         width: 80%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
 
-    #Owner-reg-span-zone
+    #reg-span-zone
     {
         margin-top: 8%;
         display: flex;
         margin-bottom: 4%;
     }
     
-    #Owner-reg-notice-txt
+    #reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
@@ -357,7 +357,7 @@
         }
     }
 
-    #Owner-reg-pressed-button
+    #reg-pressed-button
     {
         margin-right: 11%;
         display: flex;
@@ -365,7 +365,7 @@
         justify-content: flex-end;
     }
 
-    #Owner-reg-submit
+    #reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
@@ -388,12 +388,12 @@
 
 @media (min-width: 420px) and (max-width:699.5px)
 {
-    #Owner-reg-page
+    #reg-page
     {
         padding: 5%;
     }
 
-    #Owner-reg-box
+    #reg-box
     {
         width: 60%;
         aspect-ratio: auto 1 / 1;
@@ -404,13 +404,13 @@
         display: flex;
     }
 
-    #Owner-reg-element
+    #reg-element
     {
         width: 100%;
         margin: auto;
     }
 
-    .Owner-reg-head
+    .reg-head
     {
         font: 'inter' , sans-serif;
         font-size: 6vw;
@@ -418,13 +418,13 @@
         font-style: normal;
     }
 
-    #Owner-reg-txt
+    #reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #Owner-reg-sw-txt
+    #reg-sw-txt
     {
         margin-top: 0%;
         margin-bottom: 8%;
@@ -432,7 +432,7 @@
         justify-content: center;
     }
     
-    #Owner-reg-sw-name
+    #reg-sw-name
     {
         font: "inter";
         font-size: 1.23vw;
@@ -447,20 +447,20 @@
         }
     }
 
-    .Owner-reg-form-floating
+    .reg-form-floating
     {
         margin: 2% auto;
         width: 80%;
         padding: 0 auto;
     }
 
-    .Owner-reg-input-form
+    .reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .Owner-reg-form-floating .material-icons
+    .reg-form-floating .material-icons
     {
         color: white;
         font-size: 1.65vw !important; 
@@ -472,12 +472,12 @@
         background-color: rgb(10, 129, 169);
     }
 
-    #owner-name-icon
+    #name-icon
     {
         padding: 2.5% 5.5% 0.5% 4.25%;
     }
 
-    .Owner-reg-form-input-space
+    .reg-form-input-space
     {
         width: 100%;
         border-top-right-radius: 2vw;
@@ -499,21 +499,21 @@
         }
     }
 
-    #Owner-reg-input-form-name
+    #reg-input-form-name
     {
         width: 80%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
 
-    #Owner-reg-span-zone
+    #reg-span-zone
     {
         margin-top: 9%;
         display: flex;
         margin-bottom: 3%;
     }
     
-    #Owner-reg-notice-txt
+    #reg-notice-txt
     {
         width: 70%;
         font-family: 'Kanit', sans-serif;
@@ -528,7 +528,7 @@
         }
     }
 
-    #Owner-reg-pressed-button
+    #reg-pressed-button
     {
         margin-right: 11%;
         display: flex;
@@ -536,7 +536,7 @@
         justify-content: flex-end;
     }
 
-    #Owner-reg-submit
+    #reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
@@ -559,13 +559,13 @@
 
 @media (min-width: 319.5px) and (max-width:419.5px)
 {
-    #Owner-reg-page
+    #reg-page
     {
         padding: 10% 7%;
         overflow-x: auto;
     }
 
-    #Owner-reg-box
+    #reg-box
     {
         width: 90%;
         min-width: 200px;
@@ -577,13 +577,13 @@
         display: flex;
     }
 
-    #Owner-reg-element
+    #reg-element
     {
         width: 90%;
         margin: auto;
     }
 
-    .Owner-reg-head
+    .reg-head
     {
         font: 'inter' , sans-serif;
         font-size: 195%;
@@ -591,13 +591,13 @@
         font-style: normal;
     }
 
-    #Owner-reg-txt
+    #reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #Owner-reg-sw-txt
+    #reg-sw-txt
     {
         margin-top: 0.75%;
         margin-bottom: 7%;
@@ -605,7 +605,7 @@
         justify-content: center;
     }
     
-    #Owner-reg-sw-name
+    #reg-sw-name
     {
         font: "inter";
         font-size: 40%;
@@ -620,20 +620,20 @@
         }
     }
 
-    .Owner-reg-form-floating
+    .reg-form-floating
     {
         margin: 2.5% auto;
         width: 90%;
         padding: 0 auto;
     }
 
-    .Owner-reg-input-form
+    .reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .Owner-reg-form-floating .material-icons
+    .reg-form-floating .material-icons
     {
         color: white;
         font-size: 50% !important; 
@@ -645,12 +645,12 @@
         background-color: rgb(10, 129, 169);
     }
 
-    #owner-name-icon
+    #name-icon
     {
         padding: 3.5% 5.85% 3.5% 5.5%;
     }
 
-    .Owner-reg-form-input-space
+    .reg-form-input-space
     {
         width: 100%;
         font-size: 45%;
@@ -671,7 +671,7 @@
         }
     }
 
-    #Owner-reg-input-form-name
+    #reg-input-form-name
     {
         width: 80%;
         border-top-right-radius: 0;
@@ -679,7 +679,7 @@
     }
 
 
-    #Owner-reg-span-zone
+    #reg-span-zone
     {
         width: 100%;
         margin-top: 10%;
@@ -687,7 +687,7 @@
         margin-bottom: 2%;
     }
     
-    #Owner-reg-notice-txt
+    #reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
@@ -702,7 +702,7 @@
         }
     }
 
-    #Owner-reg-pressed-button
+    #reg-pressed-button
     {
         margin-right: 6%;
         display: flex;
@@ -710,7 +710,7 @@
         justify-content: flex-end;
     }
 
-    #Owner-reg-submit
+    #reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);
@@ -733,14 +733,14 @@
 
 @media (max-width: 319.5px)
 {
-    #Owner-reg-page
+    #reg-page
     {
         min-width: 423px;
         padding: 10% 20%;
         overflow-x: auto;
     }
 
-    #Owner-reg-box
+    #reg-box
     {
         width: 100vw;
         min-width: 275px;
@@ -752,13 +752,13 @@
         display: flex;
     }
 
-    #Owner-reg-element
+    #reg-element
     {
         width: 100%;
         margin: auto;
     }
 
-    .Owner-reg-head
+    .reg-head
     {
         font: 'inter' , sans-serif;
         font-size: 225%;
@@ -766,13 +766,13 @@
         font-style: normal;
     }
 
-    #Owner-reg-txt
+    #reg-txt
     {
         display: flex;
         justify-content: center;
     }
 
-    #Owner-reg-sw-txt
+    #reg-sw-txt
     {
         margin-top: 0%;
         margin-bottom: 6%;
@@ -780,7 +780,7 @@
         justify-content: center;
     }
     
-    #Owner-reg-sw-name
+    #reg-sw-name
     {
         font: "inter";
         font-size: 40%;
@@ -795,20 +795,20 @@
         }
     }
 
-    .Owner-reg-form-floating
+    .reg-form-floating
     {
         margin: 2.1% auto;
         width: 82.5%;
         padding: 0 auto;
     }
 
-    .Owner-reg-input-form
+    .reg-input-form
     {
         display: flex;
         width: 100%;
     }
 
-    .Owner-reg-form-floating .material-icons
+    .reg-form-floating .material-icons
     {
         color: white;
         font-size: 50% !important; 
@@ -820,12 +820,12 @@
         background-color: rgb(10, 129, 169);
     }
 
-    #owner-name-icon
+    #name-icon
     {
         padding: 3.5% 6% 3.5% 5.25%;
     }
 
-    .Owner-reg-form-input-space
+    .reg-form-input-space
     {
         width: 100%;
         font-size: 37.5%;
@@ -847,7 +847,7 @@
     }
     
 
-    #Owner-reg-input-form-name
+    #reg-input-form-name
     {
         width: 75%;
         border-top-right-radius: 0;
@@ -855,7 +855,7 @@
     }
 
 
-    #Owner-reg-span-zone
+    #reg-span-zone
     {
         width: 100%;
         margin-top: 6%;
@@ -863,7 +863,7 @@
         margin-bottom: 2%;
     }
     
-    #Owner-reg-notice-txt
+    #reg-notice-txt
     {
         width: 50%;
         font-family: 'Kanit', sans-serif;
@@ -879,7 +879,7 @@
         }
     }
 
-    #Owner-reg-pressed-button
+    #reg-pressed-button
     {
         margin-right: 9%;
         display: flex;
@@ -887,7 +887,7 @@
         justify-content: flex-end;
     }
 
-    #Owner-reg-submit
+    #reg-submit
     {
         float: right;
         background-color: rgb(10, 129, 169);

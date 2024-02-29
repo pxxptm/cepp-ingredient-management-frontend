@@ -58,7 +58,7 @@
   
  
 
-    #confirm-txt-1
+    .menu-del-modalContainer #confirm-txt-1
     {
         font-family: "Kanit", sans-serif;
       width: 100%;
@@ -82,7 +82,7 @@
     }
 
   
-    #menu-del-form {
+    .menu-del-modalContainer #menu-del-form {
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -220,7 +220,7 @@
   
  
 
-    #confirm-txt-1
+    .menu-del-modalContainer #confirm-txt-1
     {
         font-family: "Kanit", sans-serif;
       width: 100%;
@@ -381,7 +381,7 @@
   
  
 
-    #confirm-txt-1
+    .menu-del-modalContainer #confirm-txt-1
     {
         font-family: "Kanit", sans-serif;
       width: 100%;
@@ -544,30 +544,28 @@
   
 
 
-    #confirm-txt-1
+    .menu-del-modalContainer #confirm-txt-1
     {
-        font-family: "Kanit", sans-serif;
+      font-family: "Kanit", sans-serif;
       width: 100%;
       display: flex;
       color: black;
       justify-content: center;
       font-size: 90%;
-      margin-bottom: 7%;
+      margin-bottom: 8%;
       margin-top: 3%;
-      text-wrap: nowrap;
-      flex-direction: column;
-      align-content: center;
-      text-align: center;
+      white-space: nowrap;
+
 
       span 
       {
         font-weight: bold;
-        margin-top: 3%;
-        margin-top: 2%;
+        margin-left: 2%;
         color: rgb(7, 79, 103);
         text-wrap: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        
       }
     }
   
