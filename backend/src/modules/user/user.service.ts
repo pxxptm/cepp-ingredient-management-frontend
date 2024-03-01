@@ -13,6 +13,10 @@ export class UserService {
     private readonly userModel: mongoose.Model<User>,
   ) {}
 
+  async delete(id: string) {
+    return await this.userModel.findByIdAndDelete(id);
+  }
+
   async getAll() {
     return await this.userModel.find();
   }
