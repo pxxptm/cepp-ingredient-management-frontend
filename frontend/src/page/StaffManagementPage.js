@@ -135,6 +135,7 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
             setDeleteStaffConfirmModalOpen={setDeleteStaffModalOpen}
             staffId={deleteStaffProps.staffId}
             staffUsername={deleteStaffProps.staffUsername}
+            restaurantId = {restaurantId}
           />
         )}
         <div id="Staff-management-page-side-bar-menu">

@@ -6,11 +6,10 @@ function DeleteStaffConfirmModal({
     setDeleteStaffConfirmModalOpen,
     staffId,
     staffUsername,
+    restaurantId
   }) {
     const accessToken = localStorage.getItem("token");
 
-    console.log(staffId)
-  
     function refreshPage() {
       window.location.reload();
     }
@@ -18,16 +17,13 @@ function DeleteStaffConfirmModal({
     async function handleSubmit() {
       // delete staff
       await axios
-        .delete(`http://localhost:3001/user/delete-by-owner/${staffId}`, {
+        .delete(`http://localhost:3001/member/delete-member-by-owner/${restaurantId}/${staffId}`, {
           headers: {
             Authorization: "Bearer " + accessToken,
           },
         })
         .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            refreshPage();
-          }
+          refreshPage();
         })
         .catch((error) => {
           console.log(error);

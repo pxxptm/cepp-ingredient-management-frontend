@@ -40,10 +40,8 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
       )
       .then((res) => {
         console.log(res);
-        if (res.status === 201) {
-          setOpenModal(false);
-          refreshPage();
-        }
+        setOpenModal(false);
+        refreshPage();
       })
       .catch((error) => {
         console.log(error);
