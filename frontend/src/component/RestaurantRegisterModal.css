@@ -112,7 +112,7 @@
     justify-content: space-between;
   }
 
-  #upload-remove-pic {
+  #rest-reg-l1 #upload-remove-pic {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -313,7 +313,7 @@
     justify-content: space-between;
   }
 
-  #upload-remove-pic {
+  #rest-reg-l1 #upload-remove-pic {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -514,7 +514,7 @@
     justify-content: space-between;
   }
 
-  #upload-remove-pic {
+  #rest-reg-l1 #upload-remove-pic {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -716,7 +716,7 @@
     margin-bottom: 5%;
   }
 
-  #upload-remove-pic {
+  #rest-reg-l1 #upload-remove-pic {
     width: 70%;
     display: flex;
     justify-content: space-between;

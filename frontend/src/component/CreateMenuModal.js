@@ -11,7 +11,7 @@ function CreateMenuModal({ setCreateMenuModalOpen, restaurantId }) {
 
   useEffect(() => {
     document.getElementById(
-      "restaurantPic-pic"
+      "menuPic-pic"
     ).style.backgroundImage = `url(${previewImage})`;
   }, [previewImage]);
 
@@ -110,30 +110,27 @@ function CreateMenuModal({ setCreateMenuModalOpen, restaurantId }) {
           <form onSubmit={handleSubmit}>
             <div id="menu-create-form">
               <div id="menu-create-l1">
-                <div id="restaurantPic-show">
-                  {/* <div id="restaurantPic-default-pic"></div>
-              <div id="restaurantPic-selected-pic"></div> */}
-                  <div id="restaurantPic-pic"></div>
+                <div id="menuPic-show">
+                  {/* <div id="menuPic-default-pic"></div>
+              <div id="menuPic-selected-pic"></div> */}
+                  <div id="menuPic-pic"></div>
                 </div>
 
                 <div id="upload-remove-pic">
                   <input
                     type="file"
                     accept="image/jpeg, image/png, image/jpg"
-                    id="restaurantPic-file"
+                    id="menuPic-file"
                     name="filename"
                     style={{ display: "none" }}
                     onChange={fileUploadHandler}
                   />
-                  <label
-                    htmlFor="restaurantPic-file"
-                    id="restaurantPic-file-btn"
-                  >
+                  <label htmlFor="menuPic-file" id="menuPic-file-btn">
                     เพิ่มรูปภาพเมนู
                   </label>
 
                   <label
-                    id="restaurantPic-remove-file-btn"
+                    id="menuPic-remove-file-btn"
                     onClick={removeImageHandler}
                   >
                     ลบรูปภาพเมนู

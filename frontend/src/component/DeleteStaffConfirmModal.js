@@ -8,6 +8,8 @@ function DeleteStaffConfirmModal({
     staffUsername,
   }) {
     const accessToken = localStorage.getItem("token");
+
+    console.log(staffId)
   
     function refreshPage() {
       window.location.reload();
@@ -16,7 +18,7 @@ function DeleteStaffConfirmModal({
     async function handleSubmit() {
       // delete staff
       await axios
-        .delete(`http://localhost:3001/member/user/${staffId}`, {
+        .delete(`http://localhost:3001/user/delete-by-owner/${staffId}`, {
           headers: {
             Authorization: "Bearer " + accessToken,
           },
