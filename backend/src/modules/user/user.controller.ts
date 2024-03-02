@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/guard/auth.guard';
@@ -60,5 +68,12 @@ export class UserController {
     @Body() updateUserByUserDto: UpdateUserByUserDto,
   ) {
     return await this.userService.updateUserByUser(id, updateUserByUserDto);
+  }
+
+  @Delete('/delete-by-owner/:id')
+  @Roles(AllRole.OWNER)
+  @UseGuards(AuthGuard, RolesGuard)
+  async deleteUserByOwner(@Param('id') id: string) {
+    return await this.userService.delete(id);
   }
 }
