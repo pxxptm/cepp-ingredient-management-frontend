@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Delete, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { MemberService } from './member.service';
 import { AuthGuard } from '../auth/guard/auth.guard';
@@ -22,7 +22,7 @@ export class MemberController {
     return await this.memberService.getUsersByRestaurantId(restaurantId);
   }
 
-  @Get('delete-member-by-owner/:restaurantId/:userId')
+  @Delete('delete-member-by-owner/:restaurantId/:userId')
   async deleteMember(
     @Param('restaurantId') restaurantId: string,
     @Param('userId') userId: string,
