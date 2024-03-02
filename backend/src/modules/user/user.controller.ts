@@ -69,11 +69,4 @@ export class UserController {
   ) {
     return await this.userService.updateUserByUser(id, updateUserByUserDto);
   }
-
-  @Delete('/delete-by-owner/:id')
-  @Roles(AllRole.OWNER)
-  @UseGuards(AuthGuard, RolesGuard)
-  async deleteUserByOwner(@Param('id') id: string) {
-    return await this.userService.delete(id);
-  }
 }

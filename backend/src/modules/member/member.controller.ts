@@ -21,4 +21,12 @@ export class MemberController {
   async getUsersByRestaurantId(@Param('restaurantId') restaurantId: string) {
     return await this.memberService.getUsersByRestaurantId(restaurantId);
   }
+
+  @Get('delete-member-by-owner/:restaurantId/:userId')
+  async deleteMember(
+    @Param('restaurantId') restaurantId: string,
+    @Param('userId') userId: string,
+  ) {
+    return await this.memberService.deleteMember(restaurantId, userId);
+  }
 }

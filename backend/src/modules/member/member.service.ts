@@ -56,7 +56,7 @@ export class MemberService {
     return await this.memberModel.find({ userId: userId });
   }
 
-  async deleteUser(userId: string, restaurantId: string) {
+  async deleteMember(restaurantId: string, userId: string) {
     return await this.memberModel.findOneAndDelete({
       userId: userId,
       restaurantId: restaurantId,
