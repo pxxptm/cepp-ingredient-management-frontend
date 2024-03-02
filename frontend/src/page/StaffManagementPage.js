@@ -5,12 +5,14 @@ import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 import CreateStaffAccountModal from "../component/CreateStaffAccountModal";
 import OwnerEditStaffAccountModal from "../component/OwnerEditStaffAccountModal";
+import DeleteStaffConfirmModal from "../component/DeleteStaffConfirmModal";
 
 function OwnerStaffManagementPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
   const [staffList, setStaffList] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editStaffModalOpen, setEditStaffModalOpen] = useState(false);
+  const [deleteStaffModalOpen, setDeleteStaffModalOpen] = useState(false);
 
   let staffListURL = `http://localhost:3001/member/user/${restaurantId}`;
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -80,8 +82,19 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
     });
   };
 
-  // State to hold edit ingredient props
+  // State to hold edit staff props
   const [editStaffProps, setEditStaffProps] = useState(null);
+  // State to hold edit staff props
+  const [deleteStaffProps, setDeleteStaffProps] = useState(null);
+
+  // Function to handle edit ingredient click event and set props
+  const handleDeleteStaff = (staffId, staffUsername) => {
+    setDeleteStaffModalOpen(true);
+    setDeleteStaffProps({
+      staffId,
+      staffUsername,
+    });
+  };
 
   return (
     <div id="Staff-management-page">
@@ -114,7 +127,14 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
             staffFName={editStaffProps.staffFName}
             staffLName={editStaffProps.staffLName}
             staffUsername={editStaffProps.staffUsername}
-            staffRole = {editStaffProps.staffRole}
+            staffRole={editStaffProps.staffRole}
+          />
+        )}
+        {deleteStaffProps && deleteStaffModalOpen && (
+          <DeleteStaffConfirmModal
+            setDeleteStaffConfirmModalOpen={setDeleteStaffModalOpen}
+            staffId={deleteStaffProps.staffId}
+            staffUsername={deleteStaffProps.staffUsername}
           />
         )}
         <div id="Staff-management-page-side-bar-menu">
@@ -185,7 +205,17 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
                                 </button>
                               </div>
                               <div className="a-staff-container-l-btn">
-                                <button id="delete-acc">ลบบัญชี</button>
+                                <button
+                                  id="delete-acc"
+                                  onClick={() => {
+                                    handleDeleteStaff(
+                                      staff.userId,
+                                      staff.username
+                                    );
+                                  }}
+                                >
+                                  ลบบัญชี
+                                </button>
                               </div>
                             </div>
                           </div>
