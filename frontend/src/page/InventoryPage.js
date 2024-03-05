@@ -285,7 +285,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                                   if (newValue === "" || newValue === "0") {
                                     newQuantity = 0;
                                   } else {
-                                    newQuantity = parseInt(newValue);
+                                    newQuantity = parseFloat(newValue);
                                     if (isNaN(newQuantity)) {
                                       return;
                                     }

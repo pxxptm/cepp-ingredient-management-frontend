@@ -5,6 +5,7 @@ import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/UserSideNavBar";
 import CreateMenuModal from "../component/CreateMenuModal";
 import DeleteMenuConfirmModal from "../component/DeleteMenuConfirmModal";
+import MenuDetailModal from "../component/MenuDetailModal";
 
 function OwnerMenuManagementPage({ username, restaurantId }) {
   const accessToken = localStorage.getItem("token");
@@ -21,14 +22,14 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   const defaultPreviewImageUrl =
     "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
 
-    // Function to handle delete menu click event and set props
-  const handleDeleteIngredient = (name, ingredientId) => {
+  // Function to handle delete menu click event and set props
+  const handleDeleteMenu = (name, menuId) => {
     setDeleteMenuModalOpen(true);
-    setDeleteMenuProps({ name, ingredientId });
+    setDeleteMenuProps({ name, menuId });
   };
 
   // State to hold delete mennu props
-  const [delteMenuProps, setDeleteMenuProps] = useState(null);
+  const [deleteMenuProps, setDeleteMenuProps] = useState(null);
 
   useEffect(() => {
     axios
@@ -91,6 +92,16 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
       });
   };
 
+  // Function to handle edit menu click event and set props
+  const handleEditMenu = (menuId) => {
+    setEditMenuModalOpen(true);
+    setEditMenuProps({ menuId });
+  };
+
+  // State to hold edit mennu props
+  const [editMenuProps, setEditMenuProps] = useState(null);
+
+
   /*
   // Function to handle edit ingredient click event and set props
   const handleEditmenu = (
@@ -137,14 +148,22 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
             restaurantId={restaurantId}
           />
         )}
-        
-        {deletemenuModalOpen && delteMenuProps && (
+
+        {deletemenuModalOpen && deleteMenuProps && (
           <DeleteMenuConfirmModal
-          setDeleteMenuConfirmModalOpen={setDeleteMenuModalOpen}
-            menuId={delteMenuProps.ingredientId}
-            menuName={delteMenuProps.name}
+            setDeleteMenuConfirmModalOpen={setDeleteMenuModalOpen}
+            menuId={deleteMenuProps.menutId}
+            menuName={deleteMenuProps.name}
           />
         )}
+
+        { editmenuModalOpen && editMenuProps && (
+          <MenuDetailModal 
+          menuId={editMenuProps.menuId}
+          setEditMenuModalOpen={setEditMenuModalOpen}
+          />
+        )
+        }
         <div id="Menu-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -207,7 +226,12 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                             )}
                             <div id="a-menu-container-col-3">
                               {menu.status === true && (
-                                <div style={{ color: "rgb(10, 129, 169)" , fontWeight:"bold" }}>
+                                <div
+                                  style={{
+                                    color: "rgb(10, 129, 169)",
+                                    fontWeight: "bold",
+                                  }}
+                                >
                                   เปิดการขาย
                                 </div>
                               )}
@@ -230,17 +254,17 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                             </div>
 
                             <div id="a-menu-container-col-5">
-                              <button>สูตรและข้อมูลเมนู</button>
+                              <button
+                              onClick={()=> {
+                                handleEditMenu(menu._id)
+                              }}>สูตรและข้อมูลเมนู</button>
                             </div>
 
                             <div id="a-menu-container-col-6">
                               <button
                                 id="delete-menu-btn"
                                 onClick={() => {
-                                  handleDeleteIngredient(
-                                    menu.name,
-                                    menu._id
-                                  );
+                                  handleDeleteMenu(menu.name, menu._id);
                                 }}
                               >
                                 <i

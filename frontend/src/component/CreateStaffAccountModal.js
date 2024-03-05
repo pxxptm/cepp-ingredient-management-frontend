@@ -13,14 +13,13 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
   const urlCreateStaff = "http://localhost:3001/auth/register/" + restaurantId;
 
   function refreshPage() {
-    window.location.reload();
+    window.location.href = window.location;
   }
 
   //update for axios post
 
-  async function handleSubmit() {
-    console.log(username + password + Fname + Lname + role)
-
+  async function handleSubmit(event) {
+    event.preventDefault();
     await axios
       .post(
         urlCreateStaff,
@@ -33,13 +32,12 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
         },
         {
           headers: {
-            Authorization: 'Bearer ' + accessToken,
-            "Content-Type": "application/json"
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
           },
         }
       )
       .then((res) => {
-        console.log(res);
         setOpenModal(false);
         refreshPage();
       })
@@ -162,10 +160,10 @@ function CreateStaffAccountModal({ setOpenModal, restaurantId }) {
               </div>
             </div>
             <div id="staff-reg-span-zone" className="d-flex">
-            <button
+              <button
                 id="staff-reg-cancel"
-                onClick={()=>{
-                  setOpenModal(false)
+                onClick={() => {
+                  setOpenModal(false);
                 }}
               >
                 ยกเลิก

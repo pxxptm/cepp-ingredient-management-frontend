@@ -53,9 +53,8 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        setStaffList(response.data);
         if (JSON.stringify(response.data) !== JSON.stringify(staffList)) {
-          setStaffList(response.data);
           console.log(staffList);
         }
       })
@@ -135,7 +134,7 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
             setDeleteStaffConfirmModalOpen={setDeleteStaffModalOpen}
             staffId={deleteStaffProps.staffId}
             staffUsername={deleteStaffProps.staffUsername}
-            restaurantId = {restaurantId}
+            restaurantId={restaurantId}
           />
         )}
         <div id="Staff-management-page-side-bar-menu">
