@@ -278,24 +278,29 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                               </button>
                               <input
                                 type="number"
-                                value={ingredient.amount}
+                                value={
+                                  Number.isInteger(ingredient.amount) // Check if it's an integer
+                                    ? ingredient.amount // If integer, display as it is
+                                    : ingredient.amount // If float, limit to two decimal places
+                                }
                                 onChange={(e) => {
-                                  const newValue = e.target.value.trim();
+                                  const newValue = e.target.value;
                                   let newQuantity;
                                   if (newValue === "" || newValue === "0") {
                                     newQuantity = 0;
+                                  } else if (
+                                    Number.isInteger(parseFloat(newValue))
+                                  ) {
+                                    newQuantity = parseInt(newValue, 10);
                                   } else {
                                     newQuantity = parseFloat(newValue);
-                                    if (isNaN(newQuantity)) {
-                                      return;
-                                    }
                                   }
                                   updateQuantity(
                                     ingredient.name,
                                     ingredient.atLeast,
                                     ingredient.unit,
                                     ingredient._id,
-                                    parseInt(newQuantity, 10)
+                                    newQuantity
                                   );
                                 }}
                               />

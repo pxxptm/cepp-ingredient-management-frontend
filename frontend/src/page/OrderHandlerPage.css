@@ -65,12 +65,13 @@
         min-height: 100%;
         padding-left: 16%;
         display: flex;
+
     }
 
     #order-handler-page-content-inner
     {
         width: 75%;
-        height: 103%;
+        height: 106%;
         overflow-y: auto;
         background-color: rgb(255, 255, 255);
         margin-top: -3%; /* if want to add group menu , erase here */
@@ -132,6 +133,33 @@
         justify-content: end;
         align-items:first baseline;
 
+        #amount-shown-box
+        {
+            background-color: rgb(17, 157, 204);
+            font-family: 'Kanit', sans-serif;
+            margin: 3.5% 3.5% 0 0;
+            width: 16%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            box-shadow: 0 0 0.25vw rgba(0, 0, 0, 0.53);
+
+            div 
+            {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center; /* Horizontally center */
+                align-items: center; /* Vertically center */
+                font-size: 0.7vw;
+                text-align: center;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: auto;
+            }
+        }
     }
 
     #menu-card-content
@@ -155,15 +183,15 @@
     {
         width: 25%;
         height: 100%;
-        background-color: white;
+        background-color: rgb(255, 255, 255);
         border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
 
         #order-summary-list-box 
         {
             width: 100%;
-            height: 87%;
+            height: 71vh;
             margin: auto;
-            
+            padding-bottom: -30%;
             overflow: auto;
             padding-right: 2%;
 
@@ -244,29 +272,30 @@
             width: 55%;
             height: 1vw;
             float: right;
+            margin-right: -3%;
 
             .cancel-remove-button
-        {
-            width: 40%;
-            font-size: 0.7vw;
-            font-family: 'Kanit', sans-serif;
-            color: white;
-            background-color: rgb(118,118,118);
-            border: none;
-            padding: 1.5% 3%;
-            border-radius: 0.3vw;
-            margin-right: 20%;
-
-            &:hover
             {
-                background-color: rgb(56,56,56);
+                width: 40%;
+                font-size: 0.6vw;
+                font-family: 'Kanit', sans-serif;
+                color: white;
+                background-color: rgb(118,118,118);
+                border: none;
+                padding: 1.5% 3%;
+                border-radius: 0.3vw;
+                margin-right: 20%;
+
+                &:hover
+                {
+                    background-color: rgb(56,56,56);
+                }
             }
-        }
 
         .remove-button
         {
             width: 40%;
-            font-size: 0.7vw;
+            font-size: 0.6vw;
             font-family: 'Kanit', sans-serif;
             color: white;
             background-color: rgb(208, 18, 18);
@@ -286,15 +315,18 @@
         #commit-order-btn
         {
             width: 100%;
-            height: 13%;
+            height: 10vh;
             display: flex;
+            padding: 4% 0;
             border-top: 0.15vw solid rgba(0, 0, 0, 0.21);
             background-color: rgb(255, 255, 255);
 
             button 
             {
+                font-size: 1vw;
                 width: 90%;
-                padding: 3% 0;
+                height: fit-content;
+                padding: 4% 0;
                 margin: auto;
                 background-color: rgb(10, 129, 169);
                 color: white;
@@ -309,6 +341,12 @@
         }    
 
     }
+
+    #commit-order-btn-small-media
+    {
+        display: none;
+    }
+
 }
 
 @media (min-width: 700px) and (max-width: 999.5px)
@@ -320,24 +358,764 @@
         position: fixed;
     }
 
+    #order-handler-page-content-header
+    {
+        width: 100%;
+        padding-left: 16%;
+        font-family: "Kanit", sans-serif;
+        display: flex;
+
+        div 
+        {
+            width: 30%;
+            font-size: 1.1vw;
+            font-weight: bold;
+            padding: 2% 1.4%;
+            margin-left: auto;
+            
+            border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
+            border-bottom: 0.25vw solid rgba(0, 0, 0, 0.21);
+        }
+    }
+
     #order-handler-page-content
     {
-        width: 77.5%;
-        height: 88vh;
+        width: 100%;
+        height: 84vh;
         min-height: 100%;
-        padding-left: 20%;
-        padding-top: 2.5%;
-        background-color: palevioletred;
+        padding-left: 16%;
+        display: flex;
+
+        @media (min-width: 850px) and (max-width: 999.5px)
+        {
+            height: 82vh;
+        }
+    }
+
+    #order-handler-page-content-inner
+    {
+        width: 70%;
+        height: 106%;
+        overflow-y: auto;
+        background-color: rgb(255, 255, 255);
+        margin-top: -3.5%; /* if want to add group menu , erase here */
+    }
+
+    #menu-list-cards
+    {
+        width: 100%;
+        max-width: 100%;
+        height: fit-content;
+        padding: 0;
+    }
+
+    #menu-list-cards-table
+    {
+        width: 100%;
+        display: grid;
+        height: fit-content;
+        grid-template-columns: repeat(4,23.95%);
+        column-gap: 1.4%;
+        padding: 0 2% ;
+        
+    }
+
+    #menu-card-container 
+    {
+        background-color: rgb(255, 255, 255);
+        height: fit-content;
+        width: 100%;
+        border: 0.01vw solid rgba(173, 173, 173, 0.419);
+        border-radius: 0.6vw;
+        padding: 0;
+        overflow: hidden;
+        margin-bottom: 8%;
+        box-shadow: 0 0 0.3vw 0.05vw rgba(0, 0, 0, 0.125);
+
+        &:hover
+        {
+            border: 0.01vw solid rgba(5, 70, 92, 0.45);
+        }
+    }
+
+    #menu-card
+    {
+        width: 100%;
+        height: fit-content;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #menu-card-pic
+    {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background: url("http://100.111.182.51:9000/cepp/9155af23b4b5ad4c4258c07edeac19fb.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: end;
+        align-items:first baseline;
+
+        #amount-shown-box
+        {
+            background-color: rgb(17, 157, 204);
+            font-family: 'Kanit', sans-serif;
+            margin: 3.5% 3.5% 0 0;
+            width: 16%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            box-shadow: 0 0 0.25vw rgba(0, 0, 0, 0.53);
+
+            div 
+            {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center; /* Horizontally center */
+                align-items: center; /* Vertically center */
+                font-size: 0.7vw;
+                text-align: center;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: auto;
+            }
+        }
+    }
+
+    #menu-card-content
+    {
+        background-color: white;
+        padding: 8% 9%;
+    }
+
+    #menu-card-name
+    {
+        font-family: 'Kanit', sans-serif;
+        font-size: 1.1vw;
+        color: black;
+        margin: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+
+    #order-summary-zone
+    {
+        width: 30%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
+
+        #order-summary-list-box 
+        {
+            width: 100%;
+            height: 74.5vh;
+            margin: auto;
+            padding-bottom: -30%;
+            overflow: auto;
+            padding-right: 2%;
+
+            @media (min-width: 850px) and (max-width: 999.5px)
+            {
+                height: 73vh;
+            }
+
+            #a-order-block
+            {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                padding: 7% 7% 12% 7%;
+                border-bottom: 0.1vw solid rgba(0, 0, 0, 0.129);
+
+                #a-order-block-menu-name
+                {
+                    padding-right: 15%;
+                    font-family: 'Kanit', sans-serif;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: 1.15vw;
+                    margin-bottom: 10%;
+                }
+
+                #a-order-block-menu-amount
+                {
+                    width: 100%;
+                    height: 1vw;
+                }
+
+                #a-order-block-menu-amount-editor
+                {
+                    width: 50%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: 15% 50% 15%;
+                    column-gap: 11.25%;
+                    float: right;
+
+                    input{
+                        font-size: 1.1vw;
+                        font-family: 'Kanit', sans-serif;
+                        text-align:center;
+                        border: none;
+
+                        &:focus
+                        {
+                            outline: none;
+                            border: none;
+                            border-bottom: 0.01vw solid rgb(82, 82, 82);
+                        }
+                    }
+
+                    .value-button
+                    {
+                        background-color: rgb(168, 168, 168);
+                        width: fit-content;
+                        border-radius: 50%;
+                        padding: auto;
+                        aspect-ratio: 1 / 1;
+                        padding: -0.5%;
+                        border: none;
+                        color: white;
+                        font-size: 0.9vw;
+                        font-family: 'Kanit', sans-serif;
+
+                        &:hover
+                        {
+                            background-color: rgb(50, 50, 50);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        #choice-remove-menu-form-order
+        {
+            width: 60%;
+            height: 1vw;
+            float: right;
+            height: fit-content;
+            margin-right: -6%;
+
+            .cancel-remove-button
+        {
+            width: 37%;
+            font-size: 0.7vw;
+            font-family: 'Kanit', sans-serif;
+            color: white;
+            background-color: rgb(118,118,118);
+            border: none;
+            padding: 2% 3%;
+            border-radius: 0.3vw;
+            margin-right: 20%;
+
+            &:hover
+            {
+                background-color: rgb(56,56,56);
+            }
+        }
+
+        .remove-button
+        {
+            width: 37%;
+            font-size: 0.7vw;
+            font-family: 'Kanit', sans-serif;
+            color: white;
+            background-color: rgb(208, 18, 18);
+            border: none;
+            padding: 2% 3%;
+            border-radius: 0.3vw;
+
+            &:hover
+            {
+                background-color: rgb(146, 0, 0);
+            }
+        }
+        }
+
+        
+
+        #commit-order-btn
+        {
+            width: 100%;
+            height: 10vh;
+            display: flex;
+            padding: 4% 0;
+            border-top: 0.15vw solid rgba(0, 0, 0, 0.21);
+            background-color: rgb(255, 255, 255);
+
+            button 
+            {
+                font-size: 1.2vw;
+                width: 90%;
+                padding: 4% 0;
+                margin: auto;
+                background-color: rgb(10, 129, 169);
+                color: white;
+                border: none;
+                border-radius: 0.5vw;
+                font-family: 'Kanit', sans-serif;
+            
+                &:hover {
+                    background-color: rgb(7, 79, 103);
+                }
+            }
+        }    
+
+    }
+
+    #commit-order-btn-small-media
+    {
+        display: none;
+    }
+}
+
+@media (min-width: 420px) and (max-width: 699.5px)
+{
+    #order-handler-page-side-bar-menu
+    {
+        display: none;
+    }
+
+    #order-handler-page-content-header
+    {
+        width: 100%;
+        font-family: "Kanit", sans-serif;
+        display: flex;
+
+        div 
+        {
+            display: none;
+        }
+    }
+
+    #order-handler-page-content
+    {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 0 5.25vw;
     }
 
     #order-handler-page-content-inner
     {
         width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: 80% 16%;
-        column-gap: 4%;
-        background-color: pink;
+        height: 79vh;
+        overflow-y: auto;
+        margin-top: 3.5%; /* if want to add group menu , erase here */
+
+        @media (min-width: 500px) and (max-width: 539.5px)
+        {
+            height: 80vh;
+        }
+        @media (min-width: 450px) and (max-width: 499.5px)
+        {
+            height: 81vh;
+        }
+        @media (min-width: 420px) and (max-width: 449.5px)
+        {
+            height: 82vh;
+        }
     }
+
+    #menu-list-cards
+    {
+        width: 100%;
+        max-width: 100%;
+        height: fit-content;
+        padding: 0;
+    }
+
+    #menu-list-cards-table
+    {
+        width: 100%;
+        display: grid;
+        height: fit-content;
+        grid-template-columns: repeat(4,23.95%);
+        column-gap: 1.4%;
+        padding: 0;
+        
+    }
+
+    #menu-card-container 
+    {
+        background-color: rgb(255, 255, 255);
+        height: fit-content;
+        width: 100%;
+        border: 0.01vw solid rgba(173, 173, 173, 0.419);
+        border-radius: 1vw;
+        padding: 0;
+        overflow: hidden;
+        margin-bottom: 8%;
+        box-shadow: 0 0 0.3vw 0.05vw rgba(0, 0, 0, 0.125);
+
+        &:hover
+        {
+            border: 0.01vw solid rgba(5, 70, 92, 0.45);
+        }
+    }
+
+    #menu-card
+    {
+        width: 100%;
+        height: fit-content;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #menu-card-pic
+    {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background: url("http://100.111.182.51:9000/cepp/9155af23b4b5ad4c4258c07edeac19fb.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: end;
+        align-items:first baseline;
+
+        #amount-shown-box
+        {
+            background-color: rgb(17, 157, 204);
+            font-family: 'Kanit', sans-serif;
+            margin: 3.5% 3.5% 0 0;
+            width: 16%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            box-shadow: 0 0 0.25vw rgba(0, 0, 0, 0.53);
+
+            div 
+            {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center; /* Horizontally center */
+                align-items: center; /* Vertically center */
+                font-size: 1.2vw;
+                text-align: center;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: auto;
+            }
+        }
+    }
+
+    #menu-card-content
+    {
+        background-color: white;
+        padding: 9% 9%;
+    }
+
+    #menu-card-name
+    {
+        font-family: 'Kanit', sans-serif;
+        font-size: 1.55vw;
+        color: black;
+        margin: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+
+    #order-summary-zone
+    {
+        display: none;
+
+    }
+
+    #commit-order-btn-small-media
+        {
+            width: 100%;
+            height: 10vh;
+            display: flex;
+            padding: auto 5.25vw;
+            border-top: 0.15vw solid rgba(0, 0, 0, 0.21);
+            background-color: rgb(255, 255, 255);
+
+            button 
+            {
+                font-size: 1.7vw;
+                width: 100%;
+                padding: 1.5% 3%;
+                margin: auto 5.25vw;
+                background-color: rgb(10, 129, 169);
+                color: white;
+                border: none;
+                border-radius: 1vw;
+                font-family: 'Kanit', sans-serif;
+                display: grid;
+                grid-template-columns: 80% 20%;
+
+                @media (min-width: 500px) and (max-width: 539.5px)
+                {
+                    padding: 2% 3%;
+                }
+                @media (min-width: 450px) and (max-width: 499.5px)
+                {
+                    padding: 2% 3%;
+                }
+                @media (min-width: 420px) and (max-width: 449.5px)
+                {
+                    padding: 2.5% 3%;
+                }
+            
+                &:hover {
+                    background-color: rgb(7, 79, 103);
+                }
+
+                #total-quantity
+                {
+                    display: flex;
+                    #sumOfQuantities
+                    {
+                        width: fit-content;
+                        padding: 1% 2%;
+                        color: rgb(10, 129, 169);
+                        border-radius: 1.1vw;
+                        background-color: white;
+                    }
+
+                    #sumOfQuantities-text
+                    {
+                        width: fit-content;
+                        font-size: 1.8vw;
+                        margin: auto 0 auto 5%;
+                    }
+                }
+
+                #gt  /* > */
+                {
+                    width: fit-content;
+                    font-size: 2.2vw;
+                    margin: auto 1% auto auto;
+                }
+            }
+        } 
 }
 
+@media (max-width: 419.5px)
+{
+    #order-handler-page-side-bar-menu
+    {
+        display: none;
+    }
+
+    #order-handler-page-content-header
+    {
+        width: 100%;
+        font-family: "Kanit", sans-serif;
+        display: flex;
+
+        div 
+        {
+            display: none;
+        }
+    }
+
+    #order-handler-page-content
+    {
+        width: 100%;
+        height: 92vh;
+        display: flex;
+        padding: 0 4.25vw;
+
+        @media (max-width: 340px) 
+        {
+            height: 114vh;
+         
+        }
+
+    }
+
+    #order-handler-page-content-inner
+    {
+        width: 100%;
+        height: 89vh;
+        overflow-y: auto;
+        margin-top: 3.5%; /* if want to add group menu , erase here */
+
+        @media (max-width: 340px) 
+        {
+            height: 110vh;
+         
+        }
+    }
+
+    #menu-list-cards
+    {
+        width: 100%;
+        max-width: 100%;
+        height: fit-content;
+        padding: 0;
+    }
+
+    #menu-list-cards-table
+    {
+        width: 100%;
+        display: grid;
+        height: fit-content;
+        grid-template-columns: repeat(4,23.95%);
+        column-gap: 1.4%;
+        padding: 0;
+        
+    }
+
+    #menu-card-container 
+    {
+        background-color: rgb(255, 255, 255);
+        height: fit-content;
+        width: 100%;
+        border: 0.01vw solid rgba(173, 173, 173, 0.419);
+        border-radius: 1vw;
+        padding: 0;
+        overflow: hidden;
+        margin-bottom: 8%;
+        box-shadow: 0 0 0.3vw 0.05vw rgba(0, 0, 0, 0.125);
+
+        &:hover
+        {
+            border: 0.01vw solid rgba(5, 70, 92, 0.45);
+        }
+    }
+
+    #menu-card
+    {
+        width: 100%;
+        height: fit-content;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+    }
+
+    #menu-card-pic
+    {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background: url("http://100.111.182.51:9000/cepp/9155af23b4b5ad4c4258c07edeac19fb.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: end;
+        align-items:first baseline;
+
+        #amount-shown-box
+        {
+            background-color: rgb(17, 157, 204);
+            font-family: 'Kanit', sans-serif;
+            margin: 3.5% 3.5% 0 0;
+            width: 16%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            box-shadow: 0 0 0.25vw rgba(0, 0, 0, 0.53);
+
+            div 
+            {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center; /* Horizontally center */
+                align-items: center; /* Vertically center */
+                font-size: 37.5%;
+                text-align: center;
+                text-wrap: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: auto;
+            }
+        }
+    }
+
+    #menu-card-content
+    {
+        background-color: white;
+        padding: 9% 9%;
+    }
+
+    #menu-card-name
+    {
+        font-family: 'Kanit', sans-serif;
+        font-size: 52.5%;
+        color: black;
+        margin: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+
+    #order-summary-zone
+    {
+        display: none;
+
+    }
+
+    #commit-order-btn-small-media
+        {
+            width: 100%;
+            height: 10vh;
+            display: flex;
+            padding: auto 5.25vw;
+            border-top: 0.15vw solid rgba(0, 0, 0, 0.21);
+            background-color: rgb(255, 255, 255);
+
+            button 
+            {
+                font-size: 50%;
+                width: 100%;
+                padding: 2% 3%;
+                margin: auto 5.25vw;
+                background-color: rgb(10, 129, 169);
+                color: white;
+                border: none;
+                border-radius: 2vw;
+                font-family: 'Kanit', sans-serif;
+                display: grid;
+                grid-template-columns: 80% 20%;
+            
+                &:hover {
+                    background-color: rgb(7, 79, 103);
+                }
+
+                #total-quantity
+                {
+                    display: flex;
+                    #sumOfQuantities
+                    {
+                        width: fit-content;
+                        padding: 1% 2%;
+                        color: rgb(10, 129, 169);
+                        border-radius: 1.1vw;
+                        background-color: white;
+                    }
+
+                    #sumOfQuantities-text
+                    {
+                        width: fit-content;
+                        font-size: 100%;
+                        margin: auto 0 auto 5%;
+                    }
+                }
+
+                #gt  /* > */
+                {
+                    width: fit-content;
+                    font-size: 100%;
+                    margin: auto 1% auto auto;
+                }
+            }
+        } 
+}
+
+#order-summary-list-box::-webkit-scrollbar {
+    display: none;
+}

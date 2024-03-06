@@ -95,8 +95,8 @@ function OrderHandlerPage({ username, restaurantId }) {
     setOrderSummary(updatedOrderSummary);
   };
 
-  const updateQuantity = (id, newAmount) => {
-    if (newAmount <= 0) {
+  const updateQuantity = (id, newAmount, status) => {
+    if (newAmount <= 0 || !status) {
       // If the quantity is 0 or less, remove the item from the order summary
       setOrderSummary((prevOrderSummary) =>
         prevOrderSummary.filter((item) => item.id !== id)
@@ -111,6 +111,45 @@ function OrderHandlerPage({ username, restaurantId }) {
     }
   };
 
+  const orderSummaryFiltered = orderSummary.filter((order) =>
+    menuList.some((menu) => menu._id === order.id)
+  );
+
+  useEffect(() => {
+    const getOrderSummaryDistribution = () => {
+      const distribution = {};
+
+      orderSummary.forEach((order) => {
+        const { id, amount } = order;
+
+        if (distribution[id]) {
+          distribution[id] += amount;
+        } else {
+          distribution[id] = amount;
+        }
+      });
+
+      return distribution;
+    };
+    setOrderSummaryDistribution(getOrderSummaryDistribution());
+  }, [orderSummary]);
+
+  useEffect(() => {
+    // Filter out items in orderSummary that are not in menuList
+    const filteredOrderSummary = orderSummary.filter((order) =>
+      menuList.some((menu) => menu._id === order.id)
+    );
+    // Update orderSummary with the filtered orderSummary
+    setOrderSummary(filteredOrderSummary);
+  }, [menuList]);
+
+  // Calculate the sum of quantities in the order summary list
+  const sumOfQuantities = orderSummaryFiltered.reduce(
+    (total, order) => total + order.amount,
+    0
+  );
+
+  const [orderSummaryDistribution, setOrderSummaryDistribution] = useState();
   return (
     <div id="order-handler-page">
       <link
@@ -164,7 +203,15 @@ function OrderHandlerPage({ username, restaurantId }) {
                                   backgroundImage: `url(${menu.image})`,
                                   backgroundSize: "Cover",
                                 }}
-                              ></div>
+                              >
+                                {orderSummaryDistribution[menu._id] > 0 && (
+                                  <div id="amount-shown-box">
+                                    <div>
+                                      {orderSummaryDistribution[menu._id]}{" "}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
                               <div id="menu-card-content">
                                 <div id="menu-card-name">{menu.name}</div>
                               </div>
@@ -179,7 +226,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
           <div id="order-summary-zone">
             <div id="order-summary-list-box">
-              {orderSummary.map((order, index) => (
+              {orderSummaryFiltered.map((order, index) => (
                 <div id="a-order-block" key={index}>
                   <div id="a-order-block-menu-name">{order.name}</div>
                   <div id="a-order-block-menu-amount">
@@ -228,10 +275,20 @@ function OrderHandlerPage({ username, restaurantId }) {
               ))}
             </div>
             <div id="commit-order-btn">
-              <button>ส่งออเดอร์</button>
+              <button>สรุปออเดอร์</button>
             </div>
           </div>
         </div>
+      </div>
+
+      <div id="commit-order-btn-small-media">
+        <button>
+          <div id="total-quantity">
+            <div id="sumOfQuantities">{sumOfQuantities}</div>
+            <div id="sumOfQuantities-text">รายการในออเดอร์นี้</div>
+          </div>
+          <div id="gt">&gt;</div>
+        </button>
       </div>
     </div>
   );
