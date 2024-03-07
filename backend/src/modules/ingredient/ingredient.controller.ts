@@ -25,6 +25,11 @@ export class IngredientController {
     return await this.ingredientService.getByRestaurantId(id);
   }
 
+  @Get('restaurant-sorted/:id')
+  async getSortedByRestaurantId(@Param('id') id: string) {
+    return await this.ingredientService.getWithSortByRestaurantId(id);
+  }
+
   @Post()
   async create(@Body() createIngredientDto: CreateIngredientDto) {
     return await this.ingredientService.create(createIngredientDto);

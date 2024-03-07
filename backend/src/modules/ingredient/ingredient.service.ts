@@ -19,6 +19,32 @@ export class IngredientService {
     return await this.ingredientModel.find({ restaurantId: restaurantId });
   }
 
+  async getWithSortByRestaurantId(restaurantId: string) {
+    const sortedResults = await this.ingredientModel
+      .aggregate([
+        {
+          $match: { restaurantId: restaurantId },
+        },
+        {
+          $addFields: {
+            ratio: {
+              $cond: {
+                if: { $eq: ['$atLeast', 0] },
+                then: Number.POSITIVE_INFINITY,
+                else: { $divide: ['$amount', '$atLeast'] },
+              },
+            },
+          },
+        },
+        {
+          $sort: { ratio: -1 },
+        },
+      ])
+      .exec();
+
+    return sortedResults;
+  }
+
   async create(createIngredientDto: CreateIngredientDto) {
     const createdIngredient = new this.ingredientModel(createIngredientDto);
     await createdIngredient.save();
