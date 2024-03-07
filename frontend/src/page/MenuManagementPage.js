@@ -101,7 +101,6 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   // State to hold edit mennu props
   const [editMenuProps, setEditMenuProps] = useState(null);
 
-
   /*
   // Function to handle edit ingredient click event and set props
   const handleEditmenu = (
@@ -138,7 +137,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
       ></link>
 
       <div id="Menu-management-page-header-bar">
-        <UserHeaderBar username={username} />
+        <UserHeaderBar username={username} restaurantId={restaurantId} />
       </div>
 
       <div id="Menu-management-page-body">
@@ -157,13 +156,12 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
           />
         )}
 
-        { editmenuModalOpen && editMenuProps && (
-          <MenuDetailModal 
-          menuId={editMenuProps.menuId}
-          setEditMenuModalOpen={setEditMenuModalOpen}
+        {editmenuModalOpen && editMenuProps && (
+          <MenuDetailModal
+            menuId={editMenuProps.menuId}
+            setEditMenuModalOpen={setEditMenuModalOpen}
           />
-        )
-        }
+        )}
         <div id="Menu-management-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -255,9 +253,12 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
 
                             <div id="a-menu-container-col-5">
                               <button
-                              onClick={()=> {
-                                handleEditMenu(menu._id)
-                              }}>สูตรและข้อมูลเมนู</button>
+                                onClick={() => {
+                                  handleEditMenu(menu._id);
+                                }}
+                              >
+                                สูตรและข้อมูลเมนู
+                              </button>
                             </div>
 
                             <div id="a-menu-container-col-6">

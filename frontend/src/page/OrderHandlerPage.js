@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./OrderHandlerPage.css";
-import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
+import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 
@@ -85,7 +85,7 @@ function OrderHandlerPage({ username, restaurantId }) {
     );
     setOrderSummary(updatedOrderSummary);
   };
-
+  
   const decreaseQuantity = (id) => {
     const updatedOrderSummary = orderSummary.map((item) =>
       item.id === id && item.amount > 0
@@ -94,20 +94,19 @@ function OrderHandlerPage({ username, restaurantId }) {
     );
     setOrderSummary(updatedOrderSummary);
   };
-
-  const updateQuantity = (id, newAmount, status) => {
-    if (newAmount <= 0 || !status) {
-      // If the quantity is 0 or less, remove the item from the order summary
+  
+  const updateQuantity = (id, newAmount) => {
+    if (newAmount <= 0) {
+      // If the new amount is 0 or less, remove the item from orderSummary
       setOrderSummary((prevOrderSummary) =>
         prevOrderSummary.filter((item) => item.id !== id)
       );
     } else {
       // Otherwise, update the quantity of the item
-      setOrderSummary((prevOrderSummary) =>
-        prevOrderSummary.map((item) =>
-          item.id === id ? { ...item, amount: newAmount } : item
-        )
+      const updatedOrderSummary = orderSummary.map((item) =>
+        item.id === id ? { ...item, amount: newAmount } : item
       );
+      setOrderSummary(updatedOrderSummary);
     }
   };
 
@@ -164,7 +163,7 @@ function OrderHandlerPage({ username, restaurantId }) {
       ></link>
 
       <div id="order-handler-page-header-bar">
-        <RestaurantListHeaderBar username={username} />
+      <UserHeaderBar username={username} restaurantId={restaurantId} />
       </div>
 
       <div id="order-handler-page-body">
@@ -226,7 +225,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
           <div id="order-summary-zone">
             <div id="order-summary-list-box">
-              {orderSummaryFiltered.map((order, index) => (
+              {orderSummary.map((order, index) => (
                 <div id="a-order-block" key={index}>
                   <div id="a-order-block-menu-name">{order.name}</div>
                   <div id="a-order-block-menu-amount">

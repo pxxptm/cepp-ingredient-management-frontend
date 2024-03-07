@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import "./DeleteRestaurantAuthModal.css";
+import "./DeleteStaffConfirmModal.css";
 import { useNavigate } from "react-router-dom";
 
 function DeleteRestaurantAuthModal({

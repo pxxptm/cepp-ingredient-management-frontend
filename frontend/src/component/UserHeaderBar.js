@@ -1,15 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./UserHeaderBar.css";
 import Clock from "./Clock";
 import UserHeaderName from "./UserHeaderName";
+import axios from "axios";
 
 const HearderBar = (props) => {
-
   const handleLogout = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     localStorage.removeItem("token");
     window.location.href = "/login";
-  }
+  };
+
+  const rolePriority = {
+    owner: 1,
+    manager: 2,
+    stockcontroller: 3,
+    employee: 4,
+  };
+
+  const btnMenuOwnerWord = [
+    { label: "แดชบอร์ด", priority: 2 },
+    { label: "รับออเดอร์", priority: 4 },
+    { label: "สต็อกวัตถุดิบ", priority: 3 },
+    { label: "พนักงาน", priority: 1 },
+    { label: "รายการเมนู", priority: 1 },
+    { label: "ข้อมูลร้าน", priority: 4 },
+  ];
+
+
+  const [allowedMenuOptions, setAllowedMenuOptions] = useState([]);
+
+  const accessToken = localStorage.getItem("token");
+  const urlUserDetail = "http://localhost:3001/user/role";
+
+  // Get role of this user
+  useEffect(() => {
+    axios
+      .get(urlUserDetail, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((response) => {
+        const role = response.data.role;
+        // Filter menu options based on role priority
+        const allowedOptions = btnMenuOwnerWord.filter(
+          (option) => rolePriority[role] <= option.priority
+        );
+        setAllowedMenuOptions(allowedOptions);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [accessToken, urlUserDetail]);
+
+  const btnHref = {
+    แดชบอร์ด: `http://localhost:3000/${props.username}/${props.restaurantId}`,
+    รับออเดอร์: `http://localhost:3000/${props.username}/${props.restaurantId}/order-in`,
+    สต็อกวัตถุดิบ: `http://localhost:3000/${props.username}/${props.restaurantId}/inventory-management`,
+    พนักงาน: `http://localhost:3000/${props.username}/${props.restaurantId}/staff-management`,
+    รายการเมนู: `http://localhost:3000/${props.username}/${props.restaurantId}/menu-and-components`,
+    ข้อมูลร้าน: `http://localhost:3000/${props.username}/${props.restaurantId}/info`,
+  };
 
   const restaurantListPageURL =
     "http://localhost:3000/" + props.username + "/restaurant";
@@ -51,7 +103,9 @@ const HearderBar = (props) => {
           </div>
         </div>
         <div className="home-nav-btn">
-          <button id="logout-btn" onClick={handleLogout}>ออกจากระบบ</button>
+          <button id="logout-btn" onClick={handleLogout}>
+            ออกจากระบบ
+          </button>
         </div>
 
         <div className="user-header-bar-sidebar">
@@ -71,8 +125,12 @@ const HearderBar = (props) => {
           </button>
 
           <div className="user-header-bar-sidebar-content">
-            <a href="#">opt1</a>
-            <a href="#">วิธีใช้งาน</a>
+            {allowedMenuOptions.map((option, index) => (
+              <a key={index} className="menu-opt" href={btnHref[option.label]}>
+                
+                <p>{option.label}</p>
+              </a>
+            ))}
             <a href="#" id="user-header-bar-logout" onClick={handleLogout}>
               ออกจากระบบ
             </a>

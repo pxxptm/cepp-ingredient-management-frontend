@@ -290,9 +290,7 @@
             grid-template-columns: 75% 20%;
             column-gap: 5%;
 
-            &:hover{
-                cursor: pointer;
-            }
+             
 
             #rest-name-and-descript
             {
@@ -609,9 +607,7 @@
             grid-template-columns: 75% 20%;
             column-gap: 5%;
 
-            &:hover{
-                cursor: pointer;
-            }
+             
 
             #rest-name-and-descript
             {
@@ -942,9 +938,7 @@
             grid-template-columns: 75% 20%;
             column-gap: 5%;
 
-            &:hover{
-                cursor: pointer;
-            }
+             
 
             #rest-name-and-descript
             {

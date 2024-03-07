@@ -16,24 +16,23 @@ function EditRestaurantPage({ username, restaurantId }) {
   const [userRole, setUserRole] = useState("staff");
   const urlUserDetail = "http://localhost:3001/user/role";
 
-  
-// Get role of this user
-useEffect(() => {
-  axios
-    .get(urlUserDetail, {
-      headers: {
-        Authorization: "Bearer " + accessToken,
-      },
-    })
-    .then((response) => {
-      const role = response.data.role;
-      setUserRole(role); // Update state instead of ref
-      console.log(role);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}, [accessToken, urlUserDetail]);
+  // Get role of this user
+  useEffect(() => {
+    axios
+      .get(urlUserDetail, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((response) => {
+        const role = response.data.role;
+        setUserRole(role); // Update state instead of ref
+        console.log(role);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [accessToken, urlUserDetail]);
 
   // get restaurant detail
   useEffect(() => {
@@ -169,7 +168,7 @@ useEffect(() => {
       ></link>
 
       <div id="Edit-restaurant-page-header-bar">
-        <UserHeaderBar username={username} />
+        <UserHeaderBar username={username} restaurantId={restaurantId} />
       </div>
 
       <div id="Edit-restaurant-page-body">

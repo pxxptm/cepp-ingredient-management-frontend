@@ -185,7 +185,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       ></link>
 
       <div id="inventory-page-header-bar">
-        <UserHeaderBar username={username} />
+        <UserHeaderBar username={username} restaurantId={restaurantId} />
       </div>
 
       <div id="inventory-page-body">

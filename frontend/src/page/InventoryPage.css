@@ -20,7 +20,7 @@
     width: 100%;
     min-width: 423px;
     height: fit-content;
-    position:  static;
+    position: sticky;
     top: 0;
 }
 

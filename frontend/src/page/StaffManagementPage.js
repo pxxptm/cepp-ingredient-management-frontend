@@ -109,7 +109,7 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
       ></link>
 
       <div id="Staff-management-page-header-bar">
-        <UserHeaderBar username={username} />
+        <UserHeaderBar username={username} restaurantId={restaurantId} />
       </div>
 
       <div id="Staff-management-page-body">
