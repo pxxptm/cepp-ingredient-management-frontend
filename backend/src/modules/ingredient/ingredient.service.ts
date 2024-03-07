@@ -19,6 +19,14 @@ export class IngredientService {
     return await this.ingredientModel.find({ restaurantId: restaurantId });
   }
 
+  async getCheckingIngredient(restaurantId: string) {
+    const ingredients = await this.getByRestaurantId(restaurantId);
+    const result = ingredients.filter((ing) => ing.atLeast >= ing.amount);
+
+    if (result.length == 0) return 'there are still a lot of ingredients left';
+    else return result;
+  }
+
   async getWithSortByRestaurantId(restaurantId: string) {
     const sortedResults = await this.ingredientModel
       .aggregate([

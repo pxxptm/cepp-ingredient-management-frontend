@@ -30,6 +30,11 @@ export class IngredientController {
     return await this.ingredientService.getWithSortByRestaurantId(id);
   }
 
+  @Get('restaurant-checkIngredient/:id')
+  async getCheckingIngredient(@Param('id') id: string) {
+    return await this.ingredientService.getCheckingIngredient(id);
+  }
+
   @Post()
   async create(@Body() createIngredientDto: CreateIngredientDto) {
     return await this.ingredientService.create(createIngredientDto);
