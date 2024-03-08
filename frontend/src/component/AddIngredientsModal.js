@@ -22,9 +22,9 @@ function AddIngredientsModal({ restaurantId, setModalOpen }) {
         "http://localhost:3001/ingredient",
         {
           name: ingredientName,
-          amount: parseInt(amountQuantity, 10),
+          amount: parseFloat(amountQuantity, 10),
           unit: unit,
-          atLeast: parseInt(minQuantity, 10),
+          atLeast: parseFloat(minQuantity, 10),
           restaurantId: restaurantId,
         },
         {
@@ -107,6 +107,7 @@ function AddIngredientsModal({ restaurantId, setModalOpen }) {
                 <input
                   className="add-ingredient-form-input-space"
                   type="number"
+                  step="0.01"
                   placeholder="amount quantity (ปริมาณเริ่มต้น)"
                   name="amount-quantity"
                   aria-invalid="false"
@@ -122,6 +123,7 @@ function AddIngredientsModal({ restaurantId, setModalOpen }) {
                 <input
                   className="add-ingredient-form-input-space"
                   type="number"
+                  step="0.01"
                   placeholder="minimum quantity (ปริมาณขั้นต่ำ)"
                   name="minimum-quantity"
                   aria-invalid="false"
