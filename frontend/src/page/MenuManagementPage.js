@@ -67,7 +67,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
       .catch((error) => {
         console.log(error);
       });
-  }, [menuList]);
+  });
 
   const toggleMenuStatus = (menuId, status) => {
     const updatedMenuList = menuList.map((menu) =>
@@ -158,6 +158,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
 
         {editmenuModalOpen && editMenuProps && (
           <MenuDetailModal
+            restaurantId={restaurantId}
             menuId={editMenuProps.menuId}
             setEditMenuModalOpen={setEditMenuModalOpen}
           />

@@ -1,0 +1,106 @@
+#order-summary-page
+{
+    height : 100%;
+    width: 100%;
+    min-width: 423px;
+    position: fixed;
+    padding: 0;
+    margin: 0px;
+    background-color: white;
+}
+
+#order-summary-page-header
+{
+    width: 100%;
+}
+
+#order-summary-page-header-bar
+{
+    width: 100%;
+    height: fit-content;
+    position: sticky;
+    top: 0;
+}
+
+#order-summary-page-body
+{
+    width: 100%;
+    min-height: 100%;
+}
+
+@media (min-width: 700px) 
+{
+    #order-summary-page-side-bar-menu
+    {
+        width: 16%;
+        height: 100%;
+        position: fixed;
+    }
+
+    #order-summary-page-content-header
+    {
+        width: 100%;
+        padding-left: 16%;
+        font-family: "Kanit", sans-serif;
+        display: flex;
+
+        div 
+        {
+            width: 25%;
+            font-size: 1vw;
+            font-weight: bold;
+            padding: 1.65% 1.4%;
+            margin-left: auto;
+            
+            border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
+            border-bottom: 0.25vw solid rgba(0, 0, 0, 0.21);
+        }
+    }
+
+    #order-summary-page-content
+    {
+        width: 100%;
+        height: 89vh;
+        min-height: 100%;
+        padding-left: 16%;
+        display: flex;
+
+    }
+
+    #order-summary-page-content-inner
+    {
+        margin: 0 5.25vw 0 auto;
+        width: 85%;
+        height: 100%;
+        overflow-y: auto;
+        font-family: "Kanit", sans-serif;
+        
+        #order-summary-header
+        {
+            width: 100%;
+            height: fit-content;
+            padding: 3% 0 2% 0;
+            font-size: 1.25vw;
+            font-weight: bold;
+            display: grid;
+            grid-template-columns: 80% 20%;
+
+            #order-summary-header-2
+            {
+                width: fit-content;
+                font-size: 1vw;
+                font-weight: normal;
+                margin-left: auto;
+
+                &:hover
+                {
+                    cursor: pointer;
+                    color: rgb(10, 129, 169);
+                }
+            }
+        }
+    }
+
+    
+
+}

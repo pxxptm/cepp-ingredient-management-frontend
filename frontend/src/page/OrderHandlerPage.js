@@ -3,15 +3,32 @@ import "./OrderHandlerPage.css";
 import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function OrderHandlerPage({ username, restaurantId }) {
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
   const accessToken = localStorage.getItem("token");
-
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
   const [menuList, setMenuList] = useState([]);
   const [orderSummary, setOrderSummary] = useState([]);
+
+  useEffect(() => {
+    const latestOrder = JSON.parse(localStorage.getItem("LatestOrder")) || [];
+    console.log(latestOrder);
+
+    latestOrder.forEach((order) => {
+      console.log(order);
+      addToOrderSummary(order.id, order.name, order.amount);
+      console.log(orderSummary);
+    });
+
+    console.log(orderSummary);
+  }, []);
+
+  useEffect(() => {
+    console.log(orderSummary);
+  }, [orderSummary]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +38,7 @@ function OrderHandlerPage({ username, restaurantId }) {
             Authorization: "Bearer " + accessToken,
           },
         });
-        const name = restaurantResponse.data.name;
-        const image = restaurantResponse.data.image;
+        const { name, image } = restaurantResponse.data;
         setRestaurantName(name);
         setRestaurantImage(image);
       } catch (error) {
@@ -60,32 +76,25 @@ function OrderHandlerPage({ username, restaurantId }) {
   }, [restaurantId, accessToken]);
 
   const addToOrderSummary = (id, name, amount) => {
-    // Check if the menu item already exists in orderSummary
     const existingItemIndex = orderSummary.findIndex(
       (item) => item.name === name && item.id === id
     );
 
     if (existingItemIndex !== -1) {
-      // If the item already exists, update the amount
       const updatedOrderSummary = [...orderSummary];
       updatedOrderSummary[existingItemIndex].amount += amount;
       setOrderSummary(updatedOrderSummary);
     } else {
-      // If the item doesn't exist, add it to orderSummary
-      setOrderSummary((prevOrderSummary) => [
-        ...prevOrderSummary,
-        { id, name, amount },
-      ]);
+      setOrderSummary([...orderSummary, { id, name, amount }]);
     }
   };
-
   const increaseQuantity = (id) => {
     const updatedOrderSummary = orderSummary.map((item) =>
       item.id === id ? { ...item, amount: item.amount + 1 } : item
     );
     setOrderSummary(updatedOrderSummary);
   };
-  
+
   const decreaseQuantity = (id) => {
     const updatedOrderSummary = orderSummary.map((item) =>
       item.id === id && item.amount > 0
@@ -94,7 +103,7 @@ function OrderHandlerPage({ username, restaurantId }) {
     );
     setOrderSummary(updatedOrderSummary);
   };
-  
+
   const updateQuantity = (id, newAmount) => {
     if (newAmount <= 0) {
       // If the new amount is 0 or less, remove the item from orderSummary
@@ -148,6 +157,15 @@ function OrderHandlerPage({ username, restaurantId }) {
     0
   );
 
+  const navigate = useNavigate();
+
+  async function commitOrderHandler() {
+    console.log(orderSummary);
+    window.localStorage.setItem("LatestOrder", JSON.stringify(orderSummary));
+    const urlOrderSummaryPage = `/${username}/${restaurantId}/order-summary`;
+    navigate(urlOrderSummaryPage, { replace: true });
+  }
+
   const [orderSummaryDistribution, setOrderSummaryDistribution] = useState();
   return (
     <div id="order-handler-page">
@@ -163,7 +181,7 @@ function OrderHandlerPage({ username, restaurantId }) {
       ></link>
 
       <div id="order-handler-page-header-bar">
-      <UserHeaderBar username={username} restaurantId={restaurantId} />
+        <UserHeaderBar username={username} restaurantId={restaurantId} />
       </div>
 
       <div id="order-handler-page-body">
@@ -273,15 +291,35 @@ function OrderHandlerPage({ username, restaurantId }) {
                 </div>
               ))}
             </div>
-            <div id="commit-order-btn">
-              <button>สรุปออเดอร์</button>
+            <div
+              id="commit-order-btn"
+              style={{
+                display: orderSummary.length === 0 ? "none" : "flex",
+              }}
+            >
+              <button
+                onClick={() => {
+                  commitOrderHandler();
+                }}
+              >
+                สรุปออเดอร์
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="commit-order-btn-small-media">
-        <button>
+      <div
+        id="commit-order-btn-small-media"
+        style={{
+          display: orderSummary.length === 0 ? "none" : "flex",
+        }}
+      >
+        <button
+          onClick={() => {
+            commitOrderHandler();
+          }}
+        >
           <div id="total-quantity">
             <div id="sumOfQuantities">{sumOfQuantities}</div>
             <div id="sumOfQuantities-text">รายการในออเดอร์นี้</div>

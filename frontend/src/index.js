@@ -22,6 +22,7 @@ import SelfEditAccountPage from "./page/SelfEditAccountPage";
 import InventoryPage from "./page/InventoryPage";
 import MenuManagementPage from "./page/MenuManagementPage";
 import OrderHandlerPage from "./page/OrderHandlerPage";
+import OrderSummaryPage from "./page/OrderSummaryPage";
 
 const router = (
   <Routes>
@@ -67,8 +68,14 @@ const router = (
     />
 
     <Route
-    path="/:username/:restaurantId/order-in"
-    element = {<OrderHandlerPageWrapper />}/>
+      path="/:username/:restaurantId/order-in"
+      element={<OrderHandlerPageWrapper />}
+    />
+
+    <Route
+      path="/:username/:restaurantId/order-summary"
+      element={<OrderSummaryHandlerPageWrapper />}
+    />
   </Routes>
 );
 
@@ -111,18 +118,19 @@ function InventoryPageWrapper() {
 function MenuManagementPageWrapper() {
   let { username } = useParams();
   let { restaurantId } = useParams();
-  return (
-    <MenuManagementPage username={username} restaurantId={restaurantId} />
-  );
+  return <MenuManagementPage username={username} restaurantId={restaurantId} />;
 }
 
-function OrderHandlerPageWrapper()
-{
+function OrderHandlerPageWrapper() {
   let { username } = useParams();
   let { restaurantId } = useParams();
-  return (
-    <OrderHandlerPage username={username} restaurantId={restaurantId} />
-  );
+  return <OrderHandlerPage username={username} restaurantId={restaurantId} />;
+}
+
+function OrderSummaryHandlerPageWrapper() {
+  let { username } = useParams();
+  let { restaurantId } = useParams();
+  return <OrderSummaryPage username={username} restaurantId={restaurantId} />;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
