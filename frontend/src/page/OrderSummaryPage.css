@@ -72,7 +72,7 @@
         margin: 0 5.25vw 0 auto;
         width: 85%;
         height: 100%;
-        overflow-y: auto;
+        overflow-y: hidden;
         font-family: "Kanit", sans-serif;
         
         #order-summary-header
@@ -83,19 +83,146 @@
             font-size: 1.25vw;
             font-weight: bold;
             display: grid;
-            grid-template-columns: 80% 20%;
+            grid-template-columns: 70% 30%;
 
             #order-summary-header-2
             {
-                width: fit-content;
+                width: 100%;
                 font-size: 1vw;
                 font-weight: normal;
-                margin-left: auto;
+                display: flex;
+                text-wrap: nowrap;
+                padding-right: 4%;
+                
 
                 &:hover
-                {
+                { 
                     cursor: pointer;
                     color: rgb(10, 129, 169);
+                }
+
+                div 
+                {
+                    margin-right: 3%;
+                    margin-left: auto;
+                    width: fit-content;
+                }
+
+                span 
+                {
+                    width: fit-content;
+                    margin-left: 5%;
+                }
+            }
+        }
+
+        #order-summary-table
+        {
+            width: 100%;
+            height: 75%;
+            overflow: auto;
+
+            #order-summary-table-zone
+            {
+                width: 100%;
+                height: fit-content;
+                background-color: rgb(255, 129, 201);
+
+                #a-order-block
+                {
+                    width: 100%;
+                    height: fit-content;
+                    display: grid;
+                    grid-template-columns: 60% 35%;
+                    column-gap: 5%;
+                    padding: 2% 0;
+                    font-size: 1.1vw;
+                    background-color: white;
+                    border-bottom: 0.1vw solid rgba(0, 0, 0, 0.25);
+
+                    #a-order-block-menu-name
+                    {
+                        width: 100%;
+                        height: fit-content;
+                        text-wrap: nowrap;
+                        overflow: hidden;
+                        margin: auto 0;
+                        text-overflow: ellipsis;
+                    }
+
+                    #a-order-block-menu-amount
+                {
+                    width: 100%;
+                    height: 1vw;
+                }
+
+                #a-order-block-menu-amount-editor
+                {
+                    width: 50%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: 15% 40% 15%;
+                    column-gap: 3%;
+                    float: right;
+
+                    input{
+                        font-size: 0.9vw;
+                        font-family: 'Kanit', sans-serif;
+                        text-align:center;
+                        border: none;
+
+                        &:focus
+                        {
+                            outline: none;
+                            border: none;
+                            border-bottom: 0.01vw solid rgb(82, 82, 82);
+                        }
+                    }
+
+                    .value-button
+                    {
+                        background-color: rgb(168, 168, 168);
+                        width: fit-content;
+                        border-radius: 50%;
+                        padding: auto;
+                        aspect-ratio: 1 / 1;
+                        padding: -0.5%;
+                        border: none;
+                        color: white;
+                        font-size: 0.6vw;
+                        font-family: 'Kanit', sans-serif;
+
+                        &:hover
+                        {
+                            background-color: rgb(50, 50, 50);
+                        }
+                    }
+                }
+                }
+            }
+        }
+
+        #order-summary-footer
+        {
+            width: 100%;
+            height: 12%;
+            display: flex;
+
+            button 
+            {
+                font-size: 0.9vw;
+                width: fit-content;
+                height: fit-content;
+                padding: 0.75% 2%;
+                margin: auto 0 auto auto;
+                background-color: rgb(10, 129, 169);
+                color: white;
+                border: none;
+                border-radius: 0.5vw;
+                font-family: 'Kanit', sans-serif;
+            
+                &:hover {
+                    background-color: rgb(7, 79, 103);
                 }
             }
         }

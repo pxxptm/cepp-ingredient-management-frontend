@@ -15,6 +15,7 @@ function DeleteMenuConfirmModal({
 
   async function handleSubmit() {
     // delete ingredient
+    console.log(menuId)
     await axios
       .delete(`http://localhost:3001/menu/${menuId}`, {
         headers: {

@@ -21,15 +21,15 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   const [restaurantImage, setRestaurantImage] = useState();
   const defaultPreviewImageUrl =
     "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
+    // State to hold delete mennu props
+  const [deleteMenuProps, setDeleteMenuProps] = useState(null);
 
   // Function to handle delete menu click event and set props
   const handleDeleteMenu = (name, menuId) => {
     setDeleteMenuModalOpen(true);
     setDeleteMenuProps({ name, menuId });
+    console.log(deleteMenuProps)
   };
-
-  // State to hold delete mennu props
-  const [deleteMenuProps, setDeleteMenuProps] = useState(null);
 
   useEffect(() => {
     axios
@@ -151,7 +151,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
         {deletemenuModalOpen && deleteMenuProps && (
           <DeleteMenuConfirmModal
             setDeleteMenuConfirmModalOpen={setDeleteMenuModalOpen}
-            menuId={deleteMenuProps.menutId}
+            menuId={deleteMenuProps.menuId}
             menuName={deleteMenuProps.name}
           />
         )}

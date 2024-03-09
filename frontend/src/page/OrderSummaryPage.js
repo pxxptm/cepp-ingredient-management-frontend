@@ -8,15 +8,12 @@ import { useNavigate } from "react-router-dom";
 function OrderSummaryPage({ username, restaurantId }) {
   const navigate = useNavigate();
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
+  const urlOrderHandlerPage = `/${username}/${restaurantId}/order-in`;
   const accessToken = localStorage.getItem("token");
-  const latestOrder = JSON.parse(window.localStorage.getItem("LatestOrder"));
+  const [latestOrder, setLatestOrder] = useState([]);
+
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
-
-  const urlOrderHandlerPage = `/${username}/${restaurantId}/order-in`;
-    
-
-  console.log("order", latestOrder);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +35,51 @@ function OrderSummaryPage({ username, restaurantId }) {
     fetchData();
   }, [urlRestaurantDetail, accessToken]);
 
+  useEffect(() => {
+    const latestOrderFromStorage = JSON.parse(
+      localStorage.getItem("LatestOrder")
+    );
+    setLatestOrder(latestOrderFromStorage || []);
+  }, []);
+
+  const increaseQuantity = (id) => {
+    const updatedOrderSummary = latestOrder.map((item) =>
+      item.id === id ? { ...item, amount: item.amount + 1 } : item
+    );
+    setLatestOrder(updatedOrderSummary);
+    updateLocalStorage(updatedOrderSummary);
+  };
+
+  const decreaseQuantity = (id) => {
+    const updatedLatestOrder = latestOrder.map((item) =>
+      item.id === id && item.amount > 0
+        ? { ...item, amount: item.amount - 1 }
+        : item
+    );
+
+    setLatestOrder(updatedLatestOrder);
+    updateLocalStorage(updatedLatestOrder);
+  };
+
+  const updateQuantity = (id, newAmount) => {
+    if (newAmount <= 0) {
+      // If the new amount is 0 or less, remove the item from orderSummary
+      setLatestOrder((prevLatestOrder) =>
+        prevLatestOrder.filter((item) => item.id !== id)
+      );
+    } else {
+      // Otherwise, update the quantity of the item
+      const updatedLatestOrder = latestOrder.map((item) =>
+        item.id === id ? { ...item, amount: newAmount } : item
+      );
+      setLatestOrder(updatedLatestOrder);
+      updateLocalStorage(updatedLatestOrder);
+    }
+  };
+
+  const updateLocalStorage = (updatedOrder) => {
+    window.localStorage.setItem("LatestOrder", JSON.stringify(updatedOrder));
+  };
   return (
     <div id="order-summary-page">
       <link
@@ -68,9 +110,73 @@ function OrderSummaryPage({ username, restaurantId }) {
           <div id="order-summary-page-content-inner">
             <div id="order-summary-header">
               <div id="order-summary-header-1">รายการออเดอร์ล่าสุด</div>
-              <div id="order-summary-header-2" onClick={()=>{
-                navigate(urlOrderHandlerPage, { replace: true });
-              }} >เพิ่มเมนู &gt;</div>
+              <div
+                id="order-summary-header-2"
+                onClick={() => {
+                  navigate(urlOrderHandlerPage, { replace: true });
+                }}
+              >
+                <div>เพิ่มเมนู</div> <span>&gt;</span>
+              </div>
+            </div>
+
+            <div id="order-summary-table">
+              <div id="order-summary-table-zone">
+                {latestOrder.map((order, index) => (
+                  <div id="a-order-block" key={index}>
+                    <div id="a-order-block-menu-name">{order.name}</div>
+                    <div id="a-order-block-menu-amount">
+                      {order.amount > 0 ? (
+                        <div id="a-order-block-menu-amount-editor">
+                          {/* Increase and Decrease buttons for adjusting quantity */}
+                          <button
+                            className="value-button"
+                            onClick={() => decreaseQuantity(order.id)}
+                          >
+                            -
+                          </button>
+                          <input
+                            type="number"
+                            value={order.amount}
+                            onChange={(e) =>
+                              updateQuantity(order.id, parseInt(e.target.value))
+                            }
+                          />
+                          <button
+                            className="value-button"
+                            onClick={() => increaseQuantity(order.id)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      ) : (
+                        <div id="choice-remove-menu-form-order">
+                          <button
+                            className="cancel-remove-button"
+                            onClick={() => updateQuantity(order.id, 1)}
+                          >
+                            ยกเลิก
+                          </button>
+
+                          <button
+                            className="remove-button"
+                            onClick={() => {
+                              updateQuantity(order.id, 0);
+                             
+                            }}
+                          >
+                            ลบเมนู
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div id="order-summary-footer">
+              <button>ส่งออเดอร์</button>
             </div>
           </div>
         </div>

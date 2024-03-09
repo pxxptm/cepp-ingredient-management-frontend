@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import "./MenuDetailModal.css";
 
 function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
+  const defaultPreviewImageUrl =
+    "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
+  const [previewImage, setPreviewImage] = useState(defaultPreviewImageUrl);
+  const [expic, setExPic] = useState("");
   const accessToken = localStorage.getItem("token");
   const urlGetMenuDetail = `http://localhost:3001/menu/${menuId}`;
   const urlIngredientList = `http://localhost:3001/ingredient/restaurant/${restaurantId}`;
@@ -13,8 +17,6 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
   const [addComponentMode, setAddComponentMode] = useState(false);
   const [menuNameEdit, setMenuNameEdit] = useState("");
   const [ingredientList, setIngredientList] = useState([]);
-
-  const [componentName, setComponentName] = useState("");
   const [componentAmount, setComponentAmount] = useState(0);
   const [componentUnit, setComponentUnit] = useState("");
   const [componentId, setComponentId] = useState("");
@@ -30,11 +32,16 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
       .then((response) => {
         setMenuData(response.data);
         setMenuNameEdit(response.data.name);
+        setExPic(response.data.image);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [menuId, accessToken, urlGetMenuDetail]);
+  }, []);
+  
+  useEffect(() => {
+    console.log("see", expic);
+  }, [expic]);
 
   useEffect(() => {
     axios
@@ -95,11 +102,11 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
 
   const handleComponentChange = (e) => {
     const selectedComponentName = e.target.value;
+    console.log(selectedComponentName);
     const selectedIngredient = ingredientList.find(
       (ingredient) => ingredient.name === selectedComponentName
     );
     if (selectedIngredient) {
-      setComponentName(selectedComponentName);
       setComponentUnit(selectedIngredient.unit);
       setComponentId(selectedIngredient._id);
     }
@@ -136,6 +143,93 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
   const handlePriorityChange = (e) => {
     setPriority(e.target.value);
   };
+
+  
+
+  const fileUploadHandler = (e) => {
+    const selectedFile = e.target.files[0];
+    const imageUrl = URL.createObjectURL(selectedFile);
+    setPreviewImage(imageUrl);
+  
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+  
+    axios
+      .post(
+        "http://localhost:3001/file-upload/single",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        const minioImagePath = "http://" + res.data.image_url;
+        setExPic(minioImagePath); // Update the state with the new image URL
+        axios
+          .patch(
+            `http://localhost:3001/menu/${menuId}`,
+            {
+              image: minioImagePath,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + accessToken,
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            console.log("Menu image updated successfully.");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
+  const removeImageHandler = () => {
+    // Update the previewImage state with the default image URL
+    setPreviewImage(defaultPreviewImageUrl);
+    
+    // Set the background image of the menu-pic element to the default image URL
+    const menuPicElement = document.getElementById("menu-pic");
+    if (menuPicElement) {
+      menuPicElement.style.backgroundImage = `url(${defaultPreviewImageUrl})`;
+    }
+    
+    // Update the image URL in the backend
+    axios
+      .patch(
+        `http://localhost:3001/menu/${menuId}`,
+        {
+          image: defaultPreviewImageUrl,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Menu image updated successfully.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    const menuPicElement = document.getElementById("menu-pic");
+    if (menuPicElement) {
+      menuPicElement.style.backgroundImage = `url(${previewImage})`;
+    }
+  }, [previewImage]);
 
   return (
     <div className="edit-menu-modalBackground">
@@ -249,12 +343,15 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                     component.ingredientId === ingredient._id
                                 );
 
+                                // Only render the option if the ingredientId is not in menuComponent
                                 if (!isInMenuComponent) {
                                   return (
                                     <option key={index} value={ingredient.name}>
                                       {ingredient.name}
                                     </option>
                                   );
+                                } else {
+                                  return null; // Don't render the option
                                 }
                               })}
                           </select>
@@ -300,64 +397,109 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                       </div>
                     )}
 
-                    {menuComponent.length > 0 &&
-                      menuComponent.map((component, index) => {
-                        const componentData = ingredientList.filter(
-                          (ingredient) =>
-                            ingredient._id === component.ingredientId
-                        );
+{menuComponent.length > 0 &&
+  menuComponent.map((component, index) => {
+    const componentData = ingredientList.filter(
+      (ingredient) => ingredient._id === component.ingredientId
+    );
 
-                        return (
-                          component.ingredientAmount > 0 && (<div
-                            className="component-block"
-                            id="menu-in"
-                            style={{
-                              borderBottom:
-                                index === ingredientList.length - 1 &&
-                                ingredientList.length > 5
-                                  ? "none"
-                                  : "0.1vw solid rgba(0, 0, 0, 0.2)",
-                            }}
-                            key={index}
-                          >
-                            <div id="componentName">
-                              {componentData[0].name}
-                            </div>
-                            <div id="componentAmount">
-                              {component.ingredientAmount}
-                            </div>
-                            <div id="componentUnit">
-                              {componentData[0].unit}
-                            </div>
-                            {component.priority === "high" ? (
-                              <div id="componentPriority" style={{color : "#A00000"}}>สำคัญมาก</div>
-                            ) : (
-                              <div id="componentPriority" style={{color : "#006f59"}} >สำคัญน้อย</div>
-                            )}
+    // Check if componentData is not empty
+    if (componentData.length > 0) {
+      return (
+        component.ingredientAmount > 0 && (
+          <div
+            className="component-block"
+            id="menu-in"
+            style={{
+              borderBottom:
+                index === ingredientList.length - 1 &&
+                ingredientList.length > 5
+                  ? "none"
+                  : "0.1vw solid rgba(0, 0, 0, 0.2)",
+            }}
+            key={index}
+          >
+            <div id="componentName">
+              {componentData[0].name}
+            </div>
+            <div id="componentAmount">
+              {component.ingredientAmount}
+            </div>
+            <div id="componentUnit">
+              {componentData[0].unit}
+            </div>
+            {component.priority === "high" ? (
+              <div
+                id="componentPriority"
+                style={{ color: "#A00000" }}
+              >
+                สำคัญมาก
+              </div>
+            ) : (
+              <div
+                id="componentPriority"
+                style={{ color: "#006f59" }}
+              >
+                สำคัญน้อย
+              </div>
+            )}
 
-                            <button
-                                id="delete-component-btn"
-                                onClick={() => {
-                                  
-                                }}
-                              >
-                                <i
-                                  className="material-icons"
-                                  id="delete-menu-btn-icon"
-                                >
-                                  delete
-                                </i>
-                              </button>
-                          </div>)
-                        );
-                      })}
+            <button
+              id="delete-component-btn"
+              onClick={() => {}}
+            >
+              <i
+                className="material-icons"
+                id="delete-menu-btn-icon"
+              >
+                delete
+              </i>
+            </button>
+          </div>
+        )
+      );
+    } else {
+      return null; // Return null if componentData is empty
+    }
+  })
+}
                   </div>
                 )}
               </div>
             </div>
             <div id="menu-component-table-footer">
-              <button id="cancel-change">ยกเลิกการแก้ไข</button>
-              <button id="save-change">บันทึกการแก้ไข</button>
+              <div id="edit-pic">
+                <div id="txt">
+                  <div>แก้ไขรูปภาพ</div> <span>:</span>
+                </div>
+
+                <input
+                  type="file"
+                  accept="image/jpeg, image/png, image/jpg"
+                  id="menuPic-file"
+                  name="filename"
+                  style={{ display: "none" }}
+                  onChange={fileUploadHandler}
+                />
+                <label htmlFor="menuPic-file" id="menuPic-file-edit-btn">
+                  เปลี่ยนรูปภาพเมนู
+                </label>
+
+                <label
+                  id="menuPic-remove-file-edit-btn"
+                  onClick={removeImageHandler}
+                >
+                  ลบรูปภาพเมนู
+                </label>
+              </div>
+              <button
+                id="save-change"
+                onClick={() => {
+                  setEditMenuModalOpen(false);
+                }}
+              >
+                เสร็จสิ้น
+              </button>
             </div>
           </div>
         </div>

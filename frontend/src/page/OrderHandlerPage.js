@@ -11,24 +11,7 @@ function OrderHandlerPage({ username, restaurantId }) {
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
   const [menuList, setMenuList] = useState([]);
-  const [orderSummary, setOrderSummary] = useState([]);
-
-  useEffect(() => {
-    const latestOrder = JSON.parse(localStorage.getItem("LatestOrder")) || [];
-    console.log(latestOrder);
-
-    latestOrder.forEach((order) => {
-      console.log(order);
-      addToOrderSummary(order.id, order.name, order.amount);
-      console.log(orderSummary);
-    });
-
-    console.log(orderSummary);
-  }, []);
-
-  useEffect(() => {
-    console.log(orderSummary);
-  }, [orderSummary]);
+  const [latestOrder, setLatestOrder] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +31,13 @@ function OrderHandlerPage({ username, restaurantId }) {
 
     fetchData();
   }, [urlRestaurantDetail, accessToken]);
+
+  useEffect(() => {
+    const latestOrderFromStorage = JSON.parse(
+      localStorage.getItem("LatestOrder")
+    );
+    setLatestOrder(latestOrderFromStorage || []);
+  }, []);
 
   useEffect(() => {
     const fetchMenuList = async () => {
@@ -76,80 +66,53 @@ function OrderHandlerPage({ username, restaurantId }) {
   }, [restaurantId, accessToken]);
 
   const addToOrderSummary = (id, name, amount) => {
-    const existingItemIndex = orderSummary.findIndex(
+    const existingItemIndex = latestOrder.findIndex(
       (item) => item.name === name && item.id === id
     );
 
     if (existingItemIndex !== -1) {
-      const updatedOrderSummary = [...orderSummary];
-      updatedOrderSummary[existingItemIndex].amount += amount;
-      setOrderSummary(updatedOrderSummary);
+      const updatedLatestOrder = [...latestOrder];
+      updatedLatestOrder[existingItemIndex].amount += amount;
+      setLatestOrder(updatedLatestOrder);
     } else {
-      setOrderSummary([...orderSummary, { id, name, amount }]);
+      setLatestOrder([...latestOrder, { id, name, amount }]);
     }
   };
+
   const increaseQuantity = (id) => {
-    const updatedOrderSummary = orderSummary.map((item) =>
+    const updatedLatestOrder = latestOrder.map((item) =>
       item.id === id ? { ...item, amount: item.amount + 1 } : item
     );
-    setOrderSummary(updatedOrderSummary);
+    setLatestOrder(updatedLatestOrder);
   };
 
   const decreaseQuantity = (id) => {
-    const updatedOrderSummary = orderSummary.map((item) =>
+    const updatedLatestOrder = latestOrder.map((item) =>
       item.id === id && item.amount > 0
         ? { ...item, amount: item.amount - 1 }
         : item
     );
-    setOrderSummary(updatedOrderSummary);
+    setLatestOrder(updatedLatestOrder);
   };
 
   const updateQuantity = (id, newAmount) => {
     if (newAmount <= 0) {
-      // If the new amount is 0 or less, remove the item from orderSummary
-      setOrderSummary((prevOrderSummary) =>
-        prevOrderSummary.filter((item) => item.id !== id)
+      // If the new amount is 0 or less, remove the item from latestOrder
+      setLatestOrder((prevLatestOrder) =>
+        prevLatestOrder.filter((item) => item.id !== id)
       );
     } else {
       // Otherwise, update the quantity of the item
-      const updatedOrderSummary = orderSummary.map((item) =>
+      const updatedLatestOrder = latestOrder.map((item) =>
         item.id === id ? { ...item, amount: newAmount } : item
       );
-      setOrderSummary(updatedOrderSummary);
+      setLatestOrder(updatedLatestOrder);
     }
   };
 
-  const orderSummaryFiltered = orderSummary.filter((order) =>
+  const orderSummaryFiltered = latestOrder.filter((order) =>
     menuList.some((menu) => menu._id === order.id)
   );
-
-  useEffect(() => {
-    const getOrderSummaryDistribution = () => {
-      const distribution = {};
-
-      orderSummary.forEach((order) => {
-        const { id, amount } = order;
-
-        if (distribution[id]) {
-          distribution[id] += amount;
-        } else {
-          distribution[id] = amount;
-        }
-      });
-
-      return distribution;
-    };
-    setOrderSummaryDistribution(getOrderSummaryDistribution());
-  }, [orderSummary]);
-
-  useEffect(() => {
-    // Filter out items in orderSummary that are not in menuList
-    const filteredOrderSummary = orderSummary.filter((order) =>
-      menuList.some((menu) => menu._id === order.id)
-    );
-    // Update orderSummary with the filtered orderSummary
-    setOrderSummary(filteredOrderSummary);
-  }, [menuList]);
 
   // Calculate the sum of quantities in the order summary list
   const sumOfQuantities = orderSummaryFiltered.reduce(
@@ -160,13 +123,12 @@ function OrderHandlerPage({ username, restaurantId }) {
   const navigate = useNavigate();
 
   async function commitOrderHandler() {
-    console.log(orderSummary);
-    window.localStorage.setItem("LatestOrder", JSON.stringify(orderSummary));
+    console.log(latestOrder);
+    window.localStorage.setItem("LatestOrder", JSON.stringify(latestOrder));
     const urlOrderSummaryPage = `/${username}/${restaurantId}/order-summary`;
     navigate(urlOrderSummaryPage, { replace: true });
   }
 
-  const [orderSummaryDistribution, setOrderSummaryDistribution] = useState();
   return (
     <div id="order-handler-page">
       <link
@@ -221,10 +183,19 @@ function OrderHandlerPage({ username, restaurantId }) {
                                   backgroundSize: "Cover",
                                 }}
                               >
-                                {orderSummaryDistribution[menu._id] > 0 && (
+                                {/* Display the quantity of this menu item in the order summary */}
+                                {latestOrder.some(
+                                  (item) => item.id === menu._id
+                                ) && (latestOrder.find(
+                                  (item) => item.id === menu._id
+                                ).amount > 0) &&(
                                   <div id="amount-shown-box">
                                     <div>
-                                      {orderSummaryDistribution[menu._id]}{" "}
+                                      {
+                                        latestOrder.find(
+                                          (item) => item.id === menu._id
+                                        ).amount
+                                      }{" "}
                                     </div>
                                   </div>
                                 )}
@@ -243,7 +214,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
           <div id="order-summary-zone">
             <div id="order-summary-list-box">
-              {orderSummary.map((order, index) => (
+              {latestOrder.map((order, index) => (
                 <div id="a-order-block" key={index}>
                   <div id="a-order-block-menu-name">{order.name}</div>
                   <div id="a-order-block-menu-amount">
@@ -294,16 +265,10 @@ function OrderHandlerPage({ username, restaurantId }) {
             <div
               id="commit-order-btn"
               style={{
-                display: orderSummary.length === 0 ? "none" : "flex",
+                display: latestOrder.length === 0 ? "none" : "flex",
               }}
             >
-              <button
-                onClick={() => {
-                  commitOrderHandler();
-                }}
-              >
-                สรุปออเดอร์
-              </button>
+              <button onClick={commitOrderHandler}>สรุปออเดอร์</button>
             </div>
           </div>
         </div>
@@ -312,14 +277,10 @@ function OrderHandlerPage({ username, restaurantId }) {
       <div
         id="commit-order-btn-small-media"
         style={{
-          display: orderSummary.length === 0 ? "none" : "flex",
+          display: latestOrder.length === 0 ? "none" : "flex",
         }}
       >
-        <button
-          onClick={() => {
-            commitOrderHandler();
-          }}
-        >
+        <button onClick={commitOrderHandler}>
           <div id="total-quantity">
             <div id="sumOfQuantities">{sumOfQuantities}</div>
             <div id="sumOfQuantities-text">รายการในออเดอร์นี้</div>
