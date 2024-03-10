@@ -240,14 +240,14 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
             </div>
           </div>
 
-          <div id="inventory-table-header">
+          {ingredientList.length > 0 && (<div id="inventory-table-header">
             <div id="inventory-table-header-txt">
               <div>ชื่อวัตถุดิบ</div>
               <div id="header-col-2">ปริมาณคงคลัง</div>
               <div id="header-col-3">หน่วย</div>
               <div id="header-col-4">ขั้นต่ำ</div>
             </div>
-          </div>
+          </div>)}
           <div id="inventory-page-content-table-zone">
             <div id="inventory-page-content-table">
               {ingredientList.length > 0 &&
