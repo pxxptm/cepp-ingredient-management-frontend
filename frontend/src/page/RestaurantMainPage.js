@@ -107,16 +107,16 @@ function RestaurantMainPage({ username, restaurantId }) {
           <div id="main-page-content-frame">
             <div id="main-page-content-inner">
               <div id="sorted-all-zone">
-                <div id="sorted-all-zone-table-header">
-                  <div id="sorted-all-zone-table-header-txt">
-                    <div>ชื่อวัตถุดิบ</div>
-                    <div id="header-col-2">คงเหลือ</div>
-                    <div id="header-col-3">หน่วย</div>
-                  </div>
-                </div>
                 <div id="sorted-all-zone-table">
+                  <div id="sorted-all-zone-table-header">
+                    <div id="sorted-all-zone-table-header-txt">
+                      <div>ชื่อวัตถุดิบ</div>
+                      <div id="header-col-2">คงเหลือ</div>
+                      <div id="header-col-3">หน่วย</div>
+                    </div>
+                  </div>
                   <div id="sorted-all-zone-table-zone">
-                    <div id="main-page-content-table">
+                    <div id="sorted-all-zone-table-content">
                       {sortedIngredientList.length > 0 &&
                         sortedIngredientList.map(
                           (ingredient, index) =>
@@ -205,119 +205,113 @@ function RestaurantMainPage({ username, restaurantId }) {
               <div id="less-than-least-zone">
                 <div id="less-than-least-table">
                   <div id="out-of-stock-zone">
-                    <div id="out-of-stock-table-header">
-                      <div id="out-of-stock-table-header-txt">
-                        วัตถุหมดสต็อก
-                      </div>
-                      <div id="out-of-stock-table-header-count">
-                        <div>{outOfStockIngredientList.length}</div>
-                      </div>
-                    </div>
                     <div id="out-of-stock-table">
-                      {outOfStockIngredientList.length > 0 &&
-                        outOfStockIngredientList.map(
-                          (ingredient, index) =>
-                            ingredient && ( // Check if staff is not null
-                              <div id="ingredient-block" key={ingredient._id}
-                              style={{
-                                borderBottom:
-                                    index === outOfStockIngredientList.length - 1
-                                      ? "none"
-                                      : "0.1vw solid rgba(0, 0, 0, 0.2)",
-                              }}>
-                                {
+                      <div id="out-of-stock-table-header">
+                        <div id="out-of-stock-table-header-txt">
+                          วัตถุหมดสต็อก
+                        </div>
+                        <div id="out-of-stock-table-header-count">
+                          <div>{outOfStockIngredientList.length}</div>
+                        </div>
+                      </div>
+
+                      <div id="out-of-stock-zone-table-zone">
+                        <div id="out-of-stock-zone-table-content">
+                          {outOfStockIngredientList.length > 0 &&
+                            outOfStockIngredientList.map(
+                              (ingredient, index) =>
+                                ingredient && ( // Check if staff is not null
                                   <div
-                                    id="a-ingredient-container"
+                                    id="ingredient-block"
+                                    key={ingredient._id}
                                     style={{
-                                      color:
-                                        ingredient.amount === 0
-                                          ? "#990000"
-                                          : ingredient.amount <=
-                                            ingredient.atLeast
-                                          ? "#997a00"
-                                          : "black",
+                                      borderBottom:
+                                        index ===
+                                        outOfStockIngredientList.length - 1
+                                          ? "none"
+                                          : "0.1vw solid rgba(0, 0, 0, 0.2)",
                                     }}
                                   >
-                                    <div id="a-ingredient-container-col-1">
-                                      <div id="ingredient-name">
-                                        {ingredient.name}
+                                    {
+                                      <div
+                                        id="a-ingredient-container"
+                                        style={{
+                                          color:
+                                            ingredient.amount === 0
+                                              ? "#990000"
+                                              : ingredient.amount <=
+                                                ingredient.atLeast
+                                              ? "#997a00"
+                                              : "black",
+                                        }}
+                                      >
+                                        <div id="a-ingredient-container-col-1">
+                                          <div id="ingredient-name">
+                                            {ingredient.name}
+                                          </div>
+                                        </div>
+
+                                        <div id="a-ingredient-container-col-2">
+                                          {ingredient.amount}
+                                        </div>
+
+                                        <div id="a-ingredient-container-col-3">
+                                          {ingredient.unit}
+                                        </div>
+
+                                        <div
+                                          id="a-ingredient-container-col-4"
+                                          style={{
+                                            color:
+                                              ingredient.amount === 0
+                                                ? "#990000"
+                                                : ingredient.amount <=
+                                                  ingredient.atLeast
+                                                ? "#997a00"
+                                                : "black",
+
+                                            fontWeight:
+                                              ingredient.amount === 0
+                                                ? "bold"
+                                                : ingredient.amount <=
+                                                  ingredient.atLeast
+                                                ? "bold"
+                                                : "normal",
+                                          }}
+                                        >
+                                          {ingredient.amount === 0
+                                            ? "หมด"
+                                            : ingredient.amount <=
+                                              ingredient.atLeast
+                                            ? "ใกล้หมด"
+                                            : ""}
+                                        </div>
                                       </div>
-                                    </div>
-
-                                    <div id="a-ingredient-container-col-2">
-                                      {ingredient.amount}
-                                    </div>
-
-                                    <div id="a-ingredient-container-col-3">
-                                      {ingredient.unit}
-                                    </div>
-
-                                    <div
-                                      id="a-ingredient-container-col-4"
-                                      style={{
-                                        color:
-                                          ingredient.amount === 0
-                                            ? "#990000"
-                                            : ingredient.amount <=
-                                              ingredient.atLeast
-                                            ? "#997a00"
-                                            : "black",
-
-                                        fontWeight:
-                                          ingredient.amount === 0
-                                            ? "bold"
-                                            : ingredient.amount <=
-                                              ingredient.atLeast
-                                            ? "bold"
-                                            : "normal",
-                                      }}
-                                    >
-                                      {ingredient.amount === 0
-                                        ? "หมด"
-                                        : ingredient.amount <=
-                                          ingredient.atLeast
-                                        ? "ใกล้หมด"
-                                        : ""}
-                                    </div>
+                                    }
                                   </div>
-                                }
-                              </div>
-                            )
-                        )}
+                                )
+                            )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div id="minQ-zone">
-                    <div id="minQ-table-header">
-                      <div id="minQ-table-header-txt">วัตถุดิบเหลือน้อย</div>
-                      <div id="minQ-table-header-count">
-                        <div>{nearlyOutIngredientList.length}</div>
-                      </div>
-                    </div>
                     <div id="minQ-table">
-                      {nearlyOutIngredientList.length > 0 &&
-                        nearlyOutIngredientList.map(
-                          (ingredient, index) =>
-                            ingredient && ( // Check if staff is not null
-                              <div
-                                id="ingredient-block"
-                                key={ingredient._id}
-                                style={{
-                                  color:
-                                    ingredient.amount === 0
-                                      ? "#990000"
-                                      : ingredient.amount <= ingredient.atLeast
-                                      ? "#997a00"
-                                      : "black",
-
-                                  borderBottom:
-                                    index === nearlyOutIngredientList.length - 1
-                                      ? "none"
-                                      : "0.1vw solid rgba(0, 0, 0, 0.2)",
-                                }}
-                              >
-                                {
+                      <div id="minQ-table-header">
+                        <div id="minQ-table-header-txt">วัตถุดิบเหลือน้อย</div>
+                        <div id="minQ-table-header-count">
+                          <div>{nearlyOutIngredientList.length}</div>
+                        </div>
+                      </div>
+                      <div id="minQ-zone-table-zone">
+                        <div id="minQ-zone-table-content">
+                          {nearlyOutIngredientList.length > 0 &&
+                            nearlyOutIngredientList.map(
+                              (ingredient, index) =>
+                                ingredient && ( // Check if staff is not null
                                   <div
-                                    id="a-ingredient-container"
+                                    id="ingredient-block"
+                                    key={ingredient._id}
                                     style={{
                                       color:
                                         ingredient.amount === 0
@@ -326,54 +320,75 @@ function RestaurantMainPage({ username, restaurantId }) {
                                             ingredient.atLeast
                                           ? "#997a00"
                                           : "black",
+
+                                      borderBottom:
+                                        index ===
+                                        nearlyOutIngredientList.length - 1
+                                          ? "none"
+                                          : "0.1vw solid rgba(0, 0, 0, 0.2)",
                                     }}
                                   >
-                                    <div id="a-ingredient-container-col-1">
-                                      <div id="ingredient-name">
-                                        {ingredient.name}
+                                    {
+                                      <div
+                                        id="a-ingredient-container"
+                                        style={{
+                                          color:
+                                            ingredient.amount === 0
+                                              ? "#990000"
+                                              : ingredient.amount <=
+                                                ingredient.atLeast
+                                              ? "#997a00"
+                                              : "black",
+                                        }}
+                                      >
+                                        <div id="a-ingredient-container-col-1">
+                                          <div id="ingredient-name">
+                                            {ingredient.name}
+                                          </div>
+                                        </div>
+
+                                        <div id="a-ingredient-container-col-2">
+                                          {ingredient.amount}
+                                        </div>
+
+                                        <div id="a-ingredient-container-col-3">
+                                          {ingredient.unit}
+                                        </div>
+
+                                        <div
+                                          id="a-ingredient-container-col-4"
+                                          style={{
+                                            color:
+                                              ingredient.amount === 0
+                                                ? "#990000"
+                                                : ingredient.amount <=
+                                                  ingredient.atLeast
+                                                ? "#997a00"
+                                                : "black",
+
+                                            fontWeight:
+                                              ingredient.amount === 0
+                                                ? "bold"
+                                                : ingredient.amount <=
+                                                  ingredient.atLeast
+                                                ? "bold"
+                                                : "normal",
+                                          }}
+                                        >
+                                          {ingredient.amount === 0
+                                            ? "หมด"
+                                            : ingredient.amount <=
+                                              ingredient.atLeast
+                                            ? "ใกล้หมด"
+                                            : ""}
+                                        </div>
                                       </div>
-                                    </div>
-
-                                    <div id="a-ingredient-container-col-2">
-                                      {ingredient.amount}
-                                    </div>
-
-                                    <div id="a-ingredient-container-col-3">
-                                      {ingredient.unit}
-                                    </div>
-
-                                    <div
-                                      id="a-ingredient-container-col-4"
-                                      style={{
-                                        color:
-                                          ingredient.amount === 0
-                                            ? "#990000"
-                                            : ingredient.amount <=
-                                              ingredient.atLeast
-                                            ? "#997a00"
-                                            : "black",
-
-                                        fontWeight:
-                                          ingredient.amount === 0
-                                            ? "bold"
-                                            : ingredient.amount <=
-                                              ingredient.atLeast
-                                            ? "bold"
-                                            : "normal",
-                                      }}
-                                    >
-                                      {ingredient.amount === 0
-                                        ? "หมด"
-                                        : ingredient.amount <=
-                                          ingredient.atLeast
-                                        ? "ใกล้หมด"
-                                        : ""}
-                                    </div>
+                                    }
                                   </div>
-                                }
-                              </div>
-                            )
-                        )}
+                                )
+                            )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
