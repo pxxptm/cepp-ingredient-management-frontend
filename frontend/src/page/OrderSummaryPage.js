@@ -11,7 +11,7 @@ function OrderSummaryPage({ username, restaurantId }) {
   const urlOrderHandlerPage = `/${username}/${restaurantId}/order-in`;
   const accessToken = localStorage.getItem("token");
   const [latestOrder, setLatestOrder] = useState([]);
-
+  const LatestOrder = "LatestOrder" + restaurantId;
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
 
@@ -37,7 +37,7 @@ function OrderSummaryPage({ username, restaurantId }) {
 
   useEffect(() => {
     const latestOrderFromStorage = JSON.parse(
-      localStorage.getItem("LatestOrder")
+      localStorage.getItem(LatestOrder)
     );
     setLatestOrder(latestOrderFromStorage || []);
   }, []);
@@ -78,7 +78,7 @@ function OrderSummaryPage({ username, restaurantId }) {
   };
 
   const updateLocalStorage = (updatedOrder) => {
-    window.localStorage.setItem("LatestOrder", JSON.stringify(updatedOrder));
+    window.localStorage.setItem(LatestOrder, JSON.stringify(updatedOrder));
   };
   return (
     <div id="order-summary-page">

@@ -12,6 +12,7 @@ function OrderHandlerPage({ username, restaurantId }) {
   const [restaurantImage, setRestaurantImage] = useState();
   const [menuList, setMenuList] = useState([]);
   const [latestOrder, setLatestOrder] = useState([]);
+  const LatestOrder = "LatestOrder" + restaurantId;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +35,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
   useEffect(() => {
     const latestOrderFromStorage = JSON.parse(
-      localStorage.getItem("LatestOrder")
+      localStorage.getItem(LatestOrder)
     );
     setLatestOrder(latestOrderFromStorage || []);
   }, []);
@@ -124,7 +125,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
   async function commitOrderHandler() {
     console.log(latestOrder);
-    window.localStorage.setItem("LatestOrder", JSON.stringify(latestOrder));
+    window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrder));
     const urlOrderSummaryPage = `/${username}/${restaurantId}/order-summary`;
     navigate(urlOrderSummaryPage, { replace: false });
   }
