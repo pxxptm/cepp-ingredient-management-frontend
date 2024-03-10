@@ -126,7 +126,7 @@ function OrderHandlerPage({ username, restaurantId }) {
     console.log(latestOrder);
     window.localStorage.setItem("LatestOrder", JSON.stringify(latestOrder));
     const urlOrderSummaryPage = `/${username}/${restaurantId}/order-summary`;
-    navigate(urlOrderSummaryPage, { replace: true });
+    navigate(urlOrderSummaryPage, { replace: false });
   }
 
   return (
