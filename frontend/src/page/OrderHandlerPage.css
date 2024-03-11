@@ -347,6 +347,18 @@
         display: none;
     }
 
+    #mainMenu-out
+    {
+        margin: auto;
+        font-size: 0.85vw;
+        font-family: 'Kanit', sans-serif;
+        padding: 1% 5%;
+        border: 0.12vw solid red;
+        color: red;
+        border-radius: 5vw;
+        background-color: rgba(255, 255, 255, 0.925);
+    }
+
 }
 
 @media (min-width: 700px) and (max-width: 999.5px)
@@ -674,6 +686,18 @@
     #commit-order-btn-small-media
     {
         display: none;
+    }
+
+    #mainMenu-out
+    {
+        margin: auto;
+        font-size: 0.85vw;
+        font-family: 'Kanit', sans-serif;
+        padding: 1% 5%;
+        border: 0.12vw solid red;
+        color: red;
+        border-radius: 5vw;
+        background-color: rgba(255, 255, 255, 0.925);
     }
 }
 

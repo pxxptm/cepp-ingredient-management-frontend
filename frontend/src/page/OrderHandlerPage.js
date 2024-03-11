@@ -4,6 +4,7 @@ import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import NotEnoughComponentAlertModal from "../component/NotEnoughComponentAlertModal";
 
 function OrderHandlerPage({ username, restaurantId }) {
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -13,6 +14,9 @@ function OrderHandlerPage({ username, restaurantId }) {
   const [menuList, setMenuList] = useState([]);
   const [latestOrder, setLatestOrder] = useState([]);
   const LatestOrder = "LatestOrder" + restaurantId;
+  const [alertNotEnoughModal, setAlertNotEnoughModal] = useState(false);
+  const [selectedMenuId, setSelectedMenuId] = useState(null);
+  const [selectedMenuName, setSelectedMenuName] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +41,9 @@ function OrderHandlerPage({ username, restaurantId }) {
     const latestOrderFromStorage = JSON.parse(
       localStorage.getItem(LatestOrder)
     );
-    setLatestOrder(latestOrderFromStorage || []);
+    if (Array.isArray(latestOrderFromStorage)) {
+      setLatestOrder(latestOrderFromStorage);
+    }
   }, []);
 
   useEffect(() => {
@@ -52,6 +58,7 @@ function OrderHandlerPage({ username, restaurantId }) {
           }
         );
         setMenuList(menuResponse.data);
+        console.log(menuList);
       } catch (error) {
         console.log(error);
       }
@@ -75,13 +82,14 @@ function OrderHandlerPage({ username, restaurantId }) {
       const updatedLatestOrder = [...latestOrder];
       updatedLatestOrder[existingItemIndex].amount += amount;
       setLatestOrder(updatedLatestOrder);
-      window.localStorage.setItem(LatestOrder, JSON.stringify(updatedLatestOrder));
-
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(updatedLatestOrder)
+      );
     } else {
       const updatedOrder = [...latestOrder, { id, name, amount }];
       setLatestOrder(updatedOrder);
       window.localStorage.setItem(LatestOrder, JSON.stringify(updatedOrder));
-
     }
   };
 
@@ -90,7 +98,10 @@ function OrderHandlerPage({ username, restaurantId }) {
       item.id === id ? { ...item, amount: item.amount + 1 } : item
     );
     setLatestOrder(updatedLatestOrder);
-    window.localStorage.setItem(LatestOrder, JSON.stringify(updatedLatestOrder));
+    window.localStorage.setItem(
+      LatestOrder,
+      JSON.stringify(updatedLatestOrder)
+    );
   };
 
   const decreaseQuantity = (id) => {
@@ -100,7 +111,10 @@ function OrderHandlerPage({ username, restaurantId }) {
         : item
     );
     setLatestOrder(updatedLatestOrder);
-    window.localStorage.setItem(LatestOrder, JSON.stringify(updatedLatestOrder));
+    window.localStorage.setItem(
+      LatestOrder,
+      JSON.stringify(updatedLatestOrder)
+    );
   };
 
   const updateQuantity = (id, newAmount) => {
@@ -109,19 +123,25 @@ function OrderHandlerPage({ username, restaurantId }) {
       setLatestOrder((prevLatestOrder) =>
         prevLatestOrder.filter((item) => item.id !== id)
       );
+      window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrder));
     } else {
       // Otherwise, update the quantity of the item
       const updatedLatestOrder = latestOrder.map((item) =>
         item.id === id ? { ...item, amount: newAmount } : item
       );
       setLatestOrder(updatedLatestOrder);
-      window.localStorage.setItem(LatestOrder, JSON.stringify(updatedLatestOrder));
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(updatedLatestOrder)
+      );
     }
   };
 
-  const orderSummaryFiltered = latestOrder.filter((order) =>
-    menuList.some((menu) => menu._id === order.id)
-  );
+  const orderSummaryFiltered = Array.isArray(latestOrder)
+    ? latestOrder.filter((order) =>
+        menuList.some((menu) => menu._id === order.id)
+      )
+    : [];
 
   // Calculate the sum of quantities in the order summary list
   const sumOfQuantities = orderSummaryFiltered.reduce(
@@ -156,6 +176,14 @@ function OrderHandlerPage({ username, restaurantId }) {
       </div>
 
       <div id="order-handler-page-body">
+        {alertNotEnoughModal && (
+          <NotEnoughComponentAlertModal
+            menuName={selectedMenuName}
+            menuId={selectedMenuId}
+            restaurantId={restaurantId}
+            setAlertNotEnoughModal={setAlertNotEnoughModal}
+          />
+        )}
         <div id="order-handler-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -164,7 +192,6 @@ function OrderHandlerPage({ username, restaurantId }) {
             restaurantImage={restaurantImage}
           />
         </div>
-
         <div id="order-handler-page-content-header">
           <div>รายการออเดอร์</div>
         </div>
@@ -178,26 +205,34 @@ function OrderHandlerPage({ username, restaurantId }) {
                     (menu, index) =>
                       menu && ( // Check if restaurant is not null
                         <div id="menu-card-container" key={menu._id}>
-                          {
-                            <div
-                              id="menu-card"
-                              onClick={() =>
-                                addToOrderSummary(menu._id, menu.name, 1)
+                          <div
+                            id="menu-card"
+                            onClick={() => {
+                              if (menu.canCook === 1) {
+                                addToOrderSummary(menu._id, menu.name, 1);
+                              } else if (menu.canCook === 0) {
+                                setSelectedMenuId(menu._id)
+                                setSelectedMenuName(menu.name)
+                                setAlertNotEnoughModal(true);
                               }
+                            }}
+                            style={{
+                              position: "relative",
+                            }}
+                          >
+                            <div
+                              id="menu-card-pic"
+                              style={{
+                                backgroundImage: `url(${menu.image})`,
+                                backgroundSize: "Cover",
+                              }}
                             >
-                              <div
-                                id="menu-card-pic"
-                                style={{
-                                  backgroundImage: `url(${menu.image})`,
-                                  backgroundSize: "Cover",
-                                }}
-                              >
-                                {/* Display the quantity of this menu item in the order summary */}
-                                {latestOrder.some(
-                                  (item) => item.id === menu._id
-                                ) && (latestOrder.find(
-                                  (item) => item.id === menu._id
-                                ).amount > 0) &&(
+                              {/* Display the quantity of this menu item in the order summary */}
+                              {latestOrder.some(
+                                (item) => item.id === menu._id
+                              ) &&
+                                latestOrder.find((item) => item.id === menu._id)
+                                  .amount > 0 && (
                                   <div id="amount-shown-box">
                                     <div>
                                       {
@@ -208,12 +243,27 @@ function OrderHandlerPage({ username, restaurantId }) {
                                     </div>
                                   </div>
                                 )}
-                              </div>
-                              <div id="menu-card-content">
-                                <div id="menu-card-name">{menu.name}</div>
-                              </div>
                             </div>
-                          }
+                            <div id="menu-card-content">
+                              <div id="menu-card-name">{menu.name}</div>
+                            </div>
+                            {menu.canCook === -1 && (
+                              <div
+                                className="menu-card-overlay"
+                                style={{
+                                  position: "absolute",
+                                  display: "flex",
+                                  top: 0,
+                                  left: 0,
+                                  width: "100%",
+                                  height: "100%",
+                                  backgroundColor: "rgba(0,0,0,0.4)",
+                                }}
+                              >
+                                <div id="mainMenu-out">วัตถุดิบหลักหมด</div>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )
                   )}
@@ -261,7 +311,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
                         <button
                           className="remove-button"
-                          onClick={() => updateQuantity(order.id, 0)}
+                          onClick={() => updateQuantity(order.id, -1)}
                         >
                           ลบเมนู
                         </button>
