@@ -1,8 +1,16 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ComponentService } from './component.service';
 import { AuthGuard } from '../auth/guard/auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CreateComponentDto } from './dto/component.dto';
+import { CreateComponentDto, UpdateComponentDto } from './dto/component.dto';
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
@@ -14,6 +22,14 @@ export class ComponentController {
   @Post()
   async create(@Body() createComponentDto: CreateComponentDto) {
     return await this.componentService.create(createComponentDto);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') componentId: string,
+    @Body() updateComponentDto: UpdateComponentDto,
+  ) {
+    return await this.componentService.update(componentId, updateComponentDto);
   }
 
   @Get('get-menu/:id')

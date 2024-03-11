@@ -11,73 +11,62 @@ export class OrderService {
     private readonly ingredientService: IngredientService,
   ) {}
 
-  private IngredientTemp;
+  private ingredients;
 
   async checkOrder(checkOrderDto: checkOrderDto[], id: string) {
-    this.IngredientTemp = await this.ingredientService.getByRestaurantId(id);
-
     let res = [];
+    this.ingredients = await this.ingredientService.getByRestaurantId(id);
 
     for (const order of checkOrderDto) {
-      res.push(await this.checkCanMake(order.menuId, order.amount));
+      res.push(await this.checkCanMake(order.id, order.name, order.amount));
     }
 
-    // console.log(res);
-    // return res;
+    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWQ4MmNmMWEzZTE2NGRhMDkyZTUxYzMiLCJ1c2VybmFtZSI6Im93bmVyIiwicm9sZSI6Im93bmVyIiwiaWF0IjoxNzEwMTYyNzcwLCJleHAiOjE3MTAyNDkxNzB9.abFnWRKFPombWRV16Ha3E5YkopKL2cOuaaqAeG0E-LA
+    // 65d83ab124a06c65fb25cdcc
+    // [{"id": "65dd54d26a056402059c1425", "name" : "tee pad ped", "amount" : 3}]
+
+    console.log(res);
+    return res;
   }
 
-  async checkCanMake(menuId: string, amount: number) {
-    const components = await this.componentService.findByMenuId(menuId);
+  async checkCanMake(menuId: string, name: string, amount: number) {
+    const components = await this.componentService.findByMenuId(menuId); //get all component of the menu
+    let tempAmount = amount;
+    let cnt = 0;
 
-    console.log('Ingredient');
-    console.log(this.IngredientTemp);
+    while (tempAmount) {
+      let status = 1;
+      const componentsPromise = components.map(async (component) => {
+        const ingredient = this.ingredients.find(
+          (ing) => ing.id === component.ingredientId, //temporary ingredient
+        );
 
-    const componentsPromise = components.map(async (component) => {
-      let ingredient = [];
+        if (ingredient.amount < component.ingredientAmount) {
+          if (component.priority == Priority.HIGH) {
+            status = Math.min(-1, status);
+            return;
+          } else if (component.priority == Priority.LOW) {
+            status = Math.min(0, status);
+            return;
+          }
+        } else {
+          const ingredientIndex = this.ingredients.findIndex(
+            (ing) => ing.id === component.ingredientId,
+          );
 
-      for (const e of this.IngredientTemp) {
-        console.log('E');
-        console.log(e._id);
+          this.ingredients[ingredientIndex].amount -=
+            component.ingredientAmount;
+        }
+      });
+
+      if (status === 1) {
+        tempAmount--;
+        cnt++;
+      } else {
+        return { name: name, requied: amount, canCook: cnt };
       }
-
-      console.log(ingredient);
-
-      // const ingredient = await this.ingredientService.getById(
-      //   component.ingredientId,
-      // );
-
-      // const canMake = await this.ingredientService.checkCanMake(
-      //   component.ingredientId,
-      //   component.ingredientAmount * amount,
-      // );
-
-      //     if (!canMake) {
-      //       if (component.priority == Priority.HIGH) {
-      //         status = Math.min(status, -1);
-      //         return {
-      //           ingredientName: ingredient.name,
-      //           priority: Priority.HIGH,
-      //           currentAmount: ingredient.amount,
-      //           requiredAmount: component.ingredientAmount * amount,
-      //           maxCanMake: Math.floor(
-      //             ingredient.amount / (component.ingredientAmount * amount),
-      //           ),
-      //           status: 'Out of Stock, can not make this menu',
-      //         };
-      //       } else if (component.priority == Priority.LOW) {
-      //         status = Math.min(status, 0);
-      //         return {
-      //           ingredientName: ingredient.name,
-      //           status: 'Out of Stock, but can make this menu',
-      //         };
-      //       }
-      //     } else {
-      //       return {
-      //         ingredientName: ingredient.name,
-      //         status: 'OK',
-      //       };
-      //     }
-    });
+    }
+    return { name: name, requied: amount, canCook: cnt };
 
     //   response = {
     //     ...response,

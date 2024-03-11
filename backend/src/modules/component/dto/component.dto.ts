@@ -1,4 +1,10 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { Priority } from '../schema/component.schema';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -29,27 +35,28 @@ export class CreateComponentDto {
 }
 
 export class UpdateComponentDto {
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly restaurantId: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly menuId: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly ingredientId: string;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsNumber()
-  @IsNotEmpty()
-  @ApiProperty()
   readonly ingredientAmount: number;
 
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsEnum(Priority)
-  @ApiProperty()
   readonly priority: Priority;
 }
