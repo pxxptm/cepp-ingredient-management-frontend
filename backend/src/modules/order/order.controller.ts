@@ -1,7 +1,18 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseArrayPipe,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/guard/auth.guard';
+import { OrderModule } from './order.module';
+import { checkOrderDto } from './dto/order.dto';
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
@@ -10,11 +21,12 @@ import { AuthGuard } from '../auth/guard/auth.guard';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @Get()
+  @Post('restaurant/:id')
   async checkCanMake(
-    @Query('menuId') menuId: string,
-    @Query('amount') amount: number,
+    @Param('id') id: string,
+    @Body(new ParseArrayPipe({ items: checkOrderDto }))
+    checkOrderDto: checkOrderDto[],
   ) {
-    return await this.orderService.checkCanMake(menuId, amount);
+    return await this.orderService.checkOrder(checkOrderDto, id);
   }
 }

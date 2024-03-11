@@ -4,7 +4,11 @@ import { IsNumber, IsString } from 'class-validator';
 export class checkOrderDto {
   @ApiProperty()
   @IsString()
-  menuId: string;
+  id: string;
+
+  @ApiProperty()
+  @IsString()
+  name: string;
 
   @ApiProperty()
   @IsNumber()
