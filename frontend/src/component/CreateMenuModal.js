@@ -107,7 +107,7 @@ function CreateMenuModal({ setCreateMenuModalOpen, restaurantId }) {
         </div>
 
         <div className="menu-create-body">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e)}>
             <div id="menu-create-form">
               <div id="menu-create-l1">
                 <div id="menuPic-show">

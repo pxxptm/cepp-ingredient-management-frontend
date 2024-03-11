@@ -66,7 +66,7 @@ function AddIngredientsModal({ restaurantId, setModalOpen }) {
         </div>
 
         <div className="add-ingredient-body">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e)}>
             <div className="add-ingredient-form-floating">
               <div className="add-ingredient-input-form">
                 <label>ชื่อวัตถุดิบ *</label>
@@ -151,6 +151,7 @@ function AddIngredientsModal({ restaurantId, setModalOpen }) {
                 id="add-ingredient-submit"
                 type="submit"
                 className="btn-submit"
+                
               >
                 เพิ่มวัตถุดิบ
               </button>
