@@ -17,6 +17,10 @@ export class ComponentService {
     return createdComponent;
   }
 
+  async delete(componentId: string) {
+    return await this.componentModel.findByIdAndDelete(componentId);
+  }
+
   async update(componentId: string, updateComponentDto: UpdateComponentDto) {
     return await this.componentModel.findByIdAndUpdate(
       componentId,

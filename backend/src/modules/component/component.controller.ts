@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -30,6 +31,11 @@ export class ComponentController {
     @Body() updateComponentDto: UpdateComponentDto,
   ) {
     return await this.componentService.update(componentId, updateComponentDto);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') componentId: string) {
+    return await this.componentService.delete(componentId);
   }
 
   @Get('get-menu/:id')
