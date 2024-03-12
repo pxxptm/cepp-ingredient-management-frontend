@@ -26,7 +26,9 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
   const [componentPriorityEdit, setComponentPriorityEdit] = useState("");
   const [editComponentID, setEditComponentID] = useState("");
   const [editComponentIndex, setEditComponentIndex] = useState(-1);
-  const [confirmDeleteComponentIndex , setConfirmDeleteComponentIndex] = useState(-1)
+  const [deleteComponentIndex, setDeleteComponentIndex] = useState(-1);
+  const [deleteComponentID, setDeleteComponentID] = useState(-1);
+  const [deleteComponentName, setDeleteComponentName] = useState(-1);
 
   useEffect(() => {
     axios
@@ -45,9 +47,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
       });
   }, []);
 
-  useEffect(() => {
-    console.log("see", expic);
-  }, [expic]);
+  useEffect(() => {}, [expic]);
 
   useEffect(() => {
     axios
@@ -103,9 +103,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
           },
         }
       )
-      .then(() => {
-        console.log("success");
-      })
+      .then(() => {})
       .catch((error) => {
         console.log(error);
       });
@@ -144,9 +142,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
           },
         }
       )
-      .then((res) => {
-        console.log("success");
-      })
+      .then((res) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -158,7 +154,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
     console.log("Editing component with ID:", editComponentID);
     console.log("New amount:", componentAmountEdit);
     console.log("New priority:", componentPriorityEdit);
-    
+
     axios
       .patch(
         `http://localhost:3001/component/${editComponentID}`,
@@ -176,12 +172,10 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
       .then((res) => {
         setAddComponentMode(false);
         setEditComponentIndex(-1);
-        console.log("success");
       })
       .catch((error) => {
         console.log(error);
       });
-    
   };
 
   const handlePriorityChange = (e) => {
@@ -218,9 +212,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
               },
             }
           )
-          .then((res) => {
-            console.log("Menu image updated successfully.");
-          })
+          .then((res) => {})
           .catch((error) => {
             console.log(error);
           });
@@ -269,6 +261,22 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
     }
   }, [previewImage]);
 
+  async function handleDeleteComponent() {
+    await axios
+      .delete(`http://localhost:3001/component/${deleteComponentID}`, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((res) => {
+        setDeleteComponentIndex(-1);
+        setDeleteComponentID("");
+        setDeleteComponentName("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div className="edit-menu-modalBackground">
@@ -332,8 +340,8 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                 <button
                   id="cancel-editing"
                   onClick={() => {
-                    setEditComponentMode(false)
-                    setEditComponentIndex(-1)
+                    setEditComponentMode(false);
+                    setEditComponentIndex(-1);
                   }}
                 >
                   ยกเลิกการแก้ไขวัตถุดิบ
@@ -459,88 +467,170 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                         if (componentData.length > 0) {
                           return component.ingredientAmount > 0 &&
                             !isEditing ? (
-                            <div
-                              className="component-block"
-                              id="menu-in"
-                              style={{
-                                borderBottom:
-                                  index === ingredientList.length - 1 &&
-                                  ingredientList.length > 5
-                                    ? "none"
-                                    : "0.1vw solid rgba(0, 0, 0, 0.2)",
-                              }}
-                              key={index}
-                              onClick={() => {
-                                setEditComponentIndex(index);
-                                setComponentAmountEdit(
-                                  component.ingredientAmount
-                                );
-                                setComponentPriorityEdit(component.priority);
-                                setEditComponentID(component.ingredientId);
-                              }}
-                            >
-                              <div id="componentName">
-                                {componentData[0].name}
-                              </div>
-                              <div id="componentAmount">
-                                {component.ingredientAmount}
-                              </div>
-                              <div id="componentUnit">
-                                {componentData[0].unit}
-                              </div>
-                              {component.priority === "high" ? (
-                                <div
-                                  id="componentPriority"
-                                  style={{ color: "#A00000" }}
-                                >
-                                  สำคัญมาก
-                                </div>
-                              ) : (
-                                <div
-                                  id="componentPriority"
-                                  style={{ color: "#006f59" }}
-                                >
-                                  สำคัญน้อย
-                                </div>
-                              )}
-
-                              <button
-                                id="delete-component-btn"
-                                onClick={() => {}}
-                              >
-                                <i
-                                  className="material-icons"
-                                  id="delete-menu-btn-icon"
-                                >
-                                  delete
-                                </i>
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="component-block" id="add-new">
+                            !(deleteComponentIndex === index) ? (
                               <div
-                                id="add-new-div"
+                                className="component-block"
+                                id="menu-in"
                                 style={{
-                                  display: "flex",
+                                  borderBottom:
+                                    index === ingredientList.length - 1 &&
+                                    ingredientList.length > 5
+                                      ? "0.1vw solid rgba(0, 0, 0, 0.2)"
+                                      : "0.1vw solid rgba(0, 0, 0, 0.2)",
                                 }}
+                                key={index}
                               >
                                 <div
                                   id="componentName"
-                                  style={{
-                                    margin: "auto 0",
-                                    height: "fit-content",
-                                    display: "flex",
-                                    alignSelf: "center",
-                                    width: "100%",
-                                    textWrap: "nowrap",
-                                    textOverflow: "ellipsis",
-                                    overflow: "hidden",
+                                  onClick={() => {
+                                    setEditComponentIndex(index);
+                                    setComponentAmountEdit(
+                                      component.ingredientAmount
+                                    );
+                                    setComponentPriorityEdit(
+                                      component.priority
+                                    );
+                                    setEditComponentID(component._id);
                                   }}
                                 >
                                   {componentData[0].name}
                                 </div>
+                                <div
+                                  id="componentAmount"
+                                  onClick={() => {
+                                    setEditComponentIndex(index);
+                                    setComponentAmountEdit(
+                                      component.ingredientAmount
+                                    );
+                                    setComponentPriorityEdit(
+                                      component.priority
+                                    );
+                                    setEditComponentID(component._id);
+                                  }}
+                                >
+                                  {component.ingredientAmount}
+                                </div>
+                                <div
+                                  id="componentUnit"
+                                  onClick={() => {
+                                    setEditComponentIndex(index);
+                                    setComponentAmountEdit(
+                                      component.ingredientAmount
+                                    );
+                                    setComponentPriorityEdit(
+                                      component.priority
+                                    );
+                                    setEditComponentID(component._id);
+                                  }}
+                                >
+                                  {componentData[0].unit}
+                                </div>
+                                {component.priority === "high" ? (
+                                  <div
+                                    id="componentPriority"
+                                    style={{ color: "#A00000" }}
+                                    onClick={() => {
+                                      setEditComponentIndex(index);
+                                      setComponentAmountEdit(
+                                        component.ingredientAmount
+                                      );
+                                      setComponentPriorityEdit(
+                                        component.priority
+                                      );
+                                      setEditComponentID(component._id);
+                                    }}
+                                  >
+                                    สำคัญมาก
+                                  </div>
+                                ) : (
+                                  <div
+                                    id="componentPriority"
+                                    style={{ color: "#006f59" }}
+                                    onClick={() => {
+                                      setEditComponentIndex(index);
+                                      setComponentAmountEdit(
+                                        component.ingredientAmount
+                                      );
+                                      setComponentPriorityEdit(
+                                        component.priority
+                                      );
+                                      setEditComponentID(component._id);
+                                    }}
+                                  >
+                                    สำคัญน้อย
+                                  </div>
+                                )}
+
+                                <button
+                                  id="delete-component-btn"
+                                  onClick={() => {
+                                    setDeleteComponentIndex(index);
+                                    setDeleteComponentName(
+                                      componentData[0].name
+                                    );
+                                    setDeleteComponentID(component._id);
+                                  }}
+                                >
+                                  <i
+                                    className="material-icons"
+                                    id="delete-menu-btn-icon"
+                                  >
+                                    delete
+                                  </i>
+                                </button>
                               </div>
-                              <div id="component-amount-div">
+                            ) : (
+                              <div
+                                className="deleted-component"
+                                style={{
+                                  borderBottom:
+                                    index === ingredientList.length - 1 &&
+                                    ingredientList.length > 5
+                                      ? "0.1vw solid rgba(0, 0, 0, 0.2)"
+                                      : "0.1vw solid rgba(0, 0, 0, 0.2)",
+                                }}
+                                key={index}
+                              >
+                                <div id="component-del-text">
+                                  <div>แน่ใจใช่ไหมว่าต้องการลบ</div>
+                                  <span>{componentData[0].name}</span>
+                                </div>
+                                <button
+                                  id="cancel-delete-component-btn"
+                                  onClick={() => {
+                                    setDeleteComponentIndex(-1);
+                                    setDeleteComponentID("");
+                                    setDeleteComponentName("");
+                                  }}
+                                >
+                                  ไม่ทำการลบ
+                                </button>
+                                <button
+                                  id="delete-component-btn"
+                                  onClick={() => {
+                                    handleDeleteComponent();
+                                  }}
+                                >
+                                  ลบจากเมนูนี้
+                                </button>
+                              </div>
+                            )
+                          ) : (
+                            <div className="component-block" id="edit-comp">
+                              <div
+                                id="edit-comp-div"
+                                style={{
+                                  display: "flex",
+                                }}
+                              >
+                                <div id="edit-comp-div-componentName">
+                                  {componentData[0].name}
+                                </div>
+                              </div>
+                              <div
+                                id="component-amount-div"
+                                className="edit-comp-component-amount-div"
+                              >
                                 <input
                                   type="number"
                                   step="0.01"
@@ -551,6 +641,9 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                   value={componentAmountEdit}
                                   onChange={(e) => {
                                     setComponentAmountEdit(e.target.value);
+                                  }}
+                                  style={{
+                                    backgroundColor: "white",
                                   }}
                                 />
                               </div>
@@ -564,6 +657,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                     setComponentPriorityEdit(e.target.value);
                                   }}
                                   style={{
+                                    backgroundColor: "white",
                                     color:
                                       componentPriorityEdit === "high"
                                         ? "#A00000"

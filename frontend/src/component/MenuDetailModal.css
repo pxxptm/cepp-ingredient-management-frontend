@@ -256,8 +256,8 @@
             padding: 2% 10%;
             margin: auto 0 auto auto;
             background-color: transparent;
-            color: #00deb2;
-            border: 0.1vw solid #00deb2;
+            color: rgb(255, 158, 158);
+            border: 0.1vw solid rgb(255, 158, 158);
             border-radius: 0.4vw;
             display: flex;
             align-items: center;
@@ -271,7 +271,7 @@
 
             &:hover
             {
-              background-color: #00aa88;
+              background-color: rgb(255, 100, 100);
               color: white;
               border: none;
             }
@@ -346,8 +346,233 @@
               {
                 width: 100%;
                 height: fit-content;
-                padding: 3% 2%;
+                padding: 1% 2%;
                 display: grid;
+              }
+
+              .deleted-component
+              {
+                width: 100%;
+                height: fit-content;
+                padding: 2.75% 2%;
+                display: grid;
+                background-color: #ffe6e6;
+                grid-template-columns: 70% 15% 15%;
+                font-size: 0.85vw;
+                overflow: hidden;
+                color: black;
+
+                #component-del-text
+                {
+                  width: 100%;
+                  display: flex;
+                  height: fit-content;
+                  margin: auto 0;
+                  overflow: hidden;
+
+                  div 
+                  {
+                    width: 33%;
+                  }
+
+                  span 
+                  {
+                    font-weight: bold;
+                    width: 58%;
+                    color: #990000;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  }
+                }
+
+                #cancel-delete-component-btn
+                {
+                  width: 90%;
+                  height: fit-content;
+                  padding: 4% 0;
+                  margin-right: auto;
+                  margin-left: 0;
+                  background-color: rgb(118,118,118);
+                  border: none;
+                  color: white;
+                  font-size: 0.75vw;
+                  border-radius: 0.5vw;
+
+                  &:hover
+                  {
+                    background-color: rgb(56,56,56);
+                  }
+                }
+
+                #delete-component-btn
+                {
+                  width: 90%;
+                  height: fit-content;
+                  padding: 5% 0;
+                  margin-right: 5%;
+                  margin-left: auto;
+                  background-color: rgba(169, 0, 34);
+                  border: none;
+                  color: white;
+                  font-size: 0.75vw;
+                  border-radius: 0.5vw;
+
+                  &:hover
+                  {
+                    background-color: rgb(121, 12, 34);
+                  }
+                }
+              }
+
+              
+
+              #edit-comp
+              {
+                grid-template-columns: 30% 15% 16% 16% 5%;
+                column-gap: 4.5%;
+                padding: 3% 2%;
+                background-color: rgba(0, 0, 0, 0.1);
+                border-bottom: 0.1vw solid rgba(0, 0, 0, 0.2);
+
+                
+
+                #edit-comp-div
+                {
+                  width: 100%;
+                  height: 100%;
+                  font-size: 0.85vw;
+                  overflow: hidden;
+
+                  #edit-comp-div-componentName
+                  {
+                    padding: 2% 0;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin: auto 0;
+                  }
+                }
+
+                #component-amount-div
+                {
+                  width: 100%;
+                  height: 100%;
+                  
+                  input
+                  {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 0.85vw;
+                    border-radius: 0.5vw;
+                    padding: 2% 3%;
+                    border: 0.1vw solid rgba(0, 0, 0, 0.4);
+                    background-color: transparent;
+                    -webkit-appearance: none;
+                    appearance: none;
+                    text-align: center;
+
+                    &:focus
+                    {
+                        outline: none;
+                        background-color: #E7E7E7;
+                    }
+                  }
+                }
+
+                #component-amount-priority
+                {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+
+                  select 
+                  {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 0.85vw;
+                    border-radius: 0.5vw;
+                    padding: 2% 3%;
+                    text-align: center;
+                    border: 0.1vw solid rgba(0, 0, 0, 0.4);
+                    background-color: transparent;
+                    -webkit-appearance: none;
+                    appearance: none;
+
+                    &:focus
+                    {
+                        outline: none;
+                        background-color: #E7E7E7;
+                    }
+                  }
+
+                  option
+                    {
+                      font-size: 0.8vw !important;
+                      cursor: pointer;
+                      display: inline-block;
+                      position: relative;
+                      text-wrap: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      color: black;
+                    }
+
+                  div 
+                  {
+                    width: 100%;
+                    height: fit-content;
+                    font-size: 0.85vw;
+                    text-wrap: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin: auto;
+                    
+                  }
+                }
+
+                #component-amount-unit
+                {
+                  width: 100%;
+                  height: fit-content;
+                  margin: auto 0;
+                  font-size: 0.85vw;
+                }
+
+                #component-amount-confirm-add
+                {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+
+                  button
+                  {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    background-color: white;
+                    border-radius: 50%;
+                    aspect-ratio: 1 / 1;
+                    border: 0.15vw solid #00aa88;
+
+                    .material-icons
+                    {
+                      font-size: 1vw;
+                      margin: auto;
+                      color: #00aa88;
+                    }
+
+                    &:hover
+                    {
+                      background-color: #00aa88;
+                      border-width: 0;
+                      .material-icons
+                      {
+                        color: white;
+                      }
+                    }
+                  }
+                }
               }
 
               #add-new
@@ -361,7 +586,6 @@
                   width: 100%;
                   height: 100%;
                   font-size: 0.85vw;
-
                   select 
                   {
                     width: 100%;
@@ -475,7 +699,7 @@
                   width: 100%;
                   height: fit-content;
                   margin: auto 0;
-
+                  font-size: 0.85vw;
                 }
 
                 #component-amount-confirm-add
@@ -661,4 +885,14 @@
       }
       
     }
+
+    #add-new-div-componentName
+    {
+      font-size: 0.85vw;
+    }
+
+    .edit-comp-component-amount-div input 
+                {
+                  background-color: white;
+                }
   }

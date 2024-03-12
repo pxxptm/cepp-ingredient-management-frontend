@@ -28,7 +28,6 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   const handleDeleteMenu = (name, menuId) => {
     setDeleteMenuModalOpen(true);
     setDeleteMenuProps({ name, menuId });
-    console.log(deleteMenuProps)
   };
 
   useEffect(() => {
@@ -58,10 +57,9 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
         if (JSON.stringify(response.data) !== JSON.stringify(menuList)) {
           setMenuList(response.data);
-          console.log(menuList);
+          
         }
       })
       .catch((error) => {
