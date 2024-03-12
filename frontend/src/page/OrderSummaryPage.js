@@ -4,6 +4,7 @@ import UserHeaderBar from "../component/UserHeaderBar";
 import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CompleteOrderModal from "../component/CompleteOrderModal";
 
 function OrderSummaryPage({ username, restaurantId }) {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ function OrderSummaryPage({ username, restaurantId }) {
   const LatestOrder = "LatestOrder" + restaurantId;
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
+  const [postOrderResponse , setPostOrderResponse] = useState([])
+  const [completeOrderModalOpen , setCompleteOrderModalOpen] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +90,6 @@ function OrderSummaryPage({ username, restaurantId }) {
 
   //update for axios post
   const handleSubmit = async () => {
-    console.log(latestOrder.map((item) => item.id));
     try {
       const response = await axios.post(
         `http://localhost:3001/order/restaurant/${restaurantId}`,
@@ -99,10 +101,11 @@ function OrderSummaryPage({ username, restaurantId }) {
           },
         }
       );
-      console.log("Response:", response);
+      setCompleteOrderModalOpen(true)
+      setPostOrderResponse(response.data)
       // Clear the local storage after submitting the order
       //localStorage.removeItem(LatestOrder);
-      //setLatestOrder([]);
+      setLatestOrder([]);
       // Navigate to some success page or handle the response
     } catch (error) {
       console.log("Error:", error);
@@ -128,6 +131,14 @@ function OrderSummaryPage({ username, restaurantId }) {
       </div>
 
       <div id="order-summary-page-body">
+        {
+          completeOrderModalOpen && (<CompleteOrderModal
+            username = {username}
+            restaurantId = {restaurantId}
+          setCompleteOrderModalOpen = { setCompleteOrderModalOpen } 
+          postOrderResponse = {postOrderResponse}
+          />)
+        }
         <div id="order-summary-page-side-bar-menu">
           <UserSideNavBar
             username={username}

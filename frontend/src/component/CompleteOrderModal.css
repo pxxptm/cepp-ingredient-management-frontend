@@ -1,0 +1,119 @@
+.complete-order-modalBackground {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    min-width: 423px;
+  }
+  
+  @media (min-width: 700px) {
+    .complete-order-modalBackground {
+      padding: 0 0;
+    }
+  
+    .complete-order-modalContainer {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 3.5% 0% 0% 0%;
+      width: 32.5%;
+      margin: auto;
+      box-shadow: 0vw 0vw 3vw 0px rgba(0, 0, 0, 0.326);
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.75vw;
+      overflow: hidden;
+    }
+
+    .complete-order-body
+    {
+      background-color: #ffffff;
+    }
+
+    svg {
+        width: 20%;
+        display: block;
+        margin: auto;
+      }
+      
+      .path {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 0;
+      }
+      
+      .path.circle {
+        animation: dash 1.5s ease-in-out;
+      }
+      
+      .path.line {
+        stroke-dashoffset: 1000;
+        animation: dash 1.5s 0.5s ease-in-out forwards;
+      }
+      
+      .path.check {
+        stroke-dashoffset: -100;
+        animation: dash-check 1.5s 0.5s ease-in-out forwards;
+      }
+      
+      
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: 1000;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+      
+      @keyframes dash-check {
+        0% {
+          stroke-dashoffset: -100;
+        }
+        100% {
+          stroke-dashoffset: 900;
+        }
+      }
+
+    #complete-order-txt
+    {
+        width: 100%;
+        height: fit-content;
+        padding: 1%;
+        margin: 5% 0 0 0;
+        text-align: center;
+        font-family: "Kanit", sans-serif;
+        color: rgba(0, 0, 0, 0.775);
+        font-size: 1vw;
+    }
+
+    #complete-order-btn
+    {
+        width: 100%;
+        height: fit-content;
+        margin-top: 8%;
+
+        button 
+        {
+            width: 100%;
+            font-family: "Kanit", sans-serif;
+            font-size: 0.9vw;
+            font-weight: normal;
+            background-color: rgb(10, 129, 169);
+            color: white;
+            border: none;
+            border-radius: 0 0 0.5vw 0.5vw;
+            padding: 5% 0;
+            bottom: 0;
+                
+            &:hover {
+                background-color: rgb(7, 79, 103);
+            }
+        }
+    }
+      
+}
