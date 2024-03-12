@@ -339,9 +339,8 @@ function OrderHandlerPage({ username, restaurantId }) {
             </div>
           </div>
         </div>
-      </div>
 
-      <div
+        <div
         id="commit-order-btn-small-media"
         style={{
           display: latestOrder.length === 0 ? "none" : "flex",
@@ -355,6 +354,10 @@ function OrderHandlerPage({ username, restaurantId }) {
           <div id="gt">&gt;</div>
         </button>
       </div>
+      
+      </div>
+
+      
     </div>
   );
 }

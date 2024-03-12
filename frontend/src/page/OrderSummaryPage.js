@@ -40,11 +40,11 @@ function OrderSummaryPage({ username, restaurantId }) {
       const latestOrderFromStorage = JSON.parse(
         localStorage.getItem(LatestOrder)
       );
-      setLatestOrder(latestOrderFromStorage || []);
-    }, 1500); // 1.5 seconds
+      setLatestOrder(latestOrderFromStorage);
+    });
 
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array to run only once on mount
+  }); // Empty dependency array to run only once on mount
 
   const increaseQuantity = (id) => {
     const updatedOrderSummary = latestOrder.map((item) =>
