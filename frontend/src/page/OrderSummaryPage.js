@@ -36,11 +36,15 @@ function OrderSummaryPage({ username, restaurantId }) {
   }, [urlRestaurantDetail, accessToken]);
 
   useEffect(() => {
-    const latestOrderFromStorage = JSON.parse(
-      localStorage.getItem(LatestOrder)
-    );
-    setLatestOrder(latestOrderFromStorage || []);
-  }, []);
+    const intervalId = setInterval(() => {
+      const latestOrderFromStorage = JSON.parse(
+        localStorage.getItem(LatestOrder)
+      );
+      setLatestOrder(latestOrderFromStorage || []);
+    }, 1500); // 1.5 seconds
+
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array to run only once on mount
 
   const increaseQuantity = (id) => {
     const updatedOrderSummary = latestOrder.map((item) =>
@@ -80,6 +84,32 @@ function OrderSummaryPage({ username, restaurantId }) {
   const updateLocalStorage = (updatedOrder) => {
     window.localStorage.setItem(LatestOrder, JSON.stringify(updatedOrder));
   };
+
+  //update for axios post
+  const handleSubmit = async () => {
+    console.log(latestOrder.map((item) => item.id));
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/order/restaurant/${restaurantId}`,
+        latestOrder,
+        {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Response:", response);
+      // Clear the local storage after submitting the order
+      //localStorage.removeItem(LatestOrder);
+      //setLatestOrder([]);
+      // Navigate to some success page or handle the response
+    } catch (error) {
+      console.log("Error:", error);
+      // Handle error
+    }
+  };
+
   return (
     <div id="order-summary-page">
       <link
@@ -162,7 +192,6 @@ function OrderSummaryPage({ username, restaurantId }) {
                             className="remove-button"
                             onClick={() => {
                               updateQuantity(order.id, 0);
-                             
                             }}
                           >
                             ลบเมนู
@@ -176,7 +205,7 @@ function OrderSummaryPage({ username, restaurantId }) {
             </div>
 
             <div id="order-summary-footer">
-              <button>ส่งออเดอร์</button>
+              <button onClick={handleSubmit}>ส่งออเดอร์</button>
             </div>
           </div>
         </div>

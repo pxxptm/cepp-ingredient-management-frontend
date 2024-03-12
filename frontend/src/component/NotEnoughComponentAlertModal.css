@@ -1,4 +1,6 @@
-.not-enough-modalBackground {
+@media (min-width: 1000px) 
+{
+    .not-enough-modalBackground {
     z-index: 1000;
     position: fixed;
     left: 0;
@@ -53,7 +55,7 @@
           .not-enough-body 
           {
             margin: 3% auto 0 auto;
-            width: 80%;
+            width: 90%;
             height: 97%;
             text-align: center;
             font-family: "Kanit", sans-serif;
@@ -64,7 +66,7 @@
             #not-enough-txt-1
             {
                 font-size: 1.1vw;
-                height: 5%;
+                padding: 1%;
             }
 
             #not-enough-txt-2
@@ -73,8 +75,8 @@
                 font-weight: bold;
                 display: flex;
                 color: rgb(10, 129, 169);
-                
-                height: 13%;
+                height: 11%;
+
                 div
                 {
                     width: 90%;
@@ -88,7 +90,7 @@
             #not-enough-txt-3
             {
                 font-size: 1vw;
-                height: 11%;
+                height: 10%;
                 margin-top: 1%;
             }
         
@@ -99,11 +101,87 @@
                 height: 65%;
                 border: 0.1vw solid rgba(0, 0, 0, 0.381);
                 border-radius: 1vw;
-                background-color: white;
+                overflow: auto;
+
+                
+
+                #not-enough-ingredient-list
+                {
+                    width: 100%;
+                    height: fit-content;
+                    background-color: white;
+
+                    #componetn-block
+                    {
+                        width: 100%;
+                        height: fit-content;
+                        padding: 3.5% 5%;
+                        font-size: 1vw;
+                        display: flex;
+                        
+                        background-color: white;
+
+                        div
+                        {
+                            width: 100%;
+                            text-align: start;
+                            text-wrap: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+            
+            #not-enough-footer
+            {
+                width: 90%;
+                height: 13%;
+                margin: 0 auto;
+                display: flex;
+                font-size: 0.8vw;
+                justify-content: space-between;
+
+                #not-want
+                {
+                    width: 23%;
+                    height: fit-content;
+                    padding: 1.5% 0;
+                    margin-top: auto;
+                    background-color: rgb(118,118,118);
+                    color: white;
+                    border: none;
+                    border-radius: 0.5vw;
+                
+                    &:hover {
+                        background-color: rgb(56,56,56);
+                    }
+                }
+
+                #want
+                {
+                    width: 23%;
+                    height: fit-content;
+                    padding: 1.5% 0;
+                    margin-top: auto;
+                    background-color: rgb(10, 129, 169);
+                    color: white;
+                    border: none;
+                    border-radius: 0.5vw;
+                
+                    &:hover {
+                        background-color: rgb(7, 79, 103);
+                    }
+                }
             }
           }
       }
       
   }
 
-  
+  }
+
+ /* Hide the scrollbar */
+ #not-enough-ingredient-box::-webkit-scrollbar {
+    display: none;
+}

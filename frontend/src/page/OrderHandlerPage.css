@@ -353,10 +353,10 @@
         font-size: 0.85vw;
         font-family: 'Kanit', sans-serif;
         padding: 1% 5%;
-        border: 0.12vw solid red;
+        border: 0.11vw solid red;
         color: red;
         border-radius: 5vw;
-        background-color: rgba(255, 255, 255, 0.925);
+        background-color: rgba(255, 255, 255, 0.88);
     }
 
 }

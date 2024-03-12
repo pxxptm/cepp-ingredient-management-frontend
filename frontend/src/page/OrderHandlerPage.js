@@ -42,9 +42,18 @@ function OrderHandlerPage({ username, restaurantId }) {
       localStorage.getItem(LatestOrder)
     );
     if (Array.isArray(latestOrderFromStorage)) {
-      setLatestOrder(latestOrderFromStorage);
+      const filteredOrder = latestOrderFromStorage.filter((order) => {
+        return !menuList.some(
+          (menu) => menu._id === order.id && menu.canCook === -1
+        );
+      });
+      setLatestOrder(filteredOrder);
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(filteredOrder)
+      );
     }
-  }, []);
+  }, [menuList]);
 
   useEffect(() => {
     const fetchMenuList = async () => {
@@ -58,7 +67,6 @@ function OrderHandlerPage({ username, restaurantId }) {
           }
         );
         setMenuList(menuResponse.data);
-        console.log(menuList);
       } catch (error) {
         console.log(error);
       }
@@ -68,7 +76,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
     const intervalId = setInterval(() => {
       fetchMenuList();
-    }, 2500); // Poll every 2.5 seconds
+    }, 1500);
 
     return () => clearInterval(intervalId);
   }, [restaurantId, accessToken]);
@@ -211,8 +219,8 @@ function OrderHandlerPage({ username, restaurantId }) {
                               if (menu.canCook === 1) {
                                 addToOrderSummary(menu._id, menu.name, 1);
                               } else if (menu.canCook === 0) {
-                                setSelectedMenuId(menu._id)
-                                setSelectedMenuName(menu.name)
+                                setSelectedMenuId(menu._id);
+                                setSelectedMenuName(menu.name);
                                 setAlertNotEnoughModal(true);
                               }
                             }}
