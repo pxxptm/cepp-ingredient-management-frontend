@@ -59,7 +59,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
   // useEffect to fetch ingredient list only when fetchTrigger changes
   useEffect(() => {
     fetchIngredientList();
-  }, [fetchTrigger]);
+  });
 
   // Function to update ingredient quantity
   const updateQuantity = (iname, atLeast, unit, ingredientId, newQuantity) => {
@@ -92,7 +92,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
         }
       )
       .then((res) => {
-        console.log("update");
+        
         setFetchTrigger((prev) => !prev);
         // Update ingredient list with updated quantity
         setIngredientList((prevList) =>
@@ -164,7 +164,6 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       .then((response) => {
         const role = response.data.role;
         setUserRole(role); // Update state instead of ref
-        console.log(role);
       })
       .catch((error) => {
         console.log(error);

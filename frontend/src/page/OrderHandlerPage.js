@@ -111,7 +111,7 @@ function OrderHandlerPage({ username, restaurantId }) {
       JSON.stringify(updatedLatestOrder)
     );
   };
-  
+
 
   const decreaseQuantity = (id) => {
     const updatedLatestOrder = latestOrder.map((item) =>
@@ -119,20 +119,23 @@ function OrderHandlerPage({ username, restaurantId }) {
         ? { ...item, amount: item.amount - 1 }
         : item
     );
-    setLatestOrder(updatedLatestOrder);
+    setLatestOrder(updatedLatestOrder.filter(item => item.amount >= 0));
     window.localStorage.setItem(
       LatestOrder,
-      JSON.stringify(updatedLatestOrder)
+      JSON.stringify(updatedLatestOrder.filter(item => item.amount >= 0))
     );
   };
 
   const updateQuantity = (id, newAmount) => {
     if (newAmount < 0) {
-      // If the new amount is 0 or less, remove the item from latestOrder
+      // If the new amount is less than or equal to 0, remove the item from latestOrder
       setLatestOrder((prevLatestOrder) =>
         prevLatestOrder.filter((item) => item.id !== id)
       );
-      window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrder));
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(latestOrder.filter((item) => item.amount > 0))
+      );
     } else {
       // Otherwise, update the quantity of the item
       const updatedLatestOrder = latestOrder.map((item) =>
