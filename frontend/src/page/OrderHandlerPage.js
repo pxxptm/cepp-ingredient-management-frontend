@@ -111,6 +111,7 @@ function OrderHandlerPage({ username, restaurantId }) {
       JSON.stringify(updatedLatestOrder)
     );
   };
+  
 
   const decreaseQuantity = (id) => {
     const updatedLatestOrder = latestOrder.map((item) =>
