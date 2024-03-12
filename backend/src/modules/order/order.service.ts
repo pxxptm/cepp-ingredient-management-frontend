@@ -75,7 +75,7 @@ export class OrderService {
         tempAmount--;
         cnt++;
 
-        this.decreasedIngredient(components);
+        await this.decreasedIngredient(components);
       } else {
         return { name: name, requied: amount, canCook: cnt, alert: alert };
       }
@@ -88,15 +88,13 @@ export class OrderService {
       const ingredient = await this.ingredientService.getById(
         component.ingredientId,
       );
+
       if (ingredient.amount >= component.ingredientAmount) {
         const newAmount = ingredient.amount - component.ingredientAmount;
         const newIngredient = ingredient;
         newIngredient.amount = newAmount;
 
-        const updated = await this.ingredientService.update(
-          ingredient.id,
-          newIngredient,
-        );
+        await this.ingredientService.update(ingredient.id, newIngredient);
       }
     }
   }
