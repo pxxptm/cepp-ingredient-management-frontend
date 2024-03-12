@@ -80,7 +80,6 @@ function CreateMenuModal({ setCreateMenuModalOpen, restaurantId }) {
         console.log(res);
         if (res.status === 201) {
           setCreateMenuModalOpen(false);
-          refreshPage();
         }
       })
       .catch((error) => {

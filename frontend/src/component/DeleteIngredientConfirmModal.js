@@ -24,7 +24,7 @@ function DeleteIngredientConfirmModal({
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          refreshPage();
+          setDeleteIngredientConfirmModalOpen(false)
         }
       })
       .catch((error) => {

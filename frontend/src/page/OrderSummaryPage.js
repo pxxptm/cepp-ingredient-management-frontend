@@ -12,11 +12,29 @@ function OrderSummaryPage({ username, restaurantId }) {
   const urlOrderHandlerPage = `/${username}/${restaurantId}/order-in`;
   const accessToken = localStorage.getItem("token");
   const [latestOrder, setLatestOrder] = useState([]);
-  const LatestOrder = "LatestOrder" + restaurantId;
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
-  const [postOrderResponse , setPostOrderResponse] = useState([])
-  const [completeOrderModalOpen , setCompleteOrderModalOpen] = useState(false)
+  const [postOrderResponse, setPostOrderResponse] = useState([]);
+  const [completeOrderModalOpen, setCompleteOrderModalOpen] = useState(false);
+  const [userID, setUseID] = useState("");
+  const LatestOrder = "LatestOrder" + restaurantId + userID;
+
+  // get ID
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/user/user-id-by-username/${username}`, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((res) => {
+        setUseID(res.data);
+        console.log(LatestOrder);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,10 +119,10 @@ function OrderSummaryPage({ username, restaurantId }) {
           },
         }
       );
-      setCompleteOrderModalOpen(true)
-      setPostOrderResponse(response.data)
+      setCompleteOrderModalOpen(true);
+      setPostOrderResponse(response.data);
       // Clear the local storage after submitting the order
-      //localStorage.removeItem(LatestOrder);
+
       setLatestOrder([]);
       // Navigate to some success page or handle the response
     } catch (error) {
@@ -131,14 +149,15 @@ function OrderSummaryPage({ username, restaurantId }) {
       </div>
 
       <div id="order-summary-page-body">
-        {
-          completeOrderModalOpen && (<CompleteOrderModal
-            username = {username}
-            restaurantId = {restaurantId}
-          setCompleteOrderModalOpen = { setCompleteOrderModalOpen } 
-          postOrderResponse = {postOrderResponse}
-          />)
-        }
+        {completeOrderModalOpen && (
+          <CompleteOrderModal
+            userID={userID}
+            username={username}
+            restaurantId={restaurantId}
+            setCompleteOrderModalOpen={setCompleteOrderModalOpen}
+            postOrderResponse={postOrderResponse}
+          />
+        )}
         <div id="order-summary-page-side-bar-menu">
           <UserSideNavBar
             username={username}
@@ -163,7 +182,7 @@ function OrderSummaryPage({ username, restaurantId }) {
 
             <div id="order-summary-table">
               <div id="order-summary-table-zone">
-                {latestOrder.map((order, index) => (
+                {latestOrder &&  latestOrder.map((order, index) => (
                   <div id="a-order-block" key={index}>
                     <div id="a-order-block-menu-name">{order.name}</div>
                     <div id="a-order-block-menu-amount">

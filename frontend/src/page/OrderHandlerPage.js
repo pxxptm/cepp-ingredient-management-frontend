@@ -5,6 +5,7 @@ import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NotEnoughComponentAlertModal from "../component/NotEnoughComponentAlertModal";
+import HaveOutOfStockIngredientMenuInOrderAlertModal from "../component/HaveOutOfStockIngredientMenuInOrderAlertModal"
 
 function OrderHandlerPage({ username, restaurantId }) {
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -13,10 +14,28 @@ function OrderHandlerPage({ username, restaurantId }) {
   const [restaurantImage, setRestaurantImage] = useState();
   const [menuList, setMenuList] = useState([]);
   const [latestOrder, setLatestOrder] = useState([]);
-  const LatestOrder = "LatestOrder" + restaurantId;
   const [alertNotEnoughModal, setAlertNotEnoughModal] = useState(false);
   const [selectedMenuId, setSelectedMenuId] = useState(null);
   const [selectedMenuName, setSelectedMenuName] = useState(null);
+  const [userID, setUseID] = useState("");
+  const LatestOrder = "LatestOrder" + restaurantId + userID;
+  const [haveOutOfStockIngredientMenuInOrderAlertModalOpen , setHaveOutOfStockIngredientMenuInOrderAlertModalOpen] = useState(false)
+
+  // get ID
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/user/user-id-by-username/${username}`, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      })
+      .then((res) => {
+        setUseID(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,16 +61,19 @@ function OrderHandlerPage({ username, restaurantId }) {
       localStorage.getItem(LatestOrder)
     );
     if (Array.isArray(latestOrderFromStorage)) {
-      const filteredOrder = latestOrderFromStorage.filter((order) => {
-        return !menuList.some(
-          (menu) => menu._id === order.id && menu.canCook === -1
-        );
+      let filteredOrder = latestOrderFromStorage.filter((order) => {
+        return menuList.some((menu) => menu._id === order.id);
       });
+
+      const menuWithCanCookNegativeOne = filteredOrder.find((order) => {
+        const menu = menuList.find((menu) => menu._id === order.id);
+        return menu && menu.canCook === -1;
+      });
+
+    
+
       setLatestOrder(filteredOrder);
-      window.localStorage.setItem(
-        LatestOrder,
-        JSON.stringify(filteredOrder)
-      );
+      window.localStorage.setItem(LatestOrder, JSON.stringify(filteredOrder));
     }
   }, [menuList]);
 
@@ -85,10 +107,12 @@ function OrderHandlerPage({ username, restaurantId }) {
     const existingItemIndex = latestOrder.findIndex(
       (item) => item.name === name && item.id === id
     );
+    const iscanCook = menuList.find((item) => item._id === id)?.canCook;
 
     if (existingItemIndex !== -1) {
       const updatedLatestOrder = [...latestOrder];
       updatedLatestOrder[existingItemIndex].amount += amount;
+
       setLatestOrder(updatedLatestOrder);
       window.localStorage.setItem(
         LatestOrder,
@@ -112,32 +136,46 @@ function OrderHandlerPage({ username, restaurantId }) {
     );
   };
 
-
   const decreaseQuantity = (id) => {
     const updatedLatestOrder = latestOrder.map((item) =>
       item.id === id && item.amount > 0
         ? { ...item, amount: item.amount - 1 }
         : item
     );
-    setLatestOrder(updatedLatestOrder.filter(item => item.amount >= 0));
-    window.localStorage.setItem(
-      LatestOrder,
-      JSON.stringify(updatedLatestOrder.filter(item => item.amount >= 0))
-    );
+
+    if (
+      updatedLatestOrder.some((item) => item.id === id && item.amount === 0) &&
+      menuList.find((menu) => menu._id === id)?.canCook === -1
+    ) {
+      // If the order has 0 amount and canCook is -1, remove it from the order list
+      const filteredLatestOrder = updatedLatestOrder.filter(
+        (item) => !(item.id === id && item.amount === 0)
+      );
+      setLatestOrder(filteredLatestOrder);
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(filteredLatestOrder)
+      );
+    } else {
+      setLatestOrder(updatedLatestOrder.filter((item) => item.amount >= 0));
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(updatedLatestOrder.filter((item) => item.amount >= 0))
+      );
+    }
   };
 
   const updateQuantity = (id, newAmount) => {
     if (newAmount < 0) {
-      // If the new amount is less than or equal to 0, remove the item from latestOrder
-      setLatestOrder((prevLatestOrder) =>
-        prevLatestOrder.filter((item) => item.id !== id)
-      );
+      // If the new amount is less than 0, remove the order
+      const updatedLatestOrder = latestOrder.filter((item) => item.id !== id);
+      setLatestOrder(updatedLatestOrder);
       window.localStorage.setItem(
         LatestOrder,
-        JSON.stringify(latestOrder.filter((item) => item.amount > 0))
+        JSON.stringify(updatedLatestOrder)
       );
     } else {
-      // Otherwise, update the quantity of the item
+      // Otherwise, update the quantity of the order
       const updatedLatestOrder = latestOrder.map((item) =>
         item.id === id ? { ...item, amount: newAmount } : item
       );
@@ -165,7 +203,17 @@ function OrderHandlerPage({ username, restaurantId }) {
 
   async function commitOrderHandler() {
     console.log(latestOrder);
-    window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrder));
+    const hasOutOfStockMainIngredients = latestOrder.some(order => {
+      const menuItem = menuList.find(menuItem => menuItem._id === order.id);
+      return menuItem && menuItem.canCook === -1;
+    });
+  
+    // If any item has canCook === -1, show alert
+    if (hasOutOfStockMainIngredients) {
+      setHaveOutOfStockIngredientMenuInOrderAlertModalOpen(true)
+      return; // Stop further execution
+    }
+  
     const urlOrderSummaryPage = `/${username}/${restaurantId}/order-summary`;
     navigate(urlOrderSummaryPage, { replace: false });
   }
@@ -190,11 +238,18 @@ function OrderHandlerPage({ username, restaurantId }) {
       <div id="order-handler-page-body">
         {alertNotEnoughModal && (
           <NotEnoughComponentAlertModal
+            userID={userID}
             menuName={selectedMenuName}
             menuId={selectedMenuId}
             restaurantId={restaurantId}
             setAlertNotEnoughModal={setAlertNotEnoughModal}
           />
+        )}
+
+        {haveOutOfStockIngredientMenuInOrderAlertModalOpen && 
+        (
+          <HaveOutOfStockIngredientMenuInOrderAlertModal
+          setHaveOutOfStockIngredientMenuInOrderAlertModalOpen={setHaveOutOfStockIngredientMenuInOrderAlertModalOpen}/>
         )}
         <div id="order-handler-page-side-bar-menu">
           <UserSideNavBar
@@ -240,21 +295,16 @@ function OrderHandlerPage({ username, restaurantId }) {
                               }}
                             >
                               {/* Display the quantity of this menu item in the order summary */}
-                              {latestOrder.some(
-                                (item) => item.id === menu._id
-                              ) &&
-                                latestOrder.find((item) => item.id === menu._id)
-                                  .amount > 0 && (
-                                  <div id="amount-shown-box">
-                                    <div>
-                                      {
-                                        latestOrder.find(
-                                          (item) => item.id === menu._id
-                                        ).amount
-                                      }{" "}
-                                    </div>
-                                  </div>
-                                )}
+                              {latestOrder.map((item) => {
+  if (item.id === menu._id && menuList.find(menuItem => menuItem._id === item.id)?.canCook !== -1 && item.amount > 0) {
+    return (
+      <div id="amount-shown-box" key={item.id}>
+        <div>{item.amount}</div>
+      </div>
+    );
+  }
+  return null;
+})}
                             </div>
                             <div id="menu-card-content">
                               <div id="menu-card-name">{menu.name}</div>
@@ -286,10 +336,22 @@ function OrderHandlerPage({ username, restaurantId }) {
           <div id="order-summary-zone">
             <div id="order-summary-list-box">
               {latestOrder.map((order, index) => (
-                <div id="a-order-block" key={index}>
+                <div
+                  id="a-order-block"
+                  key={index}
+                  style={{
+                    ...(menuList.find((item) => item._id === order.id)
+                      ?.canCook === -1
+                      ? { backgroundColor: "#ffe6e6" }
+                      : {}),
+                  }}
+                >
                   <div id="a-order-block-menu-name">{order.name}</div>
                   <div id="a-order-block-menu-amount">
-                    {order.amount > 0 ? (
+                    {order.amount > 0 &&
+                    menuList.find(
+                      (menu) => menu._id === order.id && menu.canCook !== -1
+                    ) ? (
                       <div id="a-order-block-menu-amount-editor">
                         {/* Increase and Decrease buttons for adjusting quantity */}
                         <button
@@ -314,13 +376,30 @@ function OrderHandlerPage({ username, restaurantId }) {
                       </div>
                     ) : (
                       <div id="choice-remove-menu-form-order">
-                        <button
-                          className="cancel-remove-button"
-                          onClick={() => updateQuantity(order.id, 1)}
-                        >
-                          ยกเลิก
-                        </button>
-
+                        {menuList.find((item) => item._id === order.id)
+                          ?.canCook !== -1 ? (
+                          <button
+                            className="cancel-remove-button"
+                            onClick={() => updateQuantity(order.id, 1)}
+                          >
+                            ยกเลิก
+                          </button>
+                        ) : (
+                          <button
+                            className="cancel-remove-button"
+                            style={{
+                              backgroundColor: "transparent",
+                              color: "#990000",
+                              textWrap: "nowrap",
+                              width: "fit-content",
+                              marginRight: "15%",
+                              marginLeft: "-90%",
+                              cursor: "default",
+                            }}
+                          >
+                            วัตถุดิบหลักหมด , กรุณาลบรายการนี้ออกจากออเดอร์
+                          </button>
+                        )}
                         <button
                           className="remove-button"
                           onClick={() => updateQuantity(order.id, -1)}
@@ -345,23 +424,20 @@ function OrderHandlerPage({ username, restaurantId }) {
         </div>
 
         <div
-        id="commit-order-btn-small-media"
-        style={{
-          display: latestOrder.length === 0 ? "none" : "flex",
-        }}
-      >
-        <button onClick={commitOrderHandler}>
-          <div id="total-quantity">
-            <div id="sumOfQuantities">{sumOfQuantities}</div>
-            <div id="sumOfQuantities-text">รายการในออเดอร์นี้</div>
-          </div>
-          <div id="gt">&gt;</div>
-        </button>
+          id="commit-order-btn-small-media"
+          style={{
+            display: latestOrder.length === 0 ? "none" : "flex",
+          }}
+        >
+          <button onClick={commitOrderHandler}>
+            <div id="total-quantity">
+              <div id="sumOfQuantities">{sumOfQuantities}</div>
+              <div id="sumOfQuantities-text">รายการในออเดอร์นี้</div>
+            </div>
+            <div id="gt">&gt;</div>
+          </button>
+        </div>
       </div>
-      
-      </div>
-
-      
     </div>
   );
 }

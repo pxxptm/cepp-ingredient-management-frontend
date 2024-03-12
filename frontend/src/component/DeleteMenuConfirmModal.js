@@ -25,7 +25,7 @@ function DeleteMenuConfirmModal({
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          refreshPage();
+          setDeleteMenuConfirmModalOpen(false)
         }
       })
       .catch((error) => {

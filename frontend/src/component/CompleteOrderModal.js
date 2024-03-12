@@ -3,13 +3,15 @@ import "./CompleteOrderModal.css";
 import { useNavigate } from "react-router-dom";
 
 function CompleteOrderModal({
+  userID,
   username,
   restaurantId,
   setCompleteOrderModalOpen,
 }) {
   const navigate = useNavigate();
   const urlOrderInPage = `/${username}/${restaurantId}/order-in`;
-  const LatestOrder = "LatestOrder" + restaurantId;
+  const LatestOrder = "LatestOrder" + restaurantId + userID;
+
 
   return (
     <div className="complete-order-modalBackground">
@@ -52,7 +54,8 @@ function CompleteOrderModal({
         <div id="complete-order-btn">
             <button
               onClick={() => {
-                localStorage.removeItem(LatestOrder);
+                localStorage.setItem(LatestOrder,JSON.stringify([]));
+                setCompleteOrderModalOpen(false)
                 navigate(urlOrderInPage, {
                   replace: true,
                 });

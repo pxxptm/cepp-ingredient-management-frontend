@@ -3,6 +3,7 @@ import "./NotEnoughComponentAlertModal.css";
 import axios from "axios";
 
 function NotEnoughComponentAlertModal({
+  userID ,
   menuName,
   menuId,
   restaurantId,
@@ -13,7 +14,7 @@ function NotEnoughComponentAlertModal({
   const [sortedIngredientList, setsortedIngredientList] = useState([]);
   const urlMenuComponentList = `http://localhost:3001/component/get-menu/${menuId}`;
   const [menuComponentList, setMenuComponentList] = useState([]);
-  const LatestOrder = "LatestOrder" + restaurantId;
+  const LatestOrder = "LatestOrder" + restaurantId + userID;
   const [latestOrder, setLatestOrder] = useState([]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./RestaurantListPage.css";
 import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
@@ -11,8 +11,7 @@ function RestaurantListPage({ username }) {
   const accessToken = localStorage.getItem("token");
   const [modalOpen, setModalOpen] = useState(false);
   const [restaurantList, setRestaurantList] = useState([]);
-  const userRole = useRef("staff");
-
+  const [userRole, setUserRole] = useState("staff");
   // get restaurant of this user
   useEffect(() => {
     axios
@@ -42,8 +41,7 @@ function RestaurantListPage({ username }) {
       })
       .then((response) => {
         const role = response.data.role;
-        userRole.current = role;
-        console.log(userRole.current);
+        setUserRole(role);
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +71,7 @@ function RestaurantListPage({ username }) {
           <div id="restaurant-list-page-head-zone">
             <h1>ร้านอาหารของคุณ</h1>
             <div id="restaurant-list-page-head-zone-btn">
-              {userRole.current === "owner" && (
+              {userRole === "owner" && (
                 <button
                   className="openModalBtn"
                   onClick={() => {
