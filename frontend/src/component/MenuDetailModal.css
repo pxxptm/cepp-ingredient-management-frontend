@@ -248,7 +248,34 @@
               background-color: #006d58;
             }
           }
+          #cancel-editing
+          {
+            font-size: 0.85vw;
+            height: fit-content;
+            width: 90%;
+            padding: 2% 10%;
+            margin: auto 0 auto auto;
+            background-color: transparent;
+            color: #00deb2;
+            border: 0.1vw solid #00deb2;
+            border-radius: 0.4vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-wrap: nowrap;
 
+            span 
+            {
+              margin-right: 5%;
+            }
+
+            &:hover
+            {
+              background-color: #00aa88;
+              color: white;
+              border: none;
+            }
+          }
           #cancel-adding
           {
             font-size: 0.85vw;
@@ -504,6 +531,7 @@
                   text-wrap: nowrap;
                   overflow: hidden;
                   text-overflow: ellipsis;
+
                 }
 
                 #delete-component-btn

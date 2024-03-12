@@ -21,6 +21,12 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
   const [componentUnit, setComponentUnit] = useState("");
   const [componentId, setComponentId] = useState("");
   const [priority, setPriority] = useState("high");
+  const [editComponentMode, setEditComponentMode] = useState(false);
+  const [componentAmountEdit, setComponentAmountEdit] = useState("");
+  const [componentPriorityEdit, setComponentPriorityEdit] = useState("");
+  const [editComponentID, setEditComponentID] = useState("");
+  const [editComponentIndex, setEditComponentIndex] = useState(-1);
+  const [confirmDeleteComponentIndex , setConfirmDeleteComponentIndex] = useState(-1)
 
   useEffect(() => {
     axios
@@ -38,7 +44,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
         console.log(error);
       });
   }, []);
-  
+
   useEffect(() => {
     console.log("see", expic);
   }, [expic]);
@@ -66,7 +72,6 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setIngredientList(response.data);
       })
       .catch((error) => {
@@ -78,6 +83,14 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
     setEditNameMode(true);
     setMenuNameEdit(menuData.name);
   };
+
+  useEffect(() => {
+    if (editComponentIndex === -1) {
+      setEditComponentMode(false);
+    } else {
+      setEditComponentMode(true);
+    }
+  });
 
   const handleSaveName = () => {
     axios
@@ -140,30 +153,55 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
     setAddComponentMode(false);
   };
 
+  const handleEditComponent = (e) => {
+    e.preventDefault();
+    console.log("Editing component with ID:", editComponentID);
+    console.log("New amount:", componentAmountEdit);
+    console.log("New priority:", componentPriorityEdit);
+    
+    axios
+      .patch(
+        `http://localhost:3001/component/${editComponentID}`,
+        {
+          ingredientAmount: parseFloat(componentAmountEdit),
+          priority: componentPriorityEdit,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        setAddComponentMode(false);
+        setEditComponentIndex(-1);
+        console.log("success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
+  };
+
   const handlePriorityChange = (e) => {
     setPriority(e.target.value);
   };
-
-  
 
   const fileUploadHandler = (e) => {
     const selectedFile = e.target.files[0];
     const imageUrl = URL.createObjectURL(selectedFile);
     setPreviewImage(imageUrl);
-  
+
     const formData = new FormData();
     formData.append("image", selectedFile);
-  
+
     axios
-      .post(
-        "http://localhost:3001/file-upload/single",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+      .post("http://localhost:3001/file-upload/single", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
         const minioImagePath = "http://" + res.data.image_url;
         setExPic(minioImagePath); // Update the state with the new image URL
@@ -191,17 +229,17 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
         console.log(err);
       });
   };
-  
+
   const removeImageHandler = () => {
     // Update the previewImage state with the default image URL
     setPreviewImage(defaultPreviewImageUrl);
-    
+
     // Set the background image of the menu-pic element to the default image URL
     const menuPicElement = document.getElementById("menu-pic");
     if (menuPicElement) {
       menuPicElement.style.backgroundImage = `url(${defaultPreviewImageUrl})`;
     }
-    
+
     // Update the image URL in the backend
     axios
       .patch(
@@ -230,6 +268,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
       menuPicElement.style.backgroundImage = `url(${previewImage})`;
     }
   }, [previewImage]);
+
 
   return (
     <div className="edit-menu-modalBackground">
@@ -289,7 +328,17 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
 
             <div id="menu-component-header">
               <h3>รายการวัตถุดิบในเมนู</h3>
-              {addComponentMode ? (
+              {editComponentMode ? (
+                <button
+                  id="cancel-editing"
+                  onClick={() => {
+                    setEditComponentMode(false)
+                    setEditComponentIndex(-1)
+                  }}
+                >
+                  ยกเลิกการแก้ไขวัตถุดิบ
+                </button>
+              ) : addComponentMode ? (
                 <button
                   id="cancel-adding"
                   onClick={() => {
@@ -397,72 +446,153 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                       </div>
                     )}
 
-{menuComponent.length > 0 &&
-  menuComponent.map((component, index) => {
-    const componentData = ingredientList.filter(
-      (ingredient) => ingredient._id === component.ingredientId
-    );
+                    {menuComponent.length > 0 &&
+                      menuComponent.map((component, index) => {
+                        const componentData = ingredientList.filter(
+                          (ingredient) =>
+                            ingredient._id === component.ingredientId
+                        );
 
-    // Check if componentData is not empty
-    if (componentData.length > 0) {
-      return (
-        component.ingredientAmount > 0 && (
-          <div
-            className="component-block"
-            id="menu-in"
-            style={{
-              borderBottom:
-                index === ingredientList.length - 1 &&
-                ingredientList.length > 5
-                  ? "none"
-                  : "0.1vw solid rgba(0, 0, 0, 0.2)",
-            }}
-            key={index}
-          >
-            <div id="componentName">
-              {componentData[0].name}
-            </div>
-            <div id="componentAmount">
-              {component.ingredientAmount}
-            </div>
-            <div id="componentUnit">
-              {componentData[0].unit}
-            </div>
-            {component.priority === "high" ? (
-              <div
-                id="componentPriority"
-                style={{ color: "#A00000" }}
-              >
-                สำคัญมาก
-              </div>
-            ) : (
-              <div
-                id="componentPriority"
-                style={{ color: "#006f59" }}
-              >
-                สำคัญน้อย
-              </div>
-            )}
+                        const isEditing = editComponentIndex === index;
 
-            <button
-              id="delete-component-btn"
-              onClick={() => {}}
-            >
-              <i
-                className="material-icons"
-                id="delete-menu-btn-icon"
-              >
-                delete
-              </i>
-            </button>
-          </div>
-        )
-      );
-    } else {
-      return null; // Return null if componentData is empty
-    }
-  })
-}
+                        // Check if componentData is not empty
+                        if (componentData.length > 0) {
+                          return component.ingredientAmount > 0 &&
+                            !isEditing ? (
+                            <div
+                              className="component-block"
+                              id="menu-in"
+                              style={{
+                                borderBottom:
+                                  index === ingredientList.length - 1 &&
+                                  ingredientList.length > 5
+                                    ? "none"
+                                    : "0.1vw solid rgba(0, 0, 0, 0.2)",
+                              }}
+                              key={index}
+                              onClick={() => {
+                                setEditComponentIndex(index);
+                                setComponentAmountEdit(
+                                  component.ingredientAmount
+                                );
+                                setComponentPriorityEdit(component.priority);
+                                setEditComponentID(component.ingredientId);
+                              }}
+                            >
+                              <div id="componentName">
+                                {componentData[0].name}
+                              </div>
+                              <div id="componentAmount">
+                                {component.ingredientAmount}
+                              </div>
+                              <div id="componentUnit">
+                                {componentData[0].unit}
+                              </div>
+                              {component.priority === "high" ? (
+                                <div
+                                  id="componentPriority"
+                                  style={{ color: "#A00000" }}
+                                >
+                                  สำคัญมาก
+                                </div>
+                              ) : (
+                                <div
+                                  id="componentPriority"
+                                  style={{ color: "#006f59" }}
+                                >
+                                  สำคัญน้อย
+                                </div>
+                              )}
+
+                              <button
+                                id="delete-component-btn"
+                                onClick={() => {}}
+                              >
+                                <i
+                                  className="material-icons"
+                                  id="delete-menu-btn-icon"
+                                >
+                                  delete
+                                </i>
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="component-block" id="add-new">
+                              <div
+                                id="add-new-div"
+                                style={{
+                                  display: "flex",
+                                }}
+                              >
+                                <div
+                                  id="componentName"
+                                  style={{
+                                    margin: "auto 0",
+                                    height: "fit-content",
+                                    display: "flex",
+                                    alignSelf: "center",
+                                    width: "100%",
+                                    textWrap: "nowrap",
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                  }}
+                                >
+                                  {componentData[0].name}
+                                </div>
+                              </div>
+                              <div id="component-amount-div">
+                                <input
+                                  type="number"
+                                  step="0.01"
+                                  placeholder="ปริมาณ"
+                                  aria-invalid="false"
+                                  autoComplete="None"
+                                  min="0"
+                                  value={componentAmountEdit}
+                                  onChange={(e) => {
+                                    setComponentAmountEdit(e.target.value);
+                                  }}
+                                />
+                              </div>
+                              <div id="component-amount-unit">
+                                <div> {componentData[0].unit}</div>
+                              </div>
+                              <div id="component-amount-priority">
+                                <select
+                                  value={componentPriorityEdit}
+                                  onChange={(e) => {
+                                    setComponentPriorityEdit(e.target.value);
+                                  }}
+                                  style={{
+                                    color:
+                                      componentPriorityEdit === "high"
+                                        ? "#A00000"
+                                        : "#006f59",
+                                  }}
+                                >
+                                  <option
+                                    value="high"
+                                    selected
+                                    id="select-option"
+                                  >
+                                    สำคัญมาก
+                                  </option>
+                                  <option value="low" id="select-option">
+                                    สำคัญน้อย
+                                  </option>
+                                </select>
+                              </div>
+                              <div id="component-amount-confirm-add">
+                                <button onClick={handleEditComponent}>
+                                  <i className="material-icons">done</i>
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        } else {
+                          return null; // Return null if componentData is empty
+                        }
+                      })}
                   </div>
                 )}
               </div>
