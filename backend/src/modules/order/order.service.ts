@@ -88,10 +88,7 @@ export class OrderService {
       const ingredient = await this.ingredientService.getById(
         component.ingredientId,
       );
-      if (
-        component.priority != Priority.HIGH &&
-        ingredient.amount >= component.ingredientAmount
-      ) {
+      if (ingredient.amount >= component.ingredientAmount) {
         const newAmount = ingredient.amount - component.ingredientAmount;
         const newIngredient = ingredient;
         newIngredient.amount = newAmount;
