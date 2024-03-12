@@ -40,8 +40,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       });
   }, []);
 
-  // Function to fetch ingredient list
-  const fetchIngredientList = () => {
+  useEffect(() => {
     axios
       .get(urlIngredientList, {
         headers: {
@@ -54,12 +53,9 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  // useEffect to fetch ingredient list only when fetchTrigger changes
-  useEffect(() => {
-    fetchIngredientList();
   });
+
+  
 
   // Function to update ingredient quantity
   const updateQuantity = (iname, atLeast, unit, ingredientId, newQuantity) => {
@@ -276,6 +272,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                                 -
                               </button>
                               <input
+                                step="0.1"
                                 type="number"
                                 value={
                                   Number.isInteger(ingredient.amount) // Check if it's an integer
