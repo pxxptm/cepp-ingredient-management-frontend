@@ -310,7 +310,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                       setEditNameMode(false);
                     }}
                   >
-                    แก้ไขชื่อเมนู
+                    ยืนยันแก้ไข
                   </button>
 
                   <button
@@ -593,7 +593,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                               >
                                 <div id="component-del-text">
                                   <div>แน่ใจใช่ไหมว่าต้องการลบ</div>
-                                  <span>{componentData[0].name}</span>
+                                  <span>{deleteComponentName}</span>
                                 </div>
                                 <button
                                   id="cancel-delete-component-btn"

@@ -121,9 +121,7 @@ function OrderSummaryPage({ username, restaurantId }) {
       );
       setCompleteOrderModalOpen(true);
       setPostOrderResponse(response.data);
-      // Clear the local storage after submitting the order
-
-      setLatestOrder([]);
+           setLatestOrder([]);
       // Navigate to some success page or handle the response
     } catch (error) {
       console.log("Error:", error);

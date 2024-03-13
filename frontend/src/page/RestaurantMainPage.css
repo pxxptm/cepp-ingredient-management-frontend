@@ -45,7 +45,6 @@
         width: 100%;
         height: 90vh;
         min-height: 100%;
-        background-color: white;
         padding: 2% 5.25vw 2% 20%;
 
         #main-page-content-frame
@@ -60,25 +59,21 @@
             display: flex;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: auto;
 
             #sorted-all-zone
             {
-                width: 98%;
+                width: 48%;
                 height: 100%;
                 margin-right: 2%;
                 display: flex;
                 flex-direction: column;
-                background-color: rgb(255, 255, 255);
-
-                
 
                 #sorted-all-zone-table
                 {
                     width: 100%;
                     height: 100%;
                     overflow: hidden;
-                    background-color: rgb(255, 255, 255);
                     border: 0.1vw solid rgba(0, 0, 0, 0.3);
                     border-top: none;
 
@@ -219,7 +214,7 @@
 
             #less-than-least-zone
             {
-                width: 98%;
+                width: 48%;
                 height: 100%;
                 margin-left: 2%;
                 background-color: rgb(255, 255, 255);

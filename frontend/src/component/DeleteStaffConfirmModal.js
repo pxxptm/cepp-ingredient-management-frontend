@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import "./DeleteStaffConfirmModal";
+import "./DeleteStaffConfirmModal.css";
 
 function DeleteStaffConfirmModal({
   setDeleteStaffConfirmModalOpen,
@@ -72,7 +72,7 @@ function DeleteStaffConfirmModal({
                 handleSubmit();
               }}
             >
-              เสร็จสิ้น
+              ยืนยัน
             </button>
           </div>
         </div>

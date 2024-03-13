@@ -17,7 +17,7 @@ function LoginPage() {
         ).then((res) => {
             console.log(res)
             if (res.status === 201) {
-                alert("Login successful")
+                //alert("Login successful")
                 window.localStorage.setItem("token", res.data.accessToken);
                 window.localStorage.setItem("loggedIn", true);
                 navigate("/" + username + "/restaurant", { replace: true })

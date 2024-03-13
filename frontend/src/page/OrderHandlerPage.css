@@ -55,7 +55,42 @@
             
             border-left: 0.1vw solid rgba(0, 0, 0, 0.21);
             border-bottom: 0.25vw solid rgba(0, 0, 0, 0.21);
+
+            display: flex;
+            justify-content: space-between;
+
+            div
+            {
+                height: fit-content;
+                margin: auto 0;
+                border: none;
+                text-wrap: nowrap;
+                width: fit-content;
+            }
+
+            button 
+            {
+                width: 38%;
+                font-size: 0.65vw;
+                font-family: 'Kanit', sans-serif;
+                color: white;
+                background-color: rgb(118,118,118);
+                border: none;
+                height: fit-content;
+                padding: 2% 1%;
+                margin: auto 0;
+                border-radius: 0.3vw;
+                font-weight: normal;
+
+                &:hover
+                {
+                    background-color: rgb(56,56,56);
+                }
+            }
+            
         }
+
+        
     }
 
     #order-handler-page-content
@@ -189,7 +224,7 @@
         #order-summary-list-box 
         {
             width: 100%;
-            height: 71vh;
+            height: 69.5vh;
             margin: auto;
             padding-bottom: -30%;
             overflow: auto;

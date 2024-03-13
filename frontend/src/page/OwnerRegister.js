@@ -31,7 +31,7 @@ function OwenerRegisterPage() {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-          alert("Register successful");
+          //alert("Register successful");
           window.localStorage.setItem("token", res.data.accessToken);
           window.localStorage.setItem("", true);
           navigate("/", { replace: true });

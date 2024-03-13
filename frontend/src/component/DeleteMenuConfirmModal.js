@@ -72,7 +72,7 @@ function DeleteMenuConfirmModal({
                 handleSubmit();
               }}
             >
-              เสร็จสิ้น
+              ยืนยัน
             </button>
           </div>
         </div>

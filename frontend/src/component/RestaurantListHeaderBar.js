@@ -4,6 +4,12 @@ import Clock from "./Clock";
 import UserHeader from "./UserHeaderName";
 
 const RestaurantListHeaderBar = (props) => {
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   const restaurantListPageURL =
     "http://localhost:3000/" + props.username + "/restaurant";
   return (
@@ -44,10 +50,12 @@ const RestaurantListHeaderBar = (props) => {
           </div>
         </div>
         <div className="home-nav-btn">
-          <button id="rest-list-logout-btn">ออกจากระบบ</button>
+          <button id="rest-list-logout-btn" onClick={handleLogout}>
+            ออกจากระบบ
+          </button>
         </div>
 
-        <a href="http://localhost:3000/login" id="rest-list-logout-btn-icon">
+        <a href="#" id="rest-list-logout-btn-icon" onClick={handleLogout}>
           <i className="material-icons">logout</i>
         </a>
       </div>

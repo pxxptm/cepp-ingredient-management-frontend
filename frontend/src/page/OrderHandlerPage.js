@@ -5,7 +5,8 @@ import UserSideNavBar from "../component/UserSideNavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NotEnoughComponentAlertModal from "../component/NotEnoughComponentAlertModal";
-import HaveOutOfStockIngredientMenuInOrderAlertModal from "../component/HaveOutOfStockIngredientMenuInOrderAlertModal"
+import HaveOutOfStockIngredientMenuInOrderAlertModal from "../component/HaveOutOfStockIngredientMenuInOrderAlertModal";
+import DeleteAllOrderMadal from "../component/DeleteAllOrderMadal";
 
 function OrderHandlerPage({ username, restaurantId }) {
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -18,8 +19,12 @@ function OrderHandlerPage({ username, restaurantId }) {
   const [selectedMenuId, setSelectedMenuId] = useState(null);
   const [selectedMenuName, setSelectedMenuName] = useState(null);
   const [userID, setUseID] = useState("");
+  const [deleteAllOrderModalOpen, setDeleteAllOrderModalOpen] = useState(false);
   const LatestOrder = "LatestOrder" + restaurantId + userID;
-  const [haveOutOfStockIngredientMenuInOrderAlertModalOpen , setHaveOutOfStockIngredientMenuInOrderAlertModalOpen] = useState(false)
+  const [
+    haveOutOfStockIngredientMenuInOrderAlertModalOpen,
+    setHaveOutOfStockIngredientMenuInOrderAlertModalOpen,
+  ] = useState(false);
 
   // get ID
   useEffect(() => {
@@ -65,13 +70,6 @@ function OrderHandlerPage({ username, restaurantId }) {
         return menuList.some((menu) => menu._id === order.id);
       });
 
-      const menuWithCanCookNegativeOne = filteredOrder.find((order) => {
-        const menu = menuList.find((menu) => menu._id === order.id);
-        return menu && menu.canCook === -1;
-      });
-
-    
-
       setLatestOrder(filteredOrder);
       window.localStorage.setItem(LatestOrder, JSON.stringify(filteredOrder));
     }
@@ -107,7 +105,6 @@ function OrderHandlerPage({ username, restaurantId }) {
     const existingItemIndex = latestOrder.findIndex(
       (item) => item.name === name && item.id === id
     );
-    const iscanCook = menuList.find((item) => item._id === id)?.canCook;
 
     if (existingItemIndex !== -1) {
       const updatedLatestOrder = [...latestOrder];
@@ -203,17 +200,17 @@ function OrderHandlerPage({ username, restaurantId }) {
 
   async function commitOrderHandler() {
     console.log(latestOrder);
-    const hasOutOfStockMainIngredients = latestOrder.some(order => {
-      const menuItem = menuList.find(menuItem => menuItem._id === order.id);
+    const hasOutOfStockMainIngredients = latestOrder.some((order) => {
+      const menuItem = menuList.find((menuItem) => menuItem._id === order.id);
       return menuItem && menuItem.canCook === -1;
     });
-  
+
     // If any item has canCook === -1, show alert
     if (hasOutOfStockMainIngredients) {
-      setHaveOutOfStockIngredientMenuInOrderAlertModalOpen(true)
+      setHaveOutOfStockIngredientMenuInOrderAlertModalOpen(true);
       return; // Stop further execution
     }
-  
+
     const urlOrderSummaryPage = `/${username}/${restaurantId}/order-summary`;
     navigate(urlOrderSummaryPage, { replace: false });
   }
@@ -246,10 +243,21 @@ function OrderHandlerPage({ username, restaurantId }) {
           />
         )}
 
-        {haveOutOfStockIngredientMenuInOrderAlertModalOpen && 
-        (
+        {haveOutOfStockIngredientMenuInOrderAlertModalOpen && (
           <HaveOutOfStockIngredientMenuInOrderAlertModal
-          setHaveOutOfStockIngredientMenuInOrderAlertModalOpen={setHaveOutOfStockIngredientMenuInOrderAlertModalOpen}/>
+            setHaveOutOfStockIngredientMenuInOrderAlertModalOpen={
+              setHaveOutOfStockIngredientMenuInOrderAlertModalOpen
+            }
+          />
+        )}
+
+        {deleteAllOrderModalOpen && (
+          <DeleteAllOrderMadal
+            restaurantId={restaurantId}
+            userID={userID}
+            setDeleteAllOrderModalOpen={setDeleteAllOrderModalOpen}
+            setLatestOrder={setLatestOrder}
+          />
         )}
         <div id="order-handler-page-side-bar-menu">
           <UserSideNavBar
@@ -260,7 +268,18 @@ function OrderHandlerPage({ username, restaurantId }) {
           />
         </div>
         <div id="order-handler-page-content-header">
-          <div>รายการออเดอร์</div>
+          <div>
+            <div>รายการออเดอร์</div>
+            { latestOrder.length > 0 &&
+              (<button
+                onClick={() => {
+                  setDeleteAllOrderModalOpen(true);
+                }}
+              >
+                ล้างรายการทั้งหมด
+              </button>)
+            }
+          </div>
         </div>
 
         <div id="order-handler-page-content">
@@ -296,15 +315,21 @@ function OrderHandlerPage({ username, restaurantId }) {
                             >
                               {/* Display the quantity of this menu item in the order summary */}
                               {latestOrder.map((item) => {
-  if (item.id === menu._id && menuList.find(menuItem => menuItem._id === item.id)?.canCook !== -1 && item.amount > 0) {
-    return (
-      <div id="amount-shown-box" key={item.id}>
-        <div>{item.amount}</div>
-      </div>
-    );
-  }
-  return null;
-})}
+                                if (
+                                  item.id === menu._id &&
+                                  menuList.find(
+                                    (menuItem) => menuItem._id === item.id
+                                  )?.canCook !== -1 &&
+                                  item.amount > 0
+                                ) {
+                                  return (
+                                    <div id="amount-shown-box" key={item.id}>
+                                      <div>{item.amount}</div>
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })}
                             </div>
                             <div id="menu-card-content">
                               <div id="menu-card-name">{menu.name}</div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import "./DeleteStaffConfirmModal.css";
+import "./DeleteRestaurantAuthModal.css";
 import { useNavigate } from "react-router-dom";
 
 function DeleteRestaurantAuthModal({
@@ -94,7 +94,7 @@ function DeleteRestaurantAuthModal({
                 ยกเลิก
               </button>
               <button id="rest-del-submit" type="submit" className="btn-submit">
-                เสร็จสิ้น
+                ยืนยัน
               </button>
             </div>
           </form>

@@ -4,7 +4,14 @@ import "./RestaurantCard.css";
 function RestaurantCard(props) {
   let urlDependOnRole;
 
-  urlDependOnRole = "http://localhost:3000/" + props.username + "/" + props.restaurantId;
+  urlDependOnRole =
+    props.userRole === "owner" || props.userRole === "manger"
+      ? "http://localhost:3000/" + props.username + "/" + props.restaurantId
+      : "http://localhost:3000/" +
+        props.username +
+        "/" +
+        props.restaurantId +
+        "/order-in";
 
   return (
     <a id="rest-card-link" href={urlDependOnRole}>
