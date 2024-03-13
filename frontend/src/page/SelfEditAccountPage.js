@@ -5,7 +5,6 @@ import RestaurantListHeaderBar from "../component/RestaurantListHeaderBar";
 import { useNavigate } from "react-router-dom";
 
 function SelfEditAccountPage({ username }) {
-  console.log(window.location.pathname);
   const urlRestaurantList = "http://localhost:3001/member/restaurant";
   const urlRestaurantListPage =
     "http://localhost:3000/" + username + "/restaurant";
@@ -24,6 +23,7 @@ function SelfEditAccountPage({ username }) {
   const [LName, setLName] = useState("");
   const [usernameEdit, setUsernameEdit] = useState("");
   const [password, setPassword] = useState("");
+  const [isOwner , setIsOwner] = useState(false)
 
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ function SelfEditAccountPage({ username }) {
         setFName(user.firstname);
         setLName(user.lastname);
         setUsernameEdit(user.username);
-        console.log(user);
+        setIsOwner(user.role==="owner")
       })
       .catch((error) => {
         console.log(error);
@@ -186,7 +186,7 @@ function SelfEditAccountPage({ username }) {
                             setFName(e.target.value);
                           }}
                           value={FName}
-                          readOnly={!editMode}
+                          readOnly={!editMode || !isOwner}
                         />
                       </div>
                     </div>
@@ -205,7 +205,7 @@ function SelfEditAccountPage({ username }) {
                             setLName(e.target.value);
                           }}
                           value={LName}
-                          readOnly={!editMode}
+                          readOnly={!editMode || !isOwner}
                         />
                       </div>
                     </div>
