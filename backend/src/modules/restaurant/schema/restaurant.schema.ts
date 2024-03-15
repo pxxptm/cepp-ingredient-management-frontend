@@ -9,6 +9,12 @@ export class Restaurant {
   description: string;
 
   @Prop()
+  openStockTime: string;
+
+  @Prop()
+  closeStockTime: string;
+
+  @Prop()
   image: string;
 }
 
