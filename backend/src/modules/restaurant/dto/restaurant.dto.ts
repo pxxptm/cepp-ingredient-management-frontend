@@ -15,6 +15,16 @@ export class CreateRestaurantDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
+  readonly openStockTime: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly closeStockTime: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   readonly image: string;
 }
 
@@ -28,6 +38,16 @@ export class UpdateRestaurantDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly description: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly openStockTime: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly closeStockTime: string;
 
   @IsString()
   @IsNotEmpty()
