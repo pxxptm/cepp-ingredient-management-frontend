@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RestaurantCard.css";
 
 function RestaurantCard(props) {
-  let urlDependOnRole;
-
-  urlDependOnRole =
-    props.userRole === "owner" || props.userRole === "manger"
+  const [urlDependOnRole, setUrlDependOnRole] = useState(
+    props.userRole === "owner" || props.userRole === "manager"
       ? "http://localhost:3000/" + props.username + "/" + props.restaurantId
-      : "http://localhost:3000/" +
-        props.username +
-        "/" +
-        props.restaurantId +
-        "/order-in";
+      : "http://localhost:3000/" + props.username + "/" + props.restaurantId + "/order-in"
+  );
 
   return (
     <a id="rest-card-link" href={urlDependOnRole}>

@@ -5,7 +5,6 @@
     position: relative;
     padding: 0;
     margin: 0px;
-    background-color: #F3F4F5;
     overflow-x: hidden;
 }
 
@@ -23,10 +22,9 @@
     width: 100%;
     height: 100%;
     background-color: #F3F4F5;
-
 }
 
-#Header-txt
+#FAQ-page-Header-txt
 {
     display: flex;
     width: 100%;
@@ -34,11 +32,14 @@
     background-color: #F3F4F5;
     text-align: center;
     justify-content: center;
+    font-size: 2.5vw;
+    font-weight: bold;
     font-family: 'Kanit', sans-serif;
+    margin: 2.5% 0;
 
     @media (min-width: 700px)
     {
-        padding: 0 5.25vw;
+        padding: 5% 5.25vw;
     }
 
     @media (min-width: 420px)
@@ -65,7 +66,7 @@
 #FAQ-page-content
 {
     width: 100%;
-    height: 500px;
+    height: 100vh;
     background-color: white
 }
 

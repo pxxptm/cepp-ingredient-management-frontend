@@ -8,7 +8,7 @@ function FeaturePage() {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
             <div id="FAQ-page-body">
               <div id= "Home-page-header"><HomeHeaderBar></HomeHeaderBar></div>
-              <div id="Header-txt">คู่มือการใช้งาน และคำถามที่พบบ่อย</div>
+              <div id="FAQ-page-Header-txt">คู่มือการใช้งาน และคำถามที่พบบ่อย</div>
               <div id="FAQ-page-content">
                 
               </div>

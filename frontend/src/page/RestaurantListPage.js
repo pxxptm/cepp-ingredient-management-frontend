@@ -99,7 +99,7 @@ function RestaurantListPage({ username }) {
                           restaurantDescription={restaurant.description}
                           restaurantImage={restaurant.image}
                           username={username}
-                          serRole={userRole}
+                          userRole={userRole}
                         />
                       }
                     </div>
