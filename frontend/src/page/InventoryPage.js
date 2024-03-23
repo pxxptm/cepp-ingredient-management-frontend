@@ -14,11 +14,18 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
   const [deleteIngredientModalOpen, setDeleteIngredientModalOpen] =
     useState(false);
   const [ingredientList, setIngredientList] = useState([]);
+  const [filteredIngredientList, setFilteredIngredientList] = useState([]);
+
+  const [restaurantDescription, setRestaurantDescription] = useState("");
+  const [openStockTimeChange, setOpenStockTimeChange] = useState("");
+  const [closeStockTimeChange, setCloseStockTimeChange] = useState("");
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
   const urlIngredientList = `http://localhost:3001/ingredient/restaurant/${restaurantId}`;
 
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
+
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
 
   // get restaurant detail
   useEffect(() => {
@@ -33,6 +40,10 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
         const image = res.data.image;
         setRestaurantName(name);
         setRestaurantImage(image);
+        setRestaurantDescription(res.data.description);
+        setOpenStockTimeChange(res.data.openStockTime);
+        setCloseStockTimeChange(res.data.closeStockTime);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +59,7 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       })
       .then((res) => {
         setIngredientList(res.data);
+        setFilteredIngredientList(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -161,6 +173,58 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
       });
   }, [accessToken, urlUserDetail]);
 
+  const handleUpdateOpenStockTime = (openStockTime) => {
+    axios
+      .patch(
+        urlRestaurantDetail,
+        {
+          name: restaurantName,
+          description: restaurantDescription,
+          image: restaurantImage,
+          openStockTime: openStockTime,
+          closeStockTime: closeStockTimeChange,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Success:", res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleUpdateCloseStockTime = (closeStockTime) => {
+    axios
+      .patch(
+        urlRestaurantDetail,
+        {
+          name: restaurantName,
+          description: restaurantDescription,
+          image: restaurantImage,
+          openStockTime: openStockTimeChange,
+          closeStockTime: closeStockTime,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Success:", res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div id="inventory-page">
       <link
@@ -216,16 +280,49 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
         <div id="inventory-page-content">
           <div id="inventory-page-content-header">
             <h1>สต็อกวัตถุดิบ</h1>
-            <div id="add-staff-acc-btn-zone">
+            <div id="setting-stock-btn-zone">
+              <input
+                type="text"
+                placeholder="ค้นหา"
+                id="search-space"
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+              />
               {userRole === "owner" && (
-                <button
-                  id="add-ingredient-btn"
-                  onClick={() => {
-                    setAddIngredientModalOpen(true);
-                  }}
-                >
-                  <span>+</span>เพิ่มวัตถุดิบ
-                </button>
+                <div>
+                  <button
+                    id="add-ingredient-btn"
+                    onClick={() => {
+                      setAddIngredientModalOpen(true);
+                    }}
+                  >
+                    <span>+</span>เพิ่มวัตถุดิบ
+                  </button>
+                  <button id="set-time-btn">เวลาตรวจสต็อก</button>
+                  <div>
+                    <input
+                      id="open-stock-time"
+                      type="time"
+                      value={openStockTimeChange}
+                      onChange={(e) => {
+                        setOpenStockTimeChange(e.target.value);
+                        handleUpdateOpenStockTime(e.target.value);
+                      }}
+                    />
+                    <div id="to-txt">ถึง</div>
+                    <input
+                      id="close-stock-time"
+                      type="time"
+                      value={closeStockTimeChange}
+                      onChange={(e) => {
+                        setCloseStockTimeChange(e.target.value);
+                        handleUpdateCloseStockTime(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -252,122 +349,134 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
             ))}
           <div id="inventory-page-content-table-zone">
             <div id="inventory-page-content-table">
-            {ingredientList.map((ingredient) => (
-      <div key={ingredient._id} id={userRole === "owner" ? "ingredient-block-owner" : "ingredient-block"}>
-        <div id="a-ingredient-container">
-          <div id="a-ingredient-container-col-1">
-            <div id="ingredient-name">{ingredient.name}</div>
-          </div>
+              {ingredientList.map(
+                (ingredient) =>
+                  ingredient.name
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) && (
+                    <div
+                      key={ingredient._id}
+                      id={
+                        userRole === "owner"
+                          ? "ingredient-block-owner"
+                          : "ingredient-block"
+                      }
+                    >
+                      <div id="a-ingredient-container">
+                        <div id="a-ingredient-container-col-1">
+                          <div id="ingredient-name">{ingredient.name}</div>
+                        </div>
 
-          <div id="a-ingredient-container-col-2">
-            {/* increase - decrease */}
-            <button
-              className="value-button"
-              onClick={() =>
-                decreaseQuantity(
-                  ingredient.name,
-                  ingredient.atLeast,
-                  ingredient.unit,
-                  ingredient._id
-                )
-              }
-            >
-              -
-            </button>
-            <input
-              step="0.1"
-              type="number"
-              value={
-                Number.isInteger(ingredient.amount)
-                  ? ingredient.amount
-                  : ingredient.amount
-              }
-              onChange={(e) => {
-                const newValue = e.target.value;
-                let newQuantity;
-                if (newValue === "" || newValue === "0") {
-                  newQuantity = 0;
-                } else if (
-                  Number.isInteger(parseFloat(newValue))
-                ) {
-                  newQuantity = parseInt(newValue, 10);
-                } else {
-                  newQuantity = parseFloat(newValue);
-                }
-                updateQuantity(
-                  ingredient.name,
-                  ingredient.atLeast,
-                  ingredient.unit,
-                  ingredient._id,
-                  newQuantity
-                );
-              }}
-            />
-            <button
-              className="value-button"
-              onClick={() =>
-                increaseQuantity(
-                  ingredient.name,
-                  ingredient.atLeast,
-                  ingredient.unit,
-                  ingredient._id
-                )
-              }
-            >
-              +
-            </button>
-          </div>
+                        <div id="a-ingredient-container-col-2">
+                          {/* increase - decrease */}
+                          <button
+                            className="value-button"
+                            onClick={() =>
+                              decreaseQuantity(
+                                ingredient.name,
+                                ingredient.atLeast,
+                                ingredient.unit,
+                                ingredient._id
+                              )
+                            }
+                          >
+                            -
+                          </button>
+                          <input
+                            step="0.1"
+                            type="number"
+                            value={
+                              Number.isInteger(ingredient.amount)
+                                ? ingredient.amount
+                                : ingredient.amount
+                            }
+                            onChange={(e) => {
+                              const newValue = e.target.value;
+                              let newQuantity;
+                              if (newValue === "" || newValue === "0") {
+                                newQuantity = 0;
+                              } else if (
+                                Number.isInteger(parseFloat(newValue))
+                              ) {
+                                newQuantity = parseInt(newValue, 10);
+                              } else {
+                                newQuantity = parseFloat(newValue);
+                              }
+                              updateQuantity(
+                                ingredient.name,
+                                ingredient.atLeast,
+                                ingredient.unit,
+                                ingredient._id,
+                                newQuantity
+                              );
+                            }}
+                          />
+                          <button
+                            className="value-button"
+                            onClick={() =>
+                              increaseQuantity(
+                                ingredient.name,
+                                ingredient.atLeast,
+                                ingredient.unit,
+                                ingredient._id
+                              )
+                            }
+                          >
+                            +
+                          </button>
+                        </div>
 
-          <div id="a-ingredient-container-col-3">
-            {ingredient.unit}
-          </div>
+                        <div id="a-ingredient-container-col-3">
+                          {ingredient.unit}
+                        </div>
 
-          <div id="a-ingredient-container-col-4">
-            {ingredient.atLeast}
-          </div>
+                        <div id="a-ingredient-container-col-4">
+                          {ingredient.atLeast}
+                        </div>
 
-          {userRole === "owner" && (
-            <div id="a-ingredient-container-col-5">
-              <button
-                id="edit-ingredient-btn"
-                onClick={() =>
-                  handleEditIngredient(
-                    ingredient.name,
-                    ingredient.atLeast,
-                    ingredient.unit,
-                    ingredient._id,
-                    ingredient.amount
+                        {userRole === "owner" && (
+                          <div id="a-ingredient-container-col-5">
+                            <button
+                              id="edit-ingredient-btn"
+                              onClick={() =>
+                                handleEditIngredient(
+                                  ingredient.name,
+                                  ingredient.atLeast,
+                                  ingredient.unit,
+                                  ingredient._id,
+                                  ingredient.amount
+                                )
+                              }
+                            >
+                              แก้ไข
+                            </button>
+                          </div>
+                        )}
+
+                        {userRole === "owner" && (
+                          <div id="a-ingredient-container-col-6">
+                            <button
+                              id="delete-ingredient-btn"
+                              onClick={() => {
+                                handleDeleteIngredient(
+                                  ingredient.name,
+                                  ingredient._id
+                                );
+                              }}
+                            >
+                              <i
+                                className="material-icons"
+                                id="delete-ingredient-btn-icon"
+                              >
+                                delete
+                              </i>
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   )
-                }
-              >
-                แก้ไข
-              </button>
-            </div>
-          )}
-
-          {userRole === "owner" && (
-            <div id="a-ingredient-container-col-6">
-              <button
-                id="delete-ingredient-btn"
-                onClick={() => {
-                  handleDeleteIngredient(
-                    ingredient.name,
-                    ingredient._id
-                  );
-                }}
-              >
-                <i
-                  className="material-icons"
-                  id="delete-ingredient-btn-icon"
-                >
-                  delete
-                </i>
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    ))}
+              )}
             </div>
           </div>
         </div>

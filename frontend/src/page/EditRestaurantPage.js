@@ -27,7 +27,6 @@ function EditRestaurantPage({ username, restaurantId }) {
       .then((response) => {
         const role = response.data.role;
         setUserRole(role); // Update state instead of ref
-        console.log(role);
       })
       .catch((error) => {
         console.log(error);
@@ -54,6 +53,8 @@ function EditRestaurantPage({ username, restaurantId }) {
         setRestaurantImgStatic(image || defaultPreviewImageUrl);
         setPreviewImage(image || defaultPreviewImageUrl);
         setExPic(image);
+        setOpenStockTime(res.data.openStockTime)
+        setCloseStockTime(res.data.closeStockTime)
       })
       .catch((err) => {
         console.log(err);
@@ -70,9 +71,10 @@ function EditRestaurantPage({ username, restaurantId }) {
   const [restaurantNameStatic, setRestaurantNameStatic] = useState("");
   const [restaurantDescriptStatic, setRestaurantescriptStatic] = useState("");
   const [restaurantImgStatic, setRestaurantImgStatic] = useState("");
+  const [openStockTime, setOpenStockTime] = useState("");
+  const [closeStockTime, setCloseStockTime] = useState("");
 
   useEffect(() => {
-    console.log(previewImage);
     document.getElementById(
       "restaurantPic-pic"
     ).style.backgroundImage = `url(${previewImage})`;
@@ -132,6 +134,8 @@ function EditRestaurantPage({ username, restaurantId }) {
           name: restaurantName,
           description: restaurantDescription,
           image: minioImagePath,
+          openStockTime: openStockTime,
+          closeStockTime: closeStockTime,
         },
         {
           headers: {
