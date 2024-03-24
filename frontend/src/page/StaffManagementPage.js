@@ -20,10 +20,19 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
   const [restaurantName, setRestaurantName] = useState();
   const [restaurantImage, setRestaurantImage] = useState();
 
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const [sortCriteriaTerm, setSortCriteriaTerm] = useState(0);
+
   const roleDict = {
     manager: "ผู้จัดการ",
     stockcontroller: "พนักงานดูแลคลังวัตถุดิบ",
     employee: "พนักงานทั่วไป",
+  };
+
+  const rolePriority = {
+    manager: "1",
+    stockcontroller: "2",
+    employee: "3",
   };
 
   useEffect(() => {
@@ -53,9 +62,33 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
         },
       })
       .then((response) => {
-        setStaffList(response.data);
-        if (JSON.stringify(response.data) !== JSON.stringify(staffList)) {
-          console.log(staffList);
+        let staffs = response.data;
+        if (sortCriteriaTerm === 0) {
+          setStaffList(staffs);
+        } else if (sortCriteriaTerm === 1) {
+          const sortedStaffList = [...staffs].sort((a, b) =>
+            a.firstname.localeCompare(b.firstname)
+          );
+
+          setStaffList(sortedStaffList);
+        } else if (sortCriteriaTerm === 2) {
+          const sortedStaffList = [...staffs].sort((a, b) =>
+            a.lastname.localeCompare(b.lastname)
+          );
+
+          setStaffList(sortedStaffList);
+        } else if (sortCriteriaTerm === 3) {
+          const sortedStaffList = [...staffs].sort((a, b) =>
+            a.username.localeCompare(b.username)
+          );
+
+          setStaffList(sortedStaffList);
+        } else if (sortCriteriaTerm === 4) {
+          const sortedStaffList = [...staffs].sort((a, b) =>
+            rolePriority[a.role].localeCompare(rolePriority[b.role])
+          );
+
+          setStaffList(sortedStaffList);
         }
       })
       .catch((error) => {
@@ -93,6 +126,18 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
       staffId,
       staffUsername,
     });
+  };
+
+  const [menuClassName, setMenuClassName] = useState("inactive");
+  const [menuBtnClassName, setMenuBtnClassName] = useState("sortInactive");
+
+  const toggleMenu = () => {
+    setMenuClassName((prevClassName) =>
+      prevClassName === "active" ? "inactive" : "active"
+    );
+    setMenuBtnClassName((prevClassName) =>
+      prevClassName === "sortActive" ? "sortInactive" : "sortActive"
+    );
   };
 
   return (
@@ -149,6 +194,17 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
         <div id="Staff-management-page-content">
           <div id="Staff-management-page-content-header">
             <h1>พนักงาน</h1>
+
+            <input
+              type="text"
+              placeholder="ค้นหาด้วยชื่อ นามสกุล ชื่อบัญชีผู้ใช้ หรือ บทบาทของพนักงาน"
+              id="staff-search-space"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+
             <button
               id="add-staff-acc-btn"
               onClick={() => {
@@ -157,15 +213,136 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
             >
               <span>+</span>เพิ่มบัญชีพนักงาน
             </button>
+
+            <div id="role-filter-zone">
+              <button
+                className={menuBtnClassName}
+                id="role-filter"
+                onClick={toggleMenu}
+              >
+                <i className="material-icons" id="staff-name-icon">
+                  settings
+                </i>
+                การเรียงลำดับ
+              </button>
+              <ul className={menuClassName}>
+              <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      setSortCriteriaTerm(0);
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 0 && "⬤"}</div> วันสร้างบัญชี
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      if (sortCriteriaTerm === 1) {
+                        setSortCriteriaTerm(0);
+                      } else {
+                        setSortCriteriaTerm(1);
+                      }
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 1 && "⬤"}</div> ชื่อ
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      if (sortCriteriaTerm === 2) {
+                        setSortCriteriaTerm(0);
+                      } else {
+                        setSortCriteriaTerm(2);
+                      }
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 2 && "⬤"}</div> นามสกุล
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      if (sortCriteriaTerm === 3) {
+                        setSortCriteriaTerm(0);
+                      } else {
+                        setSortCriteriaTerm(3);
+                      }
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 3 && "⬤"}</div> ชื่อบัญชีผู้ใช้
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      if (sortCriteriaTerm === 4) {
+                        setSortCriteriaTerm(0);
+                      } else {
+                        setSortCriteriaTerm(4);
+                      }
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 4 && "⬤"}</div> บทบาท
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div id="Staff-management-page-content-table-zone">
             <div id="Staff-management-page-content-table">
-              {staffList.length > 0 &&
+              {staffList.filter(
+                (staff) =>
+                  staff &&
+                  (staff.firstname
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) ||
+                    staff.lastname
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    staff.username
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    (roleDict[staff.role] &&
+                      roleDict[staff.role]
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase())))
+              ).length !== 0 &&
+                staffList.length > 0 &&
                 staffList.map(
                   (staff, index) =>
                     staff &&
-                    index > 0 && ( // Check if staff is not null
+                    (staff.firstname
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                      staff.lastname
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                      staff.username
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ||
+                      (roleDict[staff.role] &&
+                        roleDict[staff.role]
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()))) &&
+                    staff.role !== "owner" && ( // Check if staff is not null
                       <div id="staff-block" key={staff.userId}>
                         {
                           <div id="a-staff-container">
@@ -222,6 +399,31 @@ function OwnerStaffManagementPage({ username, restaurantId }) {
                         }
                       </div>
                     )
+                )}
+
+              {staffList.length > 0 &&
+                staffList.filter(
+                  (staff) =>
+                    staff.firstname
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    staff.lastname
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    staff.username
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    (roleDict[staff.role] &&
+                      roleDict[staff.role]
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()))
+                ).length === 0 && (
+                  <div id="no-search-results">
+                    <p>
+                      ไม่พบรายชื่อพนักงานที่คุณต้องการค้นหาในรายชื่อพนักงานของคุณ
+                      .
+                    </p>
+                  </div>
                 )}
             </div>
           </div>

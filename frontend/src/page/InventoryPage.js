@@ -283,11 +283,19 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
             <div id="setting-stock-btn-zone">
               <input
                 type="text"
-                placeholder="ค้นหา"
-                id="search-space"
+                placeholder="ค้นหาด้วยชื่อวัตถุดิบ"
+                id="ingredient-search-space"
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
+                }}
+                style={{
+                  borderRadius:
+                    userRole === "owner" ? "0.7vw 0 0 0.7vw" : "0.7vw",
+                  borderRight:
+                    userRole === "owner"
+                      ? "none"
+                      : "0.1vw solid rgba(0, 0, 0, 0.4)",
                 }}
               />
               {userRole === "owner" && (
@@ -328,6 +336,9 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
           </div>
 
           {ingredientList.length > 0 &&
+            ingredientList.filter((ingredient) =>
+              ingredient.name.toLowerCase().includes(searchTerm.toLowerCase())
+            ).length !== 0 &&
             (userRole === "owner" ? (
               <div id="inventory-table-header">
                 <div id="inventory-table-header-txt-owner">
@@ -477,6 +488,16 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
                     </div>
                   )
               )}
+              {ingredientList.length > 0 &&
+                ingredientList.filter((ingredient) =>
+                  ingredient.name
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+                ).length === 0 && (
+                  <div id="no-search-results">
+                    <p>ไม่พบวัตถุดิบที่คุณต้องการค้นหาในคลังวัตถุดิบของคุณ .</p>
+                  </div>
+                )}
             </div>
           </div>
         </div>

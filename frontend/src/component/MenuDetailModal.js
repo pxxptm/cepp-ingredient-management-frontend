@@ -603,7 +603,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                     setDeleteComponentName("");
                                   }}
                                 >
-                                  ไม่ทำการลบ
+                                  ยกเลิกการลบ
                                 </button>
                                 <button
                                   id="delete-component-btn"

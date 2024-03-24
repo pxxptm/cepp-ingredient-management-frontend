@@ -84,9 +84,10 @@
                     margin: auto 0;
                     display: flex;
 
-                    #search-space
+                    #ingredient-search-space
                     {
                         width: 100%;
+                        font-size: 0.85vw;
                         border-radius: 0.7vw 0 0 0.7vw;
                         outline: none;
                         border: 0.1vw solid rgba(0, 0, 0, 0.4);
@@ -572,6 +573,12 @@
             }
         }
         
+        #no-search-results
+        {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1vw;
+            color: #282828c2;
+        }
     }
 }
 
