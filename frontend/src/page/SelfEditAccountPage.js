@@ -23,7 +23,7 @@ function SelfEditAccountPage({ username }) {
   const [LName, setLName] = useState("");
   const [usernameEdit, setUsernameEdit] = useState("");
   const [password, setPassword] = useState("");
-  const [isOwner , setIsOwner] = useState(false)
+  const [isOwner, setIsOwner] = useState(false);
 
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ function SelfEditAccountPage({ username }) {
         setFName(user.firstname);
         setLName(user.lastname);
         setUsernameEdit(user.username);
-        setIsOwner(user.role==="owner")
+        setIsOwner(user.role === "owner");
       })
       .catch((error) => {
         console.log(error);
@@ -86,6 +86,7 @@ function SelfEditAccountPage({ username }) {
   });
 
   async function handleSubmit(event) {
+    event.preventDefault();
     // patch change
     await axios
       .patch(
@@ -104,16 +105,14 @@ function SelfEditAccountPage({ username }) {
         }
       )
       .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          var currentUrl = window.location.href;
-          var url = currentUrl.replace(username, usernameEdit);
-          window.location.href = url;
-          navigate(url, { replace: true });
-        }
+        //alert(res);
+        var currentUrl = window.location.href;
+        var url = currentUrl.replace(username, usernameEdit);
+        window.location.href = url;
+        navigate(url, { replace: true });
       })
       .catch((error) => {
-        console.log(error);
+        //alert(error);
       });
   }
 

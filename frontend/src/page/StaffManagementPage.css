@@ -76,11 +76,11 @@
                         margin: auto 0 auto auto;
                         font-family: 'Kanit', sans-serif;
                         text-wrap: nowrap;
-                        width: 30vw;
+                        width: 35vw;
                         height: 2.5vw;
                         font-size: 0.85vw;
                         outline: none;
-                        border: 0.1vw solid rgba(0, 0, 0, 0.4);
+                        border: 0.1vw solid rgba(0, 0, 0, 0.3);
                         padding: 0 2%;
                         font-family: 'Kanit', sans-serif;
                         text-wrap: nowrap;
@@ -126,14 +126,14 @@
             #role-filter-zone
             {
                 margin: auto 0;
-                width: 7vw;
+                width: 8vw;
             }
 
             .sortInactive
             {
                 margin: auto 0;
                 font-family: 'Kanit', sans-serif;
-                padding: 0 1.5%;
+                padding: 0 4% 0 1%;
                 text-wrap: nowrap;
                 width: 100%;
                 height: 2.5vw;
@@ -163,7 +163,7 @@
             {
                 margin: auto 0;
                 font-family: 'Kanit', sans-serif;
-                padding: 0 1.5%;
+                padding: 0 4% 0 1%;
                 text-wrap: nowrap;
                 width: 100%;
                 height: 2.5vw;
@@ -200,6 +200,8 @@
                 transform-origin: top;
                 transform: perspective(1000px) rotateX(-90deg);
                 border: 0.5px solid rgba(0, 0, 0,0.1);
+                border-radius: 0.4vw 0 0.4vw 0.4vw;
+                overflow: hidden;
               }
               
               #role-filter-zone ul.active{
@@ -215,7 +217,7 @@
                 padding: 10px;
                 font-family: 'Kanit', sans-serif;
                 text-align: center;
-                font-size: 0.85vw;
+                font-size: 0.8vw;
                 text-decoration: none;
                 background: whitesmoke;
                 color: #252525;
@@ -224,16 +226,16 @@
                 div 
                 {
                     display: flex;
-                    width: 39%;
+                    width: 35%;
                     padding-left: 10%;
                     height: fit-content;
                     margin: auto 0;
-                    font-size: 0.6vw;
+                    font-size: 0.5vw;
                 }
               }
               
               #role-filter-zone ul li a:hover{
-                background: rgba(0, 0, 0, 0.022)
+                background: rgba(0, 0, 0, 0.015)
               }
         }
     }

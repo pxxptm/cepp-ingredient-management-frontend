@@ -47,7 +47,6 @@ function EditIngredientsModal({
         console.log(res);
         if (res.status === 200) {
           setModalOpen(false);
-          refreshPage();
         }
       })
       .catch((error) => {

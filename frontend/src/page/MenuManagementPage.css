@@ -61,22 +61,20 @@
             width: 100%;
             height: fit-content;
             padding: 5% 0;
-            display: grid;
-            grid-template-columns: 7% 14%;
-            column-gap: 20%;
+            display: flex;
 
             h1
             {
                 font-family: 'Kanit', sans-serif;
                 font-size: 2.75vw;
                 font-weight: bold;
-                margin: auto;
+                margin: auto 5vw auto 0;
                 text-wrap: nowrap;
             }
 
             #add-menu-btn
             {
-                margin: auto;
+                margin: auto auto auto 0;
                 font-family: 'Kanit', sans-serif;
                 text-wrap: nowrap;
                 width: 7vw;
@@ -85,7 +83,7 @@
                 background-color: #00aa88;
                 color: white;
                 border: none;
-                border-radius: 0.7vw;
+                border-radius: 0 0.7vw 0.7vw 0;
                 border-width: 0;
                 display: flex;
                 align-items: center;
@@ -103,6 +101,142 @@
                     margin-right: 11%;
                 }
             }
+
+            #staff-search-space
+                    {
+                        margin: auto 0 auto auto;
+                        font-family: 'Kanit', sans-serif;
+                        text-wrap: nowrap;
+                        width: 35vw;
+                        height: 2.5vw;
+                        font-size: 0.85vw;
+                        outline: none;
+                        border: 0.1vw solid rgba(0, 0, 0, 0.3);
+                        padding: 0 2%;
+                        font-family: 'Kanit', sans-serif;
+                        text-wrap: nowrap;
+                        border-radius: 0.7vw 0 0 0.7vw;
+
+                        &:focus
+                        {
+                            background-color: #8888881a;
+                        }
+                    }
+
+            #role-filter-zone
+            {
+                margin: auto 0;
+                width: 8vw;
+            }
+
+            .sortInactive
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                padding: 0 4% 0 1%;
+                text-wrap: nowrap;
+                width: 100%;
+                height: 2.5vw;
+                font-size: 0.8vw;
+                background-color: rgb(110, 110, 110);
+                color: white;
+                border: none;
+                border-radius: 0.7vw;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .material-icons
+                {
+                    font-size: 0.6vw;
+                    margin-right: 3.5%;
+                }
+
+                &:hover
+                {
+                    background-color: rgb(100, 100, 100);
+                }
+            }
+
+            .sortActive
+            {
+                margin: auto 0;
+                font-family: 'Kanit', sans-serif;
+                padding: 0 4% 0 1%;
+                text-wrap: nowrap;
+                width: 100%;
+                height: 2.5vw;
+                font-size: 0.8vw;
+                background-color: rgb(110, 110, 110);
+                color: white;
+                border: none;
+                border-radius: 0.7vw 0.7vw 0 0 ;
+                border-width: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .material-icons
+                {
+                    font-size: 0.6vw;
+                    margin-right: 3.5%;
+                }
+
+                &:hover
+                {
+                    background-color: rgb(100, 100, 100);
+                }
+
+                
+            }
+
+            #role-filter-zone ul{
+                position: absolute;
+                right: 5.25vw;
+                padding: 0;
+                width: 10vw;
+                background: #ccc;
+                transform-origin: top;
+                transform: perspective(1000px) rotateX(-90deg);
+                border: 0.5px solid rgba(0, 0, 0,0.1);
+                border-radius: 0.4vw 0 0.4vw 0.4vw;
+                overflow: hidden;
+              }
+              
+              #role-filter-zone ul.active{
+                transform: perspective(1000px) rotateX(0deg);
+              }
+              
+              #role-filter-zone ul li {
+                list-style: none;
+              }
+              
+              #role-filter-zone ul li a {
+                display:flex;
+                padding: 10px;
+                font-family: 'Kanit', sans-serif;
+                text-align: center;
+                font-size: 0.8vw;
+                text-decoration: none;
+                background: whitesmoke;
+                color: #252525;
+                
+                
+                div 
+                {
+                    display: flex;
+                    width: 35%;
+                    padding-left: 10%;
+                    height: fit-content;
+                    margin: auto 0;
+                    font-size: 0.5vw;
+                }
+              }
+              
+              #role-filter-zone ul li a:hover{
+                background: rgba(0, 0, 0, 0.015)
+              }
         }
     }
 
@@ -941,9 +1075,16 @@
         }
         
     }
+    
 }
 
-
+#no-search-results
+        {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1vw;
+            color: #282828c2;
+        }
+        
 #Menu-management-page-content-table::-webkit-scrollbar {
     width: 0.25vw; /* Width of the scrollbar */
   }

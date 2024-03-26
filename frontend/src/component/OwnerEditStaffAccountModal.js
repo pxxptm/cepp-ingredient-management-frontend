@@ -47,7 +47,6 @@ function OwnerEditStaffAccountModal({
         // alert(res);
         if (res.status === 200) {
           setOpenModal(false);
-          refreshPage();
         }
       })
       .catch((error) => {

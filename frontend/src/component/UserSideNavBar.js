@@ -63,6 +63,56 @@ function OwnerSideNavBar(props) {
       });
   }, [accessToken, urlUserDetail]);
 
+  const urlOutOfStockIngredientList = `http://localhost:3001/ingredient/restaurant-checkIngredient/${props.restaurantId}`;
+  const [prevOOS, setPrevOOS] = useState([]);
+  const [prevNearOOS, setPrevNearOOS] = useState([]);
+
+  // Fetch ingredient list and update notification on changes
+  /*useEffect(() => {
+    const interval = setInterval(() => {
+      axios
+        .get(urlOutOfStockIngredientList, {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        })
+        .then((res) => {
+          const oos = res.data.filter((option) => option.amount === 0);
+          const nearly = res.data.filter(
+            (option) => option.amount <= option.atLeast && option.amount !== 0
+          );
+
+          // Check for new OOS ingredients
+          const newOOS = oos.filter(
+            (ingredient) => !prevOOS.find((prev) => prev._id === ingredient._id)
+          );
+
+          // Check for new NearOOS ingredients
+          const newNearOOS = nearly.filter(
+            (ingredient) =>
+              !prevNearOOS.find((prev) => prev._id === ingredient._id)
+          );
+
+          // Display notifications for new OOS and NearOOS ingredients
+          if (newOOS.length > 0) {
+            console.log("New OOS ingredients:", newOOS);
+          }
+
+          if (newNearOOS.length > 0) {
+            console.log("New NearOOS ingredients:", newNearOOS);
+          }
+
+          // Update previous lists
+          setPrevOOS(oos);
+          setPrevNearOOS(nearly);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 30000);
+    return () => clearInterval(interval);
+  }, [accessToken, urlOutOfStockIngredientList, prevOOS, prevNearOOS]);*/
+
   return (
     <div id="side-nav-bar">
       <div id="restaurant-profile">

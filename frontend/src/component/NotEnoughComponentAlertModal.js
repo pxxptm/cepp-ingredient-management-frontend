@@ -30,7 +30,6 @@ function NotEnoughComponentAlertModal({
     const existingItemIndex = latestOrder.findIndex(
       (item) => item.name === name && item.id === id
     );
-
     if (existingItemIndex !== -1) {
       const updatedLatestOrder = [...latestOrder];
       updatedLatestOrder[existingItemIndex].amount += amount;
@@ -41,10 +40,14 @@ function NotEnoughComponentAlertModal({
       );
     } else {
       const updatedOrder = [...latestOrder, { id, name, amount }];
+      
       setLatestOrder(updatedOrder);
       window.localStorage.setItem(LatestOrder, JSON.stringify(updatedOrder));
     }
     setAlertNotEnoughModal(false);
+    console.log(JSON.parse(
+      localStorage.getItem(LatestOrder)
+    ))
   };
 
   // Function to fetch component list

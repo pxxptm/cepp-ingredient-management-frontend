@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import './RestaurantRegisterModal.css';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import "./RestaurantRegisterModal.css";
+import axios from "axios";
 
 function RestaurantRegisterModal({ setOpenModal }) {
   // const [file, setFile] = useState('');
@@ -46,14 +46,17 @@ function RestaurantRegisterModal({ setOpenModal }) {
   //       'block';
   // };
 
-  const defaultPreviewImageUrl = "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
+  const defaultPreviewImageUrl =
+    "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
   const [previewImage, setPreviewImage] = useState(defaultPreviewImageUrl);
-  const [imageFile, setImageFile] = useState('')
-  let minioImagePath = defaultPreviewImageUrl
+  const [imageFile, setImageFile] = useState("");
+  let minioImagePath = defaultPreviewImageUrl;
 
   useEffect(() => {
-    document.getElementById('restaurantPic-pic').style.backgroundImage = `url(${previewImage})`
-  }, [previewImage])
+    document.getElementById(
+      "restaurantPic-pic"
+    ).style.backgroundImage = `url(${previewImage})`;
+  }, [previewImage]);
 
   function refreshPage() {
     window.location.reload();
@@ -61,59 +64,67 @@ function RestaurantRegisterModal({ setOpenModal }) {
 
   const fileUploadHandler = (e) => {
     const selectedFile = URL.createObjectURL(e.target.files[0]);
-    setImageFile(e.target.files[0])
-    setPreviewImage(selectedFile)
-  }
+    setImageFile(e.target.files[0]);
+    setPreviewImage(selectedFile);
+  };
 
   const removeImageHandler = () => {
-    setPreviewImage(defaultPreviewImageUrl)
-  }
+    setPreviewImage(defaultPreviewImageUrl);
+  };
 
   //update for axios post
-  const [restaurantName, setRestaurantName] = useState('');
-  const [restaurantDescription, setRestaurantDescription] = useState('');
-  const accessToken = localStorage.getItem('token');
+  const [restaurantName, setRestaurantName] = useState("");
+  const [restaurantDescription, setRestaurantDescription] = useState("");
+  const accessToken = localStorage.getItem("token");
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     if (previewImage !== defaultPreviewImageUrl) {
-      await axios.post('http://localhost:3001/file-upload/single', {
-        image: imageFile
-      }, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        }
-      }).then((res) => {
-        if (res.status === 201) {
-          minioImagePath = "http://" + res.data.image_url
-          console.log(minioImagePath)
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      await axios
+        .post(
+          "http://localhost:3001/file-upload/single",
+          {
+            image: imageFile,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((res) => {
+          if (res.status === 201) {
+            minioImagePath = "http://" + res.data.image_url;
+            console.log(minioImagePath);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     await axios
       .post(
-        'http://localhost:3001/restaurant',
+        "http://localhost:3001/restaurant",
         {
           name: restaurantName,
           description: restaurantDescription,
-          image: minioImagePath
+          image: minioImagePath,
+          closeStockTime: "00:00",
+          openStockTime: "00:00",
         },
         {
           headers: {
-            Authorization: 'Bearer ' + accessToken,
-            'Content-Type': 'application/json',
+            Authorization: "Bearer " + accessToken,
+            "Content-Type": "application/json",
           },
-        },
+        }
       )
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
           setOpenModal(false);
-          refreshPage()
         }
       })
       .catch((error) => {
@@ -156,7 +167,7 @@ function RestaurantRegisterModal({ setOpenModal }) {
                     accept="image/jpeg, image/png, image/jpg"
                     id="restaurantPic-file"
                     name="filename"
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     onChange={fileUploadHandler}
                   />
                   <label

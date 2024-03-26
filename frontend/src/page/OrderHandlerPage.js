@@ -25,6 +25,14 @@ function OrderHandlerPage({ username, restaurantId }) {
     haveOutOfStockIngredientMenuInOrderAlertModalOpen,
     setHaveOutOfStockIngredientMenuInOrderAlertModalOpen,
   ] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+
+  const [sortCriteriaTerm, setSortCriteriaTerm] = useState(0);
+  const [menuClassName, setMenuClassName] = useState("inactive");
+  const [menuBtnClassName, setMenuBtnClassName] = useState("sortInactive");
+  const [filterBtn1ClassName, setFilterBtn1ClassName] = useState("isChoose");
+  const [filterBtn2ClassName, setFilterBtn2ClassName] = useState("isNotChoose");
+  const [filterTerm, setFilterTerm] = useState(-1);
 
   // get ID
   useEffect(() => {
@@ -62,18 +70,19 @@ function OrderHandlerPage({ username, restaurantId }) {
   }, [urlRestaurantDetail, accessToken]);
 
   useEffect(() => {
-    const latestOrderFromStorage = JSON.parse(
-      localStorage.getItem(LatestOrder)
-    );
-    if (Array.isArray(latestOrderFromStorage)) {
-      let filteredOrder = latestOrderFromStorage.filter((order) => {
-        return menuList.some((menu) => menu._id === order.id);
-      });
+    const interval = setInterval(() => {
+      const latestOrderFromStorage = JSON.parse(
+        localStorage.getItem(LatestOrder)
+      );
+    
+        setLatestOrder(latestOrderFromStorage);
+        window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrderFromStorage));
+      
+    }, 100); // Update every 1 second
 
-      setLatestOrder(filteredOrder);
-      window.localStorage.setItem(LatestOrder, JSON.stringify(filteredOrder));
-    }
-  }, [menuList]);
+    // Clean up the interval on component unmount
+    return () => clearInterval(interval);
+  }); // Add menuList as a dependency
 
   useEffect(() => {
     const fetchMenuList = async () => {
@@ -86,22 +95,35 @@ function OrderHandlerPage({ username, restaurantId }) {
             },
           }
         );
-        setMenuList(menuResponse.data);
+        let menu = menuResponse.data;
+        if (sortCriteriaTerm === 0) {
+          setMenuList(menu);
+        } else if (sortCriteriaTerm === 1) {
+          const sortedMenuList = [...menu].sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
+
+          setMenuList(sortedMenuList);
+        }
       } catch (error) {
-        console.log(error);
+        console.log("menulist", error);
       }
     };
 
     fetchMenuList();
-
-    const intervalId = setInterval(() => {
-      fetchMenuList();
-    }, 1500);
-
-    return () => clearInterval(intervalId);
-  }, [restaurantId, accessToken]);
+  }, [restaurantId, accessToken, sortCriteriaTerm]); // Only re-run the effect if these dependencies change
 
   const addToOrderSummary = (id, name, amount) => {
+    // Check if latestOrder is null or undefined
+    if (!latestOrder) {
+      setLatestOrder([{ id, name, amount }]);
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify([{ id, name, amount }])
+      );
+      return;
+    }
+
     const existingItemIndex = latestOrder.findIndex(
       (item) => item.name === name && item.id === id
     );
@@ -215,6 +237,15 @@ function OrderHandlerPage({ username, restaurantId }) {
     navigate(urlOrderSummaryPage, { replace: false });
   }
 
+  const toggleMenu = () => {
+    setMenuClassName((prevClassName) =>
+      prevClassName === "active" ? "inactive" : "active"
+    );
+    setMenuBtnClassName((prevClassName) =>
+      prevClassName === "sortActive" ? "sortInactive" : "sortActive"
+    );
+  };
+
   return (
     <div id="order-handler-page">
       <link
@@ -268,28 +299,144 @@ function OrderHandlerPage({ username, restaurantId }) {
           />
         </div>
         <div id="order-handler-page-content-header">
-          <div>
+          <div id="menu-pic-card-zone">
+            <input
+              type="text"
+              placeholder="ค้นหาด้วยชื่อเมนู"
+              id="menu-search-space"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+
+            <div id="filter-zone">
+              <button
+                className={filterBtn1ClassName}
+                onClick={() => {
+                  if (filterBtn1ClassName === "isNotChoose") {
+                    setFilterBtn1ClassName("isChoose");
+                    setFilterBtn2ClassName("isNotChoose");
+                    setFilterTerm(-1);
+                  } else {
+                    setFilterBtn1ClassName("isChoose");
+                    setFilterTerm(-1);
+                  }
+                }}
+              >
+                แสดงรายการเมนูทั้งหมด
+              </button>
+              <button
+                className={filterBtn2ClassName}
+                onClick={() => {
+                  if (filterBtn2ClassName === "isNotChoose") {
+                    setFilterBtn1ClassName("isNotChoose");
+                    setFilterBtn2ClassName("isChoose");
+                    setFilterTerm(0);
+                  } else {
+                    setFilterBtn1ClassName("isChoose");
+                    setFilterBtn2ClassName("isNotChoose");
+                    setFilterTerm(-1);
+                  }
+                }}
+              >
+                แสดงเฉพาะเมนูที่ขายได้
+              </button>
+            </div>
+
+            <div id="role-filter-zone">
+              <button
+                className={menuBtnClassName}
+                id="role-filter"
+                onClick={toggleMenu}
+              >
+                <i className="material-icons" id="staff-name-icon">
+                  settings
+                </i>
+                การเรียงลำดับ
+              </button>
+              <ul className={menuClassName}>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      setSortCriteriaTerm(0);
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 0 && "⬤"}</div> วันสร้างเมนู
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      if (sortCriteriaTerm === 1) {
+                        setSortCriteriaTerm(0);
+                      } else {
+                        setSortCriteriaTerm(1);
+                      }
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 1 && "⬤"}</div> ชื่อเมนู
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="order-in-zone">
             <div>รายการออเดอร์</div>
-            { latestOrder.length > 0 &&
-              (<button
+            {latestOrder.length > 0 && (
+              <button
                 onClick={() => {
                   setDeleteAllOrderModalOpen(true);
                 }}
               >
                 ล้างรายการทั้งหมด
-              </button>)
-            }
+              </button>
+            )}
           </div>
         </div>
 
         <div id="order-handler-page-content">
           <div id="order-handler-page-content-inner">
+            {menuList.length > 0 &&
+              menuList.filter(
+                (menu) =>
+                  menu.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+                  menu.canCook >= filterTerm
+              ).length === 0 && (
+                <div id="order-page-no-search-results">
+                  <div id="no-search-results">
+                    <div id="search-off">
+                      <i className="material-icons">search_off</i>
+                    </div>
+                    <div id="text">
+                      ไม่พบเมนูที่คุณต้องการค้นหาในรายชื่อเมนูของคุณ
+                    </div>
+                  </div>
+                </div>
+              )}
             <div id="menu-list-cards">
               <div id="menu-list-cards-table">
                 {menuList.length > 0 &&
+                  menuList.filter(
+                    (menu) =>
+                      menu.name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) &&
+                      menu.canCook >= filterTerm
+                  ).length > 0 &&
                   menuList.map(
                     (menu, index) =>
-                      menu && ( // Check if restaurant is not null
+                      menu &&
+                      menu.name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) &&
+                      menu.canCook >= filterTerm && ( // Check if restaurant is not null
                         <div id="menu-card-container" key={menu._id}>
                           <div
                             id="menu-card"

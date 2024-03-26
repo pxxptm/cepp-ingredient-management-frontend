@@ -34,7 +34,7 @@ function DeleteRestaurantAuthModal({
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          const urlRestaurantListPage = "/" + { OwnerUsername } + "/restaurant"
+          const urlRestaurantListPage = "/" + OwnerUsername + "/restaurant"
           navigate(urlRestaurantListPage, { replace: true });
         }
       })

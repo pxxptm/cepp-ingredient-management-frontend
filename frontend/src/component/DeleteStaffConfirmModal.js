@@ -26,7 +26,7 @@ function DeleteStaffConfirmModal({
         }
       )
       .then((res) => {
-        refreshPage();
+        setDeleteStaffConfirmModalOpen(false)
       })
       .catch((error) => {
         console.log(error);

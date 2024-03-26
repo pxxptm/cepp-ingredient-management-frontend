@@ -158,7 +158,9 @@ function RestaurantMainPage({ username, restaurantId }) {
                                     </div>
 
                                     <div id="a-ingredient-container-col-2">
-                                      {ingredient.amount}
+                                      {Number.isInteger(ingredient.amount)
+                                        ? ingredient.amount
+                                        : ingredient.amount.toFixed(2)}
                                     </div>
 
                                     <div id="a-ingredient-container-col-3">
@@ -227,7 +229,8 @@ function RestaurantMainPage({ username, restaurantId }) {
                                     style={{
                                       borderBottom:
                                         index ===
-                                        outOfStockIngredientList.length - 1 && outOfStockIngredientList.length > 4
+                                          outOfStockIngredientList.length - 1 &&
+                                        outOfStockIngredientList.length > 4
                                           ? "none"
                                           : "0.1vw solid rgba(0, 0, 0, 0.2)",
                                     }}
@@ -252,7 +255,9 @@ function RestaurantMainPage({ username, restaurantId }) {
                                         </div>
 
                                         <div id="a-ingredient-container-col-2">
-                                          {ingredient.amount}
+                                          {Number.isInteger(ingredient.amount)
+                                            ? ingredient.amount
+                                            : ingredient.amount.toFixed(2)}
                                         </div>
 
                                         <div id="a-ingredient-container-col-3">
@@ -323,7 +328,8 @@ function RestaurantMainPage({ username, restaurantId }) {
 
                                       borderBottom:
                                         index ===
-                                        nearlyOutIngredientList.length - 1 && nearlyOutIngredientList.length > 4
+                                          nearlyOutIngredientList.length - 1 &&
+                                        nearlyOutIngredientList.length > 4
                                           ? "none"
                                           : "0.1vw solid rgba(0, 0, 0, 0.2)",
                                     }}
@@ -348,7 +354,9 @@ function RestaurantMainPage({ username, restaurantId }) {
                                         </div>
 
                                         <div id="a-ingredient-container-col-2">
-                                          {ingredient.amount}
+                                          {Number.isInteger(ingredient.amount)
+                                            ? ingredient.amount
+                                            : ingredient.amount.toFixed(2)}
                                         </div>
 
                                         <div id="a-ingredient-container-col-3">

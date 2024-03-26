@@ -21,7 +21,7 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   const [restaurantImage, setRestaurantImage] = useState();
   const defaultPreviewImageUrl =
     "http://100.111.182.51:9000/cepp/ff70481200101befa8a695726a8d7e91.png";
-    // State to hold delete mennu props
+  // State to hold delete mennu props
   const [deleteMenuProps, setDeleteMenuProps] = useState(null);
 
   // Function to handle delete menu click event and set props
@@ -57,9 +57,15 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
         },
       })
       .then((response) => {
-        if (JSON.stringify(response.data) !== JSON.stringify(menuList)) {
-          setMenuList(response.data);
-          
+        let menu = response.data;
+        if (sortCriteriaTerm === 0) {
+          setMenuList(menu);
+        } else if (sortCriteriaTerm === 1) {
+          const sortedMenuList = [...menu].sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
+
+          setMenuList(sortedMenuList);
         }
       })
       .catch((error) => {
@@ -99,27 +105,19 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
   // State to hold edit mennu props
   const [editMenuProps, setEditMenuProps] = useState(null);
 
-  /*
-  // Function to handle edit ingredient click event and set props
-  const handleEditmenu = (
-    menuId,
-    menuFName,
-    menuLName,
-    menuUsername,
-    menuRole
-  ) => {
-    setEditmenuModalOpen(true);
-    setEditmenuProps({
-      menuId,
-      menuFName,
-      menuLName,
-      menuUsername,
-      menuRole,
-    });
-  };
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const [sortCriteriaTerm, setSortCriteriaTerm] = useState(0);
+  const [menuClassName, setMenuClassName] = useState("inactive");
+  const [menuBtnClassName, setMenuBtnClassName] = useState("sortInactive");
 
-  // State to hold edit ingredient props
-  const [editmenuProps, setEditmenuProps] = useState(null); */
+  const toggleMenu = () => {
+    setMenuClassName((prevClassName) =>
+      prevClassName === "active" ? "inactive" : "active"
+    );
+    setMenuBtnClassName((prevClassName) =>
+      prevClassName === "sortActive" ? "sortInactive" : "sortActive"
+    );
+  };
 
   return (
     <div id="Menu-management-page">
@@ -173,6 +171,16 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
         <div id="Menu-management-page-content">
           <div id="Menu-management-page-content-header">
             <h1>รายการเมนู</h1>
+            <input
+              type="text"
+              placeholder="ค้นหาด้วยชื่อเมนู"
+              id="staff-search-space"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+
             <button
               id="add-menu-btn"
               onClick={() => {
@@ -181,14 +189,64 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
             >
               <span>+</span>เพิ่มเมนู
             </button>
+
+            <div id="role-filter-zone">
+              <button
+                className={menuBtnClassName}
+                id="role-filter"
+                onClick={toggleMenu}
+              >
+                <i className="material-icons" id="staff-name-icon">
+                  settings
+                </i>
+                การเรียงลำดับ
+              </button>
+              <ul className={menuClassName}>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      setSortCriteriaTerm(0);
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 0 && "⬤"}</div> วันสร้างเมนู
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      if (sortCriteriaTerm === 1) {
+                        setSortCriteriaTerm(0);
+                      } else {
+                        setSortCriteriaTerm(1);
+                      }
+                      setMenuBtnClassName("sortInactive");
+                      setMenuClassName("inactive");
+                    }}
+                  >
+                    <div>{sortCriteriaTerm === 1 && "⬤"}</div> ชื่อเมนู
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div id="Menu-management-page-content-table-zone">
             <div id="Menu-management-page-content-table">
-              {menuList.length > 0 &&
+              {menuList.filter(
+                (menu) =>
+                  menu &&
+                  menu.name.toLowerCase().includes(searchTerm.toLowerCase())
+              ).length !== 0 &&
                 menuList.map(
                   (menu, index) =>
-                    menu && ( // Check if menu is not null
+                    menu &&
+                    menu.name
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) && ( // Check if menu is not null
                       <div id="menu-block" key={menu.userId}>
                         {
                           <div id="a-menu-container">
@@ -279,6 +337,15 @@ function OwnerMenuManagementPage({ username, restaurantId }) {
                         }
                       </div>
                     )
+                )}
+
+              {menuList.length > 0 &&
+                menuList.filter((menu) =>
+                  menu.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ).length === 0 && (
+                  <div id="no-search-results">
+                    <p>ไม่พบเมนูที่คุณต้องการค้นหาในรายชื่อเมนูของคุณ .</p>
+                  </div>
                 )}
             </div>
           </div>

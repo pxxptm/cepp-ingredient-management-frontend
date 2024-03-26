@@ -29,7 +29,7 @@ function OrderSummaryPage({ username, restaurantId }) {
       })
       .then((res) => {
         setUseID(res.data);
-        console.log(LatestOrder);
+        //console.log(LatestOrder);
       })
       .catch((err) => {
         console.log(err);
@@ -61,11 +61,11 @@ function OrderSummaryPage({ username, restaurantId }) {
       const latestOrderFromStorage = JSON.parse(
         localStorage.getItem(LatestOrder)
       );
-      setLatestOrder(latestOrderFromStorage);
+      setLatestOrder(latestOrderFromStorage || []);
     });
-
+  
     return () => clearInterval(intervalId);
-  }); // Empty dependency array to run only once on mount
+  }, [latestOrder]); // Include latestOrder in the dependency array
 
   const increaseQuantity = (id) => {
     const updatedOrderSummary = latestOrder.map((item) =>
@@ -81,24 +81,27 @@ function OrderSummaryPage({ username, restaurantId }) {
         ? { ...item, amount: item.amount - 1 }
         : item
     );
-
+     
     setLatestOrder(updatedLatestOrder);
     updateLocalStorage(updatedLatestOrder);
   };
 
   const updateQuantity = (id, newAmount) => {
-    if (newAmount <= 0) {
-      // If the new amount is 0 or less, remove the item from orderSummary
-      setLatestOrder((prevLatestOrder) =>
-        prevLatestOrder.filter((item) => item.id !== id)
+    if (newAmount <0) {
+      // If the new amount is 0 or less, remove the item from latestOrder
+      setLatestOrder(prevLatestOrder =>
+        prevLatestOrder.filter(item => item.id !== id)
       );
+      // Remove the item from local storage as well
+      const updatedLatestOrder = latestOrder.filter(item => item.id !== id);
+      window.localStorage.setItem(LatestOrder, JSON.stringify(updatedLatestOrder));
     } else {
       // Otherwise, update the quantity of the item
-      const updatedLatestOrder = latestOrder.map((item) =>
+      const updatedLatestOrder = latestOrder.map(item =>
         item.id === id ? { ...item, amount: newAmount } : item
       );
       setLatestOrder(updatedLatestOrder);
-      updateLocalStorage(updatedLatestOrder);
+      window.localStorage.setItem(LatestOrder, JSON.stringify(updatedLatestOrder));
     }
   };
 
@@ -219,7 +222,7 @@ function OrderSummaryPage({ username, restaurantId }) {
                           <button
                             className="remove-button"
                             onClick={() => {
-                              updateQuantity(order.id, 0);
+                              updateQuantity(order.id, -1);
                             }}
                           >
                             ลบเมนู

@@ -147,7 +147,7 @@ function EditRestaurantPage({ username, restaurantId }) {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          refreshPage();
+          refreshPage()
         }
       })
       .catch((error) => {

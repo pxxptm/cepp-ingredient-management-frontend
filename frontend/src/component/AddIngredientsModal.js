@@ -38,7 +38,6 @@ function AddIngredientsModal({ restaurantId, setModalOpen }) {
         console.log(res);
         if (res.status === 201) {
           setModalOpen(false);
-          refreshPage();
         }
       })
       .catch((error) => {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./MenuDetailModal.css";
+import Select from "react-select";
 
 function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
   const defaultPreviewImageUrl =
@@ -111,15 +112,19 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
     setMenuData({ ...menuData, name: menuNameEdit });
   };
 
-  const handleComponentChange = (e) => {
-    const selectedComponentName = e.target.value;
-    console.log(selectedComponentName);
-    const selectedIngredient = ingredientList.find(
-      (ingredient) => ingredient.name === selectedComponentName
-    );
-    if (selectedIngredient) {
-      setComponentUnit(selectedIngredient.unit);
-      setComponentId(selectedIngredient._id);
+  const handleComponentChange = (selectedOption) => {
+    if (selectedOption) {
+      const selectedIngredient = ingredientList.find(
+        (ingredient) => ingredient.name === selectedOption.value
+      );
+      if (selectedIngredient) {
+        setComponentUnit(selectedIngredient.unit);
+        setComponentId(selectedIngredient._id);
+      }
+    } else {
+      // Handle the case when no option is selected
+      setComponentUnit(""); // Clear the unit
+      setComponentId(""); // Clear the component ID
     }
   };
 
@@ -147,14 +152,11 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
         console.log(error);
       });
     setAddComponentMode(false);
+    setComponentUnit("")
   };
 
   const handleEditComponent = (e) => {
     e.preventDefault();
-    console.log("Editing component with ID:", editComponentID);
-    console.log("New amount:", componentAmountEdit);
-    console.log("New priority:", componentPriorityEdit);
-
     axios
       .patch(
         `http://localhost:3001/component/${editComponentID}`,
@@ -247,7 +249,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
         }
       )
       .then((res) => {
-        console.log("Menu image updated successfully.");
+        //console.log("Menu image updated successfully.");
       })
       .catch((error) => {
         console.log(error);
@@ -277,6 +279,70 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
         console.log(error);
       });
   }
+
+  const options = [
+    ...ingredientList
+      .map((ingredient, index) => {
+        const isInMenuComponent = menuComponent.some(
+          (component) => component.ingredientId === ingredient._id
+        );
+        if (!isInMenuComponent && ingredient.name) {
+          return { value: ingredient.name, label: ingredient.name };
+        }
+        return null;
+      })
+      .filter((option) => option !== null),
+  ];
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      background: "white",
+      display: "flex",
+      flexWrap: "nowrap",
+      border: "0.1vw solid rgba(0,0,0,0.4)",
+      width: "100%",
+      height: "100%",
+      fontSize: "0.85vw",
+      borderRadius: "0.5vw",
+      padding: "0.5% 3%",
+      backgroundColor: "transparent",
+      appearance: "none",
+      boxShadow: "none",
+      outline: "none",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      background: "white",
+      width: "100%",
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      maxHeight: "30vh",
+      overflow: "auto",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      background: state.isFocused ? "white" : "white",
+      color: "rgba(0,0,0,0.75)",
+      "&:hover": {
+        background: "rgba(0,0,0,0.08)",
+        cursor: "pointer",
+      },
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "rgba(0,0,0,0.75)",
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      display: "none", // Hide the dropdown indicator
+    }),
+    indicatorSeparator: (provided) => ({
+      ...provided,
+      display: "none", // Hide the indicator separator
+    }),
+  };
 
   return (
     <div className="edit-menu-modalBackground">
@@ -351,6 +417,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                   id="cancel-adding"
                   onClick={() => {
                     setAddComponentMode(false);
+                    setComponentUnit("");
                   }}
                 >
                   ยกเลิกการเพิ่มวัตถุดิบ
@@ -359,7 +426,9 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                 <button
                   id="adding"
                   onClick={() => {
-                    setAddComponentMode(true);
+                    if (!editComponentMode) {
+                      setAddComponentMode(true);
+                    }
                   }}
                 >
                   <span>+</span>เพิ่มวัตถุดิบในเมนู
@@ -378,40 +447,20 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                     {addComponentMode && (
                       <div className="component-block" id="add-new">
                         <div id="add-new-div">
-                          <select
+                          <Select
+                            styles={customStyles}
                             name="contact back time"
                             id="new-component-select"
-                            onChange={(e) => {
-                              handleComponentChange(e);
-                            }}
-                          >
-                            <option
-                              value=""
-                              disabled
-                              selected
-                              id="new-component-select-option"
-                            >
-                              เลือกวัตถุดิบจากคลังวัตถุดิบ *
-                            </option>
-                            {ingredientList.length > 0 &&
-                              ingredientList.map((ingredient, index) => {
-                                const isInMenuComponent = menuComponent.some(
-                                  (component) =>
-                                    component.ingredientId === ingredient._id
-                                );
-
-                                // Only render the option if the ingredientId is not in menuComponent
-                                if (!isInMenuComponent) {
-                                  return (
-                                    <option key={index} value={ingredient.name}>
-                                      {ingredient.name}
-                                    </option>
-                                  );
-                                } else {
-                                  return null; // Don't render the option
-                                }
-                              })}
-                          </select>
+                            className="custom-select"
+                            options={options}
+                            placeholder="เลือกวัตถุดิบ"
+                            filterOption={(option, inputValue) =>
+                              option.label
+                                .toLowerCase()
+                                .includes(inputValue.toLowerCase())
+                            }
+                            onChange={handleComponentChange}
+                          />
                         </div>
                         <div id="component-amount-div">
                           <input
@@ -483,14 +532,16 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                 <div
                                   id="componentName"
                                   onClick={() => {
-                                    setEditComponentIndex(index);
-                                    setComponentAmountEdit(
-                                      component.ingredientAmount
-                                    );
-                                    setComponentPriorityEdit(
-                                      component.priority
-                                    );
-                                    setEditComponentID(component._id);
+                                    if (!addComponentMode) {
+                                      setEditComponentIndex(index);
+                                      setComponentAmountEdit(
+                                        component.ingredientAmount
+                                      );
+                                      setComponentPriorityEdit(
+                                        component.priority
+                                      );
+                                      setEditComponentID(component._id);
+                                    }
                                   }}
                                 >
                                   {componentData[0].name}
@@ -498,14 +549,16 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                 <div
                                   id="componentAmount"
                                   onClick={() => {
-                                    setEditComponentIndex(index);
-                                    setComponentAmountEdit(
-                                      component.ingredientAmount
-                                    );
-                                    setComponentPriorityEdit(
-                                      component.priority
-                                    );
-                                    setEditComponentID(component._id);
+                                    if (!addComponentMode) {
+                                      setEditComponentIndex(index);
+                                      setComponentAmountEdit(
+                                        component.ingredientAmount
+                                      );
+                                      setComponentPriorityEdit(
+                                        component.priority
+                                      );
+                                      setEditComponentID(component._id);
+                                    }
                                   }}
                                 >
                                   {component.ingredientAmount}
@@ -513,14 +566,16 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                 <div
                                   id="componentUnit"
                                   onClick={() => {
-                                    setEditComponentIndex(index);
-                                    setComponentAmountEdit(
-                                      component.ingredientAmount
-                                    );
-                                    setComponentPriorityEdit(
-                                      component.priority
-                                    );
-                                    setEditComponentID(component._id);
+                                    if (!addComponentMode) {
+                                      setEditComponentIndex(index);
+                                      setComponentAmountEdit(
+                                        component.ingredientAmount
+                                      );
+                                      setComponentPriorityEdit(
+                                        component.priority
+                                      );
+                                      setEditComponentID(component._id);
+                                    }
                                   }}
                                 >
                                   {componentData[0].unit}
@@ -530,14 +585,16 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
                                     id="componentPriority"
                                     style={{ color: "#A00000" }}
                                     onClick={() => {
-                                      setEditComponentIndex(index);
-                                      setComponentAmountEdit(
-                                        component.ingredientAmount
-                                      );
-                                      setComponentPriorityEdit(
-                                        component.priority
-                                      );
-                                      setEditComponentID(component._id);
+                                      if (!addComponentMode) {
+                                        setEditComponentIndex(index);
+                                        setComponentAmountEdit(
+                                          component.ingredientAmount
+                                        );
+                                        setComponentPriorityEdit(
+                                          component.priority
+                                        );
+                                        setEditComponentID(component._id);
+                                      }
                                     }}
                                   >
                                     สำคัญมาก
