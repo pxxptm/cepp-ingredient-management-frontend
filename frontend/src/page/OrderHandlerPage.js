@@ -74,10 +74,10 @@ function OrderHandlerPage({ username, restaurantId }) {
       const latestOrderFromStorage = JSON.parse(
         localStorage.getItem(LatestOrder)
       );
-    
-        setLatestOrder(latestOrderFromStorage);
-        window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrderFromStorage));
-      
+
+      setLatestOrder(latestOrderFromStorage);
+      window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrderFromStorage));
+
     }, 100); // Update every 1 second
 
     // Clean up the interval on component unmount
@@ -208,8 +208,8 @@ function OrderHandlerPage({ username, restaurantId }) {
 
   const orderSummaryFiltered = Array.isArray(latestOrder)
     ? latestOrder.filter((order) =>
-        menuList.some((menu) => menu._id === order.id)
-      )
+      menuList.some((menu) => menu._id === order.id)
+    )
     : [];
 
   // Calculate the sum of quantities in the order summary list
@@ -389,7 +389,7 @@ function OrderHandlerPage({ username, restaurantId }) {
           </div>
           <div id="order-in-zone">
             <div>รายการออเดอร์</div>
-            {latestOrder.length > 0 && (
+            {latestOrder != null && latestOrder.length > 0 && (
               <button
                 onClick={() => {
                   setDeleteAllOrderModalOpen(true);
@@ -461,7 +461,7 @@ function OrderHandlerPage({ username, restaurantId }) {
                               }}
                             >
                               {/* Display the quantity of this menu item in the order summary */}
-                              {latestOrder.map((item) => {
+                              {latestOrder != null && latestOrder.map((item) => {
                                 if (
                                   item.id === menu._id &&
                                   menuList.find(
@@ -507,7 +507,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
           <div id="order-summary-zone">
             <div id="order-summary-list-box">
-              {latestOrder.map((order, index) => (
+              {latestOrder != null && latestOrder.map((order, index) => (
                 <div
                   id="a-order-block"
                   key={index}
@@ -521,9 +521,9 @@ function OrderHandlerPage({ username, restaurantId }) {
                   <div id="a-order-block-menu-name">{order.name}</div>
                   <div id="a-order-block-menu-amount">
                     {order.amount > 0 &&
-                    menuList.find(
-                      (menu) => menu._id === order.id && menu.canCook !== -1
-                    ) ? (
+                      menuList.find(
+                        (menu) => menu._id === order.id && menu.canCook !== -1
+                      ) ? (
                       <div id="a-order-block-menu-amount-editor">
                         {/* Increase and Decrease buttons for adjusting quantity */}
                         <button
@@ -587,7 +587,7 @@ function OrderHandlerPage({ username, restaurantId }) {
             <div
               id="commit-order-btn"
               style={{
-                display: latestOrder.length === 0 ? "none" : "flex",
+                display: (latestOrder != null && latestOrder.length === 0) ? "none" : "flex",
               }}
             >
               <button onClick={commitOrderHandler}>สรุปออเดอร์</button>
@@ -598,7 +598,7 @@ function OrderHandlerPage({ username, restaurantId }) {
         <div
           id="commit-order-btn-small-media"
           style={{
-            display: latestOrder.length === 0 ? "none" : "flex",
+            display: (latestOrder != null && latestOrder.length === 0) ? "none" : "flex",
           }}
         >
           <button onClick={commitOrderHandler}>
