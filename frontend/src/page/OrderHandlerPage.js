@@ -74,17 +74,18 @@ function OrderHandlerPage({ username, restaurantId }) {
       const latestOrderFromStorage = JSON.parse(
         localStorage.getItem(LatestOrder)
       );
-<<<<<<< HEAD
-    
-        setLatestOrder(latestOrderFromStorage||[]);
-        window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrderFromStorage));
-      
-=======
+
+      setLatestOrder(latestOrderFromStorage || []);
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(latestOrderFromStorage)
+      );
 
       setLatestOrder(latestOrderFromStorage);
-      window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrderFromStorage));
-
->>>>>>> c99bf8f0ff69b7b76870ccc6a19fa193786aad8b
+      window.localStorage.setItem(
+        LatestOrder,
+        JSON.stringify(latestOrderFromStorage)
+      );
     }, 100); // Update every 1 second
 
     // Clean up the interval on component unmount
@@ -215,8 +216,8 @@ function OrderHandlerPage({ username, restaurantId }) {
 
   const orderSummaryFiltered = Array.isArray(latestOrder)
     ? latestOrder.filter((order) =>
-      menuList.some((menu) => menu._id === order.id)
-    )
+        menuList.some((menu) => menu._id === order.id)
+      )
     : [];
 
   // Calculate the sum of quantities in the order summary list
@@ -234,8 +235,13 @@ function OrderHandlerPage({ username, restaurantId }) {
       return menuItem && menuItem.canCook === -1;
     });
 
+    const hasCllosedMenu = latestOrder.some((order) => {
+      const menuItem = menuList.find((menuItem) => menuItem._id === order.id);
+      return !menuItem;
+    });
+
     // If any item has canCook === -1, show alert
-    if (hasOutOfStockMainIngredients) {
+    if (hasOutOfStockMainIngredients || hasCllosedMenu) {
       setHaveOutOfStockIngredientMenuInOrderAlertModalOpen(true);
       return; // Stop further execution
     }
@@ -410,7 +416,8 @@ function OrderHandlerPage({ username, restaurantId }) {
 
         <div id="order-handler-page-content">
           <div id="order-handler-page-content-inner">
-            {menuList && menuList.length > 0 &&
+            {menuList &&
+              menuList.length > 0 &&
               menuList.filter(
                 (menu) =>
                   menu.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -429,7 +436,8 @@ function OrderHandlerPage({ username, restaurantId }) {
               )}
             <div id="menu-list-cards">
               <div id="menu-list-cards-table">
-                {menuList && menuList.length > 0 &&
+                {menuList &&
+                  menuList.length > 0 &&
                   menuList.filter(
                     (menu) =>
                       menu.name
@@ -468,22 +476,23 @@ function OrderHandlerPage({ username, restaurantId }) {
                               }}
                             >
                               {/* Display the quantity of this menu item in the order summary */}
-                              {latestOrder != null && latestOrder.map((item) => {
-                                if (
-                                  item.id === menu._id &&
-                                  menuList.find(
-                                    (menuItem) => menuItem._id === item.id
-                                  )?.canCook !== -1 &&
-                                  item.amount > 0
-                                ) {
-                                  return (
-                                    <div id="amount-shown-box" key={item.id}>
-                                      <div>{item.amount}</div>
-                                    </div>
-                                  );
-                                }
-                                return null;
-                              })}
+                              {latestOrder != null &&
+                                latestOrder.map((item) => {
+                                  if (
+                                    item.id === menu._id &&
+                                    menuList.find(
+                                      (menuItem) => menuItem._id === item.id
+                                    )?.canCook !== -1 &&
+                                    item.amount > 0
+                                  ) {
+                                    return (
+                                      <div id="amount-shown-box" key={item.id}>
+                                        <div>{item.amount}</div>
+                                      </div>
+                                    );
+                                  }
+                                  return null;
+                                })}
                             </div>
                             <div id="menu-card-content">
                               <div id="menu-card-name">{menu.name}</div>
@@ -514,91 +523,120 @@ function OrderHandlerPage({ username, restaurantId }) {
 
           <div id="order-summary-zone">
             <div id="order-summary-list-box">
-              {latestOrder != null && latestOrder.map((order, index) => (
-                <div
-                  id="a-order-block"
-                  key={index}
-                  style={{
-                    ...(menuList.find((item) => item._id === order.id)
-                      ?.canCook === -1
-                      ? { backgroundColor: "#ffe6e6" }
-                      : {}),
-                  }}
-                >
-                  <div id="a-order-block-menu-name">{order.name}</div>
-                  <div id="a-order-block-menu-amount">
-                    {order.amount > 0 &&
+              {latestOrder != null &&
+                latestOrder.map((order, index) => (
+                  <div
+                    id="a-order-block"
+                    key={index}
+                    style={{
+                      backgroundColor:
+                        menuList.find((item) => item._id === order.id)
+                          ?.canCook === -1 ||
+                        !menuList.find((item) => item._id === order.id)
+                          ? "#ffe6e6"
+                          : "inherit",
+                    }}
+                  >
+                    <div id="a-order-block-menu-name">{order.name}</div>
+                    <div id="a-order-block-menu-amount">
+                      {order.amount > 0 &&
                       menuList.find(
                         (menu) => menu._id === order.id && menu.canCook !== -1
                       ) ? (
-                      <div id="a-order-block-menu-amount-editor">
-                        {/* Increase and Decrease buttons for adjusting quantity */}
-                        <button
-                          className="value-button"
-                          onClick={() => decreaseQuantity(order.id)}
-                        >
-                          -
-                        </button>
-                        <input
-                          type="number"
-                          value={order.amount}
-                          onChange={(e) =>
-                            updateQuantity(order.id, parseInt(e.target.value))
+                        <div id="a-order-block-menu-amount-editor">
+                          {/* Increase and Decrease buttons for adjusting quantity */}
+                          <button
+                            className="value-button"
+                            onClick={() => decreaseQuantity(order.id)}
+                          >
+                            -
+                          </button>
+                          <input
+                            type="number"
+                            value={order.amount}
+                            onChange={(e) =>
+                              updateQuantity(order.id, parseInt(e.target.value))
+                            }
+                          />
+                          <button
+                            className="value-button"
+                            onClick={() => increaseQuantity(order.id)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      ) : menuList.find(
+                          (menu) => menu._id === order.id && menu.canCook === -1
+                        ) ? (
+                        <div id="choice-remove-menu-form-order">
+                          {menuList.find((item) => item._id === order.id)
+                            ?.canCook !== -1 ? (
+                            <button
+                              className="cancel-remove-button"
+                              onClick={() => updateQuantity(order.id, 1)}
+                            >
+                              ยกเลิก
+                            </button>
+                          ) : (
+                            <button
+                              className="cancel-remove-button"
+                              style={{
+                                backgroundColor: "transparent",
+                                color: "#990000",
+                                textWrap: "nowrap",
+                                width: "fit-content",
+                                marginRight: "15%",
+                                marginLeft: "-90%",
+                                cursor: "default",
+                              }}
+                            >
+                              วัตถุดิบหลักหมด , กรุณาลบรายการนี้ออกจากออเดอร์
+                            </button>
+                          )}
+                          <button
+                            className="remove-button"
+                            onClick={() => updateQuantity(order.id, -1)}
+                          >
+                            ลบเมนู
+                          </button>
+                        </div>
+                      ) : (
+                        <div id="choice-remove-menu-form-order">
+                          {
+                            <button
+                              className="cancel-remove-button"
+                              style={{
+                                backgroundColor: "transparent",
+                                color: "#990000",
+                                textWrap: "nowrap",
+                                width: "fit-content",
+                                marginRight: "25%",
+                                marginLeft: "-90%",
+                                cursor: "default",
+                              }}
+                            >
+                              ปิดการขาย , กรุณาลบรายการนี้ออกจากออเดอร์
+                            </button>
                           }
-                        />
-                        <button
-                          className="value-button"
-                          onClick={() => increaseQuantity(order.id)}
-                        >
-                          +
-                        </button>
-                      </div>
-                    ) : (
-                      <div id="choice-remove-menu-form-order">
-                        {menuList.find((item) => item._id === order.id)
-                          ?.canCook !== -1 ? (
                           <button
-                            className="cancel-remove-button"
-                            onClick={() => updateQuantity(order.id, 1)}
+                            className="remove-button"
+                            onClick={() => updateQuantity(order.id, -1)}
                           >
-                            ยกเลิก
+                            ลบเมนู
                           </button>
-                        ) : (
-                          <button
-                            className="cancel-remove-button"
-                            style={{
-                              backgroundColor: "transparent",
-                              color: "#990000",
-                              textWrap: "nowrap",
-                              width: "fit-content",
-                              marginRight: "15%",
-                              marginLeft: "-90%",
-                              cursor: "default",
-                            }}
-                          >
-                            วัตถุดิบหลักหมด , กรุณาลบรายการนี้ออกจากออเดอร์
-                          </button>
-                        )}
-                        <button
-                          className="remove-button"
-                          onClick={() => updateQuantity(order.id, -1)}
-                        >
-                          ลบเมนู
-                        </button>
-                      </div>
-                    )}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
             <div
               id="commit-order-btn"
               style={{
-<<<<<<< HEAD
-                display: latestOrder?.length === 0 ? "none" : "flex",
-=======
-                display: (latestOrder != null && latestOrder.length === 0) ? "none" : "flex",
->>>>>>> c99bf8f0ff69b7b76870ccc6a19fa193786aad8b
+                display:
+                  latestOrder != null && latestOrder.length === 0
+                    ? "none"
+                    : "flex",
               }}
             >
               <button onClick={commitOrderHandler}>สรุปออเดอร์</button>
@@ -609,11 +647,8 @@ function OrderHandlerPage({ username, restaurantId }) {
         <div
           id="commit-order-btn-small-media"
           style={{
-<<<<<<< HEAD
-            display: latestOrder?.length === 0 ? "none" : "flex",
-=======
-            display: (latestOrder != null && latestOrder.length === 0) ? "none" : "flex",
->>>>>>> c99bf8f0ff69b7b76870ccc6a19fa193786aad8b
+            display:
+              latestOrder != null && latestOrder.length === 0 ? "none" : "flex",
           }}
         >
           <button onClick={commitOrderHandler}>
