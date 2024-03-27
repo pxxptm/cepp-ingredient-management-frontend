@@ -467,7 +467,6 @@
             margin: auto;
             padding-bottom: -30%;
             overflow: auto;
-            padding-right: 2%;
 
             #a-order-block
             {
@@ -475,7 +474,7 @@
                 height: fit-content;
                 display: flex;
                 flex-direction: column;
-                padding: 7% 6%;
+                padding: 7% 9% 7% 6%;
                 border-bottom: 0.1vw solid rgba(0, 0, 0, 0.129);
 
                 #a-order-block-menu-name

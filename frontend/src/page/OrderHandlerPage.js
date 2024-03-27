@@ -33,6 +33,7 @@ function OrderHandlerPage({ username, restaurantId }) {
   const [filterBtn1ClassName, setFilterBtn1ClassName] = useState("isChoose");
   const [filterBtn2ClassName, setFilterBtn2ClassName] = useState("isNotChoose");
   const [filterTerm, setFilterTerm] = useState(-1);
+  const [alertState, setAlertState] = useState(0);
 
   // get ID
   useEffect(() => {
@@ -119,7 +120,7 @@ function OrderHandlerPage({ username, restaurantId }) {
     };
 
     fetchMenuList();
-  }, [restaurantId, accessToken, sortCriteriaTerm]); // Only re-run the effect if these dependencies change
+  }, [restaurantId, sortCriteriaTerm]);
 
   const addToOrderSummary = (id, name, amount) => {
     // Check if latestOrder is null or undefined
@@ -243,6 +244,13 @@ function OrderHandlerPage({ username, restaurantId }) {
     // If any item has canCook === -1, show alert
     if (hasOutOfStockMainIngredients || hasCllosedMenu) {
       setHaveOutOfStockIngredientMenuInOrderAlertModalOpen(true);
+      if (hasOutOfStockMainIngredients && hasCllosedMenu) {
+        setAlertState(1);
+      } else if (hasOutOfStockMainIngredients) {
+        setAlertState(2);
+      } else {
+        setAlertState(3);
+      }
       return; // Stop further execution
     }
 
@@ -289,6 +297,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
         {haveOutOfStockIngredientMenuInOrderAlertModalOpen && (
           <HaveOutOfStockIngredientMenuInOrderAlertModal
+            alertState={alertState}
             setHaveOutOfStockIngredientMenuInOrderAlertModalOpen={
               setHaveOutOfStockIngredientMenuInOrderAlertModalOpen
             }
@@ -565,9 +574,7 @@ function OrderHandlerPage({ username, restaurantId }) {
                             +
                           </button>
                         </div>
-                      ) : menuList.find(
-                          (menu) => menu._id === order.id 
-                        ) ? (
+                      ) : menuList.find((menu) => menu._id === order.id) ? (
                         <div id="choice-remove-menu-form-order">
                           {menuList.find((item) => item._id === order.id)
                             ?.canCook !== -1 ? (
@@ -585,12 +592,12 @@ function OrderHandlerPage({ username, restaurantId }) {
                                 color: "#990000",
                                 textWrap: "nowrap",
                                 width: "fit-content",
-                                marginRight: "15%",
+                                marginRight: "20%",
                                 marginLeft: "-90%",
                                 cursor: "default",
                               }}
                             >
-                              วัตถุดิบหลักหมด , กรุณาลบรายการนี้ออกจากออเดอร์
+                              วัตถุดิบหลักหมด , กรุณาลบเมนูนี้ออกจากออเดอร์
                             </button>
                           )}
                           <button
@@ -610,12 +617,12 @@ function OrderHandlerPage({ username, restaurantId }) {
                                 color: "#990000",
                                 textWrap: "nowrap",
                                 width: "fit-content",
-                                marginRight: "25%",
+                                marginRight: "35%",
                                 marginLeft: "-90%",
                                 cursor: "default",
                               }}
                             >
-                              ปิดการขาย , กรุณาลบรายการนี้ออกจากออเดอร์
+                              ปิดการขาย , กรุณาลบเมนูนี้ออกจากออเดอร์
                             </button>
                           }
                           <button

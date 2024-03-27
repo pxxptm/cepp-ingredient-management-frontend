@@ -1,8 +1,9 @@
 import React from "react";
-import "./HaveOutOfStockIngredientMenuInOrderAlertModal.css"
+import "./HaveOutOfStockIngredientMenuInOrderAlertModal.css";
 
 function HaveOutOfStockIngredientMenuInOrderAlertModal({
   setHaveOutOfStockIngredientMenuInOrderAlertModalOpen,
+  alertState,
 }) {
   return (
     <div className="complete-order-modalBackground">
@@ -58,12 +59,16 @@ function HaveOutOfStockIngredientMenuInOrderAlertModal({
             id="complete-order-txt"
             style={{ lineHeight: "200%", color: "rgb(146, 0, 0)" }}
           >
-            มีเมนูที่วัตถุดิบหลักหมด <br />{" "}
-            กรุณาลบรายการเหล่านั้นจากออเดอร์ของคุณ
+            {alertState === 1
+              ? "มีเมนูที่วัตถุดิบหลักหมดและปิดการขาย"
+              : alertState === 2
+              ? "มีเมนูที่วัตถุดิบหลักหมด"
+              : "มีเมนูที่ปิดการขาย"}{" "}
+            <br /> กรุณาลบรายการเหล่านั้นจากออเดอร์ของคุณ
           </div>
         </div>
         <div id="have-out-of-stock-order-btn">
-          <button 
+          <button
             onClick={() => {
               setHaveOutOfStockIngredientMenuInOrderAlertModalOpen(false);
             }}
