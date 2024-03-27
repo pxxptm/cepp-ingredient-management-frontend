@@ -11,8 +11,8 @@ import DeleteAllOrderMadal from "../component/DeleteAllOrderMadal";
 function OrderHandlerPage({ username, restaurantId }) {
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
   const accessToken = localStorage.getItem("token");
-  const [restaurantName, setRestaurantName] = useState();
-  const [restaurantImage, setRestaurantImage] = useState();
+  const [restaurantName, setRestaurantName] = useState("");
+  const [restaurantImage, setRestaurantImage] = useState("");
   const [menuList, setMenuList] = useState([]);
   const [latestOrder, setLatestOrder] = useState([]);
   const [alertNotEnoughModal, setAlertNotEnoughModal] = useState(false);
@@ -75,7 +75,7 @@ function OrderHandlerPage({ username, restaurantId }) {
         localStorage.getItem(LatestOrder)
       );
     
-        setLatestOrder(latestOrderFromStorage);
+        setLatestOrder(latestOrderFromStorage||[]);
         window.localStorage.setItem(LatestOrder, JSON.stringify(latestOrderFromStorage));
       
     }, 100); // Update every 1 second
@@ -403,7 +403,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
         <div id="order-handler-page-content">
           <div id="order-handler-page-content-inner">
-            {menuList.length > 0 &&
+            {menuList && menuList.length > 0 &&
               menuList.filter(
                 (menu) =>
                   menu.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -422,7 +422,7 @@ function OrderHandlerPage({ username, restaurantId }) {
               )}
             <div id="menu-list-cards">
               <div id="menu-list-cards-table">
-                {menuList.length > 0 &&
+                {menuList && menuList.length > 0 &&
                   menuList.filter(
                     (menu) =>
                       menu.name
@@ -587,7 +587,7 @@ function OrderHandlerPage({ username, restaurantId }) {
             <div
               id="commit-order-btn"
               style={{
-                display: latestOrder.length === 0 ? "none" : "flex",
+                display: latestOrder?.length === 0 ? "none" : "flex",
               }}
             >
               <button onClick={commitOrderHandler}>สรุปออเดอร์</button>
@@ -598,7 +598,7 @@ function OrderHandlerPage({ username, restaurantId }) {
         <div
           id="commit-order-btn-small-media"
           style={{
-            display: latestOrder.length === 0 ? "none" : "flex",
+            display: latestOrder?.length === 0 ? "none" : "flex",
           }}
         >
           <button onClick={commitOrderHandler}>

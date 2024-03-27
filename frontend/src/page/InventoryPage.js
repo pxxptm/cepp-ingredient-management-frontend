@@ -266,18 +266,17 @@ export default function OwnerInventoryPage({ username, restaurantId }) {
         setCanOpen(true);
       } else {
         // Format openStockTimeChange and closeStockTimeChange
-        let openTime = new Date();
-        openTime.setHours(...openStockTimeChange.split(":"));
-        let closeTime = new Date();
-        closeTime.setHours(...closeStockTimeChange.split(":"));
-        //console.log(currentTime, openTime, closeTime);
-
-        // Check if currentTime is between openStockTimeChange and closeStockTimeChange
-
-        if (currentTime >= openTime && currentTime <= closeTime) {
-          setCanOpen(true);
-        } else {
-          setCanOpen(false);
+        if (openStockTimeChange && closeStockTimeChange) {
+          let openTime = new Date();
+          openTime.setHours(...openStockTimeChange.split(":"));
+          let closeTime = new Date();
+          closeTime.setHours(...closeStockTimeChange.split(":"));
+          // Check if currentTime is between openStockTimeChange and closeStockTimeChange
+          if (currentTime >= openTime && currentTime <= closeTime) {
+            setCanOpen(true);
+          } else {
+            setCanOpen(false);
+          }
         }
       }
     };
