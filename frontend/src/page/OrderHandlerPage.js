@@ -566,7 +566,7 @@ function OrderHandlerPage({ username, restaurantId }) {
                           </button>
                         </div>
                       ) : menuList.find(
-                          (menu) => menu._id === order.id && menu.canCook === -1
+                          (menu) => menu._id === order.id 
                         ) ? (
                         <div id="choice-remove-menu-form-order">
                           {menuList.find((item) => item._id === order.id)
