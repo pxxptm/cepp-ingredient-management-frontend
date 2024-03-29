@@ -5,16 +5,15 @@ function DeleteAllOrderMadal({
   userID,
   setDeleteAllOrderModalOpen,
   setLatestOrder,
+  setRequireIngredients,
 }) {
   const LatestOrder = "LatestOrder" + restaurantId + userID;
   async function handleSubmit() {
     setLatestOrder([]);
+    setRequireIngredients([])
+    window.localStorage.setItem(LatestOrder, JSON.stringify([]));
+    setDeleteAllOrderModalOpen(false);
 
-    window.localStorage.setItem(
-      LatestOrder,
-      JSON.stringify([])
-    );
-    setDeleteAllOrderModalOpen(false)
   }
   return (
     <div className="ingredient-del-modalBackground">

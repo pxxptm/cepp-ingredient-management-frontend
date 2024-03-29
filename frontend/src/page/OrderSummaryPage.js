@@ -124,6 +124,7 @@ function OrderSummaryPage({ username, restaurantId }) {
       );
       setCompleteOrderModalOpen(true);
       setPostOrderResponse(response.data);
+      console.log(response.data)
            setLatestOrder([]);
       // Navigate to some success page or handle the response
     } catch (error) {

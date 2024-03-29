@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import NotEnoughComponentAlertModal from "../component/NotEnoughComponentAlertModal";
 import HaveOutOfStockIngredientMenuInOrderAlertModal from "../component/HaveOutOfStockIngredientMenuInOrderAlertModal";
 import DeleteAllOrderMadal from "../component/DeleteAllOrderMadal";
+import ReachLimitMaodal from "../component/ReachLimitMaodal";
 
 function OrderHandlerPage({ username, restaurantId }) {
   const urlRestaurantDetail = `http://localhost:3001/restaurant/${restaurantId}`;
@@ -26,7 +27,8 @@ function OrderHandlerPage({ username, restaurantId }) {
     setHaveOutOfStockIngredientMenuInOrderAlertModalOpen,
   ] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
-
+  const urlIngredientList = `http://localhost:3001/ingredient/restaurant/${restaurantId}`;
+  const [ingredientList, setIngredientList] = useState([]);
   const [sortCriteriaTerm, setSortCriteriaTerm] = useState(0);
   const [menuClassName, setMenuClassName] = useState("inactive");
   const [menuBtnClassName, setMenuBtnClassName] = useState("sortInactive");
@@ -34,6 +36,11 @@ function OrderHandlerPage({ username, restaurantId }) {
   const [filterBtn2ClassName, setFilterBtn2ClassName] = useState("isNotChoose");
   const [filterTerm, setFilterTerm] = useState(-1);
   const [alertState, setAlertState] = useState(0);
+  const [requireIngredients, setRequireIngredients] = useState([]);
+  const [reachLimitMaodalOpen, setReachLimitMaodalOpen] = useState(false);
+  const [reachLimitMenuName, setReachLimitMenuName] = useState("");
+  const [reachLimitMenuAlertState, setReachLimitMenuAlertState] = useState(0);
+  const [reachLimitMaxAmount, setReachLimitMaxAmount] = useState("");
 
   // get ID
   useEffect(() => {
@@ -50,6 +57,28 @@ function OrderHandlerPage({ username, restaurantId }) {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(urlIngredientList, {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        });
+        setIngredientList(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, 1000); // Fetch data every 1 second
+
+    // Cleanup function to clear interval when component unmounts
+    return () => clearInterval(interval);
+  }); // Empty dependency array to run effect only once
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,27 +100,59 @@ function OrderHandlerPage({ username, restaurantId }) {
   }, [urlRestaurantDetail, accessToken]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const latestOrderFromStorage = JSON.parse(
-        localStorage.getItem(LatestOrder)
-      );
-
-      setLatestOrder(latestOrderFromStorage || []);
-      window.localStorage.setItem(
-        LatestOrder,
-        JSON.stringify(latestOrderFromStorage)
-      );
+    const interval = setInterval(async () => {
+      const latestOrderFromStorage =
+        JSON.parse(localStorage.getItem(LatestOrder)) || [];
 
       setLatestOrder(latestOrderFromStorage);
-      window.localStorage.setItem(
-        LatestOrder,
-        JSON.stringify(latestOrderFromStorage)
-      );
-    }, 100); // Update every 1 second
+
+      // Initialize an empty array to store required ingredients
+      let updatedIngredients = [];
+
+      // Iterate over each menu in the latest order list
+      for (const orderItem of latestOrderFromStorage) {
+        const { id: menuId, amount } = orderItem;
+        const urlMenuComponentList = `http://localhost:3001/component/get-menu/${menuId}`;
+
+        try {
+          // Fetch the menu components
+          const response = await axios.get(urlMenuComponentList, {
+            headers: {
+              Authorization: "Bearer " + accessToken,
+            },
+          });
+          const components = response.data;
+
+          // Calculate the updated ingredients for the current menu
+          components.forEach((ingredient) => {
+            const existingIngredientIndex = updatedIngredients.findIndex(
+              (item) => item.ingredientId === ingredient.ingredientId
+            );
+            const requiredAmount =
+              parseFloat(ingredient.ingredientAmount) * parseFloat(amount);
+            if (existingIngredientIndex !== -1) {
+              updatedIngredients[existingIngredientIndex].amount +=
+                requiredAmount;
+            } else {
+              updatedIngredients.push({
+                ingredientId: ingredient.ingredientId,
+                amount: requiredAmount,
+              });
+            }
+          });
+        } catch (error) {
+          console.error("Error fetching menu components:", error);
+        }
+      }
+
+      // Update the requireIngredients state
+      setRequireIngredients(updatedIngredients);
+      //console.log(requireIngredients);
+    }, 500); // Update every 1 second
 
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
-  }); // Add menuList as a dependency
+  });
 
   useEffect(() => {
     const fetchMenuList = async () => {
@@ -122,7 +183,7 @@ function OrderHandlerPage({ username, restaurantId }) {
     fetchMenuList();
   }, [restaurantId, sortCriteriaTerm]);
 
-  const addToOrderSummary = (id, name, amount) => {
+  const addToOrderSummary = async (id, name, amount) => {
     // Check if latestOrder is null or undefined
     if (!latestOrder) {
       setLatestOrder([{ id, name, amount }]);
@@ -138,33 +199,179 @@ function OrderHandlerPage({ username, restaurantId }) {
     );
 
     if (existingItemIndex !== -1) {
-      const updatedLatestOrder = [...latestOrder];
-      updatedLatestOrder[existingItemIndex].amount += amount;
-
-      setLatestOrder(updatedLatestOrder);
-      window.localStorage.setItem(
-        LatestOrder,
-        JSON.stringify(updatedLatestOrder)
+      const canCook = await checkAbleToCook(
+        id,
+        latestOrder[existingItemIndex].amount + 1
       );
+      if (canCook) {
+        const updatedLatestOrder = [...latestOrder];
+        updatedLatestOrder[existingItemIndex].amount += amount;
+
+        setLatestOrder(updatedLatestOrder);
+        window.localStorage.setItem(
+          LatestOrder,
+          JSON.stringify(updatedLatestOrder)
+        );
+
+        // Calculate ingredients for this menu and update the requireIngredients state
+        const urlMenuComponentList = `http://localhost:3001/component/get-menu/${id}`;
+
+        try {
+          // Fetch the menu components
+          const response = await axios.get(urlMenuComponentList, {
+            headers: {
+              Authorization: "Bearer " + accessToken,
+            },
+          });
+          const components = response.data;
+
+          // Calculate the updated ingredients
+          const updatedIngredients = requireIngredients.slice(); // Clone the array
+          components.forEach((ingredient) => {
+            const existingIngredientIndex = updatedIngredients.findIndex(
+              (item) => item.ingredientId === ingredient.ingredientId
+            );
+            if (existingIngredientIndex !== -1) {
+              updatedIngredients[existingIngredientIndex].amount +=
+                parseFloat(ingredient.ingredientAmount) * parseFloat(amount);
+            } else {
+              updatedIngredients.push({
+                ingredientId: ingredient.ingredientId,
+                amount:
+                  parseFloat(ingredient.ingredientAmount) * parseFloat(amount),
+              });
+            }
+          });
+
+          // Update the requireIngredients state
+          setRequireIngredients(updatedIngredients);
+
+          // Log requireIngredients after updating
+          //console.log("Updated requireIngredients:", updatedIngredients);
+        } catch (error) {
+          //console.error("Error fetching menu components:", error);
+        }
+      } else {
+        setReachLimitMaodalOpen(true);
+        const menu = menuList.find((item) => item._id === id);
+        setReachLimitMenuName(menu.name);
+        setReachLimitMenuAlertState(1);
+      }
     } else {
-      const updatedOrder = [...latestOrder, { id, name, amount }];
-      setLatestOrder(updatedOrder);
-      window.localStorage.setItem(LatestOrder, JSON.stringify(updatedOrder));
+      const canCook = await checkAbleToCook(id, 1);
+      if (canCook) {
+        const updatedOrder = [...latestOrder, { id, name, amount }];
+        setLatestOrder(updatedOrder);
+        window.localStorage.setItem(LatestOrder, JSON.stringify(updatedOrder));
+
+        // Calculate ingredients for this menu and update the requireIngredients state
+        const urlMenuComponentList = `http://localhost:3001/component/get-menu/${id}`;
+
+        try {
+          // Fetch the menu components
+          const response = await axios.get(urlMenuComponentList, {
+            headers: {
+              Authorization: "Bearer " + accessToken,
+            },
+          });
+          const components = response.data;
+
+          // Calculate the updated ingredients
+          const updatedIngredients = requireIngredients.slice(); // Clone the array
+          components.forEach((ingredient) => {
+            const existingIngredientIndex = updatedIngredients.findIndex(
+              (item) => item.ingredientId === ingredient.ingredientId
+            );
+            if (existingIngredientIndex !== -1) {
+              updatedIngredients[existingIngredientIndex].amount +=
+                parseFloat(ingredient.ingredientAmount) * parseFloat(amount);
+            } else {
+              updatedIngredients.push({
+                ingredientId: ingredient.ingredientId,
+                amount:
+                  parseFloat(ingredient.ingredientAmount) * parseFloat(amount),
+              });
+            }
+          });
+
+          // Update the requireIngredients state
+          setRequireIngredients(updatedIngredients);
+
+          // Log requireIngredients after updating
+          //console.log("Updated requireIngredients:", updatedIngredients);
+        } catch (error) {
+          //console.error("Error fetching menu components:", error);
+        }
+      } else {
+        setReachLimitMaodalOpen(true);
+        const menu = menuList.find((item) => item._id === id);
+        setReachLimitMenuName(menu.name);
+        setReachLimitMenuAlertState(2);
+      }
     }
   };
 
-  const increaseQuantity = (id) => {
-    const updatedLatestOrder = latestOrder.map((item) =>
-      item.id === id ? { ...item, amount: item.amount + 1 } : item
-    );
-    setLatestOrder(updatedLatestOrder);
-    window.localStorage.setItem(
-      LatestOrder,
-      JSON.stringify(updatedLatestOrder)
-    );
+  const increaseQuantity = async (id) => {
+    const updatedItem = latestOrder.find((item) => item.id === id);
+
+    if (updatedItem) {
+      const newAmount = updatedItem.amount + 1;
+      const canCook = await checkAbleToCook(id, newAmount);
+
+      if (canCook) {
+        const updatedLatestOrder = latestOrder.map((item) =>
+          item.id === id ? { ...item, amount: newAmount } : item
+        );
+
+        setLatestOrder(updatedLatestOrder);
+        window.localStorage.setItem(
+          LatestOrder,
+          JSON.stringify(updatedLatestOrder)
+        );
+
+        // Calculate ingredients for this menu and update the requireIngredients state
+        const urlMenuComponentList = `http://localhost:3001/component/get-menu/${id}`;
+        try {
+          // Fetch the menu components
+          const response = await axios.get(urlMenuComponentList, {
+            headers: {
+              Authorization: "Bearer " + accessToken,
+            },
+          });
+          const components = response.data;
+
+          // Calculate the updated ingredients
+          const updatedIngredients = [...requireIngredients]; // Clone the array
+          components.forEach((ingredient) => {
+            const existingIngredientIndex = updatedIngredients.findIndex(
+              (item) => item.ingredientId === ingredient.ingredientId
+            );
+            if (existingIngredientIndex !== -1) {
+              // Update the ingredient amount based on the new quantity
+              updatedIngredients[existingIngredientIndex].amount =
+                parseFloat(ingredient.ingredientAmount) * newAmount;
+            }
+          });
+
+          // Update the requireIngredients state
+          setRequireIngredients(updatedIngredients);
+
+          // Log requireIngredients after updating
+          //console.log("Updated requireIngredients:", updatedIngredients);
+        } catch (error) {
+          //console.error("Error fetching menu components:", error);
+        }
+      } else {
+        // NOTIFICATION
+        setReachLimitMaodalOpen(true);
+        const menu = menuList.find((item) => item._id === id);
+        setReachLimitMenuName(menu.name);
+        setReachLimitMenuAlertState(1);
+      }
+    }
   };
 
-  const decreaseQuantity = (id) => {
+  const decreaseQuantity = async (id) => {
     const updatedLatestOrder = latestOrder.map((item) =>
       item.id === id && item.amount > 0
         ? { ...item, amount: item.amount - 1 }
@@ -184,16 +391,83 @@ function OrderHandlerPage({ username, restaurantId }) {
         LatestOrder,
         JSON.stringify(filteredLatestOrder)
       );
+
+      // Calculate ingredients for this menu and update the requireIngredients state
+      const urlMenuComponentList = `http://localhost:3001/component/get-menu/${id}`;
+
+      try {
+        // Fetch the menu components
+        const response = await axios.get(urlMenuComponentList, {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        });
+        const components = response.data;
+
+        // Calculate the updated ingredients
+        const updatedIngredients = [...requireIngredients]; // Clone the array
+        components.forEach((ingredient) => {
+          const existingIngredientIndex = updatedIngredients.findIndex(
+            (item) => item.ingredientId === ingredient.ingredientId
+          );
+          if (existingIngredientIndex !== -1) {
+            updatedIngredients[existingIngredientIndex].amount += parseFloat(
+              ingredient.ingredientAmount
+            );
+          }
+        });
+
+        // Update the requireIngredients state
+        setRequireIngredients(updatedIngredients);
+
+        // Log requireIngredients after updating
+        //console.log("Updated requireIngredients:", updatedIngredients);
+      } catch (error) {
+        //console.error("Error fetching menu components:", error);
+      }
     } else {
       setLatestOrder(updatedLatestOrder.filter((item) => item.amount >= 0));
       window.localStorage.setItem(
         LatestOrder,
         JSON.stringify(updatedLatestOrder.filter((item) => item.amount >= 0))
       );
+      // Calculate ingredients for this menu and update the requireIngredients state
+      const urlMenuComponentList = `http://localhost:3001/component/get-menu/${id}`;
+
+      try {
+        // Fetch the menu components
+        const response = await axios.get(urlMenuComponentList, {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        });
+        const components = response.data;
+
+        // Calculate the updated ingredients
+        const updatedIngredients = [...requireIngredients]; // Clone the array
+        components.forEach((ingredient) => {
+          const existingIngredientIndex = updatedIngredients.findIndex(
+            (item) => item.ingredientId === ingredient.ingredientId
+          );
+          if (existingIngredientIndex !== -1) {
+            updatedIngredients[existingIngredientIndex].amount -= parseFloat(
+              ingredient.ingredientAmount
+            );
+          }
+        });
+
+        // Update the requireIngredients state
+        setRequireIngredients(updatedIngredients);
+
+        // Log requireIngredients after updating
+        //console.log("Updated requireIngredients:", updatedIngredients);
+      } catch (error) {
+        //console.error("Error fetching menu components:", error);
+      }
     }
   };
 
-  const updateQuantity = (id, newAmount) => {
+  const updateQuantity = async (id, newAmount) => {
     if (newAmount < 0) {
       // If the new amount is less than 0, remove the order
       const updatedLatestOrder = latestOrder.filter((item) => item.id !== id);
@@ -203,17 +477,197 @@ function OrderHandlerPage({ username, restaurantId }) {
         JSON.stringify(updatedLatestOrder)
       );
     } else {
-      // Otherwise, update the quantity of the order
-      const updatedLatestOrder = latestOrder.map((item) =>
-        item.id === id ? { ...item, amount: newAmount } : item
+      const thisMenu = latestOrder.find((item) => item.id === id);
+      const canCook = await checkAbleToCookByUpdate(
+        id,
+        parseFloat(thisMenu.amount),
+        parseFloat(newAmount)
       );
-      setLatestOrder(updatedLatestOrder);
-      window.localStorage.setItem(
-        LatestOrder,
-        JSON.stringify(updatedLatestOrder)
-      );
+      //console.log(canCook);
+      if (canCook) {
+        const updatedLatestOrder = latestOrder.map((item) =>
+          item.id === id ? { ...item, amount: newAmount } : item
+        );
+        setLatestOrder(updatedLatestOrder);
+        window.localStorage.setItem(
+          LatestOrder,
+          JSON.stringify(updatedLatestOrder)
+        );
+
+        // Calculate ingredients for this menu and update the requireIngredients state
+        const urlMenuComponentList = `http://localhost:3001/component/get-menu/${id}`;
+
+        try {
+          // Fetch the menu components
+          const response = await axios.get(urlMenuComponentList, {
+            headers: {
+              Authorization: "Bearer " + accessToken,
+            },
+          });
+          const components = response.data;
+
+          // Calculate the updated ingredients
+          const updatedIngredients = [...requireIngredients]; // Clone the array
+          components.forEach((ingredient) => {
+            const existingIngredientIndex = updatedIngredients.findIndex(
+              (item) => item.ingredientId === ingredient.ingredientId
+            );
+            if (existingIngredientIndex !== -1) {
+              updatedIngredients[existingIngredientIndex].amount =
+                parseFloat(ingredient.ingredientAmount) * parseFloat(newAmount);
+            }
+          });
+
+          // Update the requireIngredients state
+          setRequireIngredients(updatedIngredients);
+
+          // Log requireIngredients after updating
+          //console.log("Updated requireIngredients:", updatedIngredients);
+        } catch (error) {
+          //console.error("Error fetching menu components:", error);
+        }
+      } else {
+        // NOTIFICATION
+        setReachLimitMaodalOpen(true);
+        const menu = menuList.find((item) => item._id === id);
+        setReachLimitMenuName(menu.name);
+        setReachLimitMenuAlertState(3);
+      }
     }
   };
+
+  async function checkAbleToCook(menuId, menuAmount) {
+    const urlMenuComponentList = `http://localhost:3001/component/get-menu/${menuId}`;
+    try {
+      const response = await axios.get(urlMenuComponentList, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      });
+      const components = response.data;
+
+      let canCook = true;
+
+      // Calculate the updated ingredients
+      for (const ingredient of components) {
+        const requiredIngredient = requireIngredients.find(
+          (item) => item.ingredientId === ingredient.ingredientId
+        );
+
+        const availableIngredient = ingredientList.find(
+          (item) => item._id === ingredient.ingredientId
+        );
+
+        //console.log(requiredIngredient, availableIngredient);
+
+        if (!availableIngredient) {
+          canCook = false;
+          break;
+        } else if (!requiredIngredient) {
+          if (
+            parseFloat(availableIngredient.amount) <
+            parseFloat(ingredient.ingredientAmount)
+          ) {
+            canCook = false;
+            break;
+          }
+        } else if (requiredIngredient) {
+          /*console.log(
+            parseFloat(availableIngredient.amount),
+            parseFloat(requiredIngredient.amount) +
+              parseFloat(parseFloat(ingredient.ingredientAmount)),
+            parseFloat(availableIngredient.amount) <
+              parseFloat(requiredIngredient.amount) +
+                parseFloat(parseFloat(ingredient.ingredientAmount))
+          );*/
+          if (
+            parseFloat(availableIngredient.amount) <
+              parseFloat(requiredIngredient.amount) +
+                parseFloat(parseFloat(ingredient.ingredientAmount)) &&
+            ingredient.priority === "high"
+          ) {
+            canCook = false;
+            break;
+          }
+        }
+      }
+
+      return canCook;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
+
+  async function checkAbleToCookByUpdate(menuId, oldAmount, menuAmount) {
+    const urlMenuComponentList = `http://localhost:3001/component/get-menu/${menuId}`;
+    try {
+      const response = await axios.get(urlMenuComponentList, {
+        headers: {
+          Authorization: "Bearer " + accessToken,
+        },
+      });
+      const components = response.data;
+
+      let canCook = true;
+
+      // Calculate the updated ingredients
+      for (const ingredient of components) {
+        const requiredIngredient = requireIngredients.find(
+          (item) => item.ingredientId === ingredient.ingredientId
+        );
+
+        const availableIngredient = ingredientList.find(
+          (item) => item._id === ingredient.ingredientId
+        );
+
+        //console.log(requiredIngredient, availableIngredient);
+
+        if (!availableIngredient) {
+          canCook = false;
+          break;
+        } else if (!requiredIngredient) {
+          if (
+            parseFloat(availableIngredient.amount) <
+            parseFloat(ingredient.ingredientAmount)
+          ) {
+            canCook = false;
+            break;
+          }
+        } else if (requiredIngredient) {
+          /*console.log(
+            parseFloat(availableIngredient.amount) -(parseFloat(requiredIngredient.amount) - parseFloat(ingredient.ingredientAmount) * parseFloat(oldAmount)) , (parseFloat(requiredIngredient.amount) - parseFloat(ingredient.ingredientAmount) * parseFloat(oldAmount)) ,
+            parseFloat(ingredient.ingredientAmount) * parseFloat(menuAmount)
+          );*/
+          if (
+            parseFloat(availableIngredient.amount) -
+              (parseFloat(requiredIngredient.amount) -
+                parseFloat(ingredient.ingredientAmount) *
+                  parseFloat(oldAmount)) <
+              parseFloat(ingredient.ingredientAmount) *
+                parseFloat(menuAmount) &&
+            ingredient.priority === "high"
+          ) {
+            canCook = false;
+            setReachLimitMaxAmount(
+              Math.floor(
+                (parseFloat(availableIngredient.amount) -
+                  (parseFloat(requiredIngredient.amount) -
+                    parseFloat(ingredient.ingredientAmount) *
+                      parseFloat(oldAmount))) /
+                  parseFloat(ingredient.ingredientAmount)
+              )
+            );
+            break;
+          }
+        }
+      }
+      return canCook;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
 
   const orderSummaryFiltered = Array.isArray(latestOrder)
     ? latestOrder.filter((order) =>
@@ -310,6 +764,16 @@ function OrderHandlerPage({ username, restaurantId }) {
             userID={userID}
             setDeleteAllOrderModalOpen={setDeleteAllOrderModalOpen}
             setLatestOrder={setLatestOrder}
+            setRequireIngredients={setRequireIngredients}
+          />
+        )}
+
+        {reachLimitMaodalOpen && (
+          <ReachLimitMaodal
+            setReachLimitMaodalOpen={setReachLimitMaodalOpen}
+            menuName={reachLimitMenuName}
+            reachLimitMaxAmount={reachLimitMaxAmount}
+            alertState={reachLimitMenuAlertState}
           />
         )}
         <div id="order-handler-page-side-bar-menu">
@@ -564,7 +1028,12 @@ function OrderHandlerPage({ username, restaurantId }) {
                             type="number"
                             value={order.amount}
                             onChange={(e) =>
-                              updateQuantity(order.id, parseInt(e.target.value))
+                              e.target.value === ""
+                                ? updateQuantity(order.id, 0)
+                                : updateQuantity(
+                                    order.id,
+                                    parseInt(e.target.value)
+                                  )
                             }
                           />
                           <button
