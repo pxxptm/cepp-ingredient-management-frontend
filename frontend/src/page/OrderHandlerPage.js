@@ -67,6 +67,7 @@ function OrderHandlerPage({ username, restaurantId }) {
           },
         });
         setIngredientList(response.data);
+        //console.log(ingredientList)
       } catch (error) {
         console.log(error);
       }
@@ -74,7 +75,7 @@ function OrderHandlerPage({ username, restaurantId }) {
 
     const interval = setInterval(() => {
       fetchData();
-    }, 1000); // Fetch data every 1 second
+    }, 500); // Fetch data every 0.5 second
 
     // Cleanup function to clear interval when component unmounts
     return () => clearInterval(interval);
@@ -460,7 +461,7 @@ function OrderHandlerPage({ username, restaurantId }) {
         setRequireIngredients(updatedIngredients);
 
         // Log requireIngredients after updating
-        //console.log("Updated requireIngredients:", updatedIngredients);
+        console.log("Updated requireIngredients:", updatedIngredients);
       } catch (error) {
         //console.error("Error fetching menu components:", error);
       }
@@ -522,7 +523,7 @@ function OrderHandlerPage({ username, restaurantId }) {
           setRequireIngredients(updatedIngredients);
 
           // Log requireIngredients after updating
-          //console.log("Updated requireIngredients:", updatedIngredients);
+          console.log("Updated requireIngredients:", updatedIngredients);
         } catch (error) {
           //console.error("Error fetching menu components:", error);
         }
@@ -572,14 +573,14 @@ function OrderHandlerPage({ username, restaurantId }) {
             break;
           }
         } else if (requiredIngredient) {
-          /*console.log(
+          console.log(
             parseFloat(availableIngredient.amount),
             parseFloat(requiredIngredient.amount) +
               parseFloat(parseFloat(ingredient.ingredientAmount)),
             parseFloat(availableIngredient.amount) <
               parseFloat(requiredIngredient.amount) +
                 parseFloat(parseFloat(ingredient.ingredientAmount))
-          );*/
+          );
           if (
             parseFloat(availableIngredient.amount) <
               parseFloat(requiredIngredient.amount) +
@@ -592,7 +593,7 @@ function OrderHandlerPage({ username, restaurantId }) {
         }
       }
 
-      return canCook;
+      return canCook; // Return the final result
     } catch (error) {
       console.error(error);
       return false;
@@ -621,7 +622,7 @@ function OrderHandlerPage({ username, restaurantId }) {
           (item) => item._id === ingredient.ingredientId
         );
 
-        //console.log(requiredIngredient, availableIngredient);
+        console.log(requiredIngredient, availableIngredient);
 
         if (!availableIngredient) {
           canCook = false;
@@ -635,10 +636,15 @@ function OrderHandlerPage({ username, restaurantId }) {
             break;
           }
         } else if (requiredIngredient) {
-          /*console.log(
-            parseFloat(availableIngredient.amount) -(parseFloat(requiredIngredient.amount) - parseFloat(ingredient.ingredientAmount) * parseFloat(oldAmount)) , (parseFloat(requiredIngredient.amount) - parseFloat(ingredient.ingredientAmount) * parseFloat(oldAmount)) ,
+          console.log(
+            parseFloat(availableIngredient.amount) -
+              (parseFloat(requiredIngredient.amount) -
+                parseFloat(ingredient.ingredientAmount) *
+                  parseFloat(oldAmount)),
+            parseFloat(requiredIngredient.amount) -
+              parseFloat(ingredient.ingredientAmount) * parseFloat(oldAmount),
             parseFloat(ingredient.ingredientAmount) * parseFloat(menuAmount)
-          );*/
+          );
           if (
             parseFloat(availableIngredient.amount) -
               (parseFloat(requiredIngredient.amount) -
@@ -662,7 +668,8 @@ function OrderHandlerPage({ username, restaurantId }) {
           }
         }
       }
-      return canCook;
+
+      return canCook; // Return the final result
     } catch (error) {
       console.error(error);
       return false;
