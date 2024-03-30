@@ -655,15 +655,25 @@ function OrderHandlerPage({ username, restaurantId }) {
             ingredient.priority === "high"
           ) {
             canCook = false;
-            setReachLimitMaxAmount(
-              Math.floor(
-                (parseFloat(availableIngredient.amount) -
-                  (parseFloat(requiredIngredient.amount) -
-                    parseFloat(ingredient.ingredientAmount) *
-                      parseFloat(oldAmount))) /
-                  parseFloat(ingredient.ingredientAmount)
-              )
-            );
+            const MAX = Math.floor(
+              (parseFloat(availableIngredient.amount) -
+                (parseFloat(requiredIngredient.amount) -
+                  parseFloat(ingredient.ingredientAmount) *
+                    parseFloat(oldAmount))) /
+                parseFloat(ingredient.ingredientAmount)
+            )
+            if (MAX < oldAmount) 
+            {
+              setReachLimitMaxAmount(
+              oldAmount
+                );
+            }
+            else
+            {
+              setReachLimitMaxAmount(
+                MAX
+                  );
+            }
             break;
           }
         }
