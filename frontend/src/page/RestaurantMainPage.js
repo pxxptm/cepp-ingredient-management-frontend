@@ -45,7 +45,54 @@ function RestaurantMainPage({ username, restaurantId }) {
         },
       })
       .then((res) => {
-        setsortedIngredientList(res.data.reverse());
+        let ingredients = res.data.reverse();
+        //setsortedIngredientList(res.data.reverse());
+        const sortedIngredientsListOOS = [...ingredients]
+          .filter((ingredient) => parseFloat(ingredient.amount) === 0)
+          .sort((a, b) => {
+            if (a.amount === b.amount) {
+              return a.name.localeCompare(b.name);
+            } else {
+              return a.amount - b.amount;
+            }
+          });
+
+        const sortedIngredientsListNearlyOOS = [...ingredients]
+          .filter(
+            (ingredient) =>
+              0 < parseFloat(ingredient.amount) &&
+              parseFloat(ingredient.amount) <= parseFloat(ingredient.atLeast)
+          )
+          .sort((a, b) => {
+            // Sort by amount first
+            if (a.amount === b.amount) {
+              return a.name.localeCompare(b.name);
+            } else {
+              return a.amount - b.amount;
+            }
+          });
+
+        const sortedIngredientsListETC = [...ingredients]
+          .filter(
+            (ingredient) =>
+              parseFloat(ingredient.amount) > parseFloat(ingredient.atLeast)
+          )
+          .sort((a, b) => {
+            // Sort by amount first
+            if (a.amount === b.amount) {
+              return a.name.localeCompare(b.name);
+            } else {
+              return a.amount - b.amount;
+            }
+          });
+
+          const sortedIngredientsList = [
+            ...sortedIngredientsListOOS,
+            ...sortedIngredientsListNearlyOOS,
+            ...sortedIngredientsListETC,
+          ];
+
+        setsortedIngredientList(sortedIngredientsList);
       })
       .catch((err) => {
         console.log(err);
@@ -213,24 +260,32 @@ function RestaurantMainPage({ username, restaurantId }) {
                           วัตถุหมดสต็อก
                         </div>
                         <div id="out-of-stock-table-header-count">
-                          <div>{outOfStockIngredientList.length}</div>
+                          <div>
+                            {
+                              sortedIngredientList.filter(
+                                (item) => parseFloat(item.amount) === 0
+                              ).length
+                            }
+                          </div>
                         </div>
                       </div>
 
                       <div id="out-of-stock-zone-table-zone">
                         <div id="out-of-stock-zone-table-content">
-                          {outOfStockIngredientList.length > 0 &&
-                            outOfStockIngredientList.map(
+                          {sortedIngredientList.length > 0 &&
+                            sortedIngredientList.map(
                               (ingredient, index) =>
-                                ingredient && ( // Check if staff is not null
+                                ingredient &&
+                                parseFloat(ingredient.amount) === 0 && ( // Check if staff is not null
                                   <div
                                     id="ingredient-block"
                                     key={ingredient._id}
                                     style={{
+                                      backgroundColor: "white",
+
                                       borderBottom:
                                         index ===
-                                          outOfStockIngredientList.length - 1 &&
-                                        outOfStockIngredientList.length > 4
+                                        sortedIngredientList.length - 1
                                           ? "none"
                                           : "0.1vw solid rgba(0, 0, 0, 0.2)",
                                     }}
