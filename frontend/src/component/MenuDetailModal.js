@@ -137,7 +137,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
           restaurantId: restaurantId,
           menuId: menuId,
           ingredientId: componentId,
-          ingredientAmount: parseFloat(componentAmount),
+          ingredientAmount: parseFloat(componentAmount).toFixed(2),
           priority: priority,
         },
         {
@@ -152,7 +152,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
         console.log(error);
       });
     setAddComponentMode(false);
-    setComponentUnit("")
+    setComponentUnit("");
   };
 
   const handleEditComponent = (e) => {
@@ -161,7 +161,7 @@ function MenuDetailModal({ restaurantId, menuId, setEditMenuModalOpen }) {
       .patch(
         `http://localhost:3001/component/${editComponentID}`,
         {
-          ingredientAmount: parseFloat(componentAmountEdit),
+          ingredientAmount: parseFloat(componentAmountEdit.toFixed(2)),
           priority: componentPriorityEdit,
         },
         {
