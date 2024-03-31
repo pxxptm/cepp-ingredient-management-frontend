@@ -21,10 +21,6 @@ export class OrderService {
       res.push(await this.checkCanMake(order.id, order.name, order.amount));
     }
 
-    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NWQ4MmNmMWEzZTE2NGRhMDkyZTUxYzMiLCJ1c2VybmFtZSI6Im93bmVyIiwicm9sZSI6Im93bmVyIiwiaWF0IjoxNzEwMTYyNzcwLCJleHAiOjE3MTAyNDkxNzB9.abFnWRKFPombWRV16Ha3E5YkopKL2cOuaaqAeG0E-LA
-    // 65d83ab124a06c65fb25cdcc
-    // [{"id": "65dd54d26a056402059c1425", "name" : "tee pad ped", "amount" : 3}]
-
     console.log(res);
     return res;
   }
@@ -92,7 +88,7 @@ export class OrderService {
       if (ingredient.amount >= component.ingredientAmount) {
         const newAmount = ingredient.amount - component.ingredientAmount;
         const newIngredient = ingredient;
-        newIngredient.amount = newAmount;
+        newIngredient.amount = Math.round(newAmount * 100) / 100;
 
         await this.ingredientService.update(ingredient.id, newIngredient);
       }
